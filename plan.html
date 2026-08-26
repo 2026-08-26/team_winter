@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로젝트 기획안 - 2030 청년 가구 주거 가성비 지수</title>
+    <style>
+        body {
+            font-family: 'Malgun Gothic', sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1a73e8;
+            border-bottom: 2px solid #1a73e8;
+            padding-bottom: 10px;
+            font-size: 24px;
+        }
+        h2 {
+            color: #202124;
+            font-size: 18px;
+            margin-top: 25px;
+            background: #e8f0fe;
+            padding: 8px 12px;
+            border-left: 4px solid #1a73e8;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .formula {
+            background-color: #f1f3f4;
+            padding: 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>[프로젝트 기획안] 2030 청년 가구 주거 가성비 & 생활 인프라 통합 지수</h1>
+
+        <h2>1. 프로젝트명</h2>
+        <p><strong>2030 청년 가구를 위한 ‘지역별 주거 가성비 & 생활 인프라 통합 지수(Housing & Life Index)’ 구축</strong></p>
+
+        <h2>2. 분석 목표 및 배경 (2030 세대 가치 제공)</h2>
+        <ul>
+            <li><strong>배경:</strong> 2030 세대의 1인 가구 증가 및 주택 가격 부담으로 인해 실거래가뿐만 아니라 대중교통, 문화/여가, 상권 등 인프라를 종합적으로 고려한 주거 선택 필요성이 증대됨.</li>
+            <li><strong>목표:</strong> 단순 매매/전월세 가격을 넘어 2030 선호 인프라를 반영한 ‘주거 가성비 지수’를 도출하여, 청년층에게 맞춤형 주거지를 추천하고 청년 주택 관련 기업/지자체에 B2B 데이터 제공.</li>
+        </ul>
+
+        <h2>3. 데이터셋 구성 및 수집 계획</h2>
+        <ul>
+            <li><strong>제공 데이터셋 활용:</strong>
+                <ul>
+                    <li>인구통계 데이터: 행정동별 2030 연령대 인구수, 1인 가구 비중, 인구 이동 추이</li>
+                    <li>아파트 거래가 데이터: 지역별/평형별 실거래가(매매, 전월세)</li>
+                </ul>
+            </li>
+            <li><strong>추가 수집(크롤링/API) 데이터:</strong>
+                <ul>
+                    <li>대중교통 & 편의시설: 지하철역/버스정류장 위치, 편의점·마트·병원 접근성 (Kakao/Naver Map API)</li>
+                    <li>문화/여가 인프라: 영화관, 카페, K-문화/엔터 관련 시설(공연장, 팝업스토어 등) 위치 데이터</li>
+                    <li>주거 만족도 감성 데이터: 블로그, 에타, 부동산 커뮤니티(직방/네이버 부동산 등)의 지역별 2030 거주 후기 텍스트 데이터</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2>4. 핵심 도출 지표 (수익화 및 지표화)</h2>
+        <ol>
+            <li>
+                <strong>HL-Score (Housing-Life Score)</strong>: (주거비용 대비 인프라 접근성 점수)
+                <div class="formula">
+                    HL-Score = (인프라 접근성 점수 × 2030 선호 가중치) / 지역별 평균 평당 실거래가(또는 월세)
+                </div>
+            </li>
+            <li>
+                <strong>2030 Fandom-Infra Index</strong>: 청년층이 선호하는 문화 시설(공연장, 팝업스토어, 영화관 등)의 밀집도를 수치화한 지표
+            </li>
+        </ol>
+
+        <h2>5. 2030 세대 및 기업 활용 방안 (수익화 모델)</h2>
+        <ul>
+            <li><strong>2030 B2C 서비스:</strong> 예산 및 출퇴근 위치 입력 시, HL-Score가 가장 높은 맞춤형 동네/아파트 추천 웹/앱 서비스</li>
+            <li><strong>기업/지자체 B2B 서비스:</strong>
+                <ul>
+                    <li>청년주택/청년공유주거(Co-living) 기업: 2030 유입 가능성이 높고 인프라 대비 가성비가 높은 신규 사업 입지 추천 유료 리포트</li>
+                    <li>지자체: 청년 인구 유입을 위한 주거 인프라 개선 및 정책 지원 컨설팅 데이터 판매</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2>6. 구현 및 제출 파일 구조</h2>
+        <ul>
+            <li><strong>Flask 서버 파일 (.ipynb):</strong> 데이터 전처리, 지표 계산 알고리즘 및 추천 엔진 백엔드 구축</li>
+            <li><strong>웹페이지 파일 (.html):</strong> 사용자 예산/선호도 입력 폼, 지역별 HL-Score 및 지도 시각화 대시보드 UI</li>
+        </ul>
+    </div>
+</body>
+</html>

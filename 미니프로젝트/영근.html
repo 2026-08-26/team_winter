@@ -1,12 +1,266 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>G-DRAGON - 보나마나 (BONAMANA)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0d0d0f;
+            --card-bg: #16161a;
+            --accent-color: #d8a054;
+            --text-main: #f0f0f5;
+            --text-sub: #a0a0b0;
+            --border-color: #2a2a35;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 680px;
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            padding: 35px;
+        }
+
+        .header-section {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 25px;
+            margin-bottom: 25px;
+        }
+
+        .album-art {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #a83232, #d8a054);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 900;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: #fff;
+            box-shadow: 0 8px 20px rgba(216, 160, 84, 0.25);
+            flex-shrink: 0;
+            text-align: center;
+            border: 2px solid var(--accent-color);
+        }
+
+        .song-info {
+            flex-grow: 1;
+        }
+
+        .song-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .song-subtitle {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            row-gap: 6px;
+            column-gap: 15px;
+            font-size: 0.9rem;
+        }
+
+        .meta-label {
+            color: var(--text-sub);
+            font-weight: 500;
+        }
+
+        .meta-value {
+            color: var(--text-main);
+        }
+
+        .lyrics-section {
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .lyrics-title {
+            font-size: 1.1rem;
+            color: var(--text-sub);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .lyrics-title::before, .lyrics-title::after {
+            content: '';
+            height: 1px;
+            width: 40px;
+            background-color: var(--border-color);
+        }
+
+        .lyrics-body {
+            font-size: 1.05rem;
+            color: #d0d0dc;
+            white-space: pre-line;
+            line-height: 1.9;
+            font-weight: 300;
+        }
+
+        .lyrics-body p {
+            margin-bottom: 20px;
+        }
+
+        .chorus {
+            color: #ffffff;
+            font-weight: 500;
+            background: rgba(216, 160, 84, 0.08);
+            padding: 15px;
+            border-radius: 12px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        @media (max-width: 500px) {
+            .header-section {
+                flex-direction: column;
+                text-align: center;
+            }
+            .meta-grid {
+                grid-template-columns: 1fr;
+                gap: 4px;
+            }
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1> 영근 </h1> 
-    <a> 영근 수정본 </a> 
+
+<div class="container">
+    <!-- 헤더 섹션: 곡 정보 -->
+    <div class="header-section">
+        <div class="album-art">
+            Übermensch
+        </div>
+        <div class="song-info">
+            <h1 class="song-title">보나마나 (BONAMANA)</h1>
+            <div class="song-subtitle">G-DRAGON</div>
+            <div class="meta-grid">
+                <span class="meta-label">앨범</span>
+                <span class="meta-value">Übermensch</span>
+                
+                <span class="meta-label">발매</span>
+                <span class="meta-value">2025.02.25.</span>
+                
+                <span class="meta-label">장르</span>
+                <span class="meta-value">랩/힙합</span>
+                
+                <span class="meta-label">작곡</span>
+                <span class="meta-value">G-DRAGON, Brandon "STIX" Salaam Bailey, Michael Warren, CHOICE37</span>
+                
+                <span class="meta-label">작사</span>
+                <span class="meta-value">G-DRAGON</span>
+                
+                <span class="meta-label">편곡</span>
+                <span class="meta-value">G-DRAGON, Brandon "STIX" Salaam Bailey, Michael Warren</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 가사 섹션 -->
+    <div class="lyrics-section">
+        <div class="lyrics-title">LYRICS</div>
+        <div class="lyrics-body">
+            <p>몇 신데 눈을 뜨자 하루가 지네
+며칠째 죽을 쑤다 가루 떡이 돼
+멍하니 널 기다리다 이 개 같은 신세
+주인을 잃은 후 길을 잃은 독방에 갇힌 빈대</p>
+
+            <p class="chorus">왜 나나나 이러면 안 되는데
+네가 없으면 죽을 것만 같아서 그래
+에이 맞잖아 다 알면서 그래
+네 남자 모르게 어때 재미 좀 보는 게</p>
+
+            <p>내가 이상한 걸까? 보나 마나
+내가 잘못한 걸까? 뻔하잖아
+뇌가 이상한 걸까? 보나 마나
+She ain't got no problems? Alright, 너나 나나</p>
+
+            <p>금지된 길을 걸어, NO가 답, 'Feed-back'
+문자도 전화도 못 걸어, 줄까 봐 '민폐'
+Most scandalous, 외줄 타는 듯
+Fragilely Dangerous
+자신만 불편한 말 못 할 고민
+Can you handle this?</p>
+
+            <p class="chorus">왜 나나나 이러면 안 되는데
+네가 없으면 죽을 것만 같아서 그래
+에이 좋잖아 잘하면서 그래
+네 남자 모르게 어때 재미 좀 보는 게</p>
+
+            <p>내가 이상한 걸까? 보나 마나
+내가 잘못한 걸까? 뻔하잖아
+뇌가 이상한 걸까? 보나 마나
+She ain't got no problems? Alright, 너나 나나</p>
+
+            <p>늦은 시간 밤이면 문이 열려 너인 걸</p>
+
+            <p>(Giddy-up) 내 위에 올라타 문질러봐
+Push me hard 'Scream Girl'
+사랑의 소나타 뺑소니 차트
+Fan's only 'Stream Girl'
+'Dig-inside' 미칠광이 빛이기를
+그림-자다, 떡이 나와 (딩동댕) 하루종일 쌩쌩</p>
+
+            <p class="chorus">왜 나나나 이러면 안 되는데
+네가 없으면 죽을 것만 같아서 그래
+에이 맞잖아 다 알면서 그래
+네 남자 모르게 어때 재미 좀 보는 게</p>
+
+            <p>내가 이상한 걸까? 보나 마나
+내가 잘못한 걸까? 뻔하잖아
+뇌가 이상한 걸까? 보나 마나
+She ain't got no problems? Alright, 너나 나나</p>
+
+            <p>늦은 시간 밤이면 문이 열려 너인 걸</p>
+
+            <p>보나 마나 뻔하잖아
+She ain't got no problems? Alright, 너나 나나</p>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

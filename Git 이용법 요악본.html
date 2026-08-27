@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git & GitHub 팀 협업 매뉴얼</title>
+    <style>
+        body {
+            font-family: 'Malgun Gothic', 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f6f9;
+            color: #333;
+        }
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 12px;
+            font-size: 26px;
+            text-align: center;
+        }
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        .member-title { background-color: #27ae60; }
+        .leader-title { background-color: #8e44ad; }
+        .extra-title { background-color: #2c3e50; }
+
+        .card {
+            background-color: #fff;
+            border: 1px solid #e1e8ed;
+            border-left: 5px solid #bdc3c7;
+            padding: 18px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .member-card { border-left-color: #27ae60; }
+        .leader-card { border-left-color: #8e44ad; }
+        .extra-card { border-left-color: #2c3e50; }
+
+        h3 {
+            margin-top: 0;
+            color: #2c3e50;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+        ol, ul {
+            padding-left: 20px;
+            margin: 8px 0;
+        }
+        li {
+            margin-bottom: 6px;
+        }
+        code {
+            background-color: #f1f3f5;
+            color: #e74c3c;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-weight: bold;
+        }
+        .tip-box {
+            background-color: #fff8e1;
+            border: 1px solid #ffe082;
+            border-left: 4px solid #ffb300;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .url-link {
+            color: #2980b9;
+            word-break: break-all;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>❄️ Git & GitHub 팀 협업 가이드북</h1>
+
+        <!-- ================= 팀원 영역 ================= -->
+        <div class="section-title member-title">🙋‍♂️ [팀원] 작업 및 PR 요청 매뉴얼</div>
+
+        <div class="card member-card">
+            <h3>1. 기존 파일 삭제 후 새롭게 프로젝트 내려받기 (초기 1회)</h3>
+            <ol>
+                <li>VS Code 상단 메뉴 <strong>File ➔ Close Folder</strong> 클릭 (열린 폴더 닫기)</li>
+                <li>기존 프로젝트 폴더를 내 컴퓨터에서 완전 삭제</li>
+                <li>새 작업용 폴더 생성 (예: 바탕화면에 <code>winter</code> 폴더 생성)</li>
+                <li>VS Code에서 <strong>File ➔ Open Folder...</strong>로 새로 만든 폴더 열기</li>
+                <li>상단 메뉴 <strong>Terminal ➔ New Terminal</strong>을 열고 아래 명령어 입력:</li>
+            </ol>
+            <code>git clone https://github.com/2026-08-26/team_winter.git .</code>
+            <div class="tip-box">💡 명령어 맨 뒤에 <strong>한 칸 띄우고 점(<code>.</code>)</strong>을 붙이면 새 폴더 안에 깔끔하게 파일만 다운로드됩니다.</div>
+        </div>
+
+        <div class="card member-card">
+            <h3>2. 개인 작업 브랜치 만들기 & 파일 수정 후 Upload</h3>
+            <ol>
+                <li><strong>내 전용 브랜치 만들기:</strong> <code>git checkout -b feature/yg</code></li>
+                <li>VS Code에서 코드 수정 후 <code>Ctrl + S</code>로 파일 저장</li>
+                <li><strong>장바구니 담기:</strong> <code>git add .</code> (또는 특정 파일 지정: <code>git add 미니프로젝트/영근.html</code>)</li>
+                <li><strong>저장 기록 남기기:</strong> <code>git commit -m "영근페이지 디자인 수정"</code></li>
+                <li><strong>GitHub 올리기:</strong> <code>git push origin feature/yg</code></li>
+            </ol>
+        </div>
+
+        <div class="card member-card">
+            <h3>3. GitHub 웹사이트에서 검수 요청 (PR 생성)</h3>
+            <ol>
+                <li><a href="https://github.com/2026-08-26/team_winter" target="_blank" class="url-link">GitHub 팀 저장소 페이지</a> 접속</li>
+                <li>메인 상단에 뜨는 노란색 <code>Compare & pull request</code> 버튼 클릭</li>
+                <li>메시지 작성: <em>"팀장님, 영근.html 수정했으니 검토 후 master에 합쳐주세요!"</em></li>
+                <li>초록색 <code>Create pull request</code> 버튼 클릭하면 완료!</li>
+            </ol>
+
+            <div class="tip-box">
+                <strong>🚨 Push 후 PR 버튼이 바로 안 뜰 때 (수동 PR 방법):</strong><br>
+                1. 상단 <strong>Pull requests</strong> 탭 ➔ 우측 <strong>New pull request</strong> 클릭<br>
+                2. 브랜치 선택: <code>base: master</code> ⬅ <code>compare: feature/yg</code> 선택<br>
+                3. 초록색 <strong>Create pull request</strong> 클릭 후 제출
+            </div>
+        </div>
+
+        <div class="card member-card">
+            <h3>4. 기존 브랜치에서 n차 수정할 때 (반복 작업 루틴)</h3>
+            <ol>
+                <li><strong>메인 최신화 내역 받기:</strong> <code>git pull origin master</code></li>
+                <li><strong>내 브랜치로 이동:</strong> <code>git checkout feature/yg</code></li>
+                <li><strong>최신 master 코드를 내 브랜치에 동기화:</strong> <code>git merge master</code></li>
+                <li>파일 수정 및 저장(<code>Ctrl + S</code>) 진행</li>
+                <li><code>git add .</code></li>
+                <li><code>git commit -m "2차 수정 완료"</code></li>
+                <li><code>git push origin feature/yg</code> ➔ GitHub 접속 후 다시 <strong>PR 요청</strong></li>
+            </ol>
+        </div>
+
+        <div class="card member-card">
+            <h3>5. 완전 새로운 기능 개발로 새 브랜치를 만들 때</h3>
+            <ol>
+                <li><code>git checkout master</code> (메인으로 이동)</li>
+                <li><code>git pull origin master</code> (최신화)</li>
+                <li><code>git checkout -b feature/yg-v2</code> (새 브랜치 생성 및 이동)</li>
+                <li>작업 진행 후 동일하게 <code>push</code> + <code>PR</code> 요청</li>
+            </ol>
+            <div class="tip-box">
+                📌 <strong>주의:</strong> <code>git checkout -b</code>는 <strong>'새로운 브랜치를 처음 만들 때만'</strong> 사용합니다! 이미 있는 브랜치로 이동할 때는 <code>-b</code>를 빼고 <code>git checkout 브랜치명</code>만 사용하세요.
+            </div>
+        </div>
+
+        <!-- ================= 팀장 영역 ================= -->
+        <div class="section-title leader-title">👑 [팀장] 코드 검수 및 메인 반영 승인</div>
+
+        <div class="card leader-card">
+            <h3>팀장의 PR 검수 및 Merge (최종 반영 과정)</h3>
+            <ol>
+                <li>GitHub 저장소의 <strong>Pull requests</strong> 탭 접속 후 팀원의 PR 클릭</li>
+                <li><strong>Files changed</strong> 탭 클릭 ➔ 추가된 부분(초록)과 삭제된 부분(빨강) 검수</li>
+                <li>이상이 없다면 <strong>Conversation</strong> 탭으로 돌아와 <code>Merge pull request</code> ➔ <code>Confirm merge</code> 클릭</li>
+                <li><strong>내 컴퓨터(팀장 local) 최신화:</strong> VS Code 터미널에서 아래 명령어를 실행하여 팀원이 합친 코드를 내려받습니다.
+                    <br><code>git checkout master</code>
+                    <br><code>git pull origin master</code>
+                </li>
+            </ol>
+        </div>
+
+        <!-- ================= 번외 영역 ================= -->
+        <div class="section-title extra-title">🛠️ [번외] 기타 문제 해결 및 유용한 명령어</div>
+
+        <div class="card extra-card">
+            <h3>실수했을 때 대처법 (초기화)</h3>
+            <ul>
+                <li><strong>특정 파일 로컬 수정 내역 강제 취소:</strong><br><code>git restore 미니프로젝트/영근.html</code></li>
+                <li><strong>작업 중인 폴더 전체 수정 내역 강제 취소:</strong><br><code>git checkout .</code></li>
+                <li><strong>언제든 GitHub의 최신 메인 코드 가져오기:</strong><br><code>git pull origin master</code></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

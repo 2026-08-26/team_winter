@@ -148,6 +148,30 @@
   .log-item p{ font-size:13.5px; color:var(--ink-dim); }
   .log-item p b{ color:var(--ink); font-weight:500; }
 
+  .rev-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media (max-width:680px){ .rev-grid{ grid-template-columns:1fr; } }
+  .rev-card{
+    background:var(--panel); border:1px solid var(--rule-strong); border-radius:6px;
+    padding:20px 22px;
+  }
+  .rev-card .rev-badge{
+    display:inline-block; font-family:'IBM Plex Mono', monospace; font-size:10.5px;
+    letter-spacing:.06em; padding:3px 9px; border-radius:3px; margin-bottom:10px;
+  }
+  .rev-card.b2b-1 .rev-badge{ background:rgba(240,168,61,.14); color:var(--gold); }
+  .rev-card.b2b-2 .rev-badge{ background:rgba(63,167,150,.14); color:var(--teal); }
+  .rev-card.b2c .rev-badge{ background:rgba(169,178,190,.14); color:var(--ink-dim); }
+  .rev-card.b2g .rev-badge{ background:rgba(217,123,106,.14); color:var(--red); }
+  .rev-card .rev-name{ font-family:'Space Grotesk'; font-size:15.5px; font-weight:600; margin-bottom:12px; line-height:1.4; }
+  .rev-card dl{ display:grid; grid-template-columns:56px 1fr; gap:5px 10px; }
+  .rev-card dt{
+    font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--muted);
+    padding-top:2px;
+  }
+  .rev-card dd{ font-size:13px; color:var(--ink-dim); padding-bottom:8px; border-bottom:1px dashed var(--rule); }
+  .rev-card dd:last-of-type{ border-bottom:none; padding-bottom:0; }
+  .rev-card dd b{ color:var(--ink); font-weight:500; }
+
   .proto-links{ display:flex; gap:12px; flex-wrap:wrap; }
   .proto-link{
     display:block; flex:1; min-width:220px;
@@ -175,6 +199,7 @@
       <a href="#overview">개요</a>
       <a href="#data">데이터</a>
       <a href="#metric">지표</a>
+      <a href="#revenue">수익화</a>
       <a href="#stack">구현</a>
       <a href="#team">팀·일정</a>
       <a href="#log">결정 로그</a>
@@ -268,8 +293,55 @@
     </div>
   </section>
 
+  <section id="revenue">
+    <div class="sec-head"><span class="sec-num">04</span><span class="sec-title display">수익화 모델 4가지</span></div>
+    <p class="sec-lead">고객군을 B2B(두 갈래)·B2C·B2G로 나눠 지수 하나로 4개의 매출원을 설계했다.</p>
+
+    <div class="rev-grid">
+      <div class="rev-card b2b-1">
+        <span class="rev-badge">B2B · DEVELOPER</span>
+        <div class="rev-name">디벨로퍼·코리빙 기업 대상 입지 분석 리포트 판매</div>
+        <dl>
+          <dt>타겟</dt><dd>청년주택 건설사, 코리빙 브랜드(패스트파이브·에피소드 등), 프랜차이즈 기획사</dd>
+          <dt>수익</dt><dd>건당 리포트 판매(<b>건당 수백만 원</b>) 또는 월/년 단위 데이터 구독료</dd>
+          <dt>가치</dt><dd>2030 인구밀도 × 인프라 만족도 대비 임대료 설정 구간 제안 → 공실 감소, 사업 성공률 제고</dd>
+        </dl>
+      </div>
+
+      <div class="rev-card b2b-2">
+        <span class="rev-badge">B2B · PLATFORM</span>
+        <div class="rev-name">부동산·핀테크 플랫폼 연동 API / SaaS 구독</div>
+        <dl>
+          <dt>타겟</dt><dd>프롭테크 기업(직방·다방 등), 시중은행 부동산 앱, 자산관리 서비스</dd>
+          <dt>수익</dt><dd>API 호출 건수 기반 <b>종량제 과금</b> 또는 월정액 SaaS 구독</dd>
+          <dt>가치</dt><dd>'HL-Score' 필터 기능을 API로 연동해 매물 앱 체류시간 증대 및 라이선스 수익 창출</dd>
+        </dl>
+      </div>
+
+      <div class="rev-card b2c">
+        <span class="rev-badge">B2C · CONSUMER</span>
+        <div class="rev-name">맞춤형 주거지 추천 컨설팅 & 중개 플랫폼 수수료</div>
+        <dl>
+          <dt>타겟</dt><dd>이사·자취를 준비하는 2030 청년 가구</dd>
+          <dt>수익</dt><dd>제휴 부동산 매물 연결 수수료, 이사/청소/인테리어 플랫폼 중개 수수료</dd>
+          <dt>가치</dt><dd>지수 무료 조회 후 추천 매물 연결, 계약 성사 시 제휴 플랫폼 매칭 수수료 수취</dd>
+        </dl>
+      </div>
+
+      <div class="rev-card b2g">
+        <span class="rev-badge">B2G · PUBLIC</span>
+        <div class="rev-name">지자체 청년 주거 정책 실태분석 컨설팅</div>
+        <dl>
+          <dt>타겟</dt><dd>지자체 청년정책과, 도시재생지원센터, 주택도시공사(SH·LH 등)</dd>
+          <dt>수익</dt><dd>지자체 용역 과제 계약 (단발성 또는 연차별 수주)</dd>
+          <dt>가치</dt><dd>지역별 주거 가성비 정밀 진단 및 정책 수립을 위한 데이터 기반 리포트 납품</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
   <section id="stack">
-    <div class="sec-head"><span class="sec-num">04</span><span class="sec-title display">구현 및 기술 스택</span></div>
+    <div class="sec-head"><span class="sec-num">05</span><span class="sec-title display">구현 및 기술 스택</span></div>
     <p class="sec-lead">기술 스택 학습이 팀 목표라 Flask + HTML 구조를 유지한다.</p>
     <div class="grid2">
       <div class="card">
@@ -301,7 +373,7 @@
   </section>
 
   <section id="team">
-    <div class="sec-head"><span class="sec-num">05</span><span class="sec-title display">팀 구성 및 일정</span></div>
+    <div class="sec-head"><span class="sec-num">06</span><span class="sec-title display">팀 구성 및 일정</span></div>
     <p class="sec-lead">4명 · 4일 · 1일 8시간(총 32시간).</p>
     <table>
       <thead><tr><th>역할</th><th>담당 업무</th></tr></thead>
@@ -324,7 +396,7 @@
   </section>
 
   <section id="log">
-    <div class="sec-head"><span class="sec-num">06</span><span class="sec-title display">결정 로그</span></div>
+    <div class="sec-head"><span class="sec-num">07</span><span class="sec-title display">결정 로그</span></div>
     <p class="sec-lead">기획 과정에서 바뀐 주요 결정 사항. 발표 때 "왜 이렇게 갔는지" 근거로도 쓸 수 있다.</p>
     <div class="log">
       <div class="log-item">
@@ -351,7 +423,7 @@
   </section>
 
   <section style="border-bottom:none;">
-    <div class="sec-head"><span class="sec-num">07</span><span class="sec-title display">참고 프로토타입</span></div>
+    <div class="sec-head"><span class="sec-num">08</span><span class="sec-title display">참고 프로토타입</span></div>
     <p class="sec-lead">같은 저장소에 함께 올렸다면 아래 링크로 바로 확인할 수 있습니다 (파일명이 다르면 링크를 맞춰 수정하세요).</p>
     <div class="proto-links">
       <a class="proto-link" href="./deliverable_preview.html">

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2030 주거 가성비 지수 (HL-Score) 프로젝트 기획안</title>
+  <style>
+    :root {
+      --primary-color: #2563eb;
+      --secondary-color: #1e40af;
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --text-color: #1e293b;
+      --border-color: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 2.5rem 2rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      opacity: 0.9;
+      font-size: 1.1rem;
+    }
+
+    .meta-info {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+    }
+
+    .section-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .section-card h2 {
+      color: var(--primary-color);
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid var(--bg-color);
+      padding-bottom: 0.5rem;
+    }
+
+    .formula-box {
+      background-color: #eff6ff;
+      border-left: 4px solid var(--primary-color);
+      padding: 1.25rem;
+      margin: 1rem 0;
+      border-radius: 0 8px 8px 0;
+      font-weight: 500;
+    }
+
+    ul, ol {
+      padding-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+
+    th, td {
+      border: 1px solid var(--border-color);
+      padding: 0.75rem;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f1f5f9;
+      font-weight: 600;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #e0e7ff;
+      color: #3730a3;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>2030 주거 가성비 지수 (HL-Score) 프로젝트</h1>
+      <p>광주광역시 핵심 거점 대상 인프라 접근성 대비 매물 가격 최적화 프로젝트</p>
+      <div class="meta-info">
+        <span><strong>지역 범위:</strong> 광주광역시 (표본 동 15~20개)</span>
+        <span><strong>팀 구성:</strong> 4인 팀 프로젝트</span>
+        <span><strong>개발 기간:</strong> 4일 (일 8시간, 총 32시간)</span>
+      </div>
+    </header>
+
+    <!-- 1. 프로젝트 개요 -->
+    <div class="section-card">
+      <h2>1. 프로젝트 개요 및 기술 스택</h2>
+      <p>본 프로젝트는 2030 세대의 주거 선택을 돕기 위해 <strong>"인프라 접근성"</strong>과 <strong>"실거래가/시세"</strong>를 결합한 주거 가성비 지수(HL-Score)를 산출하고 시각화하는 프로젝트입니다.</p>
+      <br>
+      <p><strong>기술 스택 유지 이유:</strong> 역량 강화를 위해 <span class="badge">Flask (.ipynb 기반)</span> + <span class="badge">Custom HTML/CSS/JS</span> 대시보드 구조를 고수합니다.</p>
+      <ul>
+        <li><strong>백엔드:</strong> Python, Flask (Jupyter Notebook 연동)</li>
+        <li><strong>프론트엔드:</strong> HTML5, CSS3, JavaScript (Fetch API 기반 동적 랜더링)</li>
+        <li><strong>데이터 처리:</strong> Pandas, NumPy, Scikit-learn (Min-Max 정규화)</li>
+      </ul>
+    </div>
+
+    <!-- 2. 지수 산출 공식 -->
+    <div class="section-card">
+      <h2>2. HL-Score (House-Life Score) 산식 구체화</h2>
+      <p>분자와 분모의 스케일 차이로 인한 지수 왜곡을 방지하기 위해 <strong>Min-Max Scaling (0~1 정규화)</strong>을 도입합니다.</p>
+      
+      <div class="formula-box">
+        <strong>HL-Score</strong> = [ 정규화된 인프라 접근성 점수 ] / [ 정규화된 평균 평당 시세 ]
+      </div>
+
+      <ul>
+        <li><strong>분자 (인프라 접근성 점수):</strong> Kakao Local API 활용
+          <ul>
+            <li>반경 내 교통, 편의점, 카페, 문화시설 등 수치 측정 후 정규화(0~1)</li>
+            <li><strong>가중치 근거:</strong> 구글 폼 기반 2030 간이 설문(n≈30)으로 가중치 산정</li>
+          </ul>
+        </li>
+        <li><strong>분모 (평균 시세):</strong> 국토교통부 실거래가 API + 네이버 부동산 API 병행
+          <ul>
+            <li>지역 내 시세 정규화(0~1) 적용</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 3. 데이터 수집 전략 -->
+    <div class="section-card">
+      <h2>3. 데이터 수집 및 범위 전략</h2>
+      <ul>
+        <li><strong>대상 지역:</strong> 광주광역시 주요 자치구 내 2030 밀집 표본 동 15~20개 선정 (스쿠프 정밀화)</li>
+        <li><strong>수집 데이터 소스:</strong>
+          <ul>
+            <li><strong>주 데이터:</strong> 국토교통부 실거래가 공개시스템 Open API</li>
+            <li><strong>보완 데이터:</strong> 네이버 부동산 API 연동 (매물 시세 보조 지표)</li>
+            <li><strong>인프라 데이터:</strong> Kakao Local API (카테고리별 검색)</li>
+          </ul>
+        </li>
+        <li><strong>수정 사항:</strong> 크롤링 제약 및 짧은 개발 기간을 고려하여 웹 크롤링 및 감성 분석은 제외하고 공공/공식 API 중심으로 단순화</li>
+      </ul>
+    </div>
+
+    <!-- 4. 4일 개발 일정 및 역할 분담 -->
+    <div class="section-card">
+      <h2>4. 4일 (일 8시간) 타임라인 & 업무 분담</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>일차</th>
+            <th>주요 목표</th>
+            <th>역할 분담 예시 (4인)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Day 1</strong></td>
+            <td>데이터 수집 및 설문 진행</td>
+            <td>
+              • A: 국토교통부 & 네이버 API 수집 파이프라인 구축<br>
+              • B: Kakao Local API로 표본 동별 인프라 데이터 수집<br>
+              • C: 2030 선호도 설문지 작성/배포 & 인구 데이터 수집<br>
+              • D: Flask 기본 웹 서버 및 HTML 와이어프레임 설계
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Day 2</strong></td>
+            <td>지수 로직 정립 및 백엔드 개발</td>
+            <td>
+              • A/B: 수집 데이터 정제, Min-Max 정규화 및 HL-Score 산출 함수 작성<br>
+              • C: 설문 결과 분석 후 인프라 가중치 매개변수 적용<br>
+              • D: Flask API 엔드포인트 구축 (지역별 HL-Score 데이터 반환)
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Day 3</strong></td>
+            <td>프론트엔드 연동 및 시각화</td>
+            <td>
+              • A/B: 시각화 라이브러리(Chart.js 또는 Kakao Map API) 연동<br>
+              • C/D: HTML/CSS 대시보드 UI 완성 및 Fetch API를 통한 Flask 통신 연동
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Day 4</strong></td>
+            <td>통합 테스트 및 presentation 준비</td>
+            <td>
+              • 전원: 오류 수정 및 시연 테스트<br>
+              • 팀장/C: HL-Score 상위 지역 분석 결과 정리 및 발표 자료 구성
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+</body>
+</html>

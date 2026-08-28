@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>광주 2030 Housing & Life Index | 프로젝트 요약</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0F1826; --panel:#15202F; --panel-2:#192636;
+    --ink:#ECE6D9; --ink-dim:#A9B2BE; --muted:#6E7A88;
+    --gold:#F0A83D; --teal:#3FA796; --red:#D97B6A;
+    --rule: rgba(236,230,217,0.10); --rule-strong: rgba(236,230,217,0.22);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:'Noto Sans KR', sans-serif; line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+  .display{ font-family:'Space Grotesk', sans-serif; }
+  .wrap{ max-width:920px; margin:0 auto; padding:0 26px; }
+  a{ color:var(--teal); text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+
+  nav{
+    position:sticky; top:0; z-index:10;
+    background:rgba(15,24,38,.92); backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--rule);
+  }
+  .nav-inner{
+    max-width:920px; margin:0 auto; padding:14px 26px;
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-dim);
+  }
+  .nav-inner .brand{ color:var(--gold); letter-spacing:.05em; }
+  .nav-links{ display:flex; gap:16px; }
+  .nav-links a{ color:var(--muted); }
+  .nav-links a:hover{ color:var(--teal); }
+  @media (max-width:640px){ .nav-links{ display:none; } }
+
+  .hero{ padding:64px 0 44px; border-bottom:1px solid var(--rule); }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:12px;
+    letter-spacing:.14em; color:var(--gold); text-transform:uppercase;
+    margin-bottom:16px; display:flex; align-items:center; gap:9px;
+  }
+  .eyebrow::before{
+    content:""; width:7px; height:7px; border-radius:50%;
+    background:var(--gold); box-shadow:0 0 0 3px rgba(240,168,61,.18);
+  }
+  h1{ font-size:clamp(26px,4.4vw,38px); font-weight:700; line-height:1.25; max-width:760px; }
+  h1 em{ font-style:normal; color:var(--gold); }
+  .hero p{ margin-top:16px; color:var(--ink-dim); font-size:15px; max-width:600px; }
+
+  .status-row{ display:flex; gap:10px; margin-top:26px; flex-wrap:wrap; }
+  .status-chip{
+    font-family:'IBM Plex Mono', monospace; font-size:11.5px;
+    border:1px solid var(--rule-strong); border-radius:20px;
+    padding:6px 13px; color:var(--ink-dim);
+  }
+  .status-chip.done{ border-color:var(--teal); color:var(--teal); }
+  .status-chip.todo{ border-color:var(--gold); color:var(--gold); }
+
+  section{ padding:52px 0; border-bottom:1px solid var(--rule); }
+  .sec-head{ display:flex; gap:16px; align-items:baseline; margin-bottom:22px; }
+  .sec-num{
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--gold);
+    border:1px solid var(--rule-strong); padding:3px 9px; border-radius:3px;
+  }
+  .sec-title{ font-size:21px; font-weight:600; }
+  .sec-lead{ color:var(--ink-dim); font-size:14.5px; max-width:620px; margin-bottom:22px; }
+
+  .callout{
+    border-left:2px solid var(--teal); background:var(--panel);
+    padding:15px 19px; font-size:13.5px; color:var(--ink-dim);
+    margin:16px 0; border-radius:0 4px 4px 0;
+  }
+  .callout.warn{ border-left-color:var(--gold); }
+  .callout b{ color:var(--ink); }
+
+  .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media (max-width:680px){ .grid2{ grid-template-columns:1fr; } }
+  .card{
+    background:var(--panel); border:1px solid var(--rule); border-radius:5px;
+    padding:18px 20px;
+  }
+  .card-title{
+    font-family:'IBM Plex Mono', monospace; font-size:11.5px;
+    letter-spacing:.05em; color:var(--teal); text-transform:uppercase;
+    margin-bottom:9px;
+  }
+  .card ul{ list-style:none; }
+  .card li{
+    font-size:13.5px; color:var(--ink-dim); padding:5px 0 5px 15px; position:relative;
+    border-top:1px dashed var(--rule);
+  }
+  .card li:first-child{ border-top:none; padding-top:0; }
+  .card li::before{ content:"·"; position:absolute; left:1px; color:var(--gold); }
+  .card li b{ color:var(--ink); font-weight:500; }
+
+  .metric{
+    background:var(--panel-2); border:1px solid var(--rule-strong);
+    border-radius:5px; padding:20px 22px; margin-bottom:14px;
+  }
+  .metric-name{ font-family:'Space Grotesk'; font-size:15.5px; font-weight:600; color:var(--gold); margin-bottom:8px; }
+  .metric-formula{
+    font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--ink);
+    background:rgba(0,0,0,.22); padding:10px 14px; border-radius:3px;
+    margin:8px 0; overflow-x:auto;
+  }
+  .metric p{ font-size:13.5px; color:var(--ink-dim); }
+
+  table{ width:100%; border-collapse:collapse; font-size:13px; margin-top:6px; }
+  thead th{
+    font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--muted);
+    text-transform:uppercase; text-align:left; padding:8px 10px;
+    border-bottom:1px solid var(--rule-strong); letter-spacing:.03em;
+  }
+  tbody td{ padding:9px 10px; border-bottom:1px solid var(--rule); vertical-align:top; color:var(--ink-dim); }
+  tbody td:first-child{ color:var(--ink); font-weight:500; white-space:nowrap; }
+
+  .stack-tag{
+    display:inline-block; font-family:'IBM Plex Mono', monospace; font-size:11px;
+    color:var(--ink-dim); border:1px solid var(--rule-strong); border-radius:3px;
+    padding:3px 8px; margin:3px 6px 3px 0;
+  }
+
+  .log{ position:relative; padding-left:22px; }
+  .log::before{
+    content:""; position:absolute; left:5px; top:4px; bottom:4px;
+    width:1px; background:var(--rule-strong);
+  }
+  .log-item{ position:relative; padding-bottom:22px; }
+  .log-item:last-child{ padding-bottom:0; }
+  .log-item::before{
+    content:""; position:absolute; left:-22px; top:4px;
+    width:9px; height:9px; border-radius:50%; background:var(--teal);
+    box-shadow:0 0 0 3px var(--bg);
+  }
+  .log-item .tag{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--gold);
+    text-transform:uppercase; letter-spacing:.04em; margin-bottom:4px; display:block;
+  }
+  .log-item p{ font-size:13.5px; color:var(--ink-dim); }
+  .log-item p b{ color:var(--ink); font-weight:500; }
+
+  .proto-links{ display:flex; gap:12px; flex-wrap:wrap; }
+  .proto-link{
+    display:block; flex:1; min-width:220px;
+    background:var(--panel); border:1px solid var(--rule-strong); border-radius:5px;
+    padding:16px 18px; text-decoration:none;
+  }
+  .proto-link:hover{ border-color:var(--teal); text-decoration:none; }
+  .proto-link .pt{ font-family:'IBM Plex Mono'; font-size:11px; color:var(--teal); margin-bottom:6px; }
+  .proto-link .pn{ font-family:'Space Grotesk'; font-size:15px; font-weight:600; color:var(--ink); }
+  .proto-link .pd{ font-size:12.5px; color:var(--ink-dim); margin-top:4px; }
+
+  footer{
+    padding:36px 0 60px; color:var(--muted); font-size:12px;
+    font-family:'IBM Plex Mono', monospace;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="brand">GWJ · HOUSING & LIFE INDEX</span>
+    <div class="nav-links">
+      <a href="#overview">개요</a>
+      <a href="#data">데이터</a>
+      <a href="#metric">지표</a>
+      <a href="#stack">구현</a>
+      <a href="#team">팀·일정</a>
+      <a href="#log">결정 로그</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <section class="hero" id="overview">
+    <div class="eyebrow">AI 부트캠프 · 미니 프로젝트 · 팀 공유용 요약</div>
+    <h1>광주광역시 2030 청년 가구를 위한<br><em>주거 가성비 & 생활 인프라 통합 지수</em></h1>
+    <p>
+      실거래가만으로는 보이지 않는 "살기 좋은 정도"를 데이터로 수치화한다.
+      편의시설·상권·교통·문화 인프라를 먼저 수집·정제해 지표로 정리하고,
+      이를 바탕으로 자치구/동 단위로 비교할 수 있는 웹사이트를 만든다.
+    </p>
+    <div class="status-row">
+      <span class="status-chip done">✓ 지역 범위: 광주광역시</span>
+      <span class="status-chip done">✓ 표본 동 단위 확정</span>
+      <span class="status-chip done">✓ 데이터 → 웹사이트 구조 확정</span>
+      <span class="status-chip todo">◐ 카테고리 구성 재검토 예정</span>
+      <span class="status-chip todo">◐ 표본 동 15~20개 리스트 확정 필요</span>
+    </div>
+  </section>
+
+  <section id="bg">
+    <div class="sec-head"><span class="sec-num">01</span><span class="sec-title display">배경 및 목표</span></div>
+    <p class="sec-lead">
+      2030 1인 가구 증가와 주거비 부담 속에서, 매매·전월세 가격만으로는 주거지를 판단하기 어렵다.
+      대중교통·편의시설·문화 인프라까지 종합한 지수가 필요하다.
+    </p>
+    <div class="callout">
+      <b>목표</b> — 2030이 실제로 체감하는 인프라 데이터를 수집·정제·수치화해 HL-Score를 산출하고,
+      청년층에게는 맞춤 주거지를, 청년주택·지자체에는 입지 데이터를 제공한다.
+    </div>
+  </section>
+
+  <section id="data">
+    <div class="sec-head"><span class="sec-num">02</span><span class="sec-title display">데이터 수집 계획</span></div>
+    <p class="sec-lead">광주광역시 5개 자치구 중 구별 상위 표본 동(구당 3~5개, 2030 인구 비중 높은 동 위주, 총 15~20개)만 수집한다.</p>
+
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">제공 데이터 활용</div>
+        <ul>
+          <li><b>인구통계</b> — 광주 행정동별 2030 인구수, 1인 가구 비중, 인구 이동 추이</li>
+          <li><b>아파트 실거래가</b> — 광주 자치구·평형별 매매/전월세 실거래가</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">추가 수집 — 공식 API 한정</div>
+        <ul>
+          <li><b>대중교통·편의시설</b> — Kakao 로컬 API 카테고리 검색 (편의점·마트·병원 등)</li>
+          <li><b>문화·여가</b> — 공공데이터포털 전국문화시설 표준데이터</li>
+          <li><b>실거래가 보강</b> — 네이버부동산 API (매물·시세, 보조 소스)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout warn">
+      <b>변경 사항</b> — 직방·에브리타임 등 커뮤니티 크롤링과 감성분석은 제외했다.
+      로그인 기반 크롤링 제약과 약관 리스크 때문이며, 대신 Kakao 로컬 API·공공데이터포털·국토교통부
+      실거래가 API 등 공식 API로만 데이터를 수집한다.
+    </div>
+
+    <p class="sec-lead" style="margin-top:20px; margin-bottom:8px;"><b style="color:var(--ink)">3단계 파이프라인</b></p>
+    <table>
+      <thead><tr><th>단계</th><th>내용</th><th>산출물</th></tr></thead>
+      <tbody>
+        <tr><td>① 수집</td><td>표본 동 좌표 기준 API 호출로 카테고리별 개수·거리 확보</td><td>동별 원시 데이터 CSV</td></tr>
+        <tr><td>② 정제·지표화</td><td>카테고리별 min-max 정규화 → 0~100 점수화</td><td>동별 카테고리 점수표</td></tr>
+        <tr><td>③ 웹사이트</td><td>구 단위 평점 카드 + 동 단위 히트맵 비교 화면</td><td>Flask + HTML 대시보드</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="metric">
+    <div class="sec-head"><span class="sec-num">03</span><span class="sec-title display">핵심 지표</span></div>
+    <p class="sec-lead">카테고리 구성(교통/상권/맛집/쇼핑/문화 등)은 실제 수집 데이터를 보고 재검토 예정이다.</p>
+
+    <div class="metric">
+      <div class="metric-name">HL-Score (Housing-Life Score)</div>
+      <div class="metric-formula">HL-Score = (접근성 지수<sub>norm</sub> × 2030 선호 가중치 W) ÷ 실거래가<sub>norm</sub></div>
+      <p>접근성 지수는 카테고리별 정규화 점수의 가중합. 가중치 W는 팀 내 간이 설문(n≈30)으로 산정 예정.</p>
+    </div>
+    <div class="metric">
+      <div class="metric-name">동 단위 비교 화면</div>
+      <div class="metric-formula">자치구 카드 → 클릭 → 소속 동 히트맵(카테고리별 점수 + 종합점수)</div>
+      <p>구 단위 종합 평점과 동 단위 세부 비교를 한 화면 안에서 드릴다운으로 확인.</p>
+    </div>
+  </section>
+
+  <section id="stack">
+    <div class="sec-head"><span class="sec-num">04</span><span class="sec-title display">구현 및 기술 스택</span></div>
+    <p class="sec-lead">기술 스택 학습이 팀 목표라 Flask + HTML 구조를 유지한다.</p>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Flask 서버 (.ipynb)</div>
+        <ul>
+          <li>광주 데이터 전처리 및 정규화</li>
+          <li>HL-Score 계산 로직</li>
+          <li>조건 입력 기반 추천 엔진 백엔드</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">웹페이지 (.html)</div>
+        <ul>
+          <li>구 단위 평점 카드</li>
+          <li>동 단위 히트맵 비교 화면</li>
+          <li>Flask 템플릿(Jinja)으로 실데이터 바인딩</li>
+        </ul>
+      </div>
+    </div>
+    <div style="margin-top:16px;">
+      <span class="stack-tag">Flask</span>
+      <span class="stack-tag">Jupyter Notebook</span>
+      <span class="stack-tag">HTML/CSS/JS</span>
+      <span class="stack-tag">Kakao 로컬 API</span>
+      <span class="stack-tag">공공데이터포털</span>
+      <span class="stack-tag">국토교통부 실거래가 API</span>
+      <span class="stack-tag">네이버부동산 API</span>
+    </div>
+  </section>
+
+  <section id="team">
+    <div class="sec-head"><span class="sec-num">05</span><span class="sec-title display">팀 구성 및 일정</span></div>
+    <p class="sec-lead">4명 · 4일 · 1일 8시간(총 32시간).</p>
+    <table>
+      <thead><tr><th>역할</th><th>담당 업무</th></tr></thead>
+      <tbody>
+        <tr><td>A. 데이터 수집</td><td>Kakao 로컬 API, 공공데이터포털, 국토교통부 실거래가 API 연동 및 표본 동 원시 데이터 확보</td></tr>
+        <tr><td>B. 지표 설계·정제</td><td>표본 동 선정, 카테고리 정규화, HL-Score 계산 로직, 데이터 검증</td></tr>
+        <tr><td>C. 백엔드(Flask)</td><td>Flask 구조·라우팅, 추천 엔진 API화, 계산 로직 통합</td></tr>
+        <tr><td>D. 프론트엔드(HTML)</td><td>입력 폼, 구/동 대시보드 UI, 시각화, Flask 템플릿 연동</td></tr>
+      </tbody>
+    </table>
+    <table style="margin-top:18px;">
+      <thead><tr><th>Day</th><th>수집(A)</th><th>지표(B)</th><th>백엔드(C)</th><th>프론트(D)</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>표본 동 확정, 수집 스크립트 개발</td><td>정규화·HL-Score 로직 설계</td><td>Flask 구조·라우팅 스켈레톤</td><td>목업 데이터로 레이아웃 제작</td></tr>
+        <tr><td>2</td><td>수집 마무리, CSV 정리</td><td>실데이터 정규화·지표 계산</td><td>계산 로직 API 통합</td><td>구/동 대시보드 골격 완성</td></tr>
+        <tr><td>3</td><td>데이터 보강 지원</td><td>최종 지표 검증</td><td>실데이터 연동 테스트</td><td>Jinja 실데이터 바인딩</td></tr>
+        <tr><td>4</td><td>QA 지원</td><td>발표용 인사이트 정리</td><td>통합 테스트·버그 수정</td><td>UI 다듬기·시연 리허설</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="log">
+    <div class="sec-head"><span class="sec-num">06</span><span class="sec-title display">결정 로그</span></div>
+    <p class="sec-lead">기획 과정에서 바뀐 주요 결정 사항. 발표 때 "왜 이렇게 갔는지" 근거로도 쓸 수 있다.</p>
+    <div class="log">
+      <div class="log-item">
+        <span class="tag">Scope</span>
+        <p><b>지역 범위</b> — 전국/지역별 → 광주광역시로 축소. 4일·4인 일정에 맞는 실행 가능한 범위 확보.</p>
+      </div>
+      <div class="log-item">
+        <span class="tag">Data Source</span>
+        <p><b>크롤링 → 공식 API</b> — 직방·에브리타임 크롤링과 감성분석 제외. 네이버부동산 API 및 Kakao 로컬 API·공공데이터포털로 대체.</p>
+      </div>
+      <div class="log-item">
+        <span class="tag">Direction</span>
+        <p><b>추천 목업 → 데이터 우선 구조</b> — 예산/출퇴근 입력 기반 추천 화면만으로는 발표 근거가 약하다고 판단, "수집 → 정제·지표화 → 웹사이트" 3단계로 재구성.</p>
+      </div>
+      <div class="log-item">
+        <span class="tag">Granularity</span>
+        <p><b>동 단위 범위</b> — 전체 90여 개 행정동 대신 구별 상위 표본 동(3~5개, 2030 인구 비중 기준)으로 축소. 예상 소요시간 절반 이하로 단축.</p>
+      </div>
+      <div class="log-item">
+        <span class="tag">UI</span>
+        <p><b>비교 화면 구조 확정</b> — 자치구 카드 → 클릭 시 동별 히트맵 비교로 드릴다운. 카테고리 구성만 추후 재검토.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-bottom:none;">
+    <div class="sec-head"><span class="sec-num">07</span><span class="sec-title display">참고 프로토타입</span></div>
+    <p class="sec-lead">같은 저장소에 함께 올렸다면 아래 링크로 바로 확인할 수 있습니다 (파일명이 다르면 링크를 맞춰 수정하세요).</p>
+    <div class="proto-links">
+      <a class="proto-link" href="./deliverable_preview.html">
+        <div class="pt">PREVIEW</div>
+        <div class="pn">데이터 정리 표 + 구→동 히트맵</div>
+        <div class="pd">최신 확정 UI 구조 예시</div>
+      </a>
+      <a class="proto-link" href="./site_preview.html">
+        <div class="pt">PREVIEW</div>
+        <div class="pn">예산·출퇴근 기반 추천 목업</div>
+        <div class="pd">초기 버전 (참고용)</div>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <span>HOUSING & LIFE INDEX — TEAM SUMMARY</span>
+    <span>REV. 03 · 2026</span>
+  </footer>
+</div>
+
+</body>
+</html>

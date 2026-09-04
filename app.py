@@ -5,23 +5,29 @@ import numpy as np
 app = Flask(__name__)
 
 def compute_hl_scores():
-    """광주 2030 주거 가성비 및 생활 인프라 통합 지수(HL-Score) 산출"""
+    """data/processed/25개동_통합분석.csv 파일 기반 HL-Score 산출"""
     try:
-        # 정제된 실거래가 데이터 로드
-        df = pd.read_csv("raw_gwangju_oneroom_rent.csv")
+        # 팀원 1이 가공한 최종 정제 데이터 로드
+        df = pd.read_csv("data/processed/25개동_통합분석.csv")
     except FileNotFoundError:
+        print("[오류] data/processed/25개동_통합분석.csv 파일을 찾을 수 없습니다.")
         return pd.DataFrame()
 
-    # 컬럼 정확히 매칭 (사용자분이 공유해주신 실제 CSV 컬럼 기준)
-    sigungu_col = '시군구' if '시군구' in df.columns else df.columns[1]
-    price_col = '월세금(만원)' if '월세금(만원)' in df.columns else [c for c in df.columns if '월세' in c][0]
+    print("--- 로드된 CSV 컬럼 목록 ---", df.columns.tolist())
+
+    # 1. 지역/시군구/동 컬럼 동적 탐색
+    sigungu_col = next((c for c in df.columns if '시군구' in c or '지역' in c or '동' in c), df.columns[0])
     
+    # 2. 월세/임대료/금액 컬럼 동적 탐색
+    price_col = next((c for c in df.columns if '월세' in c or '금액' in c or '임대료' in c), df.columns[-1])
+    
+    print(f"인식된 지역 컬럼: {sigungu_col}, 인식된 가격 컬럼: {price_col}")
+
     # 데이터 전처리 (숫자형 변환 및 결측치 제거)
     df[price_col] = pd.to_numeric(df[price_col].astype(str).str.replace(',', ''), errors='coerce')
     df = df.dropna(subset=[sigungu_col, price_col])
     
-    # 자치구별 평균 임대료 산출 (시군구 문자열에서 앞 두세 글자나 자치구 단위 추출 가공)
-    # 예: '광주광역시 북구 용봉동' -> '북구' 또는 전체 시군구 명칭 활용
+    # 자치구(또는 동)별 평균 임대료 산출
     summary_df = df.groupby(sigungu_col)[price_col].mean().reset_index()
     summary_df.columns = ['지역', '평균임대료']
     
@@ -34,12 +40,16 @@ def compute_hl_scores():
     else:
         summary_df['가격_norm'] = 0.5
 
-    # 인프라 접근성 지수 결합 (임시 점수, 추후 Kakao API 결과와 연동)
-    np.random.seed(42)
-    summary_df['접근성지수'] = np.random.uniform(65, 98, len(summary_df))
+    # 인프라 접근성 지수 결합 (데이터에 컬럼이 있으면 활용, 없으면 난수 생성)
+    if '접근성지수' in df.columns:
+        summary_df['접근성지수'] = df.groupby(sigungu_col)['접근성지수'].mean().values
+    else:
+        np.random.seed(42)
+        summary_df['접근성지수'] = np.random.uniform(65, 98, len(summary_df))
+        
     weight_w = 1.3 # 2030 청년 선호 가중치 W
     
-    # HL-Score 계산 공식 반영 (안정적인 분모 보정값 0.1 적용)
+    # HL-Score 계산 공식 반영 (분모 보정값 0.1 적용)
     summary_df['HL_Score'] = (summary_df['접근성지수'] * weight_w) / (summary_df['가격_norm'] + 0.1)
     summary_df['HL_Score'] = summary_df['HL_Score'].round(1)
     

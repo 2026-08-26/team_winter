@@ -7,24 +7,24 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-# 1. 팀원 개인 페이지 (templates/ 폴더 안에 위치하는 것을 권장)
+# 1. 팀원 개인 페이지 (templates/미니프로젝트/ 하위 폴더 경로 반영)
 @app.route('/seunghyeon')
 def seunghyeon():
-    return render_template('승현.html')
+    return render_template('미니프로젝트/승현.html')
 
 @app.route('/miseon')
 def miseon():
-    return render_template('미선.html')
+    return render_template('미니프로젝트/미선.html')
 
 @app.route('/younggeun')
 def younggeun():
-    return render_template('영근.html')
+    return render_template('미니프로젝트/영근.html')
 
 @app.route('/seunghee')
 def seunghee():
-    return render_template('승희.html')
+    return render_template('미니프로젝트/승희.html')
 
-# 2. 프로젝트 주요 문서
+# 2. 프로젝트 주요 문서 (templates/ 바로 아래 위치)
 @app.route('/plan')
 def plan():
     return render_template('plan.html')
@@ -41,7 +41,7 @@ def plan3():
 def business_model():
     return render_template('business_model.html')
 
-# 3. Git 가이드
+# 3. Git 가이드 (templates/ 바로 아래 위치)
 @app.route('/git-command-guide')
 def git_command_guide():
     return render_template('Git_command_guide.html')

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,20 +13,23 @@
             background-color: #f8f9fa;
             color: #333;
         }
+
         .container {
             max-width: 800px;
             margin: 0 auto;
             background: #fff;
             padding: 30px;
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
+
         h1 {
             color: #1a73e8;
             border-bottom: 2px solid #1a73e8;
             padding-bottom: 10px;
             font-size: 24px;
         }
+
         h2 {
             color: #202124;
             font-size: 18px;
@@ -34,10 +38,12 @@
             padding: 8px 12px;
             border-left: 4px solid #1a73e8;
         }
+
         ul {
             list-style: none;
             padding-left: 0;
         }
+
         li {
             margin-bottom: 10px;
             padding: 10px 15px;
@@ -45,15 +51,18 @@
             border: 1px solid #e0e0e0;
             border-radius: 6px;
         }
+
         a {
             color: #1a73e8;
             text-decoration: none;
             font-weight: bold;
             font-size: 16px;
         }
+
         a:hover {
             text-decoration: underline;
         }
+
         .filename {
             color: #666;
             font-size: 13px;
@@ -62,46 +71,52 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>❄️ Team Winter 프로젝트 포털</h1>
 
+        
+        <!-- 대시보드 페이지로 이동하는 링크 -->
+        <a href="/hl-dashboard">광주 2030 주거 가성비 & 인프라 대시보드 보기</a>
+
+
         <h2>1. 미니프로젝트 (팀원 개인 페이지)</h2>
         <ul>
             <li>
-                <a href="미니프로젝트/승현.html">1) 승현 개인 페이지</a>
-                <span class="filename">(미니프로젝트/승현.html)</span>
+                <a href="{{ url_for('seunghyeon') }}">1) 승현 개인 페이지</a>
+                <span class="filename">(승현.html)</span>
             </li>
             <li>
-                <a href="미니프로젝트/미선.html">2) 미선 개인 페이지</a>
-                <span class="filename">(미니프로젝트/미선.html)</span>
+                <a href="{{ url_for('miseon') }}">2) 미선 개인 페이지</a>
+                <span class="filename">(미선.html)</span>
             </li>
             <li>
-                <a href="미니프로젝트/영근.html">3) 영근 개인 페이지</a>
-                <span class="filename">(미니프로젝트/영근.html)</span>
+                <a href="{{ url_for('younggeun') }}">3) 영근 개인 페이지</a>
+                <span class="filename">(영근.html)</span>
             </li>
             <li>
-                <a href="미니프로젝트/승희.html">4) 승희 개인 페이지</a>
-                <span class="filename">(미니프로젝트/승희.html)</span>
+                <a href="{{ url_for('seunghee') }}">4) 승희 개인 페이지</a>
+                <span class="filename">(승희.html)</span>
             </li>
         </ul>
 
         <h2>2. 프로젝트 주요 문서</h2>
         <ul>
             <li>
-                <a href="plan.html">1) 프로젝트 초안</a>
+                <a href="{{ url_for('plan') }}">1) 프로젝트 초안</a>
                 <span class="filename">(plan.html)</span>
             </li>
             <li>
-                <a href="plan3.html">2) 프로젝트 2차 기획안(클로드)</a>
+                <a href="{{ url_for('plan3') }}">2) 프로젝트 2차 기획안(클로드)</a>
                 <span class="filename">(plan3.html)</span>
             </li>
             <li>
-                <a href="plan2.html">3) 프로젝트 2차 기획안(제미나이)</a>
+                <a href="{{ url_for('plan2') }}">3) 프로젝트 2차 기획안(제미나이)</a>
                 <span class="filename">(plan2.html)</span>
             </li>
             <li>
-                <a href="business_model.html">4) 비즈니스 모델 초안(수익화 방안)</a>
+                <a href="{{ url_for('business_model') }}">4) 비즈니스 모델 초안(수익화 방안)</a>
                 <span class="filename">(business_model.html)</span>
             </li>
         </ul>
@@ -109,14 +124,15 @@
         <h2>3. Git 사용법</h2>
         <ul>
             <li>
-                <a href="Git_command_guide.html">1) Git 명령어 요약집</a>
+                <a href="{{ url_for('git_command_guide') }}">1) Git 명령어 요약집</a>
                 <span class="filename">(Git_command_guide.html)</span>
             </li>
             <li>
-                <a href="Git_team_guide.html">2) Git 이용법 요약본 (팀 협업 가이드)</a>
+                <a href="{{ url_for('git_team_guide') }}">2) Git 이용법 요약본 (팀 협업 가이드)</a>
                 <span class="filename">(Git_team_guide.html)</span>
             </li>
         </ul>
     </div>
 </body>
+
 </html>

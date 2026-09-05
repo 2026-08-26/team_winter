@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>광주광역시 25개동 통합 시각화 대시보드</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap');
+
+        body {
+            font-family: 'Pretendard', sans-serif;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .sub-view {
+            display: none;
+        }
+
+        .sub-view.active {
+            display: block;
+        }
+
+        .seg-btn.active {
+            background-color: #4f46e5;
+            color: #fff;
+            box-shadow: 0 1px 2px rgba(0,0,0,.1);
+        }
+
+        .seg-btn {
+            background-color: #f3f4f6;
+            color: #4b5563;
+        }
+
+        .topn-btn.active {
+            background-color: #4f46e5 !important;
+            color: #fff !important;
+        }
+
+        ::-webkit-scrollbar {
+            height: 8px;
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- =====================================================
+         공통 상단 메뉴
+         링크 노출 순서:
+         1. 시각화 대시보드
+         2. HL Score
+         3. 종합 분석
+    ====================================================== -->
+    <header class="bg-white border-b border-slate-200 py-4 px-6 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="bg-blue-600 text-white p-2.5 rounded-xl font-bold text-base shadow-sm">❄️</div>
+                <div>
+                    <span class="text-xs text-slate-400 block font-bold tracking-wider">WINTER</span>
+                    <span class="text-base font-extrabold text-slate-900">
+                        WINTER Analytics
+                        <span class="ml-4">[최신 업데이트 일자 2026/09/05]</span>
+                    </span>
+                </div>
+            </div>
+
+            <nav class="flex items-center bg-slate-100 p-1.5 rounded-full gap-1.5 shadow-inner">
+                <a href="/dashboard"
+                   class="px-5 py-2 rounded-full text-sm font-bold bg-blue-600 text-white shadow-md transition-all">
+                    시각화 대시보드
+                </a>
+                <a href="/hl-dashboard"
+                   class="px-5 py-2 rounded-full text-sm font-bold text-slate-600 hover:text-slate-900 transition-all">
+                    HL Score
+                </a>
+                <a href="/policy-dashboard"
+                   class="px-5 py-2 rounded-full text-sm font-bold text-slate-600 hover:text-slate-900 transition-all">
+                    종합 분석
+                </a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <button type="button"
+                        class="px-4 py-2 border border-slate-200 rounded-xl text-sm font-semibold text-slate-700 bg-white shadow-sm">
+                    데이터 근거 보기
+                </button>
+                <button type="button"
+                        class="p-2.5 border border-slate-200 rounded-xl text-slate-700 bg-white shadow-sm">
+                    🌙
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-4 py-8">
+
+        <!-- 기존 팀 디자인의 대시보드 Header 유지 -->
+        <header class="bg-white shadow-sm rounded-2xl p-6 mb-8 border border-gray-100 flex flex-col md:flex-row justify-between items-center">
+            <div>
+                <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">
+                    최종 통합 품질검사 PASS 데이터 기반
+                </span>
+
+                <h1 class="text-3xl font-bold text-gray-900 mt-2">
+                    광주광역시 25개동 통합 시각화 대시보드
+                </h1>
+
+                <p class="text-gray-500 text-sm mt-1">
+                    2030 인구, HL Score, 주거비, 청년 공공시설, 공공임대, 공식 버스정류소를
+                    지표 선택 · 정렬 · 표시개수 조절 · 차트/카드 전환으로 비교합니다.
+                </p>
+            </div>
+
+            <div class="mt-4 md:mt-0 text-right">
+                <span class="text-xs text-gray-400 block">분석 대상</span>
+                <span class="text-lg font-bold text-gray-700">총 25개 행정동</span>
+            </div>
+        </header>
+
+        <!-- =====================================================
+             내부 시각화 탭 7개
+        ====================================================== -->
+        <div class="flex flex-wrap gap-2 mb-8 bg-white p-3 rounded-xl shadow-sm border border-gray-100">
+            <button onclick="switchTab(0)" id="btn-0"
+                    class="tab-btn flex-1 min-w-[140px] py-3 px-4 rounded-lg font-semibold text-sm transition bg-blue-600 text-white shadow">
+                1. 2030 인구
+            </button>
+
+            <button onclick="switchTab(1)" id="btn-1"
+                    class="tab-btn flex-1 min-w-[140px] py-3 px-4 rounded-lg font-semibold text-sm transition bg-gray-100 text-gray-600 hover:bg-gray-200">
+                2. HL Score
+            </button>
+
+            <button onclick="switchTab(2)" id="btn-2"
+                    class="tab-btn flex-1 min-w-[140px] py-3 px-4 rounded-lg font-semibold text-sm transition bg-gray-100 text-gray-600 hover:bg-gray-200">
+                3. 주거비
+            </button>
+
+            <button onclick="switchTab(3)" id="btn-3"
+                    class="tab-btn flex-1 min-w-[140px] py-3 px-4 rounded-lg font-semibold text-sm transition bg-gray-100 text-gray-600 hover:bg-gray-200">
+                4. 청년 공공시설
+            </button>
+
+            <button onclick="switchTab(4)" id="btn-4"
+                    class="tab-btn flex-1 min-w-[140px] py-3 px-4 rounded-lg font-semibold text-sm transition bg-gray-100 text-gray-600 hover:bg-gray-200">
+                5. 공공임대
+            </button>
+
+            <button onclick="switchTab(5)" id="btn-5"
+                    class="tab-btn flex-1 min-w-[140px] py-3 px-4 rounded-lg font-semibold text-sm transition bg-gray-100 text-gray-600 hover:bg-gray-200">
+                6. 버스정류소
+            </button>
+
+            <button onclick="switchTab(6)" id="btn-6"
+                    class="tab-btn flex-1 min-w-[140px] py-3 px-4 rounded-lg font-semibold text-sm transition bg-gray-100 text-gray-600 hover:bg-gray-200">
+                7. 수요 대비 인프라
+            </button>
+        </div>
+
+        <!-- PAGE 0 -->
+        <div id="page-0" class="tab-content active">
+            <div id="explorer-0"></div>
+        </div>
+
+        <!-- PAGE 1 -->
+        <div id="page-1" class="tab-content">
+            <div class="bg-indigo-50 border border-indigo-100 text-indigo-800 text-xs rounded-xl p-4 mb-6 leading-relaxed">
+                HL Score는 생활 인프라 30% · 2030 선호시설 25% · 교통 접근성 15% · 주거 가성비 30%로 구성된
+                프로젝트 내부 비교지표입니다. 두암2동은 주거 표본 1건으로 정책 순위에서 제외되며 참고 HL만 표시됩니다.
+            </div>
+            <div id="explorer-1"></div>
+        </div>
+
+        <!-- PAGE 2 -->
+        <div id="page-2" class="tab-content">
+            <div class="bg-indigo-50 border border-indigo-100 text-indigo-800 text-xs rounded-xl p-4 mb-6 leading-relaxed">
+                주거비는 2025-07 ~ 2026-06 전·월세 실거래 중 전용면적 59.5㎡ 이하를 대상으로 계산한 평균 월환산 주거비입니다.
+                보증금은 프로젝트 가정 연 5%를 적용해 월 비용으로 환산했습니다.
+            </div>
+            <div id="explorer-2"></div>
+        </div>
+
+        <!-- PAGE 3 -->
+        <div id="page-3" class="tab-content">
+            <div class="bg-indigo-50 border border-indigo-100 text-indigo-800 text-xs rounded-xl p-4 mb-6 leading-relaxed">
+                청년 공공시설은 광주청년통합플랫폼의 청년 공간을 행정동에 매핑한 보조지표입니다.
+                시설 개수는 이용량·시설 품질·수용능력을 의미하지 않으며 HL Score에는 반영하지 않습니다.
+            </div>
+            <div id="explorer-3"></div>
+        </div>
+
+        <!-- PAGE 4 -->
+        <div id="page-4" class="tab-content">
+            <div class="bg-indigo-50 border border-indigo-100 text-indigo-800 text-xs rounded-xl p-4 mb-6 leading-relaxed">
+                공공임대 전체 세대수는 청년 전용 공급량을 의미하지 않습니다.
+                행복주택 역시 모든 세대가 2030 청년에게 배정된다는 의미가 아니며 정책 보조지표로만 사용합니다.
+            </div>
+            <div id="explorer-4"></div>
+        </div>
+
+        <!-- PAGE 5 -->
+        <div id="page-5" class="tab-content">
+            <div class="bg-indigo-50 border border-indigo-100 text-indigo-800 text-xs rounded-xl p-4 mb-6 leading-relaxed">
+                공식 버스정류소는 2025-12-31 기준 행정동 경계 내부 정류소입니다.
+                버스 노선 엑셀은 공식 정류소와 안전 매칭률이 0.54%에 불과해 노선수·노선다양성 정책판단에서는 제외했습니다.
+            </div>
+            <div id="explorer-5"></div>
+        </div>
+
+        <!-- PAGE 6 -->
+        <div id="page-6" class="tab-content">
+            <div class="bg-indigo-50 border border-indigo-100 text-indigo-800 text-xs rounded-xl p-4 mb-6 leading-relaxed">
+                2030 청년인구 1,000명당 생활시설·선호시설·정류소 공급 수준을 비교하는 프로젝트 내부 상대지표입니다.
+                값 자체를 공식 정책 선정 기준으로 해석하지 않습니다.
+            </div>
+            <div id="explorer-6"></div>
+        </div>
+
+        <footer class="text-center text-xs text-gray-400 py-8">
+            WINTER Analytics · Final integrated dataset · 2026
+        </footer>
+    </div>
+
+
+    <script>
+        Chart.register(ChartDataLabels);
+        Chart.defaults.set('plugins.datalabels', { display: false });
+
+        // =====================================================
+        // Flask가 최종 PASS CSV에서 넘긴 실제 데이터
+        // =====================================================
+        const RAW_DATA = {{ districts | tojson }};
+
+        function num(value) {
+            if (value === null || value === undefined || value === '') return null;
+            const parsed = Number(value);
+            return Number.isFinite(parsed) ? parsed : null;
+        }
+
+        function str(value) {
+            if (value === null || value === undefined) return '';
+            return String(value).trim();
+        }
+
+        const dongsData = RAW_DATA.map((row, index) => {
+            const region = str(row['지역']);
+            const parts = region.split(' ');
+            const district = str(row['화면_자치구']) || parts[0] || '';
+            const name = str(row['화면_행정동']) || parts.slice(1).join(' ') || region;
+
+            return {
+                ...row,
+                _id: index + 1,
+                _region: region,
+                _district: district,
+                _name: name
+            };
+        });
+
+        // 프로젝트의 고정 25개 동 순서를 유지
+        const dongOrder = [
+            "충장동", "계림1동", "지산2동", "학동", "지원1동",
+            "치평동", "풍암동", "화정2동", "농성1동", "금호1동",
+            "봉선2동", "진월동", "방림1동", "효덕동", "송암동",
+            "용봉동", "두암2동", "운암1동", "첨단2동", "문흥1동",
+            "첨단1동", "수완동", "신가동", "우산동", "송정1동"
+        ];
+
+        const byName = {};
+        dongsData.forEach(row => {
+            byName[row._name] = row;
+        });
+
+        const orderedData = dongOrder
+            .map(name => byName[name])
+            .filter(Boolean);
+
+        // =====================================================
+        // 탭 전환
+        // =====================================================
+        const explorerInstances = {};
+
+        function switchTab(index) {
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            document.querySelectorAll('.tab-btn').forEach(el => {
+                el.classList.remove('bg-blue-600', 'text-white', 'shadow');
+                el.classList.add('bg-gray-100', 'text-gray-600', 'hover:bg-gray-200');
+            });
+
+            document.getElementById(`page-${index}`).classList.add('active');
+
+            const activeBtn = document.getElementById(`btn-${index}`);
+            activeBtn.classList.remove('bg-gray-100', 'text-gray-600', 'hover:bg-gray-200');
+            activeBtn.classList.add('bg-blue-600', 'text-white', 'shadow');
+
+            if (!explorerInstances[index]) {
+                explorerInstances[index] = pageBuilders[index]();
+            } else {
+                setTimeout(() => explorerInstances[index].render(), 30);
+            }
+        }
+
+
+        // =====================================================
+        // SVG 아이콘
+        // =====================================================
+        const ICONS = {
+            'chart-bar': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M4 20V10M12 20V4M20 20v-7"/></svg>',
+            'users': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>',
+            'home': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M3 11l9-8 9 8"/><path d="M5 10v10a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10"/></svg>',
+            'store': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M3 9l1.5-5h15L21 9"/><path d="M3 9h18v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9z"/></svg>',
+            'bus': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><rect x="4" y="5" width="16" height="12" rx="2"/><path d="M4 11h16"/><circle cx="8" cy="19" r="1"/><circle cx="16" cy="19" r="1"/></svg>',
+            'layer-group': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg>',
+            'chart-simple': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M4 19h16"/><rect x="6" y="10" width="3" height="6" rx="1"/><rect x="11" y="6" width="3" height="10" rx="1"/><rect x="16" y="13" width="3" height="3" rx="1"/></svg>',
+            'table': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg>',
+            'down': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M3 6h12M3 12h8M3 18h4"/><path d="M17 4v14M17 18l4-4M17 18l-4-4"/></svg>',
+            'up': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M3 18h12M3 12h8M3 6h4"/><path d="M17 20V6M17 6l4 4M17 6l-4 4"/></svg>'
+        };
+
+        function icon(key, cls='') {
+            return `<span class="inline-flex align-[-3px] ${cls}">${ICONS[key] || ICONS['chart-bar']}</span>`;
+        }
+
+
+        // =====================================================
+        // 색상 보간
+        // =====================================================
+        function hexToRgb(hex) {
+            hex = hex.replace('#', '');
+            if (hex.length === 3) hex = hex.split('').map(c => c + c).join('');
+            const value = parseInt(hex, 16);
+
+            return {
+                r: (value >> 16) & 255,
+                g: (value >> 8) & 255,
+                b: value & 255
+            };
+        }
+
+        function interpolateColor(hex1, hex2, factor) {
+            const a = hexToRgb(hex1);
+            const b = hexToRgb(hex2);
+
+            const r = Math.round(a.r + (b.r - a.r) * factor);
+            const g = Math.round(a.g + (b.g - a.g) * factor);
+            const bl = Math.round(a.b + (b.b - a.b) * factor);
+
+            return `rgb(${r}, ${g}, ${bl})`;
+        }
+
+        function getGridCols() {
+            const width = window.innerWidth;
+            if (width >= 1024) return 5;
+            if (width >= 640) return 3;
+            return 2;
+        }
+
+
+        // =====================================================
+        // 지표 정의
+        // 실제 CSV에 없는 지표는 자동으로 선택 목록에서 제외
+        // =====================================================
+        function metricExists(key) {
+            return orderedData.some(row => num(row[key]) !== null);
+        }
+
+        function existingMetrics(metrics) {
+            return metrics.filter(metric => metricExists(metric.key));
+        }
+
+        const page0Metrics = existingMetrics([
+            { key: '2030인구수', label: '2030 청년인구', unit: '명', color: '#6366f1' },
+            { key: '2030인구비율', label: '2030 인구 비율', unit: '%', color: '#8b5cf6', decimals: 2 },
+            { key: '생활시설_1000명당', label: '청년 1,000명당 생활시설', unit: '개', color: '#0ea5e9', decimals: 2 },
+            { key: '선호시설_1000명당', label: '청년 1,000명당 선호시설', unit: '개', color: '#ec4899', decimals: 2 }
+        ]);
+
+        const page1Metrics = existingMetrics([
+            { key: 'HL_Score', label: 'HL Score', unit: '점', color: '#2563eb', decimals: 1 },
+            { key: '생활인프라점수', label: '생활 인프라 점수', unit: '점', color: '#4f46e5', decimals: 1 },
+            { key: '2030선호시설점수', label: '2030 선호시설 점수', unit: '점', color: '#db2777', decimals: 1 },
+            { key: '교통접근성점수', label: '교통 접근성 점수', unit: '점', color: '#0891b2', decimals: 1 },
+            { key: '주거가성비점수', label: '주거 가성비 점수', unit: '점', color: '#10b981', decimals: 1 }
+        ]);
+
+        const page2Metrics = existingMetrics([
+            { key: '월환산주거비', label: '평균 월환산 주거비', unit: '만원', color: '#2563eb', decimals: 2, lowerBetter: true },
+            { key: '전체거래건수', label: '주거 분석 표본수', unit: '건', color: '#6366f1' },
+            { key: '주거가성비점수', label: '주거 가성비 점수', unit: '점', color: '#10b981', decimals: 1 }
+        ]);
+
+        const page3Metrics = existingMetrics([
+            { key: '청년공공시설수', label: '청년 공공시설 수', unit: '개', color: '#8b5cf6' },
+            { key: '청년공공시설_1000명당', label: '청년 1,000명당 공공시설', unit: '개', color: '#a855f7', decimals: 3 }
+        ]);
+
+        const page4Metrics = existingMetrics([
+            { key: '공공임대_세대수', label: '전체 공공임대 세대수', unit: '세대', color: '#2563eb' },
+            { key: '공공임대_1000명당', label: '청년 1,000명당 공공임대', unit: '세대', color: '#0ea5e9', decimals: 2 },
+            { key: '매입임대_세대수', label: '매입임대 세대수', unit: '세대', color: '#14b8a6' },
+            { key: '국민임대_세대수', label: '국민임대 세대수', unit: '세대', color: '#22c55e' },
+            { key: '행복주택_세대수', label: '행복주택 세대수', unit: '세대', color: '#f59e0b' },
+            { key: '영구임대_세대수', label: '영구임대 세대수', unit: '세대', color: '#ef4444' }
+        ]);
+
+        const page5Metrics = existingMetrics([
+            { key: '공식정류소수', label: '행정동 내부 공식 정류소', unit: '개', color: '#7c3aed' },
+            { key: '청년1000명당_정류소수', label: '청년 1,000명당 공식 정류소', unit: '개', color: '#8b5cf6', decimals: 2 },
+            { key: '가장가까운_버스정류소_m', label: '가장 가까운 버스정류소 거리', unit: 'm', color: '#14b8a6', decimals: 1, lowerBetter: true },
+            { key: '버스정류소_1000명당', label: '청년 1,000명당 기존 접근권 정류소', unit: '개', color: '#0ea5e9', decimals: 2 }
+        ]);
+
+        const page6Metrics = existingMetrics([
+            { key: '생활시설_1000명당', label: '청년 1,000명당 생활시설', unit: '개', color: '#2563eb', decimals: 2 },
+            { key: '선호시설_1000명당', label: '청년 1,000명당 선호시설', unit: '개', color: '#db2777', decimals: 2 },
+            { key: '버스정류소_1000명당', label: '청년 1,000명당 접근권 정류소', unit: '개', color: '#0891b2', decimals: 2 },
+            { key: '청년공공시설_1000명당', label: '청년 1,000명당 공공시설', unit: '개', color: '#8b5cf6', decimals: 3 },
+            { key: '공공임대_1000명당', label: '청년 1,000명당 공공임대', unit: '세대', color: '#10b981', decimals: 2 },
+            { key: '청년1000명당_정류소수', label: '청년 1,000명당 공식 정류소', unit: '개', color: '#f59e0b', decimals: 2 }
+        ]);
+
+
+        // =====================================================
+        // Generic Explorer
+        // =====================================================
+        class DongExplorer {
+            constructor(containerId, opts) {
+                this.container = document.getElementById(containerId);
+                this.metrics = opts.metrics;
+                this.iconKey = opts.icon || 'chart-bar';
+                this.metricIdx = 0;
+                this.view = 'chart';
+                this.topN = 25;
+                this.chart = null;
+
+                if (!this.metrics.length) {
+                    this.container.innerHTML = `
+                        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-center">
+                            <div class="text-lg font-bold text-gray-700">표시 가능한 데이터가 없습니다.</div>
+                            <div class="text-sm text-gray-400 mt-2">최종 CSV 컬럼을 확인해주세요.</div>
+                        </div>
+                    `;
+                    return;
+                }
+
+                this.sort = this.metrics[0].lowerBetter ? 'asc' : 'desc';
+                this.buildUI();
+                this.render();
+            }
+
+            get metric() {
+                return this.metrics[this.metricIdx];
+            }
+
+            $(role) {
+                return this.container.querySelector(`[data-role="${role}"]`);
+            }
+
+            getRows() {
+                const metric = this.metric;
+
+                let rows = orderedData
+                    .map(row => ({
+                        name: row._name,
+                        district: row._district,
+                        value: num(row[metric.key]),
+                        policyType: str(row['최종정책유형'])
+                    }))
+                    .filter(row => row.value !== null);
+
+                rows.sort((a, b) => {
+                    return this.sort === 'desc'
+                        ? b.value - a.value
+                        : a.value - b.value;
+                });
+
+                return rows;
+            }
+
+            fmt(value) {
+                const metric = this.metric;
+
+                if (value === null || value === undefined) {
+                    return '-';
+                }
+
+                let text;
+
+                if (metric.decimals !== undefined) {
+                    text = Number(value).toFixed(metric.decimals);
+                } else {
+                    text = Math.round(value).toLocaleString('ko-KR');
+                }
+
+                return `${text}${metric.unit || ''}`;
+            }
+
+            buildUI() {
+                const metricOptions = this.metrics
+                    .map((metric, index) => {
+                        return `<option value="${index}">${metric.label}</option>`;
+                    })
+                    .join('');
+
+                this.container.innerHTML = `
+                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex flex-col gap-4 mb-6">
+                        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+
+                            <div class="flex items-center gap-2 flex-none">
+                                <label class="text-sm font-medium text-gray-500 whitespace-nowrap">
+                                    ${icon(this.iconKey, 'mr-1')}지표
+                                </label>
+
+                                <select data-role="metric-select"
+                                        class="w-56 border border-gray-200 rounded-lg text-sm font-semibold text-gray-700 h-11 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-300">
+                                    ${metricOptions}
+                                </select>
+                            </div>
+
+                            <div class="flex items-center gap-3 lg:ml-auto">
+                                <div class="flex bg-gray-100 rounded-lg p-1 gap-1">
+                                    <button data-role="view-chart"
+                                            class="seg-btn active px-6 h-11 rounded-md text-base font-semibold transition">
+                                        ${icon('chart-simple', 'mr-1')}차트
+                                    </button>
+
+                                    <button data-role="view-card"
+                                            class="seg-btn px-6 h-11 rounded-md text-base font-semibold transition">
+                                        ${icon('table', 'mr-1')}카드
+                                    </button>
+                                </div>
+
+                                <button data-role="sort-btn"
+                                        class="px-6 h-11 rounded-md text-base font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition whitespace-nowrap">
+                                    <span data-role="sort-icon" class="inline-flex align-[-3px] mr-1"></span>
+                                    <span data-role="sort-label"></span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div data-role="topn-control"
+                             class="flex items-center gap-3 flex-wrap border-t border-gray-100 pt-4">
+
+                            <label class="text-sm font-medium text-gray-600 whitespace-nowrap">
+                                표시 개수 (상위
+                                <span data-role="topn-value" class="font-bold text-indigo-600">25</span>개동)
+                            </label>
+
+                            <div class="flex gap-2">
+                                ${[5, 10, 15, 20, 25].map(value => `
+                                    <button data-role="topn-${value}"
+                                            class="topn-btn ${value === 25 ? 'active' : ''} text-sm px-4 py-2 rounded-lg bg-gray-100 hover:bg-indigo-100 text-gray-600 font-semibold transition">
+                                        ${value}
+                                    </button>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <p data-role="null-note" class="text-xs text-gray-400 hidden"></p>
+                    </div>
+
+                    <div data-role="chart-view" class="sub-view active">
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                            <h3 data-role="chart-title" class="text-lg font-bold text-gray-800 mb-4"></h3>
+                            <div data-role="chart-container" class="relative" style="height:720px;">
+                                <canvas data-role="canvas"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div data-role="card-view" class="sub-view">
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                            <h3 data-role="card-title" class="text-lg font-bold text-gray-800 mb-4"></h3>
+                            <div data-role="card-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3"></div>
+                        </div>
+                    </div>
+                `;
+
+                this.$('metric-select').addEventListener('change', event => {
+                    this.metricIdx = Number(event.target.value);
+                    this.sort = this.metric.lowerBetter ? 'asc' : 'desc';
+                    this.updateSortUI();
+                    this.render();
+                });
+
+                this.$('view-chart').addEventListener('click', () => this.setView('chart'));
+                this.$('view-card').addEventListener('click', () => this.setView('card'));
+                this.$('sort-btn').addEventListener('click', () => this.toggleSort());
+
+                [5, 10, 15, 20, 25].forEach(value => {
+                    this.$(`topn-${value}`).addEventListener('click', () => {
+                        this.setTopN(value);
+                    });
+                });
+
+                this.updateSortUI();
+            }
+
+            setView(view) {
+                this.view = view;
+
+                this.$('view-chart').classList.toggle('active', view === 'chart');
+                this.$('view-card').classList.toggle('active', view === 'card');
+
+                this.$('chart-view').classList.toggle('active', view === 'chart');
+                this.$('card-view').classList.toggle('active', view === 'card');
+
+                this.$('topn-control').style.display = view === 'chart' ? 'flex' : 'none';
+
+                this.render();
+            }
+
+            toggleSort() {
+                this.sort = this.sort === 'desc' ? 'asc' : 'desc';
+                this.updateSortUI();
+                this.render();
+            }
+
+            updateSortUI() {
+                this.$('sort-label').textContent = this.sort === 'desc'
+                    ? '내림차순'
+                    : '오름차순';
+
+                this.$('sort-icon').innerHTML = this.sort === 'desc'
+                    ? ICONS.down
+                    : ICONS.up;
+            }
+
+            setTopN(value) {
+                this.topN = value;
+                this.$('topn-value').textContent = value;
+
+                [5, 10, 15, 20, 25].forEach(item => {
+                    this.$(`topn-${item}`).classList.toggle('active', item === value);
+                });
+
+                this.renderChart();
+            }
+
+            render() {
+                if (!this.metrics.length) return;
+
+                if (this.view === 'chart') {
+                    this.renderChart();
+                } else {
+                    this.renderCards();
+                }
+            }
+
+            renderChart() {
+                const metric = this.metric;
+                const allRows = this.getRows();
+
+                const nullCount = orderedData.length - allRows.length;
+                const note = this.$('null-note');
+
+                if (nullCount > 0) {
+                    note.textContent = `※ 해당 지표 값이 없는 ${nullCount}개 동은 그래프에서 제외됩니다.`;
+                    note.classList.remove('hidden');
+                } else {
+                    note.classList.add('hidden');
+                }
+
+                const rows = allRows.slice(0, this.topN);
+
+                this.$('chart-title').innerHTML = `
+                    ${icon(this.iconKey, 'mr-2')}
+                    동별 ${metric.label} · ${this.sort === 'desc' ? '높은 순' : '낮은 순'} · ${rows.length}개동
+                `;
+
+                const container = this.$('chart-container');
+                container.style.height = `${Math.max(320, rows.length * 34 + 60)}px`;
+
+                const canvas = this.$('canvas');
+
+                if (this.chart) {
+                    this.chart.destroy();
+                }
+
+                const colors = rows.map((_, index) => {
+                    return interpolateColor(
+                        '#1d4ed8',
+                        '#bfe4fd',
+                        rows.length > 1 ? index / (rows.length - 1) : 0
+                    );
+                });
+
+                this.chart = new Chart(canvas, {
+                    type: 'bar',
+
+                    data: {
+                        labels: rows.map(row => `${row.name} · ${row.district}`),
+
+                        datasets: [{
+                            label: metric.label,
+                            data: rows.map(row => row.value),
+                            backgroundColor: colors,
+                            borderRadius: 5,
+                            maxBarThickness: 24
+                        }]
+                    },
+
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+
+                            tooltip: {
+                                callbacks: {
+                                    label: context => this.fmt(context.raw)
+                                }
+                            },
+
+                            datalabels: {
+                                display: true,
+                                anchor: 'end',
+                                align: 'end',
+                                color: '#374151',
+                                font: {
+                                    size: 12,
+                                    weight: '600'
+                                },
+                                formatter: value => this.fmt(value)
+                            }
+                        },
+
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                grace: '14%'
+                            },
+
+                            y: {
+                                ticks: {
+                                    font: {
+                                        size: 13,
+                                        weight: '600',
+                                        family: "'Pretendard', sans-serif"
+                                    },
+                                    color: '#1f2937'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            renderCards() {
+                const metric = this.metric;
+                const rows = this.getRows();
+
+                const nullCount = orderedData.length - rows.length;
+                const note = this.$('null-note');
+
+                if (nullCount > 0) {
+                    note.textContent = `※ 해당 지표 값이 없는 ${nullCount}개 동은 카드에 표시되지 않습니다.`;
+                    note.classList.remove('hidden');
+                } else {
+                    note.classList.add('hidden');
+                }
+
+                this.$('card-title').innerHTML = `
+                    ${icon('table', 'mr-2')}
+                    전체 동 순위 카드 · ${metric.label}
+                `;
+
+                const maxValue = Math.max(...rows.map(row => row.value), 1);
+                const grid = this.$('card-grid');
+
+                const cols = getGridCols();
+                const totalRows = Math.max(1, Math.ceil(rows.length / cols));
+
+                grid.innerHTML = rows.map((row, index) => {
+                    const rowIndex = Math.floor(index / cols);
+                    const factor = totalRows > 1
+                        ? rowIndex / (totalRows - 1)
+                        : 0;
+
+                    const background = interpolateColor('#2563eb', '#eff6ff', factor);
+                    const dark = factor < 0.45;
+
+                    const textMain = dark ? '#ffffff' : '#111827';
+                    const textSub = dark ? 'rgba(255,255,255,0.85)' : '#2563eb';
+                    const track = dark ? 'rgba(255,255,255,0.35)' : '#e5e7eb';
+                    const fill = dark ? '#ffffff' : '#2563eb';
+
+                    const width = row.value >= 0
+                        ? Math.max(0, Math.min(100, row.value / maxValue * 100))
+                        : 0;
+
+                    return `
+                        <div class="rounded-xl border border-gray-100 p-3.5 hover:shadow-md hover:border-indigo-300 transition"
+                             style="background-color:${background};">
+
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="text-[11px] font-bold" style="color:${textSub}">
+                                    #${index + 1}
+                                </span>
+
+                                <span class="text-base sm:text-lg font-bold truncate ml-1"
+                                      style="color:${textMain}">
+                                    ${row.name}
+                                </span>
+                            </div>
+
+                            <div class="text-[11px] font-semibold mb-2"
+                                 style="color:${textSub}">
+                                ${row.district}
+                            </div>
+
+                            <div class="text-base font-bold mb-2"
+                                 style="color:${textMain}">
+                                ${this.fmt(row.value)}
+                            </div>
+
+                            <div class="text-[10px] mb-2"
+                                 style="color:${textSub}">
+                                ${row.policyType || ''}
+                            </div>
+
+                            <div class="w-full rounded-full h-1.5"
+                                 style="background-color:${track}">
+                                <div class="h-1.5 rounded-full"
+                                     style="width:${width.toFixed(0)}%; background-color:${fill}">
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+        }
+
+
+        // =====================================================
+        // 페이지별 Explorer
+        // =====================================================
+        const pageBuilders = {
+            0: () => new DongExplorer(
+                'explorer-0',
+                {
+                    metrics: page0Metrics,
+                    icon: 'users'
+                }
+            ),
+
+            1: () => new DongExplorer(
+                'explorer-1',
+                {
+                    metrics: page1Metrics,
+                    icon: 'chart-bar'
+                }
+            ),
+
+            2: () => new DongExplorer(
+                'explorer-2',
+                {
+                    metrics: page2Metrics,
+                    icon: 'home'
+                }
+            ),
+
+            3: () => new DongExplorer(
+                'explorer-3',
+                {
+                    metrics: page3Metrics,
+                    icon: 'store'
+                }
+            ),
+
+            4: () => new DongExplorer(
+                'explorer-4',
+                {
+                    metrics: page4Metrics,
+                    icon: 'layer-group'
+                }
+            ),
+
+            5: () => new DongExplorer(
+                'explorer-5',
+                {
+                    metrics: page5Metrics,
+                    icon: 'bus'
+                }
+            ),
+
+            6: () => new DongExplorer(
+                'explorer-6',
+                {
+                    metrics: page6Metrics,
+                    icon: 'chart-simple'
+                }
+            )
+        };
+
+
+        // 첫 탭 초기화
+        explorerInstances[0] = pageBuilders[0]();
+
+
+        // 카드 레이아웃 resize 대응
+        let resizeTimer = null;
+
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+
+            resizeTimer = setTimeout(() => {
+                Object.values(explorerInstances).forEach(instance => {
+                    if (instance && instance.view === 'card') {
+                        instance.renderCards();
+                    }
+                });
+            }, 150);
+        });
+    </script>
+</body>
+</html>

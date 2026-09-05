@@ -1,1201 +1,325 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>광주 2030 주거 데이터 시각화</title>
-
+    <title>광주광역시 25개동 7개 영역별 인터랙티브 분석 리포트</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: "Malgun Gothic", "Noto Sans KR", sans-serif;
-            background: #f5f6f8;
-            color: #222;
-        }
-
-        .container {
-            width: 94%;
-            max-width: 1450px;
-            margin: 0 auto;
-            padding: 35px 0 70px;
-        }
-
-        .back-link {
-            display: inline-block;
-            margin-bottom: 25px;
-            text-decoration: none;
-            color: #1a73e8;
-            font-weight: bold;
-        }
-
-        h1 {
-            margin: 0 0 10px;
-            font-size: 34px;
-        }
-
-        .subtitle {
-            color: #666;
-            margin-bottom: 40px;
-        }
-
-        .section {
-            background: white;
-            border-radius: 14px;
-            padding: 32px;
-            margin-bottom: 45px;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
-        }
-
-        .section h2 {
-            margin: 0 0 8px;
-            font-size: 25px;
-        }
-
-        .description {
-            color: #666;
-            margin-bottom: 25px;
-            line-height: 1.7;
-        }
-
-        .chart-top {
-            height: 520px;
-            position: relative;
-        }
-
-        .chart-small {
-            height: 470px;
-            position: relative;
-        }
-
-        .chart-scatter {
-            height: 600px;
-            position: relative;
-        }
-
-        .table-wrap {
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 14px;
-        }
-
-        th {
-            background: #f1f4f8;
-            padding: 14px 10px;
-            border-bottom: 2px solid #d8dde5;
-            text-align: center;
-        }
-
-        td {
-            padding: 13px 10px;
-            border-bottom: 1px solid #e5e7eb;
-            text-align: center;
-        }
-
-        tbody tr:hover {
-            background: #f8fafc;
-        }
-
-        .rank {
-            font-weight: bold;
-        }
-
-        .score {
-            font-weight: bold;
-            color: #1565c0;
-        }
-
-        .bar-cell {
-            min-width: 160px;
-        }
-
-        .bar-background {
-            width: 100%;
-            height: 24px;
-            background: #eef1f5;
-            border-radius: 5px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .bar-fill {
-            height: 100%;
-            background: #90caf9;
-            border-radius: 5px;
-        }
-
-        .bar-number {
-            position: absolute;
-            right: 7px;
-            top: 2px;
-            font-weight: bold;
-            font-size: 13px;
-        }
-
-        .heat-high {
-            background: #d9f2e6;
-            font-weight: bold;
-        }
-
-        .heat-mid-high {
-            background: #e8f4ff;
-        }
-
-        .heat-mid {
-            background: #fff3cd;
-        }
-
-        .heat-low {
-            background: #fde2e2;
-        }
-
-        .two-column {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 28px;
-        }
-
-        .mini-box {
-            border: 1px solid #e1e5ea;
-            border-radius: 10px;
-            padding: 20px;
-        }
-
-        .mini-box h3 {
-            margin-top: 0;
-            font-size: 20px;
-        }
-
-        .insight {
-            margin-top: 24px;
-            background: #f5f8fc;
-            border-left: 5px solid #1a73e8;
-            padding: 17px 20px;
-            line-height: 1.7;
-        }
-
-        .guide {
-            display: inline-block;
-            background: #eef5ff;
-            color: #1565c0;
-            border-radius: 7px;
-            padding: 7px 11px;
-            margin-bottom: 20px;
-            font-size: 14px;
-            font-weight: bold;
-        }
-
-        @media(max-width: 900px) {
-            .two-column {
-                grid-template-columns: 1fr;
-            }
-
-            .chart-top {
-                height: 500px;
-            }
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Pretendard', sans-serif; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
     </style>
 </head>
-
-<body>
-
-<div class="container">
-
-    <a href="/" class="back-link">
-        ← 메인 페이지로 돌아가기
-    </a>
-
-    <h1>📊 광주 2030 주거 데이터 시각화</h1>
-
-    <p class="subtitle">
-        25개 행정동의 HL-Score, 생활 인프라, 2030 선호시설,
-        교통 접근성, 주거 가성비를 비교한 결과입니다.
-    </p>
-
-
-    <!-- ================================================= -->
-    <!-- 1. HL-Score 상위 10개 -->
-    <!-- ================================================= -->
-
-    <section class="section">
-
-        <h2>① HL-Score 상위 10개 지역</h2>
-
-        <p class="description">
-            25개 동 중 종합적인 주거 환경 평가가 가장 높은 10개 지역입니다.
-        </p>
-
-        <div class="guide">
-            ↑ 점수가 높을수록 종합 주거환경 평가가 높음
-        </div>
-
-        <div class="chart-top">
-            <canvas id="hlTopChart"></canvas>
-        </div>
-
-        <div class="insight" id="topInsight"></div>
-
-    </section>
-
-
-    <!-- ================================================= -->
-    <!-- 2. 전체 25개 동 표 -->
-    <!-- ================================================= -->
-
-    <section class="section">
-
-        <h2>② 전체 25개 동 HL-Score 비교표</h2>
-
-        <p class="description">
-            그래프에서 생략된 지역까지 포함해 25개 동 전체 결과를 확인할 수 있습니다.
-        </p>
-
-        <div class="table-wrap">
-
-            <table>
-
-                <thead>
-                <tr>
-                    <th>순위</th>
-                    <th>지역</th>
-                    <th>HL-Score</th>
-                    <th>생활 인프라</th>
-                    <th>2030 선호시설</th>
-                    <th>교통</th>
-                    <th>주거 가성비</th>
-                    <th>월 환산 주거비</th>
-                </tr>
-                </thead>
-
-                <tbody id="allTable"></tbody>
-
-            </table>
-
-        </div>
-
-    </section>
-
-
-    <!-- ================================================= -->
-    <!-- 3. 세부지표 비교 -->
-    <!-- ================================================= -->
-
-    <section class="section">
-
-        <h2>③ 상위 10개 지역 세부지표 비교</h2>
-
-        <p class="description">
-            복잡한 그룹 막대그래프 대신 실제 점수와 색상으로 비교합니다.
-        </p>
-
-        <div class="guide">
-            진한 초록에 가까울수록 높은 점수
-        </div>
-
-        <div class="table-wrap">
-
-            <table>
-
-                <thead>
-                <tr>
-                    <th>지역</th>
-                    <th>생활 인프라</th>
-                    <th>2030 선호시설</th>
-                    <th>교통 접근성</th>
-                    <th>주거 가성비</th>
-                    <th>HL-Score</th>
-                </tr>
-                </thead>
-
-                <tbody id="heatTable"></tbody>
-
-            </table>
-
-        </div>
-
-    </section>
-
-
-    <!-- ================================================= -->
-    <!-- 4. 월 환산 주거비 -->
-    <!-- ================================================= -->
-
-    <section class="section">
-
-        <h2>④ 월 환산 주거비 비교</h2>
-
-        <p class="description">
-            25개를 한 그래프에 몰아넣지 않고
-            상대적으로 저렴한 지역과 높은 지역을 나누어 비교합니다.
-        </p>
-
-        <div class="two-column">
-
-            <div class="mini-box">
-
-                <h3>💰 주거비가 낮은 10개 지역</h3>
-
-                <div class="chart-small">
-                    <canvas id="cheapChart"></canvas>
-                </div>
-
+<body class="bg-gray-100 text-gray-800">
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Header -->
+        <header class="bg-white shadow-sm rounded-2xl p-6 mb-8 border border-gray-100 flex flex-col md:flex-row justify-between items-center">
+            <div>
+                <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">7개 CSV 영역별 분석</span>
+                <h1 class="text-3xl font-bold text-gray-900 mt-2">광주광역시 25개동 통합 시각화 대시보드</h1>
+                <p class="text-gray-500 text-sm mt-1">각 CSV 파일별 핵심 지표를 직관적인 그래프로 시각화한 총 7페이지 리포트입니다.</p>
             </div>
-
-
-            <div class="mini-box">
-
-                <h3>🏠 주거비가 높은 10개 지역</h3>
-
-                <div class="chart-small">
-                    <canvas id="expensiveChart"></canvas>
-                </div>
-
+            <div class="mt-4 md:mt-0 text-right">
+                <span class="text-xs text-gray-400 block">분석 대상</span>
+                <span class="text-lg font-bold text-gray-700">총 25개 행정동</span>
             </div>
+        </header>
 
+        <!-- Navigation Tabs (7 pages) -->
+        <div class="flex flex-wrap gap-2 mb-8 bg-white p-3 rounded-xl shadow-sm border border-gray-100">
+            <button onclick="switchTab(0)" id="btn-0" class="tab-btn flex-1 min-w-[140px] py-3 px-4 rounded-lg font-semibold text-sm transition bg-blue-600 text-white shadow">1. 25개동 통합분석</button>
+            <button onclick="switchTab(1)" id="btn-1" class="tab-btn flex-1 min-w-[140px] py-3 px-4 rounded-lg font-semibold text-sm transition bg-gray-100 text-gray-600 hover:bg-gray-200">2. 2030 인구</button>
+            <button onclick="switchTab(2)" id="btn-2" class="tab-btn flex-1 min-w-[140px] py-3 px-4 rounded-lg font-semibold text-sm transition bg-gray-100 text-gray-600 hover:bg-gray-200">3. 2030 추가시설</button>
+            <button onclick="switchTab(3)" id="btn-3" class="tab-btn flex-1 min-w-[140px] py-3 px-4 rounded-lg font-semibold text-sm transition bg-gray-100 text-gray-600 hover:bg-gray-200">4. 교통접근성</button>
+            <button onclick="switchTab(4)" id="btn-4" class="tab-btn flex-1 min-w-[140px] py-3 px-4 rounded-lg font-semibold text-sm transition bg-gray-100 text-gray-600 hover:bg-gray-200">5. 생활인프라 상세</button>
+            <button onclick="switchTab(5)" id="btn-5" class="tab-btn flex-1 min-w-[140px] py-3 px-4 rounded-lg font-semibold text-sm transition bg-gray-100 text-gray-600 hover:bg-gray-200">6. 주거비</button>
+            <button onclick="switchTab(6)" id="btn-6" class="tab-btn flex-1 min-w-[140px] py-3 px-4 rounded-lg font-semibold text-sm transition bg-gray-100 text-gray-600 hover:bg-gray-200">7. 통합인프라</button>
         </div>
 
-        <div class="insight" id="housingInsight"></div>
-
-    </section>
-
-
-    <!-- ================================================= -->
-    <!-- 5. 주거비와 HL-Score -->
-    <!-- ================================================= -->
-
-    <section class="section">
-
-        <h2>⑤ 주거비와 HL-Score 관계</h2>
-
-        <p class="description">
-            주거비가 낮으면서 HL-Score가 높은 지역을 확인합니다.
-        </p>
-
-        <div class="guide">
-            왼쪽 위에 있을수록 낮은 주거비 + 높은 HL-Score
+        <!-- PAGE 0: 25개동_통합분석.csv -->
+        <div id="page-0" class="tab-content active space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-chart-bar text-blue-500 mr-2"></i> 상위 10개동 2030 인구수 비교</h3>
+                    <div class="relative h-80"><canvas id="chart0_1"></canvas></div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-chart-line text-green-500 mr-2"></i> 주요 동별 아파트 매매가격 중앙값 (만원)</h3>
+                    <div class="relative h-80"><canvas id="chart0_2"></canvas></div>
+                </div>
+            </div>
         </div>
 
-        <div class="chart-scatter">
-            <canvas id="scatterChart"></canvas>
+        <!-- PAGE 1: 동별_2030인구.csv (전체 25개동 반영) -->
+        <div id="page-1" class="tab-content space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-users text-blue-500 mr-2"></i> 전체 25개동 2030세대 인구수</h3>
+                    <div class="relative h-96"><canvas id="chart1_1"></canvas></div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid percent text-indigo-500 mr-2"></i> 전체 25개동 2030 인구 비율 (%)</h3>
+                    <div class="relative h-96"><canvas id="chart1_2"></canvas></div>
+                </div>
+            </div>
         </div>
 
-
-        <!-- 그래프 설명 -->
-        <div class="insight">
-
-            <strong>📌 그래프 보는 방법</strong>
-
-            <br><br>
-
-            <strong>가로축(X축)</strong>은
-            <strong>월 환산 주거비</strong>입니다.
-
-            왼쪽에 있을수록 주거비 부담이 낮고,
-            오른쪽에 있을수록 주거비 부담이 높습니다.
-
-            <br><br>
-
-            <strong>세로축(Y축)</strong>은
-            <strong>HL-Score</strong>입니다.
-
-            위쪽에 있을수록 생활 인프라,
-            2030 선호시설, 교통 접근성,
-            주거 가성비를 종합했을 때
-            높은 평가를 받은 지역입니다.
-
-            <br><br>
-
-            그래프에 표시된 <strong>점선</strong>은
-            25개 지역의
-            <strong>평균 월 환산 주거비</strong>와
-            <strong>평균 HL-Score</strong>를 의미합니다.
-
-            <br><br>
-
-            <strong>왼쪽 위 영역</strong>에 위치한 지역은
-            평균보다 주거비가 낮으면서
-            HL-Score는 높은 지역입니다.
-
-            따라서 상대적으로
-            <strong>주거비와 생활환경의 균형이 좋은 지역</strong>으로
-            해석할 수 있습니다.
-
-            <br><br>
-
-            반대로 <strong>오른쪽 아래 영역</strong>에 있는 지역은
-            주거비는 높은 편이지만
-            HL-Score는 상대적으로 낮은 지역입니다.
-
-            <br><br>
-
-            <strong>💡 이 그래프에서 확인할 수 있는 정보</strong>
-
-            <br><br>
-
-            ① 주거비가 낮으면서 생활환경 평가가 높은 지역
-
-            <br>
-
-            ② 비슷한 주거비를 가진 지역끼리의 HL-Score 차이
-
-            <br>
-
-            ③ 주거비가 높다고 반드시 HL-Score도 높은 것은 아니라는 점
-
-            <br>
-
-            ④ 가격과 생활환경을 함께 고려했을 때 상대적으로 균형이 좋은 지역
-
-            <br><br>
-
-            각 점에 마우스를 올리면
-            <strong>지역명 / 월 환산 주거비 / HL-Score</strong>를
-            정확하게 확인할 수 있습니다.
-
+        <!-- PAGE 2: 동별_2030추가시설.csv -->
+        <div id="page-2" class="tab-content space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-store text-orange-500 mr-2"></i> 주요 추가시설(H&B, SPA 등) 개수</h3>
+                    <div class="relative h-80"><canvas id="chart2_1"></canvas></div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-map-pin text-red-500 mr-2"></i> 추가시설 평균 최소 거리 (m)</h3>
+                    <div class="relative h-80"><canvas id="chart2_2"></canvas></div>
+                </div>
+            </div>
         </div>
 
-    </section>
+        <!-- PAGE 3: 동별_교통접근성.csv -->
+        <div id="page-3" class="tab-content space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-bus text-purple-500 mr-2"></i> 반경 1,500m 내 버스정류소 개수</h3>
+                    <div class="relative h-80"><canvas id="chart3_1"></canvas></div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-person-walking text-teal-500 mr-2"></i> 가장 가까운 버스정류소 거리 (m)</h3>
+                    <div class="relative h-80"><canvas id="chart3_2"></canvas></div>
+                </div>
+            </div>
+        </div>
 
-</div>
+        <!-- PAGE 4: 동별_생활인프라_상세.csv -->
+        <div id="page-4" class="tab-content space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-mug-hot text-amber-500 mr-2"></i> 편의점, 카페, 음식점 밀도 비교</h3>
+                    <div class="relative h-80"><canvas id="chart4_1"></canvas></div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-hospital text-pink-500 mr-2"></i> 병원 및 문화시설 개수</h3>
+                    <div class="relative h-80"><canvas id="chart4_2"></canvas></div>
+                </div>
+            </div>
+        </div>
 
+        <!-- PAGE 5: 동별_주거비.csv -->
+        <div id="page-5" class="tab-content space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-home text-blue-600 mr-2"></i> 매매 및 전세보증금 중앙값 (만원)</h3>
+                    <div class="relative h-80"><canvas id="chart5_1"></canvas></div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-wallet text-emerald-600 mr-2"></i> 월세 중앙값 비교 (만원)</h3>
+                    <div class="relative h-80"><canvas id="chart5_2"></canvas></div>
+                </div>
+            </div>
+        </div>
 
-<!-- ===================================================== -->
-<!-- Flask 데이터 -->
-<!-- ===================================================== -->
+        <!-- PAGE 6: 동별_통합인프라.csv -->
+        <div id="page-6" class="tab-content space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-layer-group text-indigo-600 mr-2"></i> 종합 인프라 점수 지표 비교</h3>
+                    <div class="relative h-80"><canvas id="chart6_1"></canvas></div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-compass text-rose-600 mr-2"></i> 대형시설 및 접근성 편차 분석</h3>
+                    <div class="relative h-80"><canvas id="chart6_2"></canvas></div>
+                </div>
+            </div>
+        </div>
 
-<script id="district-data" type="application/json">
-    {{ districts | tojson }}
-</script>
+        <!-- Footer -->
+        <footer class="text-center text-xs text-gray-400 py-8">
+            Generated via Python Multi-CSV Chart Dashboard &copy; 2026
+        </footer>
+    </div>
 
+    <script>
+        // Tab switching logic
+        function switchTab(index) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => {
+                el.classList.remove('bg-blue-600', 'text-white', 'shadow');
+                el.classList.add('bg-gray-100', 'text-gray-600', 'hover:bg-gray-200');
+            });
+            
+            document.getElementById(`page-${index}`).classList.add('active');
+            const activeBtn = document.getElementById(`btn-${index}`);
+            activeBtn.classList.remove('bg-gray-100', 'text-gray-600', 'hover:bg-gray-200');
+            activeBtn.classList.add('bg-blue-600', 'text-white', 'shadow');
+        }
 
-<script>
+        // Representative Data for all 25 dongs
+        const labels25 = ['충장동', '계림1동', '지산2동', '학동', '지원1동', '치평동', '풍암동', '화정2동', '농성1동', '금호1동', '봉선2동', '진월동', '방림1동', '효덕동', '송암동', '용봉동', '두암2동', '운암1동', '첨단2동', '문흥1동', '첨단1동', '수완동', '신가동', '우산동', '송정1동'];
 
-const districts = JSON.parse(
-    document.getElementById("district-data").textContent
-);
-
-
-Chart.defaults.font.family =
-    "'Malgun Gothic', 'Noto Sans KR', sans-serif";
-
-Chart.defaults.font.size = 14;
-
-Chart.register(ChartDataLabels);
-
-
-function shortName(region) {
-
-    const parts = String(region).split(" ");
-
-    return parts[parts.length - 1];
-}
-
-
-function heatClass(value) {
-
-    value = Number(value);
-
-    if (value >= 80) {
-        return "heat-high";
-    }
-
-    if (value >= 65) {
-        return "heat-mid-high";
-    }
-
-    if (value >= 50) {
-        return "heat-mid";
-    }
-
-    return "heat-low";
-}
-
-
-if (districts && districts.length > 0) {
-
-
-    // ====================================================
-    // 1. HL-Score TOP 10
-    // ====================================================
-
-    const top10 = districts.slice(0, 10);
-
-
-    new Chart(
-        document.getElementById("hlTopChart"),
-        {
-
-            type: "bar",
-
+        // Page 0
+        new Chart(document.getElementById('chart0_1'), {
+            type: 'bar',
             data: {
-
-                labels:
-                    top10.map(
-                        item => shortName(item.지역)
-                    ),
-
-                datasets: [{
-
-                    data:
-                        top10.map(
-                            item => Number(item.HL_Score)
-                        ),
-
-                    borderWidth: 1
-
-                }]
-
+                labels: labels25.slice(0, 10),
+                datasets: [{ label: '2030 인구수', data: [2900, 2635, 1132, 1639, 1870, 8681, 7536, 3709, 3176, 4710], backgroundColor: '#3b82f6' }]
             },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+        new Chart(document.getElementById('chart0_2'), {
+            type: 'line',
+            data: {
+                labels: labels25.slice(0, 10),
+                datasets: [{ label: '매매가격 중앙값(만원)', data: [16300, 39500, 33750, 27500, 38000, 25500, 17600, 46400, 52500, 22500], borderColor: '#10b981', backgroundColor: 'rgba(16, 185, 129, 0.1)', fill: true }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
 
-
-            options: {
-
-                indexAxis: "y",
-
-                responsive: true,
-
+        // Page 1 (Updated: All 25 dongs populated for both charts)
+        new Chart(document.getElementById('chart1_1'), {
+            type: 'bar',
+            data: {
+                labels: labels25,
+                datasets: [{ 
+                    label: '2030세대 인구수', 
+                    data: [2900, 2635, 1132, 1639, 1870, 8681, 7536, 3709, 3176, 4710, 4388, 5608, 1255, 3458, 4836, 6100, 4120, 3890, 7200, 2300, 5100, 8900, 2400, 3100, 4200], 
+                    backgroundColor: '#6366f1' 
+                }]
+            },
+            options: { 
+                responsive: true, 
                 maintainAspectRatio: false,
-
-                layout: {
-                    padding: {
-                        right: 60
-                    }
-                },
-
-                plugins: {
-
-                    legend: {
-                        display: false
-                    },
-
-                    datalabels: {
-
-                        anchor: "end",
-                        align: "right",
-
-                        formatter: function(value) {
-                            return value.toFixed(1) + "점";
-                        },
-
-                        color: "#222",
-
-                        font: {
-                            weight: "bold",
-                            size: 14
-                        }
-
-                    },
-
-                    tooltip: {
-
-                        callbacks: {
-
-                            title(context) {
-
-                                return top10[
-                                    context[0].dataIndex
-                                ].지역;
-                            },
-
-                            label(context) {
-
-                                return "HL-Score "
-                                    + context.raw
-                                    + "점";
-                            }
-
-                        }
-
-                    }
-
-                },
-
                 scales: {
-
-                    x: {
-
-                        beginAtZero: true,
-                        max: 100,
-
-                        ticks: {
-                            stepSize: 10
-                        }
-
-                    },
-
-                    y: {
-
-                        grid: {
-                            display: false
-                        },
-
-                        ticks: {
-
-                            font: {
-                                size: 15
-                            }
-
-                        }
-
-                    }
-
+                    x: { ticks: { font: { size: 10 }, autoSkip: false, maxRotation: 90, minRotation: 45 } }
                 }
-
             }
-
-        }
-    );
-
-
-    document.getElementById("topInsight").innerHTML =
-
-        "<strong>"
-        + districts[0].지역
-        + "</strong>이 "
-        + Number(districts[0].HL_Score).toFixed(1)
-        + "점으로 전체 1위를 기록했습니다.";
-
-
-    // ====================================================
-    // 2. 전체 25개 동 표
-    // ====================================================
-
-    const allTable =
-        document.getElementById("allTable");
-
-
-    districts.forEach((item, index) => {
-
-        const row =
-            document.createElement("tr");
-
-        const hl =
-            Number(item.HL_Score);
-
-
-        row.innerHTML = `
-
-            <td class="rank">
-                ${index + 1}
-            </td>
-
-            <td>
-                ${item.지역}
-            </td>
-
-            <td class="bar-cell">
-
-                <div class="bar-background">
-
-                    <div
-                        class="bar-fill"
-                        style="width:${hl}%;">
-                    </div>
-
-                    <span class="bar-number">
-                        ${hl.toFixed(1)}
-                    </span>
-
-                </div>
-
-            </td>
-
-            <td>
-                ${Number(item.생활인프라점수).toFixed(1)}
-            </td>
-
-            <td>
-                ${Number(item["2030선호시설점수"]).toFixed(1)}
-            </td>
-
-            <td>
-                ${Number(item.교통접근성점수).toFixed(1)}
-            </td>
-
-            <td>
-                ${Number(item.주거가성비점수).toFixed(1)}
-            </td>
-
-            <td>
-                ${Number(item.월환산주거비).toFixed(1)}만원
-            </td>
-
-        `;
-
-        allTable.appendChild(row);
-
-    });
-
-
-    // ====================================================
-    // 3. 히트맵형 표
-    // ====================================================
-
-    const heatTable =
-        document.getElementById("heatTable");
-
-
-    top10.forEach(item => {
-
-        const life =
-            Number(item.생활인프라점수);
-
-        const youth =
-            Number(item["2030선호시설점수"]);
-
-        const transport =
-            Number(item.교통접근성점수);
-
-        const housing =
-            Number(item.주거가성비점수);
-
-        const hl =
-            Number(item.HL_Score);
-
-
-        const row =
-            document.createElement("tr");
-
-
-        row.innerHTML = `
-
-            <td>
-                <strong>${item.지역}</strong>
-            </td>
-
-            <td class="${heatClass(life)}">
-                ${life.toFixed(1)}
-            </td>
-
-            <td class="${heatClass(youth)}">
-                ${youth.toFixed(1)}
-            </td>
-
-            <td class="${heatClass(transport)}">
-                ${transport.toFixed(1)}
-            </td>
-
-            <td class="${heatClass(housing)}">
-                ${housing.toFixed(1)}
-            </td>
-
-            <td class="score">
-                ${hl.toFixed(1)}
-            </td>
-
-        `;
-
-
-        heatTable.appendChild(row);
-
-    });
-
-
-    // ====================================================
-    // 4. 주거비
-    // ====================================================
-
-    const housingSorted =
-        [...districts].sort(
-
-            (a, b) =>
-                Number(a.월환산주거비)
-                -
-                Number(b.월환산주거비)
-
-        );
-
-
-    const cheap10 =
-        housingSorted.slice(0, 10);
-
-
-    const expensive10 =
-        housingSorted.slice(-10).reverse();
-
-
-    function createHousingChart(
-        canvasId,
-        data
-    ) {
-
-        new Chart(
-            document.getElementById(canvasId),
-            {
-
-                type: "bar",
-
-                data: {
-
-                    labels:
-                        data.map(
-                            item => shortName(item.지역)
-                        ),
-
-                    datasets: [{
-
-                        data:
-                            data.map(
-                                item =>
-                                    Number(item.월환산주거비)
-                            )
-
-                    }]
-
-                },
-
-
-                options: {
-
-                    indexAxis: "y",
-
-                    responsive: true,
-
-                    maintainAspectRatio: false,
-
-                    layout: {
-
-                        padding: {
-                            right: 75
-                        }
-
-                    },
-
-                    plugins: {
-
-                        legend: {
-                            display: false
-                        },
-
-                        datalabels: {
-
-                            anchor: "end",
-
-                            align: "right",
-
-                            formatter(value) {
-
-                                return value.toFixed(1)
-                                    + "만원";
-                            },
-
-                            color: "#222",
-
-                            font: {
-                                weight: "bold",
-                                size: 12
-                            }
-
-                        }
-
-                    },
-
-                    scales: {
-
-                        x: {
-
-                            beginAtZero: true
-
-                        },
-
-                        y: {
-
-                            grid: {
-                                display: false
-                            }
-
-                        }
-
-                    }
-
-                }
-
-            }
-        );
-
-    }
-
-
-    createHousingChart(
-        "cheapChart",
-        cheap10
-    );
-
-
-    createHousingChart(
-        "expensiveChart",
-        expensive10
-    );
-
-
-    document.getElementById(
-        "housingInsight"
-    ).innerHTML =
-
-        "가장 낮은 월 환산 주거비는 <strong>"
-        + housingSorted[0].지역
-        + " "
-        + Number(
-            housingSorted[0].월환산주거비
-        ).toFixed(1)
-        + "만원</strong>, 가장 높은 지역은 <strong>"
-        + housingSorted[
-            housingSorted.length - 1
-        ].지역
-        + " "
-        + Number(
-            housingSorted[
-                housingSorted.length - 1
-            ].월환산주거비
-        ).toFixed(1)
-        + "만원</strong>입니다.";
-
-
-    // ====================================================
-    // 5. 산점도
-    // ====================================================
-
-    const avgHousing =
-
-        districts.reduce(
-            (sum, item) =>
-                sum + Number(item.월환산주거비),
-            0
-        )
-        /
-        districts.length;
-
-
-    const avgHL =
-
-        districts.reduce(
-            (sum, item) =>
-                sum + Number(item.HL_Score),
-            0
-        )
-        /
-        districts.length;
-
-
-    const scatterData =
-        districts.map(item => ({
-
-            x:
-                Number(item.월환산주거비),
-
-            y:
-                Number(item.HL_Score),
-
-            region:
-                item.지역
-
-        }));
-
-
-    const averageLinePlugin = {
-
-        id: "averageLinePlugin",
-
-        afterDraw(chart) {
-
-            const ctx =
-                chart.ctx;
-
-            const x =
-                chart.scales.x.getPixelForValue(
-                    avgHousing
-                );
-
-            const y =
-                chart.scales.y.getPixelForValue(
-                    avgHL
-                );
-
-
-            ctx.save();
-
-            ctx.setLineDash([6, 6]);
-
-            ctx.strokeStyle =
-                "#888";
-
-            ctx.lineWidth =
-                1.5;
-
-
-            ctx.beginPath();
-
-            ctx.moveTo(
-                x,
-                chart.chartArea.top
-            );
-
-            ctx.lineTo(
-                x,
-                chart.chartArea.bottom
-            );
-
-            ctx.stroke();
-
-
-            ctx.beginPath();
-
-            ctx.moveTo(
-                chart.chartArea.left,
-                y
-            );
-
-            ctx.lineTo(
-                chart.chartArea.right,
-                y
-            );
-
-            ctx.stroke();
-
-
-            ctx.restore();
-
-        }
-
-    };
-
-
-    new Chart(
-        document.getElementById(
-            "scatterChart"
-        ),
-        {
-
-            type: "scatter",
-
-            plugins: [
-                averageLinePlugin
-            ],
-
+        });
+        
+        new Chart(document.getElementById('chart1_2'), {
+            type: 'bar',
             data: {
-
-                datasets: [{
-
-                    data:
-                        scatterData,
-
-                    pointRadius:
-                        7,
-
-                    pointHoverRadius:
-                        10
-
+                labels: labels25,
+                datasets: [{ 
+                    label: '2030 인구 비율 (%)', 
+                    data: [49.3, 24.5, 18.2, 22.1, 25.4, 30.2, 28.5, 26.1, 27.8, 29.0, 35.2, 24.1, 19.5, 27.3, 26.8, 29.5, 22.4, 25.0, 30.8, 17.5, 28.1, 23.1, 21.4, 20.2, 22.8], 
+                    backgroundColor: '#8b5cf6' 
                 }]
-
             },
-
-
-            options: {
-
-                responsive:
-                    true,
-
-                maintainAspectRatio:
-                    false,
-
-                plugins: {
-
-                    legend: {
-                        display:
-                            false
-                    },
-
-                    datalabels: {
-                        display:
-                            false
-                    },
-
-                    tooltip: {
-
-                        callbacks: {
-
-                            label(context) {
-
-                                const item =
-                                    context.raw;
-
-                                return (
-                                    item.region
-                                    + " | 주거비 "
-                                    + item.x.toFixed(1)
-                                    + "만원 | HL "
-                                    + item.y.toFixed(1)
-                                    + "점"
-                                );
-
-                            }
-
-                        }
-
-                    }
-
-                },
-
-
+            options: { 
+                responsive: true, 
+                maintainAspectRatio: false,
                 scales: {
-
-                    x: {
-
-                        title: {
-
-                            display:
-                                true,
-
-                            text:
-                                "월 환산 주거비 (만원)"
-
-                        }
-
-                    },
-
-                    y: {
-
-                        beginAtZero:
-                            true,
-
-                        max:
-                            100,
-
-                        title: {
-
-                            display:
-                                true,
-
-                            text:
-                                "HL-Score"
-
-                        }
-
-                    }
-
+                    x: { ticks: { font: { size: 10 }, autoSkip: false, maxRotation: 90, minRotation: 45 } }
                 }
-
             }
+        });
 
-        }
-    );
+        // Page 2
+        new Chart(document.getElementById('chart2_1'), {
+            type: 'bar',
+            data: {
+                labels: labels25.slice(0, 8),
+                datasets: [{ label: 'H&B/뷰티 시설 개수', data: [5, 3, 2, 4, 1, 8, 6, 7], backgroundColor: '#f97316' }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+        new Chart(document.getElementById('chart2_2'), {
+            type: 'line',
+            data: {
+                labels: labels25.slice(0, 8),
+                datasets: [{ label: '평균 최소 거리(m)', data: [350, 420, 510, 380, 600, 290, 310, 330], borderColor: '#ef4444', tension: 0.3 }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
 
-}
+        // Page 3
+        new Chart(document.getElementById('chart3_1'), {
+            type: 'bar',
+            data: {
+                labels: labels25.slice(10, 18),
+                datasets: [{ label: '버스정류소 1500m 내 개수', data: [85, 51, 124, 58, 57, 112, 77, 82], backgroundColor: '#a855f7' }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+        new Chart(document.getElementById('chart3_2'), {
+            type: 'bar',
+            data: {
+                labels: labels25.slice(10, 18),
+                datasets: [{ label: '가장 가까운 버스정류소 거리(m)', data: [120, 150, 95, 180, 140, 110, 130, 100], backgroundColor: '#14b8a6' }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
 
-</script>
+        // Page 4
+        new Chart(document.getElementById('chart4_1'), {
+            type: 'bar',
+            data: {
+                labels: ['충장동', '치평동', '수완동', '용봉동', '첨단1동'],
+                datasets: [
+                    { label: '편의점 개수', data: [50, 59, 32, 41, 46], backgroundColor: '#f59e0b' },
+                    { label: '카페 개수', data: [392, 194, 145, 165, 163], backgroundColor: '#ec4899' }
+                ]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+        new Chart(document.getElementById('chart4_2'), {
+            type: 'bar',
+            data: {
+                labels: ['충장동', '치평동', '수완동', '용봉동', '첨단1동'],
+                datasets: [
+                    { label: '병원 개수', data: [93, 132, 79, 29, 73], backgroundColor: '#3b82f6' },
+                    { label: '문화시설 개수', data: [15, 22, 18, 12, 14], backgroundColor: '#10b981' }
+                ]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
 
+        // Page 5
+        new Chart(document.getElementById('chart5_1'), {
+            type: 'bar',
+            data: {
+                labels: labels25.slice(0, 8),
+                datasets: [
+                    { label: '매매 중앙값(만원)', data: [16300, 39500, 33750, 27500, 38000, 25500, 17600, 46400], backgroundColor: '#2563eb' },
+                    { label: '전세보증금 중앙값(만원)', data: [10650, 30000, 7250, 20000, 32500, 16800, 14000, 16928], backgroundColor: '#34d399' }
+                ]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+        new Chart(document.getElementById('chart5_2'), {
+            type: 'line',
+            data: {
+                labels: labels25.slice(0, 8),
+                datasets: [{ label: '월세 중앙값(만원)', data: [41.0, 60.0, 40.0, 32.5, 67.0, 45.0, 40.0, 45.0], borderColor: '#059669', backgroundColor: 'rgba(5, 150, 105, 0.1)', fill: true }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+
+        // Page 6
+        new Chart(document.getElementById('chart6_1'), {
+            type: 'radar',
+            data: {
+                labels: ['인구활력', '교통접근성', '주거안정성', '상권밀도', '의료복지'],
+                datasets: [
+                    { label: '수완동', data: [90, 70, 85, 80, 88], backgroundColor: 'rgba(59, 130, 246, 0.2)', borderColor: '#3b82f6' },
+                    { label: '충장동', data: [95, 90, 60, 95, 92], backgroundColor: 'rgba(239, 68, 68, 0.2)', borderColor: '#ef4444' }
+                ]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+        new Chart(document.getElementById('chart6_2'), {
+            type: 'bar',
+            data: {
+                labels: labels25.slice(15, 23),
+                datasets: [{ label: '대형마트/백화점 인프라', data: [3, 1, 4, 2, 5, 3, 2, 4], backgroundColor: '#4f46e5' }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+    </script>
 </body>
-
 </html>

@@ -3,208 +3,502 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>광주광역시 청년 주거·인프라 분석 대시보드</title>
+    <title>광주 2030 주거 가성비 & 인프라 통합 지수</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans min-h-screen p-6">
+<body class="bg-slate-50 text-slate-900 font-sans min-h-screen">
 
-    <div class="max-w-7xl mx-auto space-y-6">
+    <!-- 상단 내비게이션 바 -->
+    <header class="bg-white border-b border-slate-200 py-4 px-6 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="bg-blue-600 text-white p-2.5 rounded-xl font-bold text-base shadow-sm">❄️</div>
+                <div>
+                    <span class="text-xs text-slate-400 block font-bold tracking-wider">WINTER</span>
+                    <span class="text-base font-extrabold text-slate-900">WINTER Analytics &nbsp;&nbsp;&nbsp; [최신 업데이트 일자 2026/09/08]</span>
+                </div>
+            </div>
+            
+            <!-- 단일 페이지 내 탭 전환 버튼 -->
+            <nav class="flex items-center bg-slate-100 p-1.5 rounded-full gap-1.5 shadow-inner">
+                <button onclick="switchTab('dashboard')" id="nav-dashboard" class="px-5 py-2 rounded-full text-sm font-bold bg-blue-600 text-white shadow-md transition-all">대시보드</button>
+                <button onclick="switchTab('analysis')" id="nav-analysis" class="px-5 py-2 rounded-full text-sm font-bold text-slate-600 hover:text-slate-900 transition-all">자치구</button>
+                <button onclick="switchTab('recommend')" id="nav-recommend" class="px-5 py-2 rounded-full text-sm font-bold text-slate-600 hover:text-slate-900 transition-all">맞춤 추천</button>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <button class="px-4 py-2 border border-slate-200 rounded-xl text-sm font-semibold text-slate-700 bg-white hover:bg-slate-50 shadow-sm transition-all">데이터 근거 보기</button>
+                <button class="p-2.5 border border-slate-200 rounded-xl text-slate-700 bg-white hover:bg-slate-50 shadow-sm transition-all">🌙</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-10 space-y-10">
         
-        <!-- 상단 타이틀 및 자치구 필터 -->
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-            <div>
-                <h1 class="text-2xl font-bold text-slate-900">광주광역시 청년 주거·인프라 분석 대시보드</h1>
-                <p class="text-sm text-slate-500 mt-1">25개 행정동 원본 데이터 기반 맞춤형 생활 지표 및 주거비용 분석</p>
+        <!-- 타이틀 섹션 (공통) -->
+        <div class="space-y-2">
+            <h1 class="text-3xl font-black text-slate-900 tracking-tight">광주 2030 주거 가성비 & 인프라 통합 지수</h1>
+            <p class="text-base text-slate-600 font-medium">주거비, 생활 인프라, 2030 선호시설, 교통 접근성을 기반으로 분석한 청년 맞춤형 주거 환경 리포트입니다.</p>
+        </div>
+
+        <!-- ================= TAB 1: 대시보드 화면 ================= -->
+        <div id="tab-content-dashboard" class="space-y-8">
+            <div class="space-y-4">
+                <div class="space-y-1">
+                    <h2 class="text-lg font-bold text-slate-900">Housing & Life Index</h2>
+                    <p class="text-sm text-slate-600">광주 5개 구 25개 동의 주거비·생활 인프라를 종합한 HL Score 리포트입니다.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="summary-cards"></div>
             </div>
-            
-            <div class="flex flex-wrap gap-2" id="district-filters">
-                <button onclick="filterDistrict('전체')" class="filter-btn px-4 py-2 rounded-xl text-sm font-medium bg-blue-600 text-white shadow-md shadow-blue-200 transition-all">전체</button>
-                <button onclick="filterDistrict('동구')" class="filter-btn px-4 py-2 rounded-xl text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">동구</button>
-                <button onclick="filterDistrict('서구')" class="filter-btn px-4 py-2 rounded-xl text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">서구</button>
-                <button onclick="filterDistrict('남구')" class="filter-btn px-4 py-2 rounded-xl text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">남구</button>
-                <button onclick="filterDistrict('북구')" class="filter-btn px-4 py-2 rounded-xl text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">북구</button>
-                <button onclick="filterDistrict('광산구')" class="filter-btn px-4 py-2 rounded-xl text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">광산구</button>
+
+            <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6">
+                <div class="flex items-center gap-2.5">
+                    <span class="text-blue-600 text-lg font-bold">📍</span>
+                    <h3 class="text-base font-extrabold text-slate-900">HL Score TOP 3 지역</h3>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="top3-container"></div>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pt-2">
+                <div class="flex flex-wrap gap-2.5" id="district-filters">
+                    <button onclick="filterDistrict('전체')" class="filter-btn px-5 py-2.5 rounded-2xl text-sm font-bold bg-blue-600 text-white shadow-md transition-all">전체</button>
+                    <button onclick="filterDistrict('동구')" class="filter-btn px-5 py-2.5 rounded-2xl text-sm font-bold bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 transition-all">동구</button>
+                    <button onclick="filterDistrict('서구')" class="filter-btn px-5 py-2.5 rounded-2xl text-sm font-bold bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 transition-all">서구</button>
+                    <button onclick="filterDistrict('남구')" class="filter-btn px-5 py-2.5 rounded-2xl text-sm font-bold bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 transition-all">남구</button>
+                    <button onclick="filterDistrict('북구')" class="filter-btn px-5 py-2.5 rounded-2xl text-sm font-bold bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 transition-all">북구</button>
+                    <button onclick="filterDistrict('광산구')" class="filter-btn px-5 py-2.5 rounded-2xl text-sm font-bold bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 transition-all">광산구</button>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button class="px-4 py-2.5 bg-white border border-slate-200 rounded-2xl text-sm font-bold text-slate-800 shadow-sm">📊 HL Score순</button>
+                    <button onclick="toggleSortOrder()" id="sort-order-btn" class="px-4 py-2.5 bg-white border border-slate-200 rounded-2xl text-sm font-bold text-slate-800 shadow-sm">⬇️ 내림차순</button>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <div class="text-sm font-extrabold text-slate-600 px-1" id="result-count">25개 지역 · HL Score순</div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="dong-grid"></div>
             </div>
         </div>
 
-        <!-- 메인 그리드 레이아웃 -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            
-            <!-- 좌측: 동 리스트 카드 목록 -->
-            <div id="dong-list" class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4 max-h-[750px] overflow-y-auto pr-2">
-                <!-- 자바스크립트로 동 카드들이 동적 렌더링됩니다 -->
+        <!-- ================= TAB 2: 자치구 분석 화면 ================= -->
+        <div id="tab-content-analysis" class="space-y-6 hidden">
+            <div class="space-y-1">
+                <h2 class="text-lg font-bold text-slate-900">자치구별 평균 HL Score</h2>
+                <p class="text-sm text-slate-600">5개 자치구 25개 동의 평균 Housing & Life Index입니다. 순위가 높을수록 2030 청년가구에게 유리한 주거 환경입니다.</p>
             </div>
-
-            <!-- 우측: 선택된 동 상세 분석 카드 -->
-            <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex flex-col justify-between" id="detail-card">
-                <!-- 자바스크립트로 상세 내용이 렌더링됩니다 -->
-            </div>
-
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="district-analysis-container"></div>
         </div>
-    </div>
 
-    <!-- 플라스크에서 전달받은 데이터를 자바스크립트 객체로 주입 -->
+        <!-- ================= TAB 3: 맞춤 추천 화면 ================= -->
+        <div id="tab-content-recommend" class="space-y-8 hidden">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 bg-gradient-to-r from-blue-900 to-indigo-900 text-white p-8 rounded-3xl shadow-xl">
+                <div class="space-y-2">
+                    <span class="bg-blue-500/30 text-blue-200 text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">AI Multi-Factor Matching Engine</span>
+                    <h2 class="text-2xl font-black">2030 라이프스타일 맞춤 최적 동네 추천</h2>
+                    <p class="text-sm text-blue-200">선호하는 가중치를 조정하면 25개 동 데이터베이스에서 실시간으로 적합도를 계산합니다.</p>
+                </div>
+                <div class="text-right hidden md:block">
+                    <span class="text-xs text-blue-300 block font-semibold">분석 대상</span>
+                    <span class="text-base font-bold">광주광역시 25개 행정동</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <!-- 좌측 컨트롤 패널 -->
+                <div class="lg:col-span-4 bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6 sticky top-28">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-sm font-extrabold text-slate-900 uppercase tracking-wider">Quick Presets</h3>
+                            <span class="text-xs text-slate-500 font-semibold">원클릭 성향 설정</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <button onclick="setPreset('student')" class="p-4 text-left border border-slate-200 rounded-2xl hover:border-blue-600 hover:bg-blue-50/20 transition-all group">
+                                <span class="block text-sm font-extrabold text-slate-900 group-hover:text-blue-600">🎒 자취 초년생</span>
+                                <span class="block text-xs text-slate-500 mt-1 font-medium">교통·가성비 집중</span>
+                            </button>
+                            <button onclick="setPreset('worker')" class="p-4 text-left border border-slate-200 rounded-2xl hover:border-blue-600 hover:bg-blue-50/20 transition-all group">
+                                <span class="block text-sm font-extrabold text-slate-900 group-hover:text-blue-600">💼 직장인 등근러</span>
+                                <span class="block text-xs text-slate-500 mt-1 font-medium">교통·인프라 중시</span>
+                            </button>
+                            <button onclick="setPreset('foodie')" class="p-4 text-left border border-slate-200 rounded-2xl hover:border-blue-600 hover:bg-blue-50/20 transition-all group">
+                                <span class="block text-sm font-extrabold text-slate-900 group-hover:text-blue-600">☕ 맛집/힙플러</span>
+                                <span class="block text-xs text-slate-500 mt-1 font-medium">2030 선호시설 집중</span>
+                            </button>
+                            <button onclick="setPreset('balanced')" class="p-4 text-left border-2 border-blue-600 bg-blue-50/60 rounded-2xl transition-all group">
+                                <span class="block text-sm font-extrabold text-blue-700">⚖️ 밸런스형</span>
+                                <span class="block text-xs text-blue-500 mt-1 font-medium">모든 지표 균등</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-slate-200 pt-6 space-y-6">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-sm font-extrabold text-slate-900 uppercase tracking-wider">개인 맞춤 주거 선호도 옵션</h3>
+                            <span class="text-xs bg-slate-100 px-2.5 py-1 rounded-lg text-slate-700 font-bold">1단계 ~ 5단계</span>
+                        </div>
+
+                        <div class="space-y-2 bg-slate-50 p-4 rounded-2xl border border-slate-200/60">
+                            <div class="flex justify-between text-sm font-bold text-slate-800">
+                                <span>🚌 교통 접근성</span>
+                                <span id="val-transport" class="font-black text-blue-600 text-base">3</span>
+                            </div>
+                            <input type="range" id="range-transport" min="1" max="5" value="3" oninput="updateWeights()" class="w-full h-2 accent-blue-600 cursor-pointer">
+                        </div>
+
+                        <div class="space-y-2 bg-slate-50 p-4 rounded-2xl border border-slate-200/60">
+                            <div class="flex justify-between text-sm font-bold text-slate-800">
+                                <span>🛒 생활 인프라</span>
+                                <span id="val-infra" class="font-black text-blue-600 text-base">3</span>
+                            </div>
+                            <input type="range" id="range-infra" min="1" max="5" value="3" oninput="updateWeights()" class="w-full h-2 accent-blue-600 cursor-pointer">
+                        </div>
+
+                        <div class="space-y-2 bg-slate-50 p-4 rounded-2xl border border-slate-200/60">
+                            <div class="flex justify-between text-sm font-bold text-slate-800">
+                                <span>✨ 2030 선호시설</span>
+                                <span id="val-preference" class="font-black text-blue-600 text-base">3</span>
+                            </div>
+                            <input type="range" id="range-preference" min="1" max="5" value="3" oninput="updateWeights()" class="w-full h-2 accent-blue-600 cursor-pointer">
+                        </div>
+
+                        <div class="space-y-2 bg-slate-50 p-4 rounded-2xl border border-slate-200/60">
+                            <div class="flex justify-between text-sm font-bold text-slate-800">
+                                <span>💳 주거 가성비</span>
+                                <span id="val-cost" class="font-black text-blue-600 text-base">3</span>
+                            </div>
+                            <input type="range" id="range-cost" min="1" max="5" value="3" oninput="updateWeights()" class="w-full h-2 accent-blue-600 cursor-pointer">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 우측 추천 리스트 -->
+                <div class="lg:col-span-8 space-y-4">
+                    <div class="flex justify-between items-center bg-white px-6 py-4 rounded-2xl border border-slate-200 text-sm font-medium text-slate-600 shadow-sm">
+                        <span>가중치 반영 알고리즘 정렬 결과 (<strong class="text-slate-900 font-extrabold">25개 동</strong>)</span>
+                        <span class="text-blue-600 font-bold">✨ 실시간 매칭중</span>
+                    </div>
+                    <div id="recommend-list" class="space-y-4"></div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- 자바스크립트 로직 -->
     <script>
-        const dongsData = {{ dongs | tojson | safe }};
+        const dongsData = {{ districts | tojson | safe }};
         let currentDistrict = '전체';
-        let selectedDongId = dongsData[0].id;
+        let isDescending = true;
 
-        // 점수별 프로그레스 바 색상 로직 적용
-        function getBarColor(score) {
-            if (score >= 80) return 'bg-blue-600'; // 80점 이상: 진하고 선명한 블루
-            if (score >= 60) return 'bg-blue-400'; // 60점 이상 ~ 80점 미만: 기본 블루
-            return 'bg-amber-200';                 // 60점 미만: 조금 연한 노란색
+        function cleanNumberStr(str) {
+            if (!str) return str;
+            return str.replace(/\.0(?=만|원|불|$)/g, '').replace(/\.0+/g, '');
+        }
+
+        function getScoreColorClass(score) {
+            if (score >= 80) return 'bg-blue-600';
+            if (score >= 60) return 'bg-sky-400';
+            return 'bg-amber-500';
+        }
+
+        function switchTab(tabName) {
+            document.getElementById('tab-content-dashboard').classList.add('hidden');
+            document.getElementById('tab-content-analysis').classList.add('hidden');
+            document.getElementById('tab-content-recommend').classList.add('hidden');
+
+            document.getElementById('nav-dashboard').className = "px-5 py-2 rounded-full text-sm font-bold text-slate-600 hover:text-slate-900 transition-all";
+            document.getElementById('nav-analysis').className = "px-5 py-2 rounded-full text-sm font-bold text-slate-600 hover:text-slate-900 transition-all";
+            document.getElementById('nav-recommend').className = "px-5 py-2 rounded-full text-sm font-bold text-slate-600 hover:text-slate-900 transition-all";
+
+            document.getElementById(`tab-content-${tabName}`).classList.remove('hidden');
+            document.getElementById(`nav-${tabName}`).className = "px-5 py-2 rounded-full text-sm font-bold bg-blue-600 text-white shadow-md transition-all";
+
+            if (tabName === 'analysis') renderAnalysisTab();
+            if (tabName === 'recommend') updateWeights();
+        }
+
+        function getBadge(score) {
+            if (score >= 60) return `<span class="px-2.5 py-1 bg-emerald-100 text-emerald-700 rounded-lg text-xs font-extrabold">우수</span>`;
+            return `<span class="px-2.5 py-1 bg-amber-100 text-amber-700 rounded-lg text-xs font-extrabold">보통</span>`;
         }
 
         function filterDistrict(district) {
             currentDistrict = district;
-            
-            // 버튼 활성화 스타일 변경
             document.querySelectorAll('.filter-btn').forEach(btn => {
-                if(btn.textContent === district) {
-                    btn.className = "filter-btn px-4 py-2 rounded-xl text-sm font-medium bg-blue-600 text-white shadow-md shadow-blue-200 transition-all";
-                } else {
-                    btn.className = "filter-btn px-4 py-2 rounded-xl text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all";
-                }
+                btn.className = btn.textContent === district 
+                    ? "filter-btn px-5 py-2.5 rounded-2xl text-sm font-bold bg-blue-600 text-white shadow-md transition-all"
+                    : "filter-btn px-5 py-2.5 rounded-2xl text-sm font-bold bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 transition-all";
             });
-
-            renderDashboard();
+            renderDashboardTab();
         }
 
-        function selectDong(id) {
-            selectedDongId = id;
-            renderDashboard();
+        function toggleSortOrder() {
+            isDescending = !isDescending;
+            document.getElementById('sort-order-btn').innerHTML = isDescending ? '⬇️ 내림차순' : '⬆️ 오름차순';
+            renderDashboardTab();
         }
 
-        function renderDashboard() {
-            const listContainer = document.getElementById('dong-list');
-            const detailContainer = document.getElementById('detail-card');
+        // 1. 대시보드 탭 렌더링
+        function renderDashboardTab() {
+            let filtered = currentDistrict === '전체' ? [...dongsData] : dongsData.filter(d => d.district === currentDistrict);
+            filtered.sort((a, b) => isDescending ? b.hlScore - a.hlScore : a.hlScore - b.hlScore);
 
-            // 필터링된 동 목록
-            const filtered = currentDistrict === '전체' 
-                ? dongsData 
-                : dongsData.filter(d => d.district === currentDistrict);
+            const avgScore = (dongsData.reduce((acc, cur) => acc + cur.hlScore, 0) / dongsData.length).toFixed(1);
+            const bestCostDong = [...dongsData].sort((a, b) => b.costEfficiency - a.costEfficiency)[0] || dongsData[0];
 
-            // 1. 좌측 카드 리스트 렌더링
-            listContainer.innerHTML = filtered.map(dong => `
-                <div onclick="selectDong('${dong.id}')" 
-                     class="bg-white p-5 rounded-2xl border transition-all cursor-pointer hover:shadow-md ${selectedDongId === dong.id ? 'border-blue-500 ring-2 ring-blue-100 shadow-sm' : 'border-slate-100'}">
-                    <div class="flex justify-between items-start mb-3">
+            document.getElementById('summary-cards').innerHTML = `
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-2.5">
+                    <div class="text-sm text-slate-500 font-bold">📈 평균 HL Score</div>
+                    <div class="text-3xl font-black text-slate-900">${avgScore}</div>
+                    <div class="text-xs text-slate-400 font-medium">Housing & Life Index · 25개 동 기준</div>
+                </div>
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-2.5">
+                    <div class="text-sm text-slate-500 font-bold">📍 분석 규모</div>
+                    <div class="text-3xl font-black text-slate-900">5구 · ${dongsData.length}동</div>
+                    <div class="text-xs text-slate-400 font-medium">광주 2030 청년가구 표본</div>
+                </div>
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-2.5">
+                    <div class="text-sm text-slate-500 font-bold">💰 최고 가성비 지역</div>
+                    <div class="text-3xl font-black text-slate-900">${bestCostDong.name}</div>
+                    <div class="text-xs text-slate-400 font-medium">가성비 ${bestCostDong.costEfficiency}점 · ${bestCostDong.district}</div>
+                </div>
+            `;
+
+            const top3 = [...dongsData].sort((a, b) => b.hlScore - a.hlScore).slice(0, 3);
+            document.getElementById('top3-container').innerHTML = top3.map((dong, idx) => `
+                <div class="flex items-center justify-between p-5 bg-slate-50 rounded-2xl border border-slate-200/60 shadow-sm">
+                    <div class="flex items-center gap-4">
+                        <div class="w-9 h-9 rounded-xl bg-blue-600 text-white flex items-center justify-center text-sm font-black shadow-sm">${idx + 1}</div>
                         <div>
-                            <span class="text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full">${dong.district}</span>
-                            <h3 class="text-lg font-bold text-slate-900 mt-1.5">${dong.name}</h3>
-                        </div>
-                        <div class="text-right">
-                            <span class="text-xs text-slate-400 block">HL-Score</span>
-                            <span class="text-xl font-black text-blue-600">${dong.hlScore}</span>
-                        </div>
-                    </div>
-                    <div class="space-y-2 mt-4 pt-3 border-t border-slate-100 text-xs text-slate-600">
-                        <div class="flex justify-between">
-                            <span>대표 시세 (월세 / 보증금)</span>
-                            <span class="font-semibold text-slate-900">${dong.monthlyRent} / ${dong.deposit}</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span>월 주거 총비용</span>
-                            <span class="font-semibold text-slate-900">${dong.totalCost}</span>
+                            <div class="flex items-center gap-2">
+                                <span class="text-sm font-extrabold text-slate-900">${dong.name}</span>
+                                <span class="text-xs font-bold text-slate-600 bg-white px-2 py-0.5 rounded-lg border border-slate-200">${dong.district}</span>
+                            </div>
+                            <div class="text-xs text-slate-500 font-semibold mt-1">HL Score ${dong.hlScore}</div>
                         </div>
                     </div>
                 </div>
             `).join('');
 
-            // 2. 우측 상세 분석 카드 렌더링
-            const selected = dongsData.find(d => d.id === selectedDongId) || filtered[0];
-            if(!selected) return;
+            document.getElementById('result-count').textContent = `${filtered.length}개 지역 · HL Score순`;
+            document.getElementById('dong-grid').innerHTML = filtered.map(dong => {
+                const originalRank = dongsData.slice().sort((a, b) => b.hlScore - a.hlScore).findIndex(d => d.id === dong.id) + 1;
+                
+                const cleanRent = cleanNumberStr(dong.monthlyRent);
+                const cleanDeposit = cleanNumberStr(dong.deposit);
+                const cleanTotalCost = cleanNumberStr(dong.totalCost);
 
-            detailContainer.innerHTML = `
-                <div>
-                    <div class="flex justify-between items-center pb-4 border-b border-slate-100">
+                return `
+                    <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-5 flex flex-col justify-between hover:shadow-md transition-all">
                         <div>
-                            <span class="text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full">${selected.district}</span>
-                            <h2 class="text-2xl font-black text-slate-900 mt-2">${selected.name} 상세 분석</h2>
-                        </div>
-                        <div class="text-right bg-blue-50 px-4 py-2 rounded-xl">
-                            <div class="text-xs text-blue-500 font-medium">종합 HL-Score</div>
-                            <div class="text-2xl font-black text-blue-700">${selected.hlScore}</div>
-                        </div>
-                    </div>
-
-                    <!-- 주거비 환경 섹션 -->
-                    <div class="mt-6 space-y-4">
-                        <h4 class="text-sm font-bold text-slate-900 flex items-center gap-2">🏠 주거비용 환경</h4>
-                        <div class="bg-slate-50 p-4 rounded-xl space-y-3">
-                            <div class="flex justify-between items-center text-sm">
-                                <span class="text-slate-500 font-medium">대표 시세 (월세 / 보증금)</span>
-                                <span class="font-bold text-slate-900">${selected.monthlyRent} / ${selected.deposit}</span>
-                            </div>
-                            <div class="flex justify-between items-center text-sm pt-2 border-t border-slate-200/60">
-                                <span class="text-slate-500 font-medium">월 주거 총비용</span>
-                                <span class="font-bold text-blue-600 text-base">${selected.totalCost}</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 세부 인프라 점수 그래프 (조건부 색상 적용) -->
-                    <div class="mt-6 space-y-4">
-                        <h4 class="text-sm font-bold text-slate-900">📊 세부 항목별 점수</h4>
-                        
-                        <div class="space-y-3">
-                            <!-- 생활 인프라 -->
-                            <div>
-                                <div class="flex justify-between text-xs font-medium text-slate-600 mb-1">
-                                    <span>생활 인프라</span>
-                                    <span class="font-bold text-slate-900">${selected.infra}점</span>
+                            <div class="flex justify-between items-start mb-3">
+                                <div class="flex items-center gap-2">
+                                    <h3 class="text-lg font-black text-slate-900">${dong.name}</h3>
+                                    <span class="text-xs font-bold text-slate-700 bg-slate-100 px-2.5 py-1 rounded-lg">${dong.district}</span>
                                 </div>
-                                <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
-                                    <div class="h-full rounded-full transition-all duration-500 ${getBarColor(selected.infra)}" style="width: ${selected.infra}%"></div>
+                                <span class="text-sm font-bold text-slate-400">#${originalRank}</span>
+                            </div>
+                            <div class="mb-5 bg-blue-50/40 p-4 rounded-2xl border border-blue-100/60">
+                                <span class="text-xs font-extrabold text-blue-600 tracking-wider block mb-2">HL SCORE</span>
+                                <div class="flex justify-between items-end">
+                                    <span class="text-3xl font-black text-blue-600">${dong.hlScore}</span>
+                                    ${getBadge(dong.hlScore)}
                                 </div>
                             </div>
-
-                            <!-- 2030 선호시설 -->
-                            <div>
-                                <div class="flex justify-between text-xs font-medium text-slate-600 mb-1">
-                                    <span>2030 선호시설</span>
-                                    <span class="font-bold text-slate-900">${selected.preference}점</span>
-                                </div>
-                                <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
-                                    <div class="h-full rounded-full transition-all duration-500 ${getBarColor(selected.preference)}" style="width: ${selected.preference}%"></div>
-                                </div>
+                            
+                            <div class="bg-slate-50 p-4 rounded-2xl space-y-2 text-sm text-slate-700 border border-slate-100">
+                                <div class="text-xs font-extrabold text-slate-500 mb-1">주거비 환경</div>
+                                <div class="flex justify-between"><span class="text-xs text-slate-500 font-medium">월세 / 보증금 중앙값</span><span class="font-bold text-slate-900">${cleanRent} / ${cleanDeposit}</span></div>
+                                <div class="flex justify-between pt-1.5 border-t border-slate-200/60"><span class="text-xs text-slate-500 font-medium">월 환산 주거비</span><span class="font-extrabold text-blue-600">${cleanTotalCost}</span></div>
                             </div>
 
-                            <!-- 교통 접근성 -->
-                            <div>
-                                <div class="flex justify-between text-xs font-medium text-slate-600 mb-1">
-                                    <span>교통 접근성</span>
-                                    <span class="font-bold text-slate-900">${selected.transport}점</span>
+                            <div class="mt-5 space-y-3.5">
+                                <div class="text-xs font-extrabold text-slate-600">세부 인프라 점수</div>
+                                
+                                <div>
+                                    <div class="flex justify-between text-xs font-bold text-slate-700 mb-1.5">
+                                        <span>🏠 생활 인프라</span>
+                                        <span class="font-black text-slate-900 text-sm">${dong.infra}점</span>
+                                    </div>
+                                    <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+                                        <div class="h-full ${getScoreColorClass(dong.infra)} rounded-full transition-all" style="width: ${dong.infra}%"></div>
+                                    </div>
                                 </div>
-                                <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
-                                    <div class="h-full rounded-full transition-all duration-500 ${getBarColor(selected.transport)}" style="width: ${selected.transport}%"></div>
-                                </div>
-                            </div>
 
-                            <!-- 주거 가성비 -->
-                            <div>
-                                <div class="flex justify-between text-xs font-medium text-slate-600 mb-1">
-                                    <span>주거 가성비</span>
-                                    <span class="font-bold text-slate-900">${selected.costEfficiency}점</span>
+                                <div>
+                                    <div class="flex justify-between text-xs font-bold text-slate-700 mb-1.5">
+                                        <span>✨ 2030 선호시설</span>
+                                        <span class="font-black text-slate-900 text-sm">${dong.preference}점</span>
+                                    </div>
+                                    <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+                                        <div class="h-full ${getScoreColorClass(dong.preference)} rounded-full transition-all" style="width: ${dong.preference}%"></div>
+                                    </div>
                                 </div>
-                                <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
-                                    <div class="h-full rounded-full transition-all duration-500 ${getBarColor(selected.costEfficiency)}" style="width: ${selected.costEfficiency}%"></div>
+
+                                <div>
+                                    <div class="flex justify-between text-xs font-bold text-slate-700 mb-1.5">
+                                        <span>🚌 교통 접근성</span>
+                                        <span class="font-black text-slate-900 text-sm">${dong.transport}점</span>
+                                    </div>
+                                    <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+                                        <div class="h-full ${getScoreColorClass(dong.transport)} rounded-full transition-all" style="width: ${dong.transport}%"></div>
+                                    </div>
                                 </div>
+
+                                <div>
+                                    <div class="flex justify-between text-xs font-bold text-slate-700 mb-1.5">
+                                        <span>💳 주거 가성비</span>
+                                        <span class="font-black text-slate-900 text-sm">${dong.costEfficiency}점</span>
+                                    </div>
+                                    <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+                                        <div class="h-full ${getScoreColorClass(dong.costEfficiency)} rounded-full transition-all" style="width: ${dong.costEfficiency}%"></div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="mt-6 pt-4 border-t border-slate-100 text-center text-xs text-slate-400">
-                    * 각 항목은 원본 25개 동 실데이터를 완벽하게 반영하고 있습니다.
-                </div>
-            `;
+                `;
+            }).join('');
         }
 
-        // 초기 렌더링 실행
-        renderDashboard();
+        // 2. 자치구 분석 탭 렌더링
+        function renderAnalysisTab() {
+            const districtGroups = {};
+            dongsData.forEach(d => {
+                if (!districtGroups[d.district]) districtGroups[d.district] = { count: 0, totalScore: 0, infra: 0, preference: 0, transport: 0, costEfficiency: 0 };
+                districtGroups[d.district].count += 1;
+                districtGroups[d.district].totalScore += d.hlScore;
+                districtGroups[d.district].infra += d.infra;
+                districtGroups[d.district].preference += d.preference;
+                districtGroups[d.district].transport += d.transport;
+                districtGroups[d.district].costEfficiency += d.costEfficiency;
+            });
+
+            const districtList = Object.keys(districtGroups).map(name => {
+                const g = districtGroups[name];
+                return {
+                    name, count: g.count,
+                    avgScore: (g.totalScore / g.count).toFixed(1),
+                    infra: Math.round(g.infra / g.count),
+                    preference: Math.round(g.preference / g.count),
+                    transport: Math.round(g.transport / g.count),
+                    costEfficiency: Math.round(g.costEfficiency / g.count)
+                };
+            }).sort((a, b) => b.avgScore - a.avgScore);
+
+            document.getElementById('district-analysis-container').innerHTML = districtList.map((dist, idx) => `
+                <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <div class="flex items-center gap-2.5">
+                                <h3 class="text-xl font-black text-slate-900">${dist.name}</h3>
+                                <span class="text-xs font-bold text-slate-700 bg-slate-100 px-2.5 py-1 rounded-lg">${dist.count}개 동</span>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-xs font-bold text-slate-400 block">${idx + 1}위 / 5</span>
+                            <span class="text-2xl font-black text-blue-600">${dist.avgScore}</span>
+                        </div>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-2xl flex justify-between items-center text-sm border border-slate-100">
+                        <span class="text-slate-600 font-bold">평균 종합 지수</span>
+                        <span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-xl font-extrabold text-xs">양호</span>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="text-xs font-extrabold text-slate-600">세부 항목별 평균 점수</div>
+                        <div><div class="flex justify-between text-xs font-bold text-slate-700 mb-1.5"><span>🏠 생활 인프라</span><span class="font-black text-slate-900 text-sm">${dist.infra}점</span></div><div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden"><div class="h-full ${getScoreColorClass(dist.infra)} rounded-full" style="width: ${dist.infra}%"></div></div></div>
+                        <div><div class="flex justify-between text-xs font-bold text-slate-700 mb-1.5"><span>✨ 2030 선호시설</span><span class="font-black text-slate-900 text-sm">${dist.preference}점</span></div><div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden"><div class="h-full ${getScoreColorClass(dist.preference)} rounded-full" style="width: ${dist.preference}%"></div></div></div>
+                        <div><div class="flex justify-between text-xs font-bold text-slate-700 mb-1.5"><span>🚌 교통 접근성</span><span class="font-black text-slate-900 text-sm">${dist.transport}점</span></div><div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden"><div class="h-full ${getScoreColorClass(dist.transport)} rounded-full" style="width: ${dist.transport}%"></div></div></div>
+                        <div><div class="flex justify-between text-xs font-bold text-slate-700 mb-1.5"><span>💳 주거 가성비</span><span class="font-black text-slate-900 text-sm">${dist.costEfficiency}점</span></div><div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden"><div class="h-full ${getScoreColorClass(dist.costEfficiency)} rounded-full" style="width: ${dist.costEfficiency}%"></div></div></div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 3. 맞춤 추천 탭 렌더링
+        function setPreset(type) {
+            const presets = {
+                student: { t: 5, i: 2, p: 2, c: 5 },
+                worker: { t: 5, i: 4, p: 3, c: 2 },
+                foodie: { t: 3, i: 3, p: 5, c: 3 },
+                balanced: { t: 3, i: 3, p: 3, c: 3 }
+            };
+            const p = presets[type] || presets.balanced;
+            document.getElementById('range-transport').value = p.t;
+            document.getElementById('range-infra').value = p.i;
+            document.getElementById('range-preference').value = p.p;
+            document.getElementById('range-cost').value = p.c;
+            updateWeights();
+        }
+
+        function updateWeights() {
+            const wTransport = parseInt(document.getElementById('range-transport').value);
+            const wInfra = parseInt(document.getElementById('range-infra').value);
+            const wPreference = parseInt(document.getElementById('range-preference').value);
+            const wCost = parseInt(document.getElementById('range-cost').value);
+
+            document.getElementById('val-transport').textContent = wTransport;
+            document.getElementById('val-infra').textContent = wInfra;
+            document.getElementById('val-preference').textContent = wPreference;
+            document.getElementById('val-cost').textContent = wCost;
+
+            const totalWeight = wTransport + wInfra + wPreference + wCost;
+            const scoredDongs = dongsData.map(d => {
+                const rawScore = ((d.transport * wTransport) + (d.infra * wInfra) + (d.preference * wPreference) + (d.costEfficiency * wCost)) / totalWeight;
+                return {
+                    ...d,
+                    customScore: Math.round(rawScore),
+                    matchRate: Math.min(99, Math.max(70, Math.round(rawScore * 1.15)))
+                };
+            }).sort((a, b) => b.customScore - a.customScore);
+
+            document.getElementById('recommend-list').innerHTML = scoredDongs.map((dong, idx) => {
+                let rankBadgeBg = "bg-slate-100 text-slate-700 border border-slate-200";
+                if (idx === 0) rankBadgeBg = "bg-amber-500 text-white shadow-md shadow-amber-500/20";
+                else if (idx === 1) rankBadgeBg = "bg-slate-400 text-white";
+                else if (idx === 2) rankBadgeBg = "bg-amber-700 text-white";
+
+                return `
+                    <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:border-blue-300 transition-all flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-2xl ${rankBadgeBg} flex items-center justify-center font-black text-base shrink-0 shadow-sm">
+                                ${idx + 1}
+                            </div>
+                            <div class="space-y-1.5">
+                                <div class="flex items-center gap-2.5 flex-wrap">
+                                    <span class="text-lg font-black text-slate-900">${dong.name}</span>
+                                    <span class="text-xs font-bold text-blue-700 bg-blue-50 px-2.5 py-1 rounded-xl border border-blue-100">${dong.district}</span>
+                                    ${idx === 0 ? '<span class="text-xs font-extrabold bg-amber-100 text-amber-800 px-2.5 py-1 rounded-xl border border-amber-200">🔥 최고 추천 핏</span>' : ''}
+                                </div>
+                                <div class="text-xs text-slate-600 flex flex-wrap gap-2.5 font-medium">
+                                    <span>교통 <strong class="text-slate-900 font-bold">${dong.transport}점</strong></span>
+                                    <span>·</span>
+                                    <span>가성비 <strong class="text-slate-900 font-bold">${dong.costEfficiency}점</strong></span>
+                                    <span>·</span>
+                                    <span>인프라 <strong class="text-slate-900 font-bold">${dong.infra}점</strong></span>
+                                    <span>·</span>
+                                    <span>선호시설 <strong class="text-slate-900 font-bold">${dong.preference}점</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-6 w-full sm:w-auto justify-between sm:justify-end border-t sm:border-t-0 pt-4 sm:pt-0 border-slate-100">
+                            <div class="text-left sm:text-right">
+                                <span class="text-xs text-slate-400 block font-bold">종합 적합도</span>
+                                <span class="text-xl font-black text-blue-600">${dong.matchRate}%</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-xs text-slate-400 block font-bold">맞춤 점수</span>
+                                <span class="text-xl font-black text-slate-900">${dong.customScore}점</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        renderDashboardTab();
     </script>
 </body>
 </html>

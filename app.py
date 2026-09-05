@@ -5,35 +5,27 @@ import numpy as np
 app = Flask(__name__)
 
 def compute_hl_scores():
-
     """data/processed/25개동_통합분석.csv 파일 기반 HL-Score 산출"""
-
     try:
         df = pd.read_csv("data/processed/25개동_통합분석.csv")
-
     except FileNotFoundError:
         print("[오류] data/processed/25개동_통합분석.csv 파일을 찾을 수 없습니다.")
         return pd.DataFrame()
-
 
     print("==========================================")
     print("HL-Score 계산 시작")
     print("==========================================")
     print(f"분석 대상: {len(df)}개 동")
 
-
     # =====================================================
     # 1. 숫자 변환 함수
     # =====================================================
-
     def to_numeric_series(column_name):
-
         if column_name not in df.columns:
             return pd.Series(
                 [np.nan] * len(df),
                 index=df.index
             )
-
         return pd.to_numeric(
             df[column_name]
             .astype(str)
@@ -41,14 +33,10 @@ def compute_hl_scores():
             errors="coerce"
         )
 
-
     # =====================================================
-    # 2. 값이 클수록 좋은 지표 정규화
-    #    0 ~ 100점
+    # 2. 값이 클수록 좋은 지표 정규화 (0 ~ 100점)
     # =====================================================
-
     def normalize_positive(series, use_log=False):
-
         series = pd.to_numeric(
             series,
             errors="coerce"
@@ -60,14 +48,12 @@ def compute_hl_scores():
         min_value = series.min()
         max_value = series.max()
 
-        # 모든 값이 0이면 점수도 0점
         if max_value == 0:
             return pd.Series(
                 [0.0] * len(series),
                 index=series.index
             )
 
-        # 모든 지역 값이 동일하면 중간점수
         if max_value == min_value:
             return pd.Series(
                 [50.0] * len(series),
@@ -81,41 +67,28 @@ def compute_hl_scores():
             * 100
         )
 
-
     # =====================================================
-    # 3. 거리가 짧을수록 좋은 지표 정규화
-    #    0 ~ 100점
+    # 3. 거리가 짧을수록 좋은 지표 정규화 (0 ~ 100점)
     # =====================================================
-
     def normalize_distance(series):
-
         series = pd.to_numeric(
             series,
             errors="coerce"
         )
 
         if series.notna().any():
-
-            # 시설이 없는 곳은 가장 먼 거리로 처리
             worst_distance = series.max()
-
-            series = series.fillna(
-                worst_distance
-            )
-
+            series = series.fillna(worst_distance)
         else:
-
             return pd.Series(
                 [0.0] * len(series),
                 index=series.index
             )
 
-
         min_value = series.min()
         max_value = series.max()
 
         if max_value == min_value:
-
             return pd.Series(
                 [50.0] * len(series),
                 index=series.index
@@ -131,14 +104,9 @@ def compute_hl_scores():
             )
         ) * 100
 
-
     # =====================================================
     # 4. 생활 인프라 점수
-    #
-    # 시설 개수 60%
-    # 시설 최소거리 40%
     # =====================================================
-
     life_facilities = [
         "편의점",
         "카페",
@@ -149,52 +117,34 @@ def compute_hl_scores():
         "문화시설"
     ]
 
-
     life_scores = []
-
-
     for facility in life_facilities:
-
         count_col = f"{facility}_개수"
         distance_col = f"{facility}_최소거리_m"
-
 
         count_score = normalize_positive(
             to_numeric_series(count_col),
             use_log=True
         )
-
-
         distance_score = normalize_distance(
             to_numeric_series(distance_col)
         )
-
 
         facility_score = (
             count_score * 0.60
             +
             distance_score * 0.40
         )
-
-
-        life_scores.append(
-            facility_score
-        )
-
+        life_scores.append(facility_score)
 
     생활인프라점수 = pd.concat(
         life_scores,
         axis=1
     ).mean(axis=1)
 
-
     # =====================================================
     # 5. 2030 선호시설 점수
-    #
-    # 시설 개수 60%
-    # 시설 최소거리 40%
     # =====================================================
-
     youth_categories = [
         "H&B/뷰티",
         "생활쇼핑",
@@ -206,71 +156,39 @@ def compute_hl_scores():
         "패스트푸드"
     ]
 
-
     youth_scores = []
-
-
     for category in youth_categories:
-
         count_col = f"추가_{category}_개수"
         distance_col = f"추가_{category}_최소거리_m"
-
 
         count_score = normalize_positive(
             to_numeric_series(count_col),
             use_log=True
         )
-
-
         distance_score = normalize_distance(
             to_numeric_series(distance_col)
         )
-
 
         category_score = (
             count_score * 0.60
             +
             distance_score * 0.40
         )
-
-
-        youth_scores.append(
-            category_score
-        )
-
+        youth_scores.append(category_score)
 
     청년선호시설점수 = pd.concat(
         youth_scores,
         axis=1
     ).mean(axis=1)
 
-
     # =====================================================
     # 6. 교통 접근성 점수
-    #
-    # 1.5km 내 버스정류소 개수 60%
-    # 가장 가까운 버스정류소 거리 40%
     # =====================================================
+    bus_count = to_numeric_series("버스정류소_1500m_개수")
+    bus_distance = to_numeric_series("가장가까운_버스정류소_m")
 
-    bus_count = to_numeric_series(
-        "버스정류소_1500m_개수"
-    )
-
-    bus_distance = to_numeric_series(
-        "가장가까운_버스정류소_m"
-    )
-
-
-    bus_count_score = normalize_positive(
-        bus_count,
-        use_log=True
-    )
-
-
-    bus_distance_score = normalize_distance(
-        bus_distance
-    )
-
+    bus_count_score = normalize_positive(bus_count, use_log=True)
+    bus_distance_score = normalize_distance(bus_distance)
 
     교통접근성점수 = (
         bus_count_score * 0.60
@@ -278,101 +196,48 @@ def compute_hl_scores():
         bus_distance_score * 0.40
     )
 
-
     # =====================================================
     # 7. 월세 주거비 계산
-    #
-    # 월세 + 월세보증금의 월 환산액
-    #
-    # 프로젝트 분석용 가정:
-    # 보증금 연 5%를 월 비용으로 환산
     # =====================================================
+    monthly_rent = to_numeric_series("월세_중앙값_만원")
+    monthly_deposit = to_numeric_series("월세보증금_중앙값_만원")
 
-    monthly_rent = to_numeric_series(
-        "월세_중앙값_만원"
-    )
+    monthly_rent = monthly_rent.replace(0, np.nan)
+    monthly_deposit = monthly_deposit.replace(0, np.nan)
 
-    monthly_deposit = to_numeric_series(
-        "월세보증금_중앙값_만원"
-    )
-
-
-    # 0원은 실제 가격이 아니라
-    # 거래 데이터가 없는 것으로 처리
-    monthly_rent = monthly_rent.replace(
-        0,
-        np.nan
-    )
-
-    monthly_deposit = monthly_deposit.replace(
-        0,
-        np.nan
-    )
-
-
-    # 거래가 없는 동은 전체 중앙값으로 보정
     if monthly_rent.notna().any():
-
-        monthly_rent = monthly_rent.fillna(
-            monthly_rent.median()
-        )
-
+        monthly_rent = monthly_rent.fillna(monthly_rent.median())
     else:
-
-        monthly_rent = pd.Series(
-            [0.0] * len(df),
-            index=df.index
-        )
-
+        monthly_rent = pd.Series([0.0] * len(df), index=df.index)
 
     if monthly_deposit.notna().any():
-
-        monthly_deposit = monthly_deposit.fillna(
-            monthly_deposit.median()
-        )
-
+        monthly_deposit = monthly_deposit.fillna(monthly_deposit.median())
     else:
-
-        monthly_deposit = pd.Series(
-            [0.0] * len(df),
-            index=df.index
-        )
-
+        monthly_deposit = pd.Series([0.0] * len(df), index=df.index)
 
     # =====================================================
     # 8. 보증금 월 환산
     # =====================================================
-
     DEPOSIT_ANNUAL_RATE = 0.05
-
-
     deposit_monthly_cost = (
         monthly_deposit
         * DEPOSIT_ANNUAL_RATE
         / 12
     )
 
-
-    # 최종 월 환산 주거비
     equivalent_monthly_cost = (
         monthly_rent
         +
         deposit_monthly_cost
     )
 
-
     # =====================================================
     # 9. 주거 가성비 점수
-    #
-    # 월 환산 주거비가 낮을수록 높은 점수
     # =====================================================
-
     housing_min = equivalent_monthly_cost.min()
     housing_max = equivalent_monthly_cost.max()
 
-
     if housing_max != housing_min:
-
         주거가성비점수 = (
             1
             -
@@ -382,25 +247,12 @@ def compute_hl_scores():
                 (housing_max - housing_min)
             )
         ) * 100
-
     else:
-
-        주거가성비점수 = pd.Series(
-            [50.0] * len(df),
-            index=df.index
-        )
-
+        주거가성비점수 = pd.Series([50.0] * len(df), index=df.index)
 
     # =====================================================
     # 10. 인프라 접근성 지수
-    #
-    # 생활 인프라 30
-    # 2030 선호시설 25
-    # 교통 15
-    #
-    # 합계 70을 다시 100점 기준으로 환산
     # =====================================================
-
     접근성지수 = (
         생활인프라점수 * (30 / 70)
         +
@@ -409,39 +261,21 @@ def compute_hl_scores():
         교통접근성점수 * (15 / 70)
     )
 
-
     # =====================================================
     # 11. 가격_norm
-    #
-    # 기존 페이지 구조 호환용
-    # 월 환산 주거비 기준 0 ~ 1
     # =====================================================
-
     if housing_max != housing_min:
-
         가격_norm = (
             (equivalent_monthly_cost - housing_min)
             /
             (housing_max - housing_min)
         )
-
     else:
-
-        가격_norm = pd.Series(
-            [0.5] * len(df),
-            index=df.index
-        )
-
+        가격_norm = pd.Series([0.5] * len(df), index=df.index)
 
     # =====================================================
     # 12. 최종 HL-Score
-    #
-    # 생활 인프라       30%
-    # 2030 선호시설     25%
-    # 교통 접근성       15%
-    # 주거 가성비       30%
     # =====================================================
-
     HL_Score = (
         생활인프라점수 * 0.30
         +
@@ -452,93 +286,54 @@ def compute_hl_scores():
         주거가성비점수 * 0.30
     )
 
-
     # =====================================================
-    # 13. 기존 페이지 반환 구조 유지
+    # 13. 프론트엔드 및 API 연동용 데이터 구조 구성
     # =====================================================
-
     summary_df = pd.DataFrame()
 
+    districts_col = df["자치구"].astype(str)
+    names_col = df["행정동"].astype(str)
 
-    summary_df["지역"] = (
-        df["자치구"].astype(str)
-        +
-        " "
-        +
-        df["행정동"].astype(str)
-    )
+    summary_df["id"] = names_col
+    summary_df["name"] = names_col
+    summary_df["district"] = districts_col
+    summary_df["지역"] = districts_col + " " + names_col
 
+    summary_df["hlScore"] = HL_Score.round(1)
+    summary_df["HL_Score"] = HL_Score.round(1)
+    
+    summary_df["infra"] = 생활인프라점수.round(1)
+    summary_df["lifestyle"] = 생활인프라점수.round(1)
+    
+    summary_df["preference"] = 청년선호시설점수.round(1)
+    summary_df["transport"] = 교통접근성점수.round(1)
+    summary_df["costEfficiency"] = 주거가성비점수.round(1)
 
-    # 페이지 기존 변수명은 호환을 위해 유지
-    # 실제 값은 월세 중앙값
-    summary_df["평균임대료"] = (
-        monthly_rent.round(1)
-    )
+    summary_df["deposit"] = monthly_deposit.round(1).astype(str) + "만원"
+    summary_df["monthlyRent"] = monthly_rent.round(1).astype(str) + "만원"
+    summary_df["totalCost"] = equivalent_monthly_cost.round(1).astype(str) + "만원"
 
-
-    summary_df["가격_norm"] = (
-        가격_norm.round(4)
-    )
-
-
-    summary_df["접근성지수"] = (
-        접근성지수.round(1)
-    )
-
-
-    summary_df["HL_Score"] = (
-        HL_Score.round(1)
-    )
-
-
-    # =====================================================
-    # 14. 검증용 세부 데이터
-    # =====================================================
-
-    summary_df["월세보증금"] = (
-        monthly_deposit.round(1)
-    )
-
-
-    summary_df["월환산주거비"] = (
-        equivalent_monthly_cost.round(1)
-    )
-
-
-    summary_df["생활인프라점수"] = (
-        생활인프라점수.round(1)
-    )
-
-
-    summary_df["2030선호시설점수"] = (
-        청년선호시설점수.round(1)
-    )
-
-
-    summary_df["교통접근성점수"] = (
-        교통접근성점수.round(1)
-    )
-
-
-    summary_df["주거가성비점수"] = (
-        주거가성비점수.round(1)
-    )
-
+    summary_df["평균임대료"] = monthly_rent.round(1)
+    summary_df["가격_norm"] = 가격_norm.round(4)
+    summary_df["접근성지수"] = 접근성지수.round(1)
+    summary_df["월세보증금"] = monthly_deposit.round(1)
+    summary_df["월환산주거비"] = equivalent_monthly_cost.round(1)
+    summary_df["생활인프라점수"] = 생활인프라점수.round(1)
+    summary_df["2030선호시설점수"] = 청년선호시설점수.round(1)
+    summary_df["교통접근성점수"] = 교통접근성점수.round(1)
+    summary_df["주거가성비점수"] = 주거가성비점수.round(1)
 
     # =====================================================
-    # 15. HL-Score 높은 순으로 정렬
+    # 14. HL-Score 높은 순으로 정렬
     # =====================================================
-
     summary_df = summary_df.sort_values(
         by="HL_Score",
         ascending=False
     ).reset_index(drop=True)
 
-
     # =====================================================
-    # 16. 터미널 검증 출력
+    # 15. 터미널 검증 출력
     # =====================================================
-
     print()
     print("==========================================================================")
     print("HL-Score 세부 점수 검증")
@@ -587,19 +382,17 @@ def api_hl_scores():
 @app.route('/hl-analysis')
 def hl_analysis():
     df_score = compute_hl_scores()
-
     data_records = (
         df_score.to_dict(orient='records')
         if not df_score.empty
         else []
     )
-
     return render_template(
         'hl_analysis.html',
         districts=data_records
     )
 
-# 1. 팀원 개인 페이지 (templates/미니프로젝트/ 하위 폴더 경로 반영)
+# 1. 팀원 개인 페이지
 @app.route('/seunghyeon')
 def seunghyeon():
     return render_template('미니프로젝트/승현.html')
@@ -616,7 +409,7 @@ def younggeun():
 def seunghee():
     return render_template('미니프로젝트/승희.html')
 
-# 2. 프로젝트 주요 문서 (templates/ 바로 아래 위치)
+# 2. 프로젝트 주요 문서
 @app.route('/plan')
 def plan():
     return render_template('plan.html')
@@ -633,7 +426,7 @@ def plan3():
 def business_model():
     return render_template('business_model.html')
 
-# 3. Git 가이드 (templates/ 바로 아래 위치)
+# 3. Git 가이드
 @app.route('/git-command-guide')
 def git_command_guide():
     return render_template('Git_command_guide.html')

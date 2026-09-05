@@ -332,7 +332,6 @@ def compute_hl_scores():
         )
 
     else:
-<<<<<<< Updated upstream
 
         monthly_deposit = pd.Series(
             [0.0] * len(df),
@@ -566,26 +565,6 @@ def compute_hl_scores():
     print()
 
     return summary_df
-=======
-        np.random.seed(42)
-        summary_df['접근성지수'] = np.random.uniform(65, 98, len(summary_df))
-        
-    weight_w = 1.3 # 2030 청년 선호 가중치 W
-    
-    # HL-Score 계산 공식 반영 (분모 보정값 0.1 적용)
-    summary_df['HL_Score'] = (summary_df['접근성지수'] * weight_w) / (summary_df['가격_norm'] + 0.1)
-    summary_df['HL_Score'] = summary_df['HL_Score'].round(1)
-
-    # --- 대시보드 UI 카드에 매칭될 세부 항목 보정 (데이터가 없을 경우 가성비 연동) ---
-    summary_df['월세중앙값'] = (summary_df['평균임대료'] / 10000).round(1) # 만원 단위
-    summary_df['보증금중앙값'] = 500 # 예시 고정 혹은 실제 데이터 연동
-    summary_df['생활인프라'] = np.random.uniform(60, 95, len(summary_df)).round(1)
-    summary_df['선호시설'] = np.random.uniform(60, 95, len(summary_df)).round(1)
-    summary_df['교통접근성'] = summary_df['접근성지수'].round(1)
-    summary_df['주거가성비'] = ((1 - summary_df['가격_norm']) * 100).round(1)
-    
-    return summary_df.sort_values(by='HL_Score', ascending=False)
->>>>>>> Stashed changes
 
 # 메인 페이지
 @app.route('/')

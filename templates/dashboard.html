@@ -112,11 +112,11 @@
 
     <div class="max-w-7xl mx-auto px-4 py-8">
 
-        <!-- 기존 팀 디자인의 대시보드 Header 유지 -->
+        <!-- 원본 시각화 대시보드 상단 디자인/문구 유지 -->
         <header class="bg-white shadow-sm rounded-2xl p-6 mb-8 border border-gray-100 flex flex-col md:flex-row justify-between items-center">
             <div>
                 <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    최종 통합 품질검사 PASS 데이터 기반
+                    7개 CSV 원본 데이터 기반
                 </span>
 
                 <h1 class="text-3xl font-bold text-gray-900 mt-2">
@@ -124,8 +124,8 @@
                 </h1>
 
                 <p class="text-gray-500 text-sm mt-1">
-                    2030 인구, HL Score, 주거비, 청년 공공시설, 공공임대, 공식 버스정류소를
-                    지표 선택 · 정렬 · 표시개수 조절 · 차트/카드 전환으로 비교합니다.
+                    모든 탭에서 25개 행정동 전체 데이터를 지표 선택 · 정렬 · 표시개수 조절 ·
+                    차트/카드 전환으로 한눈에 확인할 수 있습니다.
                 </p>
             </div>
 
@@ -146,32 +146,32 @@
 
             <button onclick="switchTab(1)" id="btn-1"
                     class="tab-btn flex-1 min-w-[140px] py-3 px-4 rounded-lg font-semibold text-sm transition bg-gray-100 text-gray-600 hover:bg-gray-200">
-                2. HL Score
+                2. 2030 추가시설
             </button>
 
             <button onclick="switchTab(2)" id="btn-2"
                     class="tab-btn flex-1 min-w-[140px] py-3 px-4 rounded-lg font-semibold text-sm transition bg-gray-100 text-gray-600 hover:bg-gray-200">
-                3. 주거비
+                3. 교통접근성
             </button>
 
             <button onclick="switchTab(3)" id="btn-3"
                     class="tab-btn flex-1 min-w-[140px] py-3 px-4 rounded-lg font-semibold text-sm transition bg-gray-100 text-gray-600 hover:bg-gray-200">
-                4. 청년 공공시설
+                4. 생활인프라 상세
             </button>
 
             <button onclick="switchTab(4)" id="btn-4"
                     class="tab-btn flex-1 min-w-[140px] py-3 px-4 rounded-lg font-semibold text-sm transition bg-gray-100 text-gray-600 hover:bg-gray-200">
-                5. 공공임대
+                5. 주거비
             </button>
 
             <button onclick="switchTab(5)" id="btn-5"
                     class="tab-btn flex-1 min-w-[140px] py-3 px-4 rounded-lg font-semibold text-sm transition bg-gray-100 text-gray-600 hover:bg-gray-200">
-                6. 버스정류소
+                6. 통합인프라
             </button>
 
             <button onclick="switchTab(6)" id="btn-6"
                     class="tab-btn flex-1 min-w-[140px] py-3 px-4 rounded-lg font-semibold text-sm transition bg-gray-100 text-gray-600 hover:bg-gray-200">
-                7. 수요 대비 인프라
+                7. 25개동 통합분석
             </button>
         </div>
 
@@ -183,8 +183,8 @@
         <!-- PAGE 1 -->
         <div id="page-1" class="tab-content">
             <div class="bg-indigo-50 border border-indigo-100 text-indigo-800 text-xs rounded-xl p-4 mb-6 leading-relaxed">
-                HL Score는 생활 인프라 30% · 2030 선호시설 25% · 교통 접근성 15% · 주거 가성비 30%로 구성된
-                프로젝트 내부 비교지표입니다. 두암2동은 주거 표본 1건으로 정책 순위에서 제외되며 참고 HL만 표시됩니다.
+                2030 청년이 선호하는 추가시설 데이터를 비교합니다.
+                최종 통합 데이터에서는 선호시설 점수와 청년 1,000명당 선호시설 수준을 중심으로 확인합니다.
             </div>
             <div id="explorer-1"></div>
         </div>
@@ -192,8 +192,8 @@
         <!-- PAGE 2 -->
         <div id="page-2" class="tab-content">
             <div class="bg-indigo-50 border border-indigo-100 text-indigo-800 text-xs rounded-xl p-4 mb-6 leading-relaxed">
-                주거비는 2025-07 ~ 2026-06 전·월세 실거래 중 전용면적 59.5㎡ 이하를 대상으로 계산한 평균 월환산 주거비입니다.
-                보증금은 프로젝트 가정 연 5%를 적용해 월 비용으로 환산했습니다.
+                교통 접근성을 비교합니다.
+                교통 접근성 점수, 가장 가까운 버스정류소 거리, 청년 1,000명당 정류소 수준과 공식 정류소 수를 함께 확인합니다.
             </div>
             <div id="explorer-2"></div>
         </div>
@@ -201,8 +201,8 @@
         <!-- PAGE 3 -->
         <div id="page-3" class="tab-content">
             <div class="bg-indigo-50 border border-indigo-100 text-indigo-800 text-xs rounded-xl p-4 mb-6 leading-relaxed">
-                청년 공공시설은 광주청년통합플랫폼의 청년 공간을 행정동에 매핑한 보조지표입니다.
-                시설 개수는 이용량·시설 품질·수용능력을 의미하지 않으며 HL Score에는 반영하지 않습니다.
+                생활 인프라 수준을 비교합니다.
+                생활 인프라 점수와 청년 1,000명당 생활시설 수준을 중심으로 행정동별 차이를 확인합니다.
             </div>
             <div id="explorer-3"></div>
         </div>
@@ -210,8 +210,8 @@
         <!-- PAGE 4 -->
         <div id="page-4" class="tab-content">
             <div class="bg-indigo-50 border border-indigo-100 text-indigo-800 text-xs rounded-xl p-4 mb-6 leading-relaxed">
-                공공임대 전체 세대수는 청년 전용 공급량을 의미하지 않습니다.
-                행복주택 역시 모든 세대가 2030 청년에게 배정된다는 의미가 아니며 정책 보조지표로만 사용합니다.
+                주거비는 2025-07 ~ 2026-06 전·월세 실거래 중 전용면적 59.5㎡ 이하를 대상으로 계산한 평균 월환산 주거비입니다.
+                보증금은 프로젝트 가정 연 5%를 적용해 월 비용으로 환산했습니다.
             </div>
             <div id="explorer-4"></div>
         </div>
@@ -219,8 +219,8 @@
         <!-- PAGE 5 -->
         <div id="page-5" class="tab-content">
             <div class="bg-indigo-50 border border-indigo-100 text-indigo-800 text-xs rounded-xl p-4 mb-6 leading-relaxed">
-                공식 버스정류소는 2025-12-31 기준 행정동 경계 내부 정류소입니다.
-                버스 노선 엑셀은 공식 정류소와 안전 매칭률이 0.54%에 불과해 노선수·노선다양성 정책판단에서는 제외했습니다.
+                생활 인프라·2030 선호시설·교통 접근성·주거 가성비를 함께 비교하는 통합 인프라 화면입니다.
+                각 지표는 25개 동 내부 상대 비교를 위한 프로젝트 분석값입니다.
             </div>
             <div id="explorer-5"></div>
         </div>
@@ -228,8 +228,8 @@
         <!-- PAGE 6 -->
         <div id="page-6" class="tab-content">
             <div class="bg-indigo-50 border border-indigo-100 text-indigo-800 text-xs rounded-xl p-4 mb-6 leading-relaxed">
-                2030 청년인구 1,000명당 생활시설·선호시설·정류소 공급 수준을 비교하는 프로젝트 내부 상대지표입니다.
-                값 자체를 공식 정책 선정 기준으로 해석하지 않습니다.
+                25개 동의 핵심 지표를 한 화면에서 비교합니다.
+                HL Score, 2030 인구, 청년 공공시설, 공공임대 공급 기반, 공식 버스정류소 등 최종 통합지표를 확인합니다.
             </div>
             <div id="explorer-6"></div>
         </div>
@@ -397,47 +397,46 @@
         ]);
 
         const page1Metrics = existingMetrics([
-            { key: 'HL_Score', label: 'HL Score', unit: '점', color: '#2563eb', decimals: 1 },
-            { key: '생활인프라점수', label: '생활 인프라 점수', unit: '점', color: '#4f46e5', decimals: 1 },
             { key: '2030선호시설점수', label: '2030 선호시설 점수', unit: '점', color: '#db2777', decimals: 1 },
-            { key: '교통접근성점수', label: '교통 접근성 점수', unit: '점', color: '#0891b2', decimals: 1 },
-            { key: '주거가성비점수', label: '주거 가성비 점수', unit: '점', color: '#10b981', decimals: 1 }
+            { key: '선호시설_1000명당', label: '청년 1,000명당 선호시설', unit: '개', color: '#ec4899', decimals: 2 },
+            { key: '청년공공시설수', label: '청년 공공시설 수', unit: '개', color: '#8b5cf6' },
+            { key: '청년공공시설_1000명당', label: '청년 1,000명당 공공시설', unit: '개', color: '#a855f7', decimals: 3 }
         ]);
 
         const page2Metrics = existingMetrics([
+            { key: '교통접근성점수', label: '교통 접근성 점수', unit: '점', color: '#0891b2', decimals: 1 },
+            { key: '가장가까운_버스정류소_m', label: '가장 가까운 버스정류소 거리', unit: 'm', color: '#14b8a6', decimals: 1, lowerBetter: true },
+            { key: '버스정류소_1000명당', label: '청년 1,000명당 접근권 정류소', unit: '개', color: '#0ea5e9', decimals: 2 },
+            { key: '공식정류소수', label: '행정동 내부 공식 정류소', unit: '개', color: '#7c3aed' },
+            { key: '청년1000명당_정류소수', label: '청년 1,000명당 공식 정류소', unit: '개', color: '#8b5cf6', decimals: 2 }
+        ]);
+
+        const page3Metrics = existingMetrics([
+            { key: '생활인프라점수', label: '생활 인프라 점수', unit: '점', color: '#4f46e5', decimals: 1 },
+            { key: '생활시설_1000명당', label: '청년 1,000명당 생활시설', unit: '개', color: '#0ea5e9', decimals: 2 }
+        ]);
+
+        const page4Metrics = existingMetrics([
             { key: '월환산주거비', label: '평균 월환산 주거비', unit: '만원', color: '#2563eb', decimals: 2, lowerBetter: true },
             { key: '전체거래건수', label: '주거 분석 표본수', unit: '건', color: '#6366f1' },
             { key: '주거가성비점수', label: '주거 가성비 점수', unit: '점', color: '#10b981', decimals: 1 }
         ]);
 
-        const page3Metrics = existingMetrics([
-            { key: '청년공공시설수', label: '청년 공공시설 수', unit: '개', color: '#8b5cf6' },
-            { key: '청년공공시설_1000명당', label: '청년 1,000명당 공공시설', unit: '개', color: '#a855f7', decimals: 3 }
-        ]);
-
-        const page4Metrics = existingMetrics([
-            { key: '공공임대_세대수', label: '전체 공공임대 세대수', unit: '세대', color: '#2563eb' },
-            { key: '공공임대_1000명당', label: '청년 1,000명당 공공임대', unit: '세대', color: '#0ea5e9', decimals: 2 },
-            { key: '매입임대_세대수', label: '매입임대 세대수', unit: '세대', color: '#14b8a6' },
-            { key: '국민임대_세대수', label: '국민임대 세대수', unit: '세대', color: '#22c55e' },
-            { key: '행복주택_세대수', label: '행복주택 세대수', unit: '세대', color: '#f59e0b' },
-            { key: '영구임대_세대수', label: '영구임대 세대수', unit: '세대', color: '#ef4444' }
-        ]);
-
         const page5Metrics = existingMetrics([
-            { key: '공식정류소수', label: '행정동 내부 공식 정류소', unit: '개', color: '#7c3aed' },
-            { key: '청년1000명당_정류소수', label: '청년 1,000명당 공식 정류소', unit: '개', color: '#8b5cf6', decimals: 2 },
-            { key: '가장가까운_버스정류소_m', label: '가장 가까운 버스정류소 거리', unit: 'm', color: '#14b8a6', decimals: 1, lowerBetter: true },
-            { key: '버스정류소_1000명당', label: '청년 1,000명당 기존 접근권 정류소', unit: '개', color: '#0ea5e9', decimals: 2 }
+            { key: '생활인프라점수', label: '생활 인프라 점수', unit: '점', color: '#4f46e5', decimals: 1 },
+            { key: '2030선호시설점수', label: '2030 선호시설 점수', unit: '점', color: '#db2777', decimals: 1 },
+            { key: '교통접근성점수', label: '교통 접근성 점수', unit: '점', color: '#0891b2', decimals: 1 },
+            { key: '주거가성비점수', label: '주거 가성비 점수', unit: '점', color: '#10b981', decimals: 1 },
+            { key: 'HL_Score', label: 'HL Score', unit: '점', color: '#2563eb', decimals: 1 }
         ]);
 
         const page6Metrics = existingMetrics([
-            { key: '생활시설_1000명당', label: '청년 1,000명당 생활시설', unit: '개', color: '#2563eb', decimals: 2 },
-            { key: '선호시설_1000명당', label: '청년 1,000명당 선호시설', unit: '개', color: '#db2777', decimals: 2 },
-            { key: '버스정류소_1000명당', label: '청년 1,000명당 접근권 정류소', unit: '개', color: '#0891b2', decimals: 2 },
-            { key: '청년공공시설_1000명당', label: '청년 1,000명당 공공시설', unit: '개', color: '#8b5cf6', decimals: 3 },
-            { key: '공공임대_1000명당', label: '청년 1,000명당 공공임대', unit: '세대', color: '#10b981', decimals: 2 },
-            { key: '청년1000명당_정류소수', label: '청년 1,000명당 공식 정류소', unit: '개', color: '#f59e0b', decimals: 2 }
+            { key: 'HL_Score', label: 'HL Score', unit: '점', color: '#2563eb', decimals: 1 },
+            { key: '2030인구수', label: '2030 청년인구', unit: '명', color: '#6366f1' },
+            { key: '청년공공시설수', label: '청년 공공시설 수', unit: '개', color: '#8b5cf6' },
+            { key: '공공임대_세대수', label: '공공임대 공급 기반', unit: '세대', color: '#10b981' },
+            { key: '공식정류소수', label: '행정동 내부 공식 정류소', unit: '개', color: '#7c3aed' },
+            { key: '월환산주거비', label: '평균 월환산 주거비', unit: '만원', color: '#2563eb', decimals: 2, lowerBetter: true }
         ]);
 
 
@@ -873,7 +872,7 @@
                 'explorer-1',
                 {
                     metrics: page1Metrics,
-                    icon: 'chart-bar'
+                    icon: 'store'
                 }
             ),
 
@@ -881,7 +880,7 @@
                 'explorer-2',
                 {
                     metrics: page2Metrics,
-                    icon: 'home'
+                    icon: 'bus'
                 }
             ),
 
@@ -889,7 +888,7 @@
                 'explorer-3',
                 {
                     metrics: page3Metrics,
-                    icon: 'store'
+                    icon: 'layer-group'
                 }
             ),
 
@@ -897,7 +896,7 @@
                 'explorer-4',
                 {
                     metrics: page4Metrics,
-                    icon: 'layer-group'
+                    icon: 'home'
                 }
             ),
 
@@ -905,7 +904,7 @@
                 'explorer-5',
                 {
                     metrics: page5Metrics,
-                    icon: 'bus'
+                    icon: 'chart-simple'
                 }
             ),
 
@@ -913,7 +912,7 @@
                 'explorer-6',
                 {
                     metrics: page6Metrics,
-                    icon: 'chart-simple'
+                    icon: 'chart-bar'
                 }
             )
         };

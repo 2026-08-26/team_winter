@@ -819,7 +819,7 @@
 
 
 <!-- =========================================
-     ✨ 최상단 배치된 카테고리 탭 배너 (이제 ns 변수를 정상적으로 쓸 수 있습니다)
+     ✨ 최상단 배치된 카테고리 탭 배너
 ========================================== -->
 <div class="category-banner-wrapper">
     <div class="category-banner">
@@ -846,7 +846,7 @@
 
 
     <!-- =========================================
-         첫 페이지(메인 전용 화면 - 사진 영역)
+         첫 페이지(메인 전용 화면 - Executive Brief 포함)
     ========================================== -->
 
     <div class="tab-content active-content" id="sec-main">
@@ -882,114 +882,110 @@
             </div>
 
         </div>
-    </div>
+
+        <!-- Executive Brief (메인 홈 내부에 포함되도록 이동) -->
+        <div class="executive">
+
+            <div class="executive-label">
+                EXECUTIVE BRIEF
+            </div>
+
+            <h2>
+                광주 2030 청년 주거환경 핵심 정책 브리핑
+            </h2>
 
 
-    <!-- =========================================
-         Executive Brief
-    ========================================== -->
+            <div class="executive-grid">
 
-    <div class="executive">
+                <div class="executive-card">
+                    <div class="executive-card-title">
+                        정책 검토 신호 지역
+                    </div>
 
-        <div class="executive-label">
-            EXECUTIVE BRIEF
-        </div>
-
-        <h2>
-            광주 2030 청년 주거환경 핵심 정책 브리핑
-        </h2>
-
-
-        <div class="executive-grid">
-
-            <div class="executive-card">
-                <div class="executive-card-title">
-                    정책 검토 신호 지역
+                    <div class="executive-card-value">
+                        {{ ns.review }}곳
+                    </div>
                 </div>
 
-                <div class="executive-card-value">
-                    {{ ns.review }}곳
+
+                <div class="executive-card">
+                    <div class="executive-card-title">
+                        복합 신호 지역
+                    </div>
+
+                    <div class="executive-card-value">
+                        {{ ns.overlap }}곳
+                    </div>
                 </div>
+
+
+                <div class="executive-card">
+                    <div class="executive-card-title">
+                        공공임대 공급 기반
+                    </div>
+
+                    <div class="executive-card-value">
+                        {{ "{:,}".format(summary.get("publicRentalCount", 0)) }}세대
+                    </div>
+                </div>
+
+
+                <div class="executive-card">
+                    <div class="executive-card-title">
+                        행정동 내부 공식 정류소
+                    </div>
+
+                    <div class="executive-card-value">
+                        {{ "{:,}".format(summary.get("officialBusStopCount", 0)) }}개
+                    </div>
+                </div>
+
             </div>
 
 
-            <div class="executive-card">
-                <div class="executive-card-title">
-                    복합 신호 지역
-                </div>
+            <div class="executive-insight">
 
-                <div class="executive-card-value">
-                    {{ ns.overlap }}곳
-                </div>
-            </div>
+                <strong>
+                    핵심 해석
+                </strong>
 
+                <br>
 
-            <div class="executive-card">
-                <div class="executive-card-title">
-                    공공임대 공급 기반
-                </div>
+                복합 신호가 나타난 지역은
 
-                <div class="executive-card-value">
-                    {{ "{:,}".format(summary.get("publicRentalCount", 0)) }}세대
-                </div>
-            </div>
+                {% set overlap_names = [] %}
 
+                {% for d in districts %}
+                    {% if d.get("두분석_동시신호", False) %}
+                        {% set _ = overlap_names.append(d.get("지역", "")) %}
+                    {% endif %}
+                {% endfor %}
 
-            <div class="executive-card">
-                <div class="executive-card-title">
-                    행정동 내부 공식 정류소
-                </div>
-
-                <div class="executive-card-value">
-                    {{ "{:,}".format(summary.get("officialBusStopCount", 0)) }}개
-                </div>
-            </div>
-
-        </div>
-
-
-        <div class="executive-insight">
-
-            <strong>
-                핵심 해석
-            </strong>
-
-            <br>
-
-            복합 신호가 나타난 지역은
-
-            {% set overlap_names = [] %}
-
-            {% for d in districts %}
-                {% if d.get("두분석_동시신호", False) %}
-                    {% set _ = overlap_names.append(d.get("지역", "")) %}
+                {% if overlap_names %}
+                    <strong>{{ overlap_names | join(" · ") }}</strong>
+                {% else %}
+                    현재 데이터에서 별도 복합 신호 지역 없음
                 {% endif %}
-            {% endfor %}
 
-            {% if overlap_names %}
-                <strong>{{ overlap_names | join(" · ") }}</strong>
-            {% else %}
-                현재 데이터에서 별도 복합 신호 지역 없음
-            {% endif %}
+                입니다.
 
-            입니다.
+                <br>
 
-            <br>
+                이 지역들은 하나의 시설 개수만으로 판단하기보다
+                <strong>
+                    HL 취약요인 + 청년 수요 + 공공시설 + 공공임대 + 공식 정류소 공급 신호
+                </strong>
+                를 함께 보고 추가 행정자료와 현장 확인을 진행할 필요가 있습니다.
 
-            이 지역들은 하나의 시설 개수만으로 판단하기보다
-            <strong>
-                HL 취약요인 + 청년 수요 + 공공시설 + 공공임대 + 공식 정류소 공급 신호
-            </strong>
-            를 함께 보고 추가 행정자료와 현장 확인을 진행할 필요가 있습니다.
+            </div>
+
+
+            <div class="executive-note">
+                ※ “정책 검토 신호”는 지원 대상 확정을 의미하지 않습니다.
+                현재 데이터에서 상대적으로 추가 점검할 필요가 있는 지역을 선별한 결과입니다.
+            </div>
 
         </div>
-
-
-        <div class="executive-note">
-            ※ “정책 검토 신호”는 지원 대상 확정을 의미하지 않습니다.
-            현재 데이터에서 상대적으로 추가 점검할 필요가 있는 지역을 선별한 결과입니다.
-        </div>
-
     </div>
 
 

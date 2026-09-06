@@ -6,6 +6,45 @@
     <title>광주 2030 주거 가성비 & 인프라 통합 지수</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+/* 발표용 HL Score 카드: 핵심 요약 → 클릭 시 상세 */
+.hl-card { position:relative; overflow:hidden; }
+.hl-card .detail-panel { display:none; }
+.hl-card.is-open .detail-panel { display:block; animation:hlReveal .18s ease-out; }
+.hl-card .detail-toggle { width:100%; margin-top:14px; padding:10px 12px; border:1px solid #dbeafe; background:#f8fbff; color:#2563eb; border-radius:12px; font-size:12px; font-weight:800; cursor:pointer; transition:.15s; }
+.hl-card .detail-toggle:hover { background:#eff6ff; border-color:#93c5fd; }
+.hl-card .detail-toggle .arrow { display:inline-block; transition:transform .15s; margin-left:4px; }
+.hl-card.is-open .detail-toggle .arrow { transform:rotate(180deg); }
+.hl-card .quick-summary { margin-top:14px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+.hl-card .quick-chip { background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:9px 10px; }
+.hl-card .quick-chip .q-label { display:block; font-size:10px; color:#64748b; font-weight:700; margin-bottom:3px; }
+.hl-card .quick-chip .q-value { display:block; font-size:13px; color:#0f172a; font-weight:900; }
+.hl-card .detail-panel { margin-top:14px; padding-top:14px; border-top:1px solid #e2e8f0; }
+.hl-card .detail-section { background:#f8fafc; border:1px solid #e2e8f0; border-radius:14px; padding:12px; margin-bottom:12px; }
+.hl-card .detail-section-title { font-size:11px; font-weight:900; color:#475569; margin-bottom:9px; }
+.hl-card .detail-score-list { display:grid; gap:10px; }
+@keyframes hlReveal { from { opacity:0; transform:translateY(-3px); } to { opacity:1; transform:translateY(0); } }
+@media (max-width:640px){ .hl-card .quick-summary{grid-template-columns:1fr 1fr;} }
+
+/* 발표용 카드 최종 다듬기 */
+#dong-grid { align-items:start; }
+.hl-card { min-height: 0; padding: 20px !important; border-radius: 22px !important; box-shadow: 0 8px 24px rgba(15,23,42,.06) !important; transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+.hl-card:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(15,23,42,.10) !important; border-color:#cbd5e1 !important; }
+.hl-card .quick-summary { gap:10px; margin-top:14px; }
+.hl-card .quick-chip { min-height:64px; display:flex; flex-direction:column; justify-content:center; padding:11px 12px; background:#f8fafc; border:1px solid #e2e8f0; }
+.hl-card .quick-chip .q-label { font-size:9px; letter-spacing:-.02em; }
+.hl-card .quick-chip .q-value { font-size:13px; line-height:1.35; }
+.hl-card .detail-toggle { margin-top:12px; min-height:40px; background:white; border-color:#bfdbfe; }
+.hl-card.is-open .detail-toggle { background:#eff6ff; }
+.hl-card .detail-panel { margin-top:12px; padding-top:12px; }
+.hl-card .detail-section { padding:14px; border-radius:15px; background:#f8fafc; }
+.hl-card .detail-section-title { font-size:12px; color:#334155; }
+.hl-card .detail-score-list { gap:11px; }
+.hl-card .detail-score-list > div { padding-bottom:1px; }
+@media (min-width:1280px) { #dong-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+
+</style>
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans min-h-screen">
 
@@ -95,7 +134,7 @@
 
             <div class="space-y-4">
                 <div class="text-sm font-extrabold text-slate-600 px-1" id="result-count">25개 지역 · HL Score순</div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="dong-grid"></div>
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-7" id="dong-grid"></div>
             </div>
         </div>
 
@@ -383,8 +422,22 @@
                         ? 'text-amber-700 bg-amber-50'
                         : 'text-rose-700 bg-rose-50';
 
+                const metricPairs = [
+                    ['🏠 생활 인프라', dong.infra],
+                    ['✨ 2030 선호시설', dong.preference],
+                    ['🚌 교통 접근성', dong.transport],
+                    ['💳 주거 가성비', dong.costEfficiency]
+                ];
+                const validMetrics = metricPairs.filter(([, value]) => safeScore(value) !== null);
+                const strongest = validMetrics.length
+                    ? [...validMetrics].sort((a,b) => safeScore(b[1]) - safeScore(a[1]))[0]
+                    : null;
+                const weakest = validMetrics.length
+                    ? [...validMetrics].sort((a,b) => safeScore(a[1]) - safeScore(b[1]))[0]
+                    : null;
+
                 return `
-                    <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-5 flex flex-col justify-between hover:shadow-md transition-all">
+                    <div class="hl-card bg-white p-6 rounded-3xl border border-slate-200 shadow-sm flex flex-col justify-between hover:shadow-md transition-all" data-region="${dong.region || dong.name}">
                         <div>
                             <div class="flex justify-between items-start mb-3">
                                 <div class="flex items-center gap-2">
@@ -403,39 +456,54 @@
                                 ${dong.excludedFromPolicyRanking ? '<div class="text-[11px] text-slate-500 mt-2 font-semibold">주거 표본부족으로 정책순위에서 제외 · 참고용 HL 값</div>' : ''}
                             </div>
 
-                            <div class="bg-slate-50 p-4 rounded-2xl space-y-2 text-sm text-slate-700 border border-slate-100">
-                                <div class="text-xs font-extrabold text-slate-500 mb-1">주거비 환경</div>
-                                <div class="flex justify-between items-center">
-                                    <span class="text-xs text-slate-500 font-medium">분석 표본</span>
-                                    <span class="font-bold text-slate-900">${sampleText}</span>
+                            <div class="quick-summary">
+                                <div class="quick-chip">
+                                    <span class="q-label">가장 높은 지표</span>
+                                    <span class="q-value">${strongest ? `${strongest[0].replace(/^[^ ]+ /, '')} ${scoreText(strongest[1])}` : '확인 필요'}</span>
                                 </div>
-                                <div class="flex justify-between items-center">
-                                    <span class="text-xs text-slate-500 font-medium">표본 상태</span>
-                                    <span class="text-[11px] px-2 py-1 rounded-lg font-extrabold ${sampleBadgeClass}">${sampleStatus}</span>
-                                </div>
-                                <div class="flex justify-between pt-1.5 border-t border-slate-200/60">
-                                    <span class="text-xs text-slate-500 font-medium">평균 월환산 주거비</span>
-                                    <span class="font-extrabold text-blue-600">${cleanTotalCost}</span>
+                                <div class="quick-chip">
+                                    <span class="q-label">가장 낮은 지표</span>
+                                    <span class="q-value">${weakest ? `${weakest[0].replace(/^[^ ]+ /, '')} ${scoreText(weakest[1])}` : '확인 필요'}</span>
                                 </div>
                             </div>
 
-                            <div class="mt-5 space-y-3.5">
-                                <div class="text-xs font-extrabold text-slate-600">세부 인프라 점수</div>
+                            <button type="button" class="detail-toggle" onclick="toggleDongDetail(this)">
+                                <span class="toggle-label">세부 지표 보기</span><span class="arrow">⌄</span>
+                            </button>
 
-                                ${scoreRow('🏠 생활 인프라', dong.infra)}
-                                ${scoreRow('✨ 2030 선호시설', dong.preference)}
-                                ${scoreRow('🚌 교통 접근성', dong.transport)}
-                                ${scoreRow('💳 주거 가성비', dong.costEfficiency)}
-                            </div>
+                            <div class="detail-panel">
+                                <div class="detail-section">
+                                    <div class="detail-section-title">세부 인프라 점수</div>
+                                    <div class="detail-score-list">
+                                        ${scoreRow('🏠 생활 인프라', dong.infra)}
+                                        ${scoreRow('✨ 2030 선호시설', dong.preference)}
+                                        ${scoreRow('🚌 교통 접근성', dong.transport)}
+                                        ${scoreRow('💳 주거 가성비', dong.costEfficiency)}
+                                    </div>
+                                </div>
 
-                            <div class="mt-5 pt-4 border-t border-slate-100">
-                                <div class="text-[11px] font-extrabold text-slate-400 mb-1">정책 분류</div>
-                                <div class="text-xs font-bold text-slate-700">${dong.policyType || '일반 관찰'}</div>
+                                <div class="detail-section mb-0">
+                                    <div class="detail-section-title">주거비 환경</div>
+                                    <div class="space-y-2 text-sm text-slate-700">
+                                        <div class="flex justify-between items-center"><span class="text-xs text-slate-500">분석 표본</span><span class="font-bold text-slate-900">${sampleText}</span></div>
+                                        <div class="flex justify-between items-center"><span class="text-xs text-slate-500">표본 상태</span><span class="text-[11px] px-2 py-1 rounded-lg font-extrabold ${sampleBadgeClass}">${sampleStatus}</span></div>
+                                        <div class="flex justify-between pt-1.5 border-t border-slate-200/60"><span class="text-xs text-slate-500">평균 월환산 주거비</span><span class="font-extrabold text-blue-600">${cleanTotalCost}</span></div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
                 `;
             }).join('');
+        }
+
+        function toggleDongDetail(button) {
+            const card = button.closest('.hl-card');
+            if (!card) return;
+            const isOpen = card.classList.toggle('is-open');
+            const label = button.querySelector('.toggle-label');
+            if (label) label.textContent = isOpen ? '세부 지표 접기' : '세부 지표 보기';
         }
 
         function scoreRow(label, value) {

@@ -1,177 +1,204 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Team Winter 프로젝트 메인</title>
-
-    <style>
-        body {
-            font-family: 'Malgun Gothic', 'Segoe UI', sans-serif;
-            line-height: 1.6;
-            margin: 20px;
-            background-color: #f8f9fa;
-            color: #333;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            color: #1a73e8;
-            border-bottom: 2px solid #1a73e8;
-            padding-bottom: 10px;
-            font-size: 24px;
-        }
-
-        h2 {
-            color: #202124;
-            font-size: 18px;
-            margin-top: 25px;
-            background: #f1f3f4;
-            padding: 8px 12px;
-            border-left: 4px solid #1a73e8;
-        }
-
-        ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        li {
-            margin-bottom: 10px;
-            padding: 10px 15px;
-            background-color: #fafafa;
-            border: 1px solid #e0e0e0;
-            border-radius: 6px;
-        }
-
-        a {
-            color: #1a73e8;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 16px;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        .filename {
-            color: #666;
-            font-size: 13px;
-            margin-left: 8px;
-            font-weight: normal;
-        }
-    </style>
-
+    <title>Team Winter 프로젝트 포털</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<body class="bg-slate-50 text-slate-900 font-sans min-h-screen flex flex-col justify-between">
 
-<body>
+    <!-- 상단 헤더 -->
+    <header class="bg-white border-b border-slate-200 py-4 px-6 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="bg-blue-600 text-white p-2.5 rounded-xl font-bold text-base shadow-sm">❄️</div>
+                <div>
+                    <span class="text-xs text-blue-600 block font-bold tracking-wider">TEAM WINTER</span>
+                    <span class="text-base font-extrabold text-slate-900">Project Portal</span>
+                </div>
+            </div>
+        </div>
+    </header>
 
-    <div class="container">
+    <!-- 메인 콘텐츠 영역 -->
+    <main class="max-w-4xl mx-auto px-6 py-12 w-full space-y-6">
+        
+        <!-- 타이틀 섹션 -->
+        <div class="text-center space-y-2 mb-8">
+            <h1 class="text-3xl font-black text-slate-900 tracking-tight">❄️ Team Winter 프로젝트 포털 ❄️</h1>
+            <p class="text-sm text-slate-600 font-medium"></p>
+        </div>
 
-        <h1>❄️ Team Winter 프로젝트 포털</h1>
+        <!-- ================= 배너 1: 1. 팀 윈터 개인 페이지 ================= -->
+        <div class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden transition-all">
+            <div onclick="toggleSection('section-member', 'icon-member')" class="p-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-white cursor-pointer flex justify-between items-center group">
+                <div class="space-y-1">
+                    <h2 class="text-lg font-black group-hover:text-blue-100 transition-colors">1. 팀 윈터 개인 페이지</h2>
+                </div>
+                <div id="icon-member" class="w-8 h-8 rounded-xl bg-white/20 flex items-center justify-center font-bold transition-transform duration-300">
+                    ▼
+                </div>
+            </div>
+            <div id="section-member" class="p-6 space-y-3 bg-white border-t border-slate-100" style="display: none;">
+                <a href="{{ url_for('seunghyeon') }}" class="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-200/80 hover:border-blue-500 hover:shadow-sm transition-all group">
+                    <div class="flex items-center gap-3">
+                        <span class="text-sm font-bold text-slate-400">01</span>
+                        <span class="text-sm font-extrabold text-slate-900 group-hover:text-blue-600">승현 개인 페이지 <span class="text-xs text-slate-400 font-normal ml-1">(승현.html)</span></span>
+                    </div>
+                    <span class="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1.5 rounded-xl group-hover:bg-blue-600 group-hover:text-white transition-all">이동 →</span>
+                </a>
+                <a href="{{ url_for('miseon') }}" class="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-200/80 hover:border-blue-500 hover:shadow-sm transition-all group">
+                    <div class="flex items-center gap-3">
+                        <span class="text-sm font-bold text-slate-400">02</span>
+                        <span class="text-sm font-extrabold text-slate-900 group-hover:text-blue-600">미선 개인 페이지 <span class="text-xs text-slate-400 font-normal ml-1">(미선.html)</span></span>
+                    </div>
+                    <span class="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1.5 rounded-xl group-hover:bg-blue-600 group-hover:text-white transition-all">이동 →</span>
+                </a>
+                <a href="{{ url_for('younggeun') }}" class="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-200/80 hover:border-blue-500 hover:shadow-sm transition-all group">
+                    <div class="flex items-center gap-3">
+                        <span class="text-sm font-bold text-slate-400">03</span>
+                        <span class="text-sm font-extrabold text-slate-900 group-hover:text-blue-600">영근 개인 페이지 <span class="text-xs text-slate-400 font-normal ml-1">(영근.html)</span></span>
+                    </div>
+                    <span class="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1.5 rounded-xl group-hover:bg-blue-600 group-hover:text-white transition-all">이동 →</span>
+                </a>
+                <a href="{{ url_for('seunghee') }}" class="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-200/80 hover:border-blue-500 hover:shadow-sm transition-all group">
+                    <div class="flex items-center gap-3">
+                        <span class="text-sm font-bold text-slate-400">04</span>
+                        <span class="text-sm font-extrabold text-slate-900 group-hover:text-blue-600">승희 개인 페이지 <span class="text-xs text-slate-400 font-normal ml-1">(승희.html)</span></span>
+                    </div>
+                    <span class="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1.5 rounded-xl group-hover:bg-blue-600 group-hover:text-white transition-all">이동 →</span>
+                </a>
+            </div>
+        </div>
 
+        <!-- ================= 배너 2: 2. Git 사용법 ================= -->
+        <div class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden transition-all">
+            <div onclick="toggleSection('section-git', 'icon-git')" class="p-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-white cursor-pointer flex justify-between items-center group">
+                <div class="space-y-1">
+                    <h2 class="text-lg font-black group-hover:text-blue-100 transition-colors">2. Git 사용법</h2>
+                </div>
+                <div id="icon-git" class="w-8 h-8 rounded-xl bg-white/20 flex items-center justify-center font-bold transition-transform duration-300">
+                    ▼
+                </div>
+            </div>
+            <div id="section-git" class="p-6 space-y-3 bg-white border-t border-slate-100" style="display: none;">
+                <a href="{{ url_for('git_command_guide') }}" class="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-200/80 hover:border-blue-500 hover:shadow-sm transition-all group">
+                    <div class="flex items-center gap-3">
+                        <span class="text-sm font-bold text-slate-400">01</span>
+                        <span class="text-sm font-extrabold text-slate-900 group-hover:text-blue-600">Git 명령어 요약집 <span class="text-xs text-slate-400 font-normal ml-1">(Git_command_guide.html)</span></span>
+                    </div>
+                    <span class="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1.5 rounded-xl group-hover:bg-blue-600 group-hover:text-white transition-all">이동 →</span>
+                </a>
+                <a href="{{ url_for('git_team_guide') }}" class="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-200/80 hover:border-blue-500 hover:shadow-sm transition-all group">
+                    <div class="flex items-center gap-3">
+                        <span class="text-sm font-bold text-slate-400">02</span>
+                        <span class="text-sm font-extrabold text-slate-900 group-hover:text-blue-600">Git 이용법 요약본 (팀 협업 가이드) <span class="text-xs text-slate-400 font-normal ml-1">(Git_team_guide.html)</span></span>
+                    </div>
+                    <span class="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1.5 rounded-xl group-hover:bg-blue-600 group-hover:text-white transition-all">이동 →</span>
+                </a>
+            </div>
+        </div>
 
-        <!-- 1. 시각화 대시보드 페이지 링크 -->
-        <a href="/dashboard">
-            📊 광주 2030 주거 분석 시각화 보기
-        </a>
-        <br><br>
+        <!-- ================= 배너 3: 3. 팀 윈터 미니프로젝트 (기획안) ================= -->
+        <div class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden transition-all">
+            <div onclick="toggleSection('section-doc', 'icon-doc')" class="p-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-white cursor-pointer flex justify-between items-center group">
+                <div class="space-y-1">
+                    <h2 class="text-lg font-black group-hover:text-blue-100 transition-colors">3. 팀 윈터 미니프로젝트 (기획안)</h2>
+                </div>
+                <div id="icon-doc" class="w-8 h-8 rounded-xl bg-white/20 flex items-center justify-center font-bold transition-transform duration-300">
+                    ▼
+                </div>
+            </div>
+            <div id="section-doc" class="p-6 space-y-3 bg-white border-t border-slate-100" style="display: none;">
+                <a href="{{ url_for('plan') }}" class="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-200/80 hover:border-blue-500 hover:shadow-sm transition-all group">
+                    <div class="flex items-center gap-3">
+                        <span class="text-sm font-bold text-slate-400">01</span>
+                        <span class="text-sm font-extrabold text-slate-900 group-hover:text-blue-600">프로젝트 초안 <span class="text-xs text-slate-400 font-normal ml-1">(plan.html)</span></span>
+                    </div>
+                    <span class="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1.5 rounded-xl group-hover:bg-blue-600 group-hover:text-white transition-all">이동 →</span>
+                </a>
+                <a href="{{ url_for('plan3') }}" class="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-200/80 hover:border-blue-500 hover:shadow-sm transition-all group">
+                    <div class="flex items-center gap-3">
+                        <span class="text-sm font-bold text-slate-400">02</span>
+                        <span class="text-sm font-extrabold text-slate-900 group-hover:text-blue-600">프로젝트 2차 기획안(클로드) <span class="text-xs text-slate-400 font-normal ml-1">(plan3.html)</span></span>
+                    </div>
+                    <span class="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1.5 rounded-xl group-hover:bg-blue-600 group-hover:text-white transition-all">이동 →</span>
+                </a>
+                <a href="{{ url_for('plan2') }}" class="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-200/80 hover:border-blue-500 hover:shadow-sm transition-all group">
+                    <div class="flex items-center gap-3">
+                        <span class="text-sm font-bold text-slate-400">03</span>
+                        <span class="text-sm font-extrabold text-slate-900 group-hover:text-blue-600">프로젝트 2차 기획안(제미나이) <span class="text-xs text-slate-400 font-normal ml-1">(plan2.html)</span></span>
+                    </div>
+                    <span class="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1.5 rounded-xl group-hover:bg-blue-600 group-hover:text-white transition-all">이동 →</span>
+                </a>
+                <a href="{{ url_for('business_model') }}" class="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-200/80 hover:border-blue-500 hover:shadow-sm transition-all group">
+                    <div class="flex items-center gap-3">
+                        <span class="text-sm font-bold text-slate-400">04</span>
+                        <span class="text-sm font-extrabold text-slate-900 group-hover:text-blue-600">비즈니스 모델 초안(수익화 방안) <span class="text-xs text-slate-400 font-normal ml-1">(business_model.html)</span></span>
+                    </div>
+                    <span class="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1.5 rounded-xl group-hover:bg-blue-600 group-hover:text-white transition-all">이동 →</span>
+                </a>
+            </div>
+        </div>
 
-        <!-- 2. HL Score 페이지 링크 -->
-        <a href="/hl-dashboard">
-            🏘 광주 2030 주거 가성비 & 인프라 대시보드 보기
-        </a>
-        <br><br>
+        <!-- ================= 배너 4: 4. 팀 윈터 미니프로젝트 (완성본) ================= -->
+        <div class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden transition-all">
+            <div onclick="toggleSection('section-dash', 'icon-dash')" class="p-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-white cursor-pointer flex justify-between items-center group">
+                <div class="space-y-1">
+                    <h2 class="text-lg font-black group-hover:text-blue-100 transition-colors">4. 팀 윈터 미니프로젝트 (완성본)</h2>
+                </div>
+                <div id="icon-dash" class="w-8 h-8 rounded-xl bg-white/20 flex items-center justify-center font-bold transition-transform duration-300">
+                    ▼
+                </div>
+            </div>
+            <div id="section-dash" class="p-6 space-y-3 bg-white border-t border-slate-100" style="display: none;">
+                <a href="/dashboard" class="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-200/80 hover:border-blue-500 hover:shadow-sm transition-all group">
+                    <div class="flex items-center gap-3">
+                        <span class="text-sm font-bold text-slate-400">01</span>
+                        <span class="text-sm font-extrabold text-slate-900 group-hover:text-blue-600">광주 2030 주거 분석 시각화 보기</span>
+                    </div>
+                    <span class="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1.5 rounded-xl group-hover:bg-blue-600 group-hover:text-white transition-all">이동 →</span>
+                </a>
+                <a href="/hl-dashboard" class="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-200/80 hover:border-blue-500 hover:shadow-sm transition-all group">
+                    <div class="flex items-center gap-3">
+                        <span class="text-sm font-bold text-slate-400">02</span>
+                        <span class="text-sm font-extrabold text-slate-900 group-hover:text-blue-600">광주 2030 주거 가성비 & 인프라 대시보드 보기</span>
+                    </div>
+                    <span class="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1.5 rounded-xl group-hover:bg-blue-600 group-hover:text-white transition-all">이동 →</span>
+                </a>
+                <a href="/policy-dashboard" class="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-200/80 hover:border-blue-500 hover:shadow-sm transition-all group">
+                    <div class="flex items-center gap-3">
+                        <span class="text-sm font-bold text-slate-400">03</span>
+                        <span class="text-sm font-extrabold text-slate-900 group-hover:text-blue-600">광주 2030 청년 주거환경 종합 분석 보기</span>
+                    </div>
+                    <span class="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1.5 rounded-xl group-hover:bg-blue-600 group-hover:text-white transition-all">이동 →</span>
+                </a>
+            </div>
+        </div>
 
-        <!-- 3. 종합 분석 페이지 링크 -->
-        <a href="/policy-dashboard">
-            🏛 광주 2030 청년 주거환경 종합 분석 보기
-        </a>
+    </main>
 
+    <!-- 푸터 -->
+    <footer class="text-center py-6 text-xs text-slate-400 font-semibold border-t border-slate-200 mt-12">
+        &copy; 2026 Team Winter. All rights reserved.
+    </footer>
 
-        <h2>1. 미니프로젝트 (팀원 개인 페이지)</h2>
-
-        <ul>
-
-            <li>
-                <a href="{{ url_for('seunghyeon') }}">1) 승현 개인 페이지</a>
-                <span class="filename">(승현.html)</span>
-            </li>
-
-            <li>
-                <a href="{{ url_for('miseon') }}">2) 미선 개인 페이지</a>
-                <span class="filename">(미선.html)</span>
-            </li>
-
-            <li>
-                <a href="{{ url_for('younggeun') }}">3) 영근 개인 페이지</a>
-                <span class="filename">(영근.html)</span>
-            </li>
-
-            <li>
-                <a href="{{ url_for('seunghee') }}">4) 승희 개인 페이지</a>
-                <span class="filename">(승희.html)</span>
-            </li>
-
-        </ul>
-
-
-        <h2>2. 프로젝트 주요 문서</h2>
-
-        <ul>
-
-            <li>
-                <a href="{{ url_for('plan') }}">1) 프로젝트 초안</a>
-                <span class="filename">(plan.html)</span>
-            </li>
-
-            <li>
-                <a href="{{ url_for('plan3') }}">2) 프로젝트 2차 기획안(클로드)</a>
-                <span class="filename">(plan3.html)</span>
-            </li>
-
-            <li>
-                <a href="{{ url_for('plan2') }}">3) 프로젝트 2차 기획안(제미나이)</a>
-                <span class="filename">(plan2.html)</span>
-            </li>
-
-            <li>
-                <a href="{{ url_for('business_model') }}">4) 비즈니스 모델 초안(수익화 방안)</a>
-                <span class="filename">(business_model.html)</span>
-            </li>
-
-        </ul>
-
-
-        <h2>3. Git 사용법</h2>
-
-        <ul>
-
-            <li>
-                <a href="{{ url_for('git_command_guide') }}">1) Git 명령어 요약집</a>
-                <span class="filename">(Git_command_guide.html)</span>
-            </li>
-
-            <li>
-                <a href="{{ url_for('git_team_guide') }}">2) Git 이용법 요약본 (팀 협업 가이드)</a>
-                <span class="filename">(Git_team_guide.html)</span>
-            </li>
-
-        </ul>
-
-    </div>
-
+    <!-- 각 섹션 토글 스크립트 -->
+    <script>
+        function toggleSection(contentId, iconId) {
+            const content = document.getElementById(contentId);
+            const icon = document.getElementById(iconId);
+            
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                content.style.display = 'none';
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+    </script>
 </body>
-
 </html>

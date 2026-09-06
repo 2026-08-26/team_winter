@@ -436,11 +436,6 @@ def build_hl_frontend_data(df=None):
 
 
 def compute_hl_scores():
-    """
-    기존 코드 호환용 함수.
-    현재는 HL-Score를 새로 계산하지 않고 확정값만 반환합니다.
-    """
-
     rows = build_hl_frontend_data()
 
     if not rows:
@@ -524,11 +519,6 @@ def build_policy_summary(df=None):
 
 # =========================================================
 # 페이지 Route
-#
-# 최종 메뉴 노출 순서:
-# 1. 시각화 대시보드
-# 2. HL Score
-# 3. 종합 분석
 # =========================================================
 
 @app.route("/")
@@ -548,12 +538,11 @@ def dashboard():
         else []
     )
     return render_template(
-        "dashboard.html",
+        "팀 윈터 미니프로젝트 (완성본)/dashboard.html",
         districts=records,
     )
 
 
-# 과거 시각화 주소 호환
 @app.route("/hl-analysis")
 def hl_analysis():
     df = load_final_data()
@@ -565,7 +554,7 @@ def hl_analysis():
     )
 
     return render_template(
-        "dashboard.html",
+        "팀 윈터 미니프로젝트 (완성본)/dashboard.html",
         districts=records,
     )
 
@@ -576,7 +565,7 @@ def hl_dashboard():
     records = build_hl_frontend_data()
 
     return render_template(
-        "hl_dashboard.html",
+        "팀 윈터 미니프로젝트 (완성본)/hl_dashboard.html",
         districts=records,
     )
 
@@ -596,7 +585,7 @@ def policy_dashboard():
     summary = build_policy_summary(df)
 
     return render_template(
-        "policy_dashboard.html",
+        "팀 윈터 미니프로젝트 (완성본)/policy_dashboard.html",
         districts=records,
         summary=summary,
     )
@@ -633,70 +622,70 @@ def api_policy_summary():
 
 
 # =========================================================
-# 기존 팀원 페이지 / 문서 Route 유지
+# 팀원 개인 페이지 및 문서 경로 (새로운 폴더 구조 반영 완료)
 # =========================================================
 
 @app.route("/seunghyeon")
 def seunghyeon():
     return render_template(
-        "미니프로젝트/승현.html"
+        "팀 윈터 개인 페이지/승현.html"
     )
 
 
 @app.route("/miseon")
 def miseon():
     return render_template(
-        "미니프로젝트/미선.html"
+        "팀 윈터 개인 페이지/미선.html"
     )
 
 
 @app.route("/younggeun")
 def younggeun():
     return render_template(
-        "미니프로젝트/영근.html"
+        "팀 윈터 개인 페이지/영근.html"
     )
 
 
 @app.route("/seunghee")
 def seunghee():
     return render_template(
-        "미니프로젝트/승희.html"
+        "팀 윈터 개인 페이지/승희.html"
     )
 
 
 @app.route("/plan")
 def plan():
-    return render_template("plan.html")
+    return render_template("팀 윈터 미니프로젝트 (기획안)/plan.html")
 
 
 @app.route("/plan2")
 def plan2():
-    return render_template("plan2.html")
+    return render_template("팀 윈터 미니프로젝트 (기획안)/plan2.html")
 
 
 @app.route("/plan3")
 def plan3():
-    return render_template("plan3.html")
+    return render_template("팀 윈터 미니프로젝트 (기획안)/plan3.html")
 
 
 @app.route("/business-model")
 def business_model():
     return render_template(
-        "business_model.html"
+        "팀 윈터 미니프로젝트 (기획안)/business_model.html"
     )
 
 
 @app.route("/git-command-guide")
 def git_command_guide():
     return render_template(
-        "Git_command_guide.html"
+        "GIT 사용법/Git_command_guide.html"
     )
 
 
 @app.route("/git-team-guide")
 def git_team_guide():
     return render_template(
-        "Git_team_guide.html"
+        "GIT 사용법/Git_team_guide.html"
     )
 
 

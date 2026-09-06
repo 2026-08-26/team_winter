@@ -9,7 +9,9 @@
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans min-h-screen">
 
-    <!-- 상단 내비게이션 바 -->
+    <!-- =========================================
+         ✨ 상단 내비게이션 바 (타 페이지와 완벽 통일)
+    ========================================== -->
     <header class="bg-white border-b border-slate-200 py-4 px-6 sticky top-0 z-50 shadow-sm">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center gap-3">
@@ -19,25 +21,16 @@
                     <span class="text-base font-extrabold text-slate-900">WINTER Analytics &nbsp;&nbsp;&nbsp; [최신 업데이트 일자 2026/09/05]</span>
                 </div>
             </div>
-            <!-- 원본 HL Score 페이지 내부 기능 탭 -->
-            <nav class="flex items-center bg-slate-100 p-1.5 rounded-full gap-1.5 shadow-inner">
-                <button onclick="switchTab('dashboard')" id="nav-dashboard"
-                    class="px-5 py-2 rounded-full text-sm font-bold bg-blue-600 text-white shadow-md transition-all">
-                    대시보드
-                </button>
-                <button onclick="switchTab('analysis')" id="nav-analysis"
-                    class="px-5 py-2 rounded-full text-sm font-bold text-slate-600 hover:text-slate-900 transition-all">
-                    자치구
-                </button>
-                <button onclick="switchTab('recommend')" id="nav-recommend"
-                    class="px-5 py-2 rounded-full text-sm font-bold text-slate-600 hover:text-slate-900 transition-all">
-                    맞춤 추천
-                </button>
-            </nav>
+
+            <!-- 타 페이지와 동일한 상단 탭 그룹 (hl-dashboard가 활성화된 상태) -->
+            <div class="flex items-center bg-slate-100 p-1 rounded-full shadow-inner">
+                <a href="/dashboard" class="px-5 py-2 rounded-full text-sm font-bold text-slate-600 hover:text-slate-900 transition-all">시각화 대시보드</a>
+                <a href="/hl-dashboard" class="px-5 py-2 rounded-full text-sm font-bold bg-blue-600 text-white shadow-md transition-all">HL Score</a>
+                <a href="/policy-dashboard" class="px-5 py-2 rounded-full text-sm font-bold text-slate-600 hover:text-slate-900 transition-all">종합 분석</a>
+            </div>
 
             <div class="flex items-center gap-3">
                 <a href="/api/final-data" target="_blank" class="px-4 py-2 border border-slate-200 rounded-xl text-sm font-semibold text-slate-700 bg-white hover:bg-slate-50 shadow-sm transition-all">데이터 근거 보기</a>
-                <button class="p-2.5 border border-slate-200 rounded-xl text-slate-700 bg-white hover:bg-slate-50 shadow-sm transition-all">🌙</button>
             </div>
         </div>
     </header>
@@ -49,6 +42,22 @@
             <h1 class="text-3xl font-black text-slate-900 tracking-tight">광주 2030 주거 가성비 & 인프라 통합 지수</h1>
             <p class="text-base text-slate-600 font-medium">주거비, 생활 인프라, 2030 선호시설, 교통 접근성을 기반으로 분석한 청년 맞춤형 주거 환경 리포트입니다.</p>
             <p class="text-xs text-slate-400 font-semibold">HL 가중치: 생활 30% · 2030 선호시설 25% · 교통 15% · 주거 가성비 30% · 분석대상 25개 동 상대비교</p>
+        </div>
+
+        <!-- 내부 기능 탭 버튼 (대시보드 / 자치구 / 맞춤 추천) -->
+        <div class="flex items-center bg-slate-200/70 p-1.5 rounded-full gap-1.5 w-fit shadow-inner">
+            <button onclick="switchTab('dashboard')" id="nav-dashboard"
+                class="px-5 py-2 rounded-full text-sm font-bold bg-blue-600 text-white shadow-md transition-all">
+                대시보드
+            </button>
+            <button onclick="switchTab('analysis')" id="nav-analysis"
+                class="px-5 py-2 rounded-full text-sm font-bold text-slate-600 hover:text-slate-900 transition-all">
+                자치구
+            </button>
+            <button onclick="switchTab('recommend')" id="nav-recommend"
+                class="px-5 py-2 rounded-full text-sm font-bold text-slate-600 hover:text-slate-900 transition-all">
+                맞춤 추천
+            </button>
         </div>
 
         <!-- ================= TAB 1: 대시보드 화면 ================= -->
@@ -270,7 +279,6 @@
             renderDashboardTab();
         }
 
-        // 1. HL Score 페이지 렌더링
         function renderDashboardTab() {
             const validData = dongsData.filter(d => safeScore(d.hlScore) !== null);
             const rankableData = validData.filter(d => !d.excludedFromPolicyRanking);
@@ -421,7 +429,6 @@
             `;
         }
 
-        // 2. 자치구 분석 탭 렌더링
         function renderAnalysisTab() {
             const districtGroups = {};
 
@@ -447,7 +454,6 @@
                 const transport = safeScore(d.transport);
                 const cost = safeScore(d.costEfficiency);
 
-                // 두암2동처럼 정책순위 제외인 지역은 자치구 평균 HL에서 제외
                 if (!d.excludedFromPolicyRanking && hl !== null) {
                     g.rankableCount += 1;
                     g.hlSum += hl;
@@ -534,7 +540,6 @@
             `;
         }
 
-        // 3. 맞춤 추천 탭 렌더링
         const presets = {
             student: { t: 5, i: 2, p: 2, c: 5 },
             worker: { t: 5, i: 4, p: 3, c: 2 },
@@ -550,20 +555,12 @@
 
                 if (isActive) {
                     btn.className = "preset-btn p-4 text-left border-2 border-blue-600 bg-blue-50/60 rounded-2xl transition-all group";
-                    if (title) {
-                        title.className = "block text-sm font-extrabold text-blue-700";
-                    }
-                    if (desc) {
-                        desc.className = "block text-xs text-blue-500 mt-1 font-medium";
-                    }
+                    if (title) title.className = "block text-sm font-extrabold text-blue-700";
+                    if (desc) desc.className = "block text-xs text-blue-500 mt-1 font-medium";
                 } else {
                     btn.className = "preset-btn p-4 text-left border border-slate-200 rounded-2xl hover:border-blue-600 hover:bg-blue-50/20 transition-all group";
-                    if (title) {
-                        title.className = "block text-sm font-extrabold text-slate-900 group-hover:text-blue-600";
-                    }
-                    if (desc) {
-                        desc.className = "block text-xs text-slate-500 mt-1 font-medium";
-                    }
+                    if (title) title.className = "block text-sm font-extrabold text-slate-900 group-hover:text-blue-600";
+                    if (desc) desc.className = "block text-xs text-slate-500 mt-1 font-medium";
                 }
             });
         }
@@ -608,12 +605,10 @@
             document.getElementById('val-preference').textContent = wPreference;
             document.getElementById('val-cost').textContent = wCost;
 
-            // 현재 슬라이더 값이 어떤 프리셋과 같은지 확인해 버튼 색도 같이 변경
             updatePresetButtonState(detectCurrentPreset());
 
             const totalWeight = wTransport + wInfra + wPreference + wCost;
 
-            // 주거 가성비 점수가 없는 표본부족 지역은 맞춤 추천 순위에서 제외
             const recommendationBase = dongsData.filter(d =>
                 !d.excludedFromPolicyRanking &&
                 safeScore(d.transport) !== null &&
@@ -650,13 +645,9 @@
             document.getElementById('recommend-list').innerHTML = scoredDongs.map((dong, idx) => {
                 let rankBadgeBg = "bg-slate-100 text-slate-700 border border-slate-200";
 
-                if (idx === 0) {
-                    rankBadgeBg = "bg-amber-500 text-white shadow-md shadow-amber-500/20";
-                } else if (idx === 1) {
-                    rankBadgeBg = "bg-slate-400 text-white";
-                } else if (idx === 2) {
-                    rankBadgeBg = "bg-amber-700 text-white";
-                }
+                if (idx === 0) rankBadgeBg = "bg-amber-500 text-white shadow-md shadow-amber-500/20";
+                else if (idx === 1) rankBadgeBg = "bg-slate-400 text-white";
+                else if (idx === 2) rankBadgeBg = "bg-amber-700 text-white";
 
                 return `
                     <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:border-blue-300 transition-all flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5">
@@ -670,9 +661,7 @@
                                     <span class="text-lg font-black text-slate-900">${dong.name}</span>
                                     <span class="text-xs font-bold text-blue-700 bg-blue-50 px-2.5 py-1 rounded-xl border border-blue-100">${dong.district}</span>
 
-                                    ${idx === 0
-                                        ? '<span class="text-xs font-extrabold bg-amber-100 text-amber-800 px-2.5 py-1 rounded-xl border border-amber-200">🔥 최고 추천 핏</span>'
-                                        : ''}
+                                    ${idx === 0 ? '<span class="text-xs font-extrabold bg-amber-100 text-amber-800 px-2.5 py-1 rounded-xl border border-amber-200">🔥 최고 추천 핏</span>' : ''}
                                 </div>
 
                                 <div class="text-xs text-slate-600 flex flex-wrap gap-2.5 font-medium">

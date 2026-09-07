@@ -526,6 +526,15 @@ def index():
     return render_template("index.html")
 
 
+
+# 프로젝트 소개
+@app.route("/project-intro")
+def project_intro():
+    return render_template(
+        "팀 윈터 미니프로젝트 (완성본)/project_intro.html"
+    )
+
+
 # 1. 시각화 대시보드
 @app.route("/dashboard")
 @app.route("/visual-dashboard")

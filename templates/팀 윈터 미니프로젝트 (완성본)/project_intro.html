@@ -1,0 +1,1745 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Team Winter | 광주 2030 청년 주거환경</title>
+<style>
+:root{
+  --teal:#0f8b8d;--teal2:#32a9aa;--soft:#eaf7f6;--navy:#1f2937;--muted:#667085;
+  --bg:#f7f9fa;--white:#fff;--line:#e4e7ec;--orange:#f59e42;--orange-soft:#fff4e8;
+  --green:#22a06b;--shadow:0 10px 28px rgba(31,41,55,.07);
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;font-family:Pretendard,"Noto Sans KR","Apple SD Gothic Neo",Arial,sans-serif;color:var(--navy);background:var(--bg);}
+a{color:inherit;text-decoration:none} button,select,input{font:inherit}
+.wrap{max-width:1180px;margin:auto;padding:0 24px}
+.topbar{background:#fff;border-bottom:1px solid var(--line);}
+.brandbar{height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px;font-weight:850}
+.logo{width:38px;height:38px;border-radius:13px;background:linear-gradient(145deg,var(--teal),#55c1bd);display:grid;place-items:center;color:#fff;box-shadow:0 6px 16px rgba(15,139,141,.2)}
+.hero{padding:46px 0 60px;background:radial-gradient(circle at 82% 15%,rgba(15,139,141,.12),transparent 28%),radial-gradient(circle at 8% 70%,rgba(245,158,66,.09),transparent 25%),linear-gradient(180deg,#fff,#f9fbfb);border-bottom:1px solid var(--line)}
+.brand-left{display:flex;align-items:center;gap:10px;min-width:0}
+.top-nav{display:flex;justify-content:flex-end;align-items:center;gap:6px;flex-wrap:wrap}
+.top-nav a{padding:10px 13px;border-radius:10px;font-size:14px;font-weight:760;color:#4b5563;white-space:nowrap}
+.top-nav a:hover,.top-nav a.active{background:var(--soft);color:var(--teal)}
+.eyebrow{display:inline-flex;background:var(--soft);border:1px solid #ccebe9;color:#08777a;padding:8px 12px;border-radius:999px;font-size:13px;font-weight:800}
+h1{font-size:52px;line-height:1.15;letter-spacing:-.045em;margin:22px 0 18px}
+.hero p{max-width:820px;font-size:19px;line-height:1.75;color:#556171;margin:0 0 26px}
+.btns{display:flex;gap:10px;flex-wrap:wrap}
+.btn{padding:13px 17px;border-radius:12px;border:1px solid var(--line);background:#fff;font-weight:800;cursor:pointer}
+.btn.primary{background:var(--teal);border-color:var(--teal);color:#fff}
+.story-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:42px}
+.story-step{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;min-height:105px;box-shadow:0 5px 15px rgba(31,41,55,.03)}
+.story-step .n{font-size:12px;font-weight:900;color:var(--teal);margin-bottom:8px}
+.story-step b{display:block;font-size:15px;line-height:1.45;margin-bottom:4px}
+.story-step span{font-size:12px;color:var(--muted);line-height:1.45}
+.section{padding:70px 0}
+.section.white{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.kicker{font-size:13px;color:var(--teal);font-weight:900;letter-spacing:.02em;margin-bottom:8px}
+h2{font-size:36px;letter-spacing:-.035em;margin:0 0 10px}
+.sub{font-size:16px;line-height:1.7;color:var(--muted);margin:0;max-width:900px}
+.story-note{margin:24px 0 0;padding:16px 18px;border-left:4px solid var(--teal);background:var(--soft);border-radius:0 13px 13px 0;color:#49606a;line-height:1.65}
+.dashboard-box{margin-top:28px;background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);overflow:hidden}
+.dashboard-head{padding:22px 22px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;align-items:end;flex-wrap:wrap}
+.dashboard-head h3{margin:0 0 5px;font-size:22px}.dashboard-head p{margin:0;color:var(--muted);font-size:13px}
+.metric-tabs{padding:14px;display:flex;gap:8px;overflow:auto;border-bottom:1px solid var(--line);background:#fbfcfc}
+.metric-tabs button{white-space:nowrap;padding:10px 13px;border-radius:10px;border:1px solid var(--line);background:#fff;color:#53606e;font-weight:760;cursor:pointer}
+.metric-tabs button.active{background:var(--teal);color:#fff;border-color:var(--teal)}
+.table-tools{padding:14px 18px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.table-tools label{font-size:13px;color:#566270;font-weight:700}
+.table-tools select{border:1px solid var(--line);border-radius:10px;padding:9px 12px;background:white;color:#475467;margin-left:5px}
+.table-wrap{overflow:auto;max-height:510px}
+table{border-collapse:collapse;width:100%;min-width:930px;font-size:14px}
+thead th{position:sticky;top:0;background:#f7f9fa;color:#475467;text-align:left;padding:13px 14px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:12px;z-index:1}
+tbody td{padding:13px 14px;border-bottom:1px solid #edf0f2}
+tbody tr:hover{background:#f8fcfc}
+.pill{display:inline-block;padding:5px 8px;border-radius:8px;background:var(--soft);color:#08777a;font-size:12px;font-weight:800}
+.cardgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
+.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow)}
+.score-card .rank{font-size:12px;font-weight:900;color:var(--teal)} .score-card h3{font-size:25px;margin:8px 0 3px}
+.scoreline{display:flex;align-items:end;gap:9px;margin:16px 0}.bigscore{font-size:42px;font-weight:950;letter-spacing:-.04em}
+.meter{margin:11px 0}.meterhead{display:flex;justify-content:space-between;font-size:13px;color:#5d6877;margin-bottom:6px}
+.bar{height:8px;background:#edf1f3;border-radius:999px;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,var(--teal),#5bc1be)}
+.weights{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
+.weight{background:#f9fbfb;border:1px solid var(--line);border-radius:14px;padding:15px;text-align:center}
+.weight b{font-size:22px;color:var(--teal)}.weight span{display:block;color:var(--muted);font-size:12px;margin-top:3px}
+.hl-tools{margin-top:22px}
+.hl-tools-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.hl-tools-tabs button{padding:10px 13px;border:1px solid var(--line);border-radius:10px;background:#fff;color:#53606e;font-weight:800;cursor:pointer}
+.hl-tools-tabs button.active{background:var(--navy);border-color:var(--navy);color:#fff}
+.hl-panel{display:none}.hl-panel.active{display:block}
+.region-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.region-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:17px}
+.region-card h4{margin:0 0 6px;font-size:18px}.region-card .value{font-size:30px;font-weight:900;color:var(--teal)}
+.recommend-layout{display:grid;grid-template-columns:320px 1fr;gap:16px;align-items:start}
+.control{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px}
+.slider-row{margin:15px 0}.slider-head{display:flex;justify-content:space-between;font-size:12px;font-weight:800;margin-bottom:6px}.slider-row input{width:100%;accent-color:var(--teal)}
+.recommend-list{display:grid;gap:10px}.recommend-item{background:#fff;border:1px solid var(--line);border-radius:15px;padding:15px 17px;display:flex;justify-content:space-between;gap:12px;align-items:center}.recommend-item b{font-size:17px}.recommend-item small{display:block;color:var(--muted);margin-top:4px}.match{font-size:25px;font-weight:900;color:var(--teal)}
+.turning{display:grid;grid-template-columns:1.05fr .95fr;gap:22px;margin-top:28px}
+.dark{background:var(--navy);color:#fff;border-radius:22px;padding:30px}
+.dark small{color:#9fe8e6;font-weight:900}.dark h3{font-size:31px;line-height:1.38;margin:10px 0 14px}
+.dark p{color:#d9dee5;line-height:1.72;margin:0}
+.extra{display:grid;gap:12px}
+.extra-item{background:#fff;border:1px solid var(--line);border-radius:16px;padding:17px;display:grid;grid-template-columns:42px 1fr;gap:12px}
+.icon{width:42px;height:42px;border-radius:12px;background:var(--soft);display:grid;place-items:center;font-size:21px}
+.extra-item b{display:block;margin-bottom:4px}.extra-item span{color:var(--muted);font-size:13px;line-height:1.55}
+.result-flow{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:28px}
+.node{min-height:120px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:15px;text-align:center;display:grid;place-items:center;font-size:14px;font-weight:850;line-height:1.5}
+.node.em{background:var(--teal);color:#fff;border-color:var(--teal)}.node.or{background:var(--orange-soft);color:#965318;border-color:#ffd9b5}
+.policygrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px}
+.policy{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px}
+.policy .ico{font-size:25px}.policy h4{margin:10px 0 7px}.policy p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
+.balance-head{margin-top:34px;padding-top:8px}
+.balance-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}
+.balance-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px}
+.balance-card .tag{display:inline-block;background:var(--orange-soft);color:#9b581b;border-radius:9px;padding:6px 8px;font-size:11px;font-weight:900}
+.balance-card h4{font-size:20px;margin:10px 0 5px}.balance-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
+.balance-card .weak{margin-top:12px;background:#f8fafc;border-radius:10px;padding:10px 12px;font-size:12px}
+.data-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+.data-stat{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px}
+.data-stat .ico{font-size:24px}.data-stat strong{display:block;font-size:28px;margin-top:8px}.data-stat span{display:block;color:var(--muted);font-size:12px;line-height:1.55;margin-top:4px}
+.footer{padding:36px 0 50px;text-align:center;color:#8b95a1;font-size:12px}
+.note{margin-top:14px;color:#7b8490;font-size:12px;line-height:1.6}
+.modal{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:100;align-items:center;justify-content:center;padding:18px}.modal.open{display:flex}
+.modal-card{width:min(900px,100%);max-height:82vh;overflow:auto;background:#fff;border-radius:20px;padding:22px}.modal-head{display:flex;justify-content:space-between;align-items:center;gap:12px}.modal-head h3{margin:0}.close{border:0;background:#f1f4f6;border-radius:9px;padding:8px 10px}.json{white-space:pre-wrap;background:#111827;color:#d1fae5;border-radius:13px;padding:14px;font-size:11px;overflow:auto}
+.hidden{display:none!important}
+@media(max-width:900px){.brandbar{height:auto;min-height:74px;padding-top:12px;padding-bottom:12px;flex-wrap:wrap}.top-nav{width:100%;justify-content:flex-end}h1{font-size:42px}.story-strip{grid-template-columns:1fr 1fr}.cardgrid{grid-template-columns:1fr}.weights{grid-template-columns:1fr 1fr}.turning{grid-template-columns:1fr}.result-flow{grid-template-columns:1fr}.policygrid{grid-template-columns:1fr 1fr}.region-grid{grid-template-columns:1fr 1fr}.recommend-layout{grid-template-columns:1fr}.balance-grid{grid-template-columns:1fr}.data-strip{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.wrap{padding:0 16px}h1{font-size:35px}h2{font-size:29px}.brandbar{height:auto;min-height:74px;padding-top:12px;padding-bottom:12px;align-items:flex-start;flex-direction:column}.top-nav{justify-content:flex-start;width:100%;gap:4px}.top-nav a{padding:9px 10px;font-size:13px}.story-strip,.weights,.policygrid,.region-grid,.data-strip{grid-template-columns:1fr}}
+
+/* =========================================================
+   Team Winter unified design
+========================================================= */
+:root{
+  --tw-teal:#0f8b8d;
+  --tw-teal-dark:#08777a;
+  --tw-soft:#eaf7f6;
+  --tw-navy:#1f2937;
+  --tw-muted:#667085;
+  --tw-bg:#f7f9fa;
+  --tw-card:#ffffff;
+  --tw-line:#e4e7ec;
+  --tw-orange:#f59e42;
+  --tw-shadow:0 10px 28px rgba(31,41,55,.07);
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--tw-bg)!important;
+  color:var(--tw-navy)!important;
+  font-family:Pretendard,"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",Arial,sans-serif!important;
+}
+.tw-topbar{
+  position:sticky;top:0;z-index:100;
+  background:rgba(255,255,255,.97);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--tw-line);
+}
+.tw-topbar-inner{
+  width:min(1180px,calc(100% - 48px));
+  min-height:74px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+}
+.tw-brand{display:flex;align-items:center;gap:10px;min-width:0}
+.tw-logo{
+  width:38px;height:38px;border-radius:13px;display:grid;place-items:center;
+  background:linear-gradient(145deg,var(--tw-teal),#55c1bd);
+  color:#fff;font-weight:900;box-shadow:0 6px 16px rgba(15,139,141,.2)
+}
+.tw-brand-text{display:flex;align-items:baseline;gap:5px;white-space:nowrap}
+.tw-brand-text strong{font-size:15px;color:var(--tw-navy)}
+.tw-brand-text span{font-size:14px;color:#9aa2ad;font-weight:650}
+.tw-global-nav{display:flex;align-items:center;justify-content:flex-end;gap:6px;flex-wrap:wrap}
+.tw-global-nav a{
+  text-decoration:none;padding:10px 13px;border-radius:10px;
+  font-size:14px;font-weight:760;color:#4b5563;white-space:nowrap;
+  transition:.18s ease;
+}
+.tw-global-nav a:hover,.tw-global-nav a.active{
+  background:var(--tw-soft);color:var(--tw-teal-dark);
+}
+.tw-page-hero{
+  width:min(1180px,calc(100% - 48px));margin:32px auto 0;
+  padding:28px 30px;border:1px solid var(--tw-line);border-radius:22px;
+  background:
+    radial-gradient(circle at 86% 18%,rgba(15,139,141,.12),transparent 29%),
+    linear-gradient(180deg,#fff,#fbfdfd);
+  box-shadow:0 8px 24px rgba(31,41,55,.04);
+}
+.tw-page-hero .eyebrow{
+  display:inline-flex;background:var(--tw-soft);border:1px solid #ccebe9;
+  color:var(--tw-teal-dark);padding:7px 11px;border-radius:999px;
+  font-size:12px;font-weight:850;margin-bottom:10px
+}
+.tw-page-hero h1{
+  margin:0 0 8px;font-size:30px;letter-spacing:-.035em;color:var(--tw-navy);font-weight:900
+}
+.tw-page-hero p{margin:0;color:var(--tw-muted);font-size:14px;line-height:1.7;max-width:900px}
+
+/* Tailwind 기반 기존 페이지의 파란색을 현재 디자인 톤으로 통일 */
+.bg-blue-600{background-color:var(--tw-teal)!important}
+.hover\:bg-blue-700:hover{background-color:var(--tw-teal-dark)!important}
+.text-blue-600,.text-blue-700,.text-blue-800{color:var(--tw-teal-dark)!important}
+.bg-blue-50,.bg-blue-100{background-color:var(--tw-soft)!important}
+.border-blue-100,.border-blue-200,.border-blue-300,.border-blue-600{border-color:#bfe5e2!important}
+.hover\:border-blue-600:hover{border-color:var(--tw-teal)!important}
+.hover\:text-blue-600:hover{color:var(--tw-teal)!important}
+.hover\:bg-blue-50\/20:hover{background-color:rgba(234,247,246,.48)!important}
+.from-blue-900{--tw-gradient-from:#185d60!important}
+.to-indigo-900{--tw-gradient-to:#153f42!important}
+.text-blue-200,.text-blue-300{color:#c7efec!important}
+.bg-blue-500\/30{background-color:rgba(87,194,189,.22)!important}
+.bg-indigo-50{background-color:#f0f9f8!important}
+.border-indigo-100{border-color:#cfece9!important}
+.text-indigo-800,.text-indigo-600{color:var(--tw-teal-dark)!important}
+.bg-indigo-600{background-color:var(--tw-teal)!important}
+.accent-indigo-600{accent-color:var(--tw-teal)!important}
+.seg-btn.active,.topn-btn.active{background-color:var(--tw-teal)!important;color:#fff!important}
+input[type="range"]{accent-color:var(--tw-teal)!important}
+
+/* 카드 톤 정리 */
+.rounded-xl,.rounded-2xl,.rounded-3xl{border-color:var(--tw-line)}
+.shadow-sm,.shadow-md,.shadow-lg,.shadow-xl{--tw-shadow-color:rgba(31,41,55,.08)!important}
+
+@media(max-width:900px){
+  .tw-topbar-inner{width:calc(100% - 32px);padding:12px 0;flex-wrap:wrap}
+  .tw-global-nav{width:100%;justify-content:flex-start}
+  .tw-page-hero{width:calc(100% - 32px)}
+}
+@media(max-width:620px){
+  .tw-brand-text span{display:none}
+  .tw-global-nav a{font-size:13px;padding:9px 10px}
+}
+
+
+/* ===== 프로젝트 소개 페이지용 발표 미리보기 ===== */
+.preview-section{padding:70px 0}
+.preview-section.white{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.preview-head{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:24px}
+.preview-head .phase{font-size:12px;color:var(--teal);font-weight:900;letter-spacing:.04em;margin-bottom:7px}
+.preview-head h2{margin:0 0 8px;font-size:32px;letter-spacing:-.035em}
+.preview-head p{margin:0;max-width:820px;color:var(--muted);font-size:14px;line-height:1.7}
+.preview-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.preview-panel{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow)}
+.preview-panel h3{margin:0 0 6px;font-size:18px}
+.preview-panel .desc{font-size:12px;color:var(--muted);line-height:1.55;margin-bottom:18px}
+.mini-bar-row{display:grid;grid-template-columns:72px 1fr 80px;gap:10px;align-items:center;margin:12px 0}
+.mini-bar-label{font-size:12px;font-weight:800}
+.mini-track{height:11px;background:#edf1f3;border-radius:999px;overflow:hidden}
+.mini-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--teal),#5bc1be)}
+.mini-fill.low{background:linear-gradient(90deg,var(--orange),#ffc27d)}
+.mini-bar-value{text-align:right;font-size:11px;font-weight:800;color:#53606e}
+.preview-insight{margin-top:18px;padding:14px 16px;border-left:4px solid var(--teal);background:var(--soft);border-radius:0 12px 12px 0;color:#4d626b;font-size:13px;line-height:1.65}
+.preview-weights{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
+.preview-weight{background:#f9fbfb;border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+.preview-weight b{display:block;color:var(--teal);font-size:21px}
+.preview-weight span{display:block;margin-top:4px;color:var(--muted);font-size:11px}
+.preview-score-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.preview-score-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
+.preview-rank{font-size:10px;font-weight:900;color:var(--teal)}
+.preview-score-card h4{font-size:20px;margin:7px 0 10px}
+.preview-score-card h4 small{font-size:10px;color:#98a2ad}
+.preview-score{font-size:36px;font-weight:950;letter-spacing:-.04em}
+.preview-score span{font-size:12px;color:var(--muted);margin-left:4px}
+.preview-mini-scores{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:12px}
+.preview-mini-scores span{background:#f8fafc;border-radius:9px;padding:8px;font-size:10px;color:#6b7280}
+.preview-mini-scores b{display:block;color:var(--navy);font-size:12px;margin-top:2px}
+.turning-preview{margin:0 auto;max-width:1180px;padding:0 24px}
+.turning-card{display:grid;grid-template-columns:.72fr 1.28fr;gap:0;background:var(--navy);color:#fff;border-radius:22px;overflow:hidden}
+.turning-label{padding:26px;background:rgba(15,139,141,.18);display:flex;flex-direction:column;justify-content:center}
+.turning-label small{color:#9fe8e6;font-weight:900}
+.turning-label strong{font-size:23px;line-height:1.4;margin-top:8px}
+.turning-copy{padding:26px}
+.turning-copy p{margin:0;color:#d9dee5;font-size:14px;line-height:1.75}
+.integrated-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:20px}
+.integrated-node{min-height:110px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:15px;text-align:center;display:grid;place-items:center;font-size:13px;font-weight:850;line-height:1.5}
+.integrated-node.or{background:var(--orange-soft);border-color:#ffd9b5;color:#965318}
+.integrated-node.em{background:var(--teal);border-color:var(--teal);color:#fff}
+.extra-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+.extra-stat{background:#fff;border:1px solid var(--line);border-radius:17px;padding:18px}
+.extra-stat .ico{font-size:22px}
+.extra-stat b{display:block;font-size:25px;margin-top:7px}
+.extra-stat span{display:block;color:var(--muted);font-size:11px;line-height:1.5;margin-top:4px}
+.final-message{margin-top:20px;padding:18px 20px;background:linear-gradient(180deg,#edf9f8,#fff);border:1px solid #cbe8e5;border-radius:18px}
+.final-message strong{display:block;font-size:17px;color:var(--teal-dark);margin-bottom:6px}
+.final-message p{margin:0;color:#596675;font-size:13px;line-height:1.7}
+@media(max-width:900px){
+  .preview-grid-2,.preview-score-grid{grid-template-columns:1fr}
+  .preview-weights{grid-template-columns:1fr 1fr}
+  .turning-card{grid-template-columns:1fr}
+  .integrated-flow{grid-template-columns:1fr 1fr}
+  .extra-stats{grid-template-columns:1fr}
+}
+@media(max-width:620px){
+  .preview-section{padding:52px 0}
+  .preview-head h2{font-size:27px}
+  .preview-weights,.integrated-flow{grid-template-columns:1fr}
+  .mini-bar-row{grid-template-columns:62px 1fr 72px}
+}
+
+
+/* ===== PPT 내용을 확장 반영한 프로젝트 소개 ===== */
+.ppt-section{padding:72px 0}
+.ppt-section.white{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.ppt-section.soft{background:linear-gradient(180deg,#f4fbfa,#f8fbfb);border-top:1px solid #dfecea;border-bottom:1px solid #dfecea}
+.ppt-head{margin-bottom:24px}
+.ppt-kicker{font-size:12px;color:var(--teal);font-weight:900;letter-spacing:.04em;margin-bottom:7px}
+.ppt-head h2{font-size:33px;letter-spacing:-.035em;margin:0 0 9px}
+.ppt-head p{margin:0;color:var(--muted);font-size:14px;line-height:1.75;max-width:930px}
+.ppt-choice-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:9px;margin-top:18px}
+.ppt-choice{background:#fff;border:1px solid var(--line);border-radius:13px;padding:13px 9px;text-align:center;font-size:12px;font-weight:800;color:#667085}
+.ppt-choice.selected{background:var(--soft);border-color:#9fdad6;color:var(--teal-dark)}
+.ppt-two{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px}
+.ppt-callout{background:#fff;border:1px solid var(--line);border-radius:19px;padding:22px;box-shadow:var(--shadow)}
+.ppt-callout .label{font-size:11px;font-weight:900;color:var(--teal);margin-bottom:8px}
+.ppt-callout h3{font-size:20px;margin:0 0 9px}
+.ppt-callout p{font-size:13px;line-height:1.7;color:var(--muted);margin:0}
+.ppt-conclusion{margin-top:18px;background:#263642;color:white;border-radius:18px;padding:18px 21px;font-size:14px;line-height:1.7}
+.ppt-conclusion b{color:#9fe8e6}
+.ppt-data-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+.ppt-data-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
+.ppt-data-card .num{font-size:10px;font-weight:900;color:var(--teal)}
+.ppt-data-card h4{font-size:17px;margin:7px 0 6px}
+.ppt-data-card p{font-size:12px;color:var(--muted);line-height:1.6;margin:0}
+.ppt-data-card .source{margin-top:10px;padding-top:10px;border-top:1px solid #eef1f3;color:#8a94a0;font-size:10px;line-height:1.5}
+.ppt-process{display:grid;grid-template-columns:repeat(6,1fr);gap:9px;align-items:stretch;margin-top:22px}
+.ppt-process-step{position:relative;background:#fff;border:1px solid var(--line);border-radius:15px;padding:15px 11px;text-align:center;font-size:12px;font-weight:850;line-height:1.45}
+.ppt-process-step b{display:block;color:var(--teal);font-size:13px;margin-bottom:5px}
+.ppt-formula{margin-top:16px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:17px;text-align:center;font-size:18px;font-weight:900;letter-spacing:-.02em}
+.ppt-formula span{color:var(--teal)}
+.ppt-tech-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:18px;margin-top:20px}
+.ppt-tech{background:#fff;border:1px solid var(--line);border-radius:18px;padding:19px}
+.ppt-tech h4{margin:0 0 12px;font-size:17px}
+.ppt-badges{display:flex;gap:7px;flex-wrap:wrap}
+.ppt-badge{padding:7px 9px;background:#f4f7f8;border:1px solid var(--line);border-radius:9px;font-size:11px;font-weight:800}
+.ppt-issues{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+.ppt-issue{background:#f8fafc;border-radius:11px;padding:11px 12px;font-size:11px;line-height:1.55}
+.ppt-issue b{display:block;color:var(--navy);margin-bottom:3px}
+.ppt-issue span{color:var(--muted)}
+.ppt-chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px}
+.ppt-chart{background:#fff;border:1px solid var(--line);border-radius:19px;padding:20px;box-shadow:var(--shadow)}
+.ppt-chart h4{font-size:17px;margin:0 0 5px}
+.ppt-chart .caption{font-size:11px;color:var(--muted);margin-bottom:15px}
+.ppt-mini-row{display:grid;grid-template-columns:68px 1fr 70px;gap:9px;align-items:center;margin:11px 0}
+.ppt-mini-name{font-size:11px;font-weight:800}
+.ppt-mini-track{height:10px;background:#edf1f3;border-radius:999px;overflow:hidden}
+.ppt-mini-fill{height:100%;background:linear-gradient(90deg,var(--teal),#5bc1be);border-radius:999px}
+.ppt-mini-fill.low{background:linear-gradient(90deg,var(--orange),#ffc37f)}
+.ppt-mini-row b{text-align:right;font-size:10px;color:#596675}
+.ppt-insight{margin-top:18px;padding:14px 16px;background:var(--soft);border-left:4px solid var(--teal);border-radius:0 12px 12px 0;color:#4e626b;font-size:13px;line-height:1.65}
+.ppt-weight-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}
+.ppt-weight{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+.ppt-weight b{font-size:21px;color:var(--teal)} .ppt-weight span{display:block;font-size:11px;color:var(--muted);margin-top:4px}
+.ppt-score-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+.ppt-score-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
+.ppt-score-rank{font-size:10px;font-weight:900;color:var(--teal)}
+.ppt-score-card h4{font-size:20px;margin:7px 0 9px}.ppt-score-card small{font-size:10px;color:#9aa2ad}
+.ppt-score-value{font-size:36px;font-weight:950}.ppt-score-value span{font-size:11px;color:var(--muted);margin-left:3px}
+.ppt-score-parts{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:11px}
+.ppt-score-parts span{background:#f8fafc;border-radius:9px;padding:8px;font-size:10px;color:#7a8491}
+.ppt-score-parts b{display:block;color:var(--navy);font-size:12px;margin-top:2px}
+.ppt-turn{display:grid;grid-template-columns:.78fr 1.22fr;border-radius:21px;overflow:hidden;background:#263642;color:#fff}
+.ppt-turn-left{padding:27px;background:rgba(15,139,141,.19);display:flex;flex-direction:column;justify-content:center}
+.ppt-turn-left small{color:#9fe8e6;font-weight:900}.ppt-turn-left strong{font-size:24px;line-height:1.45;margin-top:8px}
+.ppt-turn-right{padding:27px}.ppt-turn-right p{margin:0;color:#d9dee5;font-size:14px;line-height:1.75}
+.ppt-phase2-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:20px}
+.ppt-phase2-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:15px}
+.ppt-phase2-card .idx{font-size:10px;color:var(--teal);font-weight:900}.ppt-phase2-card h4{font-size:14px;margin:6px 0}.ppt-phase2-card p{font-size:11px;line-height:1.55;color:var(--muted);margin:0}
+.ppt-phase2-card.warn{background:var(--orange-soft);border-color:#ffd8b3}
+.ppt-ybi-flow{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin-top:20px}
+.ppt-ybi-node{background:#fff;border:1px solid var(--line);border-radius:15px;padding:15px;text-align:center;min-height:108px;display:grid;place-items:center;font-size:12px;font-weight:850;line-height:1.5}
+.ppt-ybi-node.or{background:var(--orange-soft);border-color:#ffd8b3;color:#965318}.ppt-ybi-node.em{background:var(--teal);border-color:var(--teal);color:#fff}
+.ppt-policy-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
+.ppt-policy-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px}
+.ppt-policy-card .ico{font-size:22px}.ppt-policy-card h4{font-size:14px;margin:8px 0 5px}.ppt-policy-card p{font-size:11px;line-height:1.55;color:var(--muted);margin:0}
+.ppt-output-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:19px}
+.ppt-output{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px}
+.ppt-output .n{font-size:10px;color:var(--teal);font-weight:900}.ppt-output h4{font-size:17px;margin:6px 0}.ppt-output p{font-size:12px;line-height:1.6;color:var(--muted);margin:0}
+.ppt-limit-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:18px}
+.ppt-limit{background:#fff;border:1px solid var(--line);border-radius:15px;padding:15px}
+.ppt-limit b{display:block;font-size:13px;margin-bottom:4px}.ppt-limit span{font-size:11px;line-height:1.55;color:var(--muted)}
+.ppt-final{margin-top:22px;background:linear-gradient(135deg,#0b7779,#0f8b8d);border-radius:21px;color:#fff;padding:24px 26px}
+.ppt-final small{color:#c9f2f0;font-weight:850}.ppt-final h3{font-size:22px;margin:8px 0}.ppt-final p{margin:0;font-size:13px;line-height:1.7;color:#e4f6f5}
+@media(max-width:900px){
+ .ppt-choice-grid{grid-template-columns:repeat(3,1fr)}
+ .ppt-data-grid{grid-template-columns:1fr 1fr}
+ .ppt-process{grid-template-columns:repeat(3,1fr)}
+ .ppt-tech-grid,.ppt-chart-grid,.ppt-turn{grid-template-columns:1fr}
+ .ppt-score-grid{grid-template-columns:1fr}
+ .ppt-phase2-grid{grid-template-columns:1fr 1fr}
+ .ppt-ybi-flow{grid-template-columns:1fr 1fr}
+ .ppt-policy-grid,.ppt-output-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:620px){
+ .ppt-two,.ppt-choice-grid,.ppt-data-grid,.ppt-tech-grid,.ppt-chart-grid,.ppt-phase2-grid,.ppt-ybi-flow,.ppt-policy-grid,.ppt-output-grid,.ppt-limit-grid{grid-template-columns:1fr}
+ .ppt-process,.ppt-weight-grid{grid-template-columns:1fr 1fr}
+}
+
+
+/* =========================================================
+   PROJECT INTRO · WINTER Analytics 최신 UI 통일 테마
+   - 현재 프로젝트 소개 구성/스토리 구조 유지
+   - 최신 dashboard / HL / policy 페이지의 Wide + Light 톤 적용
+========================================================= */
+:root{
+  --teal:#3f63f3;
+  --teal2:#1eb9d0;
+  --soft:#edf4ff;
+  --navy:#101828;
+  --muted:#667085;
+  --bg:#eef5fb;
+  --white:#ffffff;
+  --line:#d4e0ec;
+  --orange:#f5a524;
+  --orange-soft:#fff7e8;
+  --green:#18a875;
+  --shadow:0 10px 30px rgba(31,54,85,.07);
+
+  --wa-bg:#eef5fb;
+  --wa-bg-2:#e9f1f8;
+  --wa-surface:#fbfdff;
+  --wa-surface-2:#f3f8fc;
+  --wa-ink:#101828;
+  --wa-muted:#667085;
+  --wa-line:#d4e0ec;
+  --wa-blue:#3f63f3;
+  --wa-blue-2:#3157e8;
+  --wa-cyan:#1eb9d0;
+  --wa-violet:#7c5cff;
+  --wa-amber:#f5a524;
+  --wa-green:#18a875;
+}
+
+body{
+  background:
+    radial-gradient(circle at 8% 0%, rgba(63,99,243,.08), transparent 28rem),
+    radial-gradient(circle at 96% 12%, rgba(30,185,208,.07), transparent 26rem),
+    linear-gradient(180deg,#f2f7fb 0%,#eaf2f8 100%) !important;
+  color:#101828 !important;
+}
+
+.wrap{
+  width:min(1500px,calc(100% - 32px)) !important;
+  max-width:none !important;
+  padding-left:0 !important;
+  padding-right:0 !important;
+}
+
+/* ---------- 최신 페이지와 동일 계열의 상단바 ---------- */
+.winter-topbar{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(250,252,255,.94);
+  border-bottom:1px solid #dbe5ef;
+  box-shadow:0 5px 20px rgba(31,54,85,.07);
+  backdrop-filter:blur(18px);
+}
+.winter-topbar-inner{
+  width:calc(100% - 32px);
+  margin:0 auto;
+  min-height:74px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+}
+.winter-brand{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  text-decoration:none;
+  color:#101828;
+  flex:none;
+}
+.winter-brand-mark{
+  width:39px;
+  height:39px;
+  border-radius:13px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,#4a6cf7,#27c1d7);
+  box-shadow:0 7px 18px rgba(63,99,243,.22);
+  font-size:17px;
+}
+.winter-brand-eyebrow{
+  display:block;
+  font-size:10px;
+  letter-spacing:.13em;
+  color:#5b73b8;
+  font-weight:800;
+}
+.winter-brand-name{
+  display:block;
+  font-size:14px;
+  font-weight:900;
+  color:#101828;
+  margin-top:1px;
+}
+.winter-brand-sub{
+  display:block;
+  font-size:10px;
+  color:#7a889b;
+  font-weight:700;
+  margin-top:2px;
+}
+.winter-stage-nav{
+  display:flex;
+  gap:6px;
+  padding:5px;
+  border:1px solid #d9e3ed;
+  border-radius:18px;
+  background:#edf3f8;
+  box-shadow:inset 0 1px 2px rgba(31,54,85,.04);
+}
+.winter-stage-link{
+  min-width:142px;
+  padding:9px 13px;
+  display:flex;
+  align-items:center;
+  gap:9px;
+  text-decoration:none;
+  border-radius:13px;
+  color:#66758a;
+  transition:.18s ease;
+}
+.winter-stage-link:hover{
+  color:#182230;
+  background:#f8fbff;
+}
+.winter-stage-link.active{
+  color:#fff;
+  background:linear-gradient(135deg,#4b6df4,#3157e8);
+  box-shadow:0 6px 16px rgba(49,87,232,.20);
+}
+.winter-stage-no{
+  width:25px;
+  height:25px;
+  border-radius:8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex:none;
+  background:rgba(63,99,243,.09);
+  font-size:10px;
+  font-weight:900;
+}
+.winter-stage-link.active .winter-stage-no{
+  background:rgba(255,255,255,.17);
+}
+.winter-stage-copy strong{
+  display:block;
+  font-size:12px;
+  line-height:1.2;
+  font-weight:900;
+}
+.winter-stage-copy small{
+  display:block;
+  font-size:9px;
+  margin-top:3px;
+  color:inherit;
+  opacity:.68;
+  white-space:nowrap;
+}
+.winter-context-chip{
+  color:#667085;
+  border:1px solid #d9e3ed;
+  background:#f6f9fc;
+  padding:9px 12px;
+  border-radius:12px;
+  font-size:11px;
+  line-height:1.35;
+  font-weight:800;
+  text-align:right;
+  flex:none;
+}
+.winter-context-chip strong{
+  color:#182230;
+  display:block;
+  font-size:12px;
+}
+
+/* ---------- 프로젝트 소개 HERO ---------- */
+.hero{
+  padding:58px 0 62px !important;
+  background:
+    radial-gradient(circle at 88% 18%,rgba(30,185,208,.12),transparent 20rem),
+    radial-gradient(circle at 72% 100%,rgba(63,99,243,.10),transparent 24rem),
+    linear-gradient(135deg,#f8fbff 0%,#edf5ff 55%,#e9f8fb 100%) !important;
+  border-bottom:1px solid #d4e0ec !important;
+}
+.eyebrow{
+  background:#e9f1ff !important;
+  border:1px solid #c8daf9 !important;
+  color:#3157e8 !important;
+}
+.hero h1{
+  color:#101828 !important;
+}
+.hero h1 span{
+  color:#3f63f3 !important;
+}
+.hero p{
+  color:#4f6074 !important;
+}
+
+/* ---------- 공통 섹션 ---------- */
+.section,
+.ppt-section{
+  background:transparent;
+}
+.section.white,
+.ppt-section.white{
+  background:rgba(251,253,255,.84) !important;
+  border-top:1px solid #d7e2ed !important;
+  border-bottom:1px solid #d7e2ed !important;
+}
+.ppt-section.soft{
+  background:
+    radial-gradient(circle at 92% 18%,rgba(30,185,208,.06),transparent 22rem),
+    linear-gradient(180deg,#edf4fb,#eaf2f8) !important;
+  border-color:#d4e0ec !important;
+}
+.kicker,
+.ppt-kicker,
+.preview-head .phase,
+.story-step .n,
+.ppt-data-card .num,
+.ppt-score-rank,
+.ppt-output .n{
+  color:#3f63f3 !important;
+}
+
+/* ---------- 카드/패널 ---------- */
+.story-step,
+.ppt-callout,
+.ppt-data-card,
+.ppt-tech,
+.ppt-chart,
+.ppt-weight,
+.ppt-score-card,
+.ppt-phase2-card,
+.ppt-policy-card,
+.ppt-output,
+.ppt-limit,
+.preview-panel,
+.preview-score-card,
+.extra-stat,
+.card,
+.dashboard-box,
+.region-card,
+.control,
+.recommend-item{
+  background:rgba(251,253,255,.92) !important;
+  border-color:#d4e0ec !important;
+  box-shadow:0 8px 24px rgba(31,54,85,.055) !important;
+}
+.story-step:hover,
+.ppt-data-card:hover,
+.ppt-score-card:hover,
+.ppt-policy-card:hover,
+.ppt-output:hover{
+  border-color:#b9caea !important;
+  transform:translateY(-1px);
+  transition:.18s ease;
+}
+
+/* ---------- 블루/시안 포인트 ---------- */
+.ppt-choice.selected{
+  background:#eaf1ff !important;
+  border-color:#b9cef7 !important;
+  color:#3157e8 !important;
+}
+.ppt-conclusion,
+.story-note,
+.ppt-insight,
+.preview-insight{
+  background:linear-gradient(135deg,#edf5ff,#edf9fb) !important;
+  border-left-color:#3f63f3 !important;
+  color:#40556d !important;
+}
+.ppt-formula{
+  background:linear-gradient(135deg,#f8fbff,#edf5ff) !important;
+  border-color:#cbdced !important;
+}
+.ppt-formula span,
+.ppt-weight b,
+.ppt-score-value,
+.region-card .value{
+  color:#3f63f3 !important;
+}
+.ppt-mini-fill,
+.fill{
+  background:linear-gradient(90deg,#3f63f3,#1eb9d0) !important;
+}
+
+/* ---------- 전환점: 최신 페이지처럼 다크 대신 밝은 AI/SaaS ---------- */
+.ppt-turn,
+.turning-card{
+  background:
+    radial-gradient(circle at 92% 12%,rgba(30,185,208,.10),transparent 16rem),
+    linear-gradient(135deg,#eef5ff,#f7fbff) !important;
+  color:#101828 !important;
+  border:1px solid #cbdced !important;
+  box-shadow:0 12px 32px rgba(31,54,85,.08) !important;
+}
+.ppt-turn-left,
+.turning-label{
+  background:linear-gradient(135deg,rgba(63,99,243,.10),rgba(30,185,208,.08)) !important;
+}
+.ppt-turn-left small,
+.turning-label small{
+  color:#3157e8 !important;
+}
+.ppt-turn-left strong,
+.turning-label strong{
+  color:#101828 !important;
+}
+.ppt-turn-right p,
+.turning-copy p{
+  color:#4f6074 !important;
+}
+
+/* ---------- 종합 분석 흐름 ---------- */
+.ppt-ybi-node,
+.integrated-node,
+.node{
+  background:#fbfdff !important;
+  border-color:#d4e0ec !important;
+  color:#101828 !important;
+}
+.ppt-ybi-node.or,
+.integrated-node.or,
+.node.or{
+  background:#fff7e8 !important;
+  border-color:#f3d7a5 !important;
+  color:#8a5710 !important;
+}
+.ppt-ybi-node.em,
+.integrated-node.em,
+.node.em{
+  background:linear-gradient(135deg,#4b6df4,#3157e8) !important;
+  border-color:#3157e8 !important;
+  color:#fff !important;
+}
+.ppt-phase2-card.warn{
+  background:#fff7e8 !important;
+  border-color:#f3d7a5 !important;
+}
+
+/* ---------- 최종 메시지 ---------- */
+.ppt-final{
+  background:
+    radial-gradient(circle at 92% 20%,rgba(30,185,208,.16),transparent 14rem),
+    linear-gradient(135deg,#3157e8,#496bf5) !important;
+  box-shadow:0 12px 28px rgba(49,87,232,.20);
+}
+.ppt-final small{color:#d8f6fa !important;}
+.ppt-final p{color:#eef5ff !important;}
+
+/* ---------- Footer ---------- */
+.footer{
+  color:#788aa2 !important;
+  border-top:1px solid #d7e2ed;
+  background:rgba(248,251,255,.55);
+}
+
+/* ---------- 반응형 ---------- */
+@media(max-width:1180px){
+  .winter-topbar-inner{flex-wrap:wrap;padding:12px 0;}
+  .winter-stage-nav{order:3;width:100%;overflow-x:auto;}
+  .winter-stage-link{flex:1;min-width:136px;}
+  .winter-context-chip{display:none;}
+}
+@media(max-width:680px){
+  .wrap{width:calc(100% - 28px) !important;}
+  .winter-brand-sub{display:none;}
+  .winter-stage-link{min-width:128px;}
+  .winter-stage-copy small{display:none;}
+}
+
+</style>
+
+<style id="project-intro-latest-frame">
+/* =========================================================
+   PROJECT INTRO · 최신 dashboard UI FRAME 동기화
+   - dashboard(4).html의 좌우 프레임 / 상단바 / 카드 폭 기준 적용
+========================================================= */
+:root{
+    --page-side-gap:128px;
+}
+
+/* dashboard 최신본과 동일한 데스크톱 좌우 여백 */
+.winter-topbar-inner,
+.winter-footer,
+.project-intro-main{
+    width:calc(100% - (var(--page-side-gap) * 2)) !important;
+    max-width:none !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+}
+
+/* 본문 시작/끝 간격도 dashboard와 맞춤 */
+.project-intro-main{
+    padding:32px 0 48px !important;
+}
+
+/* 기존 wrap이 별도 폭을 만들지 않도록: 바깥 프레임 하나만 사용 */
+.project-intro-main .wrap{
+    width:100% !important;
+    max-width:none !important;
+    padding-left:0 !important;
+    padding-right:0 !important;
+    margin-left:0 !important;
+    margin-right:0 !important;
+}
+
+/* 첫 소개 영역 = dashboard의 winter-page-hero 카드 프레임 */
+.project-intro-main .hero{
+    width:100% !important;
+    margin:0 0 32px !important;
+    padding:30px 32px !important;
+    border:1px solid #cbdced !important;
+    border-radius:24px !important;
+    box-shadow:0 12px 32px rgba(49,87,120,.08) !important;
+    background:
+        radial-gradient(circle at 88% 18%,rgba(30,185,208,.12),transparent 17rem),
+        radial-gradient(circle at 72% 100%,rgba(63,99,243,.10),transparent 20rem),
+        linear-gradient(135deg,#f8fbff 0%,#edf5ff 55%,#e9f8fb 100%) !important;
+}
+
+/* 큰 제목도 dashboard hero의 밀도와 비슷하게 */
+.project-intro-main .hero h1{
+    font-size:40px !important;
+    line-height:1.22 !important;
+    margin:16px 0 14px !important;
+    max-width:980px;
+}
+.project-intro-main .hero p{
+    max-width:1040px !important;
+    font-size:15px !important;
+    line-height:1.78 !important;
+    margin-bottom:0 !important;
+}
+
+/* 메인 소개 카드 5개는 hero 안쪽 하위 패널처럼 */
+.project-intro-main .story-strip{
+    margin-top:28px !important;
+    gap:12px !important;
+}
+.project-intro-main .story-step{
+    min-height:112px !important;
+    border-radius:16px !important;
+    background:rgba(255,255,255,.72) !important;
+    border:1px solid #d4e0ec !important;
+    box-shadow:0 5px 16px rgba(31,54,85,.045) !important;
+}
+
+/* 모든 발표 섹션을 dashboard의 패널 카드처럼 한 프레임 안에 배치 */
+.project-intro-main .ppt-section{
+    width:100% !important;
+    margin:0 0 32px !important;
+    padding:30px 32px !important;
+    border:1px solid #d4e0ec !important;
+    border-radius:24px !important;
+    box-shadow:0 8px 24px rgba(31,54,85,.055) !important;
+    background:rgba(251,253,255,.90) !important;
+}
+
+/* white/soft도 전체폭 밴드가 아니라 동일 카드 프레임 */
+.project-intro-main .ppt-section.white{
+    background:rgba(251,253,255,.94) !important;
+    border:1px solid #d4e0ec !important;
+}
+.project-intro-main .ppt-section.soft{
+    background:
+        radial-gradient(circle at 94% 16%,rgba(30,185,208,.06),transparent 19rem),
+        linear-gradient(135deg,#f8fbff,#edf5fb) !important;
+    border:1px solid #cfddea !important;
+}
+
+/* 섹션 제목 밀도도 최신 상세 페이지와 통일 */
+.project-intro-main .ppt-head{
+    margin-bottom:20px !important;
+}
+.project-intro-main .ppt-head h2{
+    font-size:28px !important;
+    line-height:1.3 !important;
+    margin:0 0 8px !important;
+}
+.project-intro-main .ppt-head p{
+    font-size:13px !important;
+    line-height:1.7 !important;
+    max-width:1000px !important;
+}
+
+/* 내부 카드 테두리/그림자도 최신 화면 수준으로 절제 */
+.project-intro-main .ppt-callout,
+.project-intro-main .ppt-data-card,
+.project-intro-main .ppt-tech,
+.project-intro-main .ppt-chart,
+.project-intro-main .ppt-weight,
+.project-intro-main .ppt-score-card,
+.project-intro-main .ppt-phase2-card,
+.project-intro-main .ppt-policy-card,
+.project-intro-main .ppt-output,
+.project-intro-main .ppt-limit{
+    box-shadow:0 5px 16px rgba(31,54,85,.045) !important;
+}
+
+/* footer도 dashboard와 동일 폭 */
+.winter-footer{
+    padding:22px 0 30px !important;
+    color:#788aa2 !important;
+    font-size:11px !important;
+    text-align:center !important;
+    border-top:1px solid rgba(148,163,184,.28) !important;
+}
+
+/* 1900px 이상에서도 dashboard와 같은 약 140px 여백 */
+@media (min-width:1900px){
+    :root{ --page-side-gap:140px; }
+}
+
+/* 중간 화면 */
+@media (max-width:1400px){
+    :root{ --page-side-gap:72px; }
+}
+
+/* 태블릿 */
+@media (max-width:1000px){
+    :root{ --page-side-gap:28px; }
+    .project-intro-main .hero h1{font-size:34px !important;}
+}
+
+/* 모바일 */
+@media (max-width:680px){
+    :root{ --page-side-gap:14px; }
+    .project-intro-main{padding-top:20px !important;}
+    .project-intro-main .hero,
+    .project-intro-main .ppt-section{
+        padding:24px 20px !important;
+        margin-bottom:20px !important;
+        border-radius:20px !important;
+    }
+    .project-intro-main .hero h1{font-size:29px !important;}
+}
+</style>
+
+
+<link rel="stylesheet" crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+
+
+<style id="winter-global-ui-font-v2">
+/* =========================================================
+   WINTER Analytics · Global UI / Font Consistency
+   모든 발표 페이지에서 동일한 헤더, 글꼴, 기본 타이포 사용
+========================================================= */
+
+:root{
+    --winter-font:'Pretendard','Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;
+    --winter-blue:#3f63f3;
+    --winter-blue-dark:#3157e8;
+    --winter-cyan:#1eb9d0;
+    --winter-ink:#101828;
+    --winter-muted:#667085;
+    --winter-line:#d4e0ec;
+    --winter-shell:#f8fbff;
+}
+
+/* 모든 HTML 요소의 폰트 기반 통일 */
+html, body,
+button, input, select, textarea,
+table, th, td,
+.winter-topbar,
+.winter-page-hero,
+.container{
+    font-family:var(--winter-font) !important;
+}
+
+body{
+    font-weight:400;
+    color:var(--winter-ink);
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+}
+
+/* =========================
+   공통 상단바
+========================= */
+.winter-topbar{
+    position:sticky !important;
+    top:0 !important;
+    z-index:100 !important;
+    width:100% !important;
+    background:rgba(250,252,255,.96) !important;
+    border-bottom:1px solid #dbe5ef !important;
+    box-shadow:0 5px 20px rgba(31,54,85,.07) !important;
+    backdrop-filter:blur(18px) !important;
+}
+
+.winter-topbar-inner{
+    width:calc(100% - (var(--page-side-gap,128px) * 2)) !important;
+    max-width:none !important;
+    min-height:74px !important;
+    margin:0 auto !important;
+    padding:0 !important;
+    display:grid !important;
+    grid-template-columns:1fr auto 1fr !important;
+    align-items:center !important;
+    column-gap:24px !important;
+}
+
+/* =========================
+   브랜드
+========================= */
+.winter-brand{
+    justify-self:start !important;
+    display:flex !important;
+    align-items:center !important;
+    gap:11px !important;
+    min-width:0 !important;
+    color:var(--winter-ink) !important;
+    text-decoration:none !important;
+}
+
+.winter-brand-mark{
+    width:39px !important;
+    height:39px !important;
+    flex:0 0 39px !important;
+    border-radius:13px !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    font-family:var(--winter-font) !important;
+    font-size:17px !important;
+    line-height:1 !important;
+    background:linear-gradient(135deg,#4a6cf7,#27c1d7) !important;
+    box-shadow:0 7px 18px rgba(63,99,243,.22) !important;
+}
+
+.winter-brand-copy{
+    display:grid !important;
+    grid-template-columns:auto 1fr !important;
+    grid-template-areas:
+        "eyebrow name"
+        "sub sub" !important;
+    align-items:baseline !important;
+    column-gap:5px !important;
+    row-gap:2px !important;
+    min-width:0 !important;
+}
+
+.winter-brand-eyebrow{
+    grid-area:eyebrow !important;
+    display:block !important;
+    margin:0 !important;
+    color:#5b73b8 !important;
+    font-family:var(--winter-font) !important;
+    font-size:10px !important;
+    line-height:1.15 !important;
+    font-weight:800 !important;
+    letter-spacing:.13em !important;
+    white-space:nowrap !important;
+}
+
+.winter-brand-name{
+    grid-area:name !important;
+    display:block !important;
+    margin:0 !important;
+    color:var(--winter-ink) !important;
+    font-family:var(--winter-font) !important;
+    font-size:14px !important;
+    line-height:1.2 !important;
+    font-weight:900 !important;
+    letter-spacing:-.02em !important;
+    white-space:nowrap !important;
+}
+
+.winter-brand-sub{
+    grid-area:sub !important;
+    display:block !important;
+    margin:0 !important;
+    color:#7a889b !important;
+    font-family:var(--winter-font) !important;
+    font-size:10px !important;
+    line-height:1.2 !important;
+    font-weight:600 !important;
+    letter-spacing:-.01em !important;
+    white-space:nowrap !important;
+}
+
+/* =========================
+   중앙 페이지 메뉴
+========================= */
+.winter-stage-nav{
+    justify-self:center !important;
+    display:flex !important;
+    align-items:stretch !important;
+    gap:5px !important;
+    margin:0 !important;
+    padding:5px !important;
+    border:1px solid #d9e3ed !important;
+    border-radius:18px !important;
+    background:#edf3f8 !important;
+    box-shadow:inset 0 1px 2px rgba(31,54,85,.04) !important;
+}
+
+.winter-stage-link{
+    min-width:128px !important;
+    min-height:48px !important;
+    padding:7px 10px !important;
+    display:flex !important;
+    align-items:center !important;
+    gap:8px !important;
+    border-radius:13px !important;
+    color:#66758a !important;
+    text-decoration:none !important;
+    box-sizing:border-box !important;
+    transition:.18s ease !important;
+}
+
+.winter-stage-link:hover{
+    color:#182230 !important;
+    background:#f8fbff !important;
+}
+
+.winter-stage-link.active{
+    color:#fff !important;
+    background:linear-gradient(135deg,#4b6df4,#3157e8) !important;
+    box-shadow:0 6px 16px rgba(49,87,232,.20) !important;
+}
+
+.winter-stage-no{
+    width:25px !important;
+    height:25px !important;
+    flex:0 0 25px !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    border-radius:8px !important;
+    background:rgba(63,99,243,.09) !important;
+    color:inherit !important;
+    font-family:var(--winter-font) !important;
+    font-size:10px !important;
+    line-height:1 !important;
+    font-weight:900 !important;
+}
+
+.winter-stage-link.active .winter-stage-no{
+    background:rgba(255,255,255,.17) !important;
+}
+
+.winter-stage-copy{
+    display:block !important;
+    min-width:0 !important;
+}
+
+.winter-stage-copy strong{
+    display:block !important;
+    margin:0 !important;
+    color:inherit !important;
+    font-family:var(--winter-font) !important;
+    font-size:12px !important;
+    line-height:1.22 !important;
+    font-weight:800 !important;
+    letter-spacing:-.025em !important;
+    white-space:nowrap !important;
+}
+
+.winter-stage-copy small{
+    display:block !important;
+    margin-top:3px !important;
+    color:inherit !important;
+    opacity:.68 !important;
+    font-family:var(--winter-font) !important;
+    font-size:9px !important;
+    line-height:1.15 !important;
+    font-weight:500 !important;
+    letter-spacing:-.015em !important;
+    white-space:nowrap !important;
+}
+
+/* =========================
+   우측 프로젝트 정보
+========================= */
+.winter-context-chip{
+    justify-self:end !important;
+    min-width:174px !important;
+    margin:0 !important;
+    padding:8px 11px !important;
+    box-sizing:border-box !important;
+    color:#667085 !important;
+    background:#f6f9fc !important;
+    border:1px solid #d9e3ed !important;
+    border-radius:12px !important;
+    font-family:var(--winter-font) !important;
+    font-size:10px !important;
+    line-height:1.35 !important;
+    font-weight:700 !important;
+    letter-spacing:-.015em !important;
+    text-align:center !important;
+    white-space:nowrap !important;
+}
+
+.winter-context-chip strong{
+    display:block !important;
+    margin-top:1px !important;
+    color:#182230 !important;
+    font-family:var(--winter-font) !important;
+    font-size:12px !important;
+    line-height:1.25 !important;
+    font-weight:900 !important;
+    letter-spacing:-.02em !important;
+}
+
+/* =========================
+   상세 페이지 HERO 타이포
+   (프로젝트 소개의 큰 메인 제목은 별도 유지)
+========================= */
+body:not(.project-intro-page) .winter-page-hero h1{
+    font-family:var(--winter-font) !important;
+    font-size:30px !important;
+    line-height:1.3 !important;
+    font-weight:900 !important;
+    letter-spacing:-.04em !important;
+}
+
+.winter-page-hero p,
+.winter-page-hero .hero-meta,
+.winter-step-badge{
+    font-family:var(--winter-font) !important;
+}
+
+.winter-step-badge{
+    font-size:11px !important;
+    line-height:1.2 !important;
+    font-weight:800 !important;
+    letter-spacing:-.015em !important;
+}
+
+.winter-page-hero p{
+    font-size:14px !important;
+    line-height:1.75 !important;
+    font-weight:400 !important;
+    letter-spacing:-.018em !important;
+}
+
+.winter-page-hero .hero-meta{
+    font-size:11px !important;
+    line-height:1.5 !important;
+    font-weight:600 !important;
+    letter-spacing:-.01em !important;
+}
+
+/* 제목/본문 계층의 기본 감도 통일 */
+h1,h2,h3,h4,h5,h6{
+    font-family:var(--winter-font) !important;
+    letter-spacing:-.035em;
+}
+p,span,a,button,select,input,textarea,th,td{
+    font-family:var(--winter-font) !important;
+}
+
+/* =========================
+   반응형
+========================= */
+@media (min-width:1900px){
+    .winter-topbar-inner{
+        width:calc(100% - 280px) !important;
+    }
+}
+
+@media (max-width:1400px){
+    .winter-topbar-inner{
+        width:calc(100% - 144px) !important;
+    }
+    .winter-stage-link{
+        min-width:116px !important;
+    }
+}
+
+@media (max-width:1120px){
+    .winter-topbar-inner{
+        width:calc(100% - 56px) !important;
+        padding:11px 0 !important;
+        display:flex !important;
+        flex-wrap:wrap !important;
+    }
+    .winter-brand{
+        margin-right:auto !important;
+    }
+    .winter-context-chip{
+        margin-left:auto !important;
+    }
+    .winter-stage-nav{
+        order:3 !important;
+        width:100% !important;
+        overflow-x:auto !important;
+        justify-content:flex-start !important;
+    }
+    .winter-stage-link{
+        flex:1 0 126px !important;
+    }
+}
+
+@media (max-width:680px){
+    .winter-topbar-inner{
+        width:calc(100% - 28px) !important;
+    }
+    .winter-context-chip{
+        display:none !important;
+    }
+    .winter-brand-sub{
+        display:none !important;
+    }
+    .winter-stage-copy small{
+        display:none !important;
+    }
+    .winter-stage-link{
+        min-height:42px !important;
+        padding:7px 9px !important;
+    }
+}
+</style>
+
+</head>
+<body class="project-intro-page">
+
+
+<header class="winter-topbar">
+    <div class="winter-topbar-inner">
+        <a href="/project-intro" class="winter-brand" aria-label="WINTER Analytics 프로젝트 소개">
+            <span class="winter-brand-mark">❄️</span>
+            <span class="winter-brand-copy">
+                <span class="winter-brand-eyebrow">WINTER</span>
+                <span class="winter-brand-name">WINTER Analytics</span>
+                <span class="winter-brand-sub">AI Bootcamp Mini Project · Gwangju 2030</span>
+            </span>
+        </a>
+
+        <nav class="winter-stage-nav" aria-label="주요 페이지 이동">
+            
+        <a href="/project-intro" class="winter-stage-link active">
+            <span class="winter-stage-no">00</span>
+            <span class="winter-stage-copy">
+                <strong>프로젝트 소개</strong>
+                <small>시작과 분석 흐름</small>
+            </span>
+        </a>
+        <a href="/dashboard" class="winter-stage-link">
+            <span class="winter-stage-no">01</span>
+            <span class="winter-stage-copy">
+                <strong>시각화 대시보드</strong>
+                <small>25개 동 데이터 비교</small>
+            </span>
+        </a>
+        <a href="/hl-dashboard" class="winter-stage-link">
+            <span class="winter-stage-no">02</span>
+            <span class="winter-stage-copy">
+                <strong>HL Score</strong>
+                <small>4가지 환경 통합 점수</small>
+            </span>
+        </a>
+        <a href="/policy-dashboard" class="winter-stage-link">
+            <span class="winter-stage-no">03</span>
+            <span class="winter-stage-copy">
+                <strong>종합 분석</strong>
+                <small>청년 유입·정착 지원 검토</small>
+            </span>
+        </a>
+        </nav>
+
+        <div class="winter-context-chip">
+            AI 부트캠프 미니프로젝트
+            <strong>광주 25개 동 · 2030 주거환경</strong>
+        </div>
+    </div>
+</header>
+
+<main class="project-intro-main">
+<section id="project-intro" class="hero">
+  <div class="wrap">
+<div class="eyebrow">💡 PROJECT START · 처음 우리가 세운 목표</div>
+    <h1>집값만이 아니라<br><span style="color:#3f63f3">실제로 살기 좋은 동네</span>를 데이터로 찾자</h1>
+    <p>
+      기존 부동산 서비스는 매물의 <b>가격·면적·위치</b>는 잘 보여주지만,
+      청년이 실제로 생활할 때 중요한 <b>교통·생활시설·2030 선호시설 접근성</b>까지
+      한눈에 비교하기는 어렵다고 보았습니다.
+      그래서 6개 미니프로젝트 주제 중 <b>인구통계 + 아파트 실거래가</b>를 선택하고,
+      여기에 생활 인프라와 교통, 청년 선호시설 데이터를 더해
+      <b>“2030 청년이 실제로 살기 좋은 지역을 같은 기준으로 비교해보자”</b>는 목표로 프로젝트를 시작했습니다.
+    </p>
+
+    <div style="margin-top:38px;font-size:14px;font-weight:900;color:var(--navy)">초기 구상에서 중요하게 본 3가지</div>
+    <div style="margin-top:6px;font-size:13px;color:var(--muted)">
+      첫 단계에서는 정책 결론이 아니라, 청년의 실제 주거환경을 설명할 수 있는 비교 기준을 만드는 데 집중했습니다.
+    </div>
+
+    <div class="story-strip" aria-label="프로젝트 초기 구상">
+      <div class="story-step">
+        <div class="n">01 · 문제 인식</div>
+        <b>가격만으로는 부족하다</b>
+        <span>임대료뿐 아니라 생활·교통·편의까지 함께 봐야 함</span>
+      </div>
+      <div class="story-step">
+        <div class="n">02 · 주제 선택</div>
+        <b>인구통계 + 아파트 실거래가</b>
+        <span>청년 수요와 실제 주거 부담을 함께 설명할 수 있는 데이터</span>
+      </div>
+      <div class="story-step">
+        <div class="n">03 · 초기 목표</div>
+        <b>청년이 살기 좋은 동네 비교</b>
+        <span>25개 동을 동일한 기준으로 비교할 수 있는 지표 만들기</span>
+      </div>
+      <div class="story-step">
+        <div class="n">04 · 함께 볼 요소</div>
+        <b>생활 · 선호 · 교통 · 주거</b>
+        <span>청년이 체감하는 주거환경을 4개 영역으로 구성</span>
+      </div>
+      <div class="story-step">
+        <div class="n">05 · 첫 결과물</div>
+        <b>HL Score</b>
+        <span>서로 다른 데이터를 하나의 상대 비교지표로 통합</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="ppt-section" id="intro-topic">
+  <div class="wrap">
+    <div class="ppt-head">
+      <div class="ppt-kicker">01 · WHY THIS TOPIC?</div>
+      <h2>왜 인구통계 + 아파트 실거래가였나</h2>
+      <p>6가지 미니프로젝트 주제 중 단순한 데이터 분석이 아니라, 실제 2030 청년 주거문제에 연결할 수 있는 주제를 선택했습니다.</p>
+    </div>
+
+    <div class="ppt-choice-grid">
+      <div class="ppt-choice selected">인구통계</div>
+      <div class="ppt-choice selected">아파트 실거래가</div>
+      <div class="ppt-choice">네이버 웹툰</div>
+      <div class="ppt-choice">K-POP</div>
+      <div class="ppt-choice">K-드라마</div>
+      <div class="ppt-choice">야구 & 날씨</div>
+    </div>
+
+    <div class="ppt-two">
+      <div class="ppt-callout">
+        <div class="label">기존 플랫폼의 한계</div>
+        <h3>매물 정보만으로는 “실제 생활”을 알기 어렵다</h3>
+        <p>직방·다방·네이버부동산은 매물의 가격·면적·위치는 잘 보여주지만, 청년이 일상에서 체감하는 교통·생활시설·선호시설 접근성까지 한눈에 비교하기는 어렵다고 보았습니다.</p>
+      </div>
+      <div class="ppt-callout">
+        <div class="label">우리의 문제 정의</div>
+        <h3>주거 만족은 임대료만으로 설명되지 않는다</h3>
+        <p>청년이 실제로 살기 좋은지를 보려면 주거비뿐 아니라 생활 인프라, 교통 접근성, 2030 선호시설까지 함께 비교해야 한다고 정의했습니다.</p>
+      </div>
+    </div>
+
+    <div class="ppt-conclusion"><b>초기 목표</b> · “싼 동네”가 아니라 <strong>“청년이 실제로 살기 좋은 동네”를 데이터로 찾자.</strong></div>
+  </div>
+</section>
+
+<section class="ppt-section white" id="intro-data">
+  <div class="wrap">
+    <div class="ppt-head">
+      <div class="ppt-kicker">02 · PHASE 1 DATA</div>
+      <h2>처음 수집한 데이터와 각각의 역할</h2>
+      <p>데이터를 많이 모으는 것이 목적이 아니라, 서로 다른 데이터가 청년 주거환경의 어떤 부분을 설명하는지 역할을 나눠 설계했습니다.</p>
+    </div>
+
+    <div class="ppt-data-grid">
+      <div class="ppt-data-card"><div class="num">01</div><h4>2030 청년 수요</h4><p>20대·30대 인구수와 비율을 통해 지역별 청년 분포를 확인했습니다.</p><div class="source">행정안전부 주민등록 인구통계</div></div>
+      <div class="ppt-data-card"><div class="num">02</div><h4>주거비</h4><p>전·월세 실거래와 보증금·월세를 이용해 실제 주거 부담을 비교했습니다.</p><div class="source">국토교통부 실거래 API</div></div>
+      <div class="ppt-data-card"><div class="num">03</div><h4>생활 인프라</h4><p>편의점·카페·병원·마트 등 일상생활에 필요한 시설 분포를 수집했습니다.</p><div class="source">Kakao Local API</div></div>
+      <div class="ppt-data-card"><div class="num">04</div><h4>2030 선호시설</h4><p>쇼핑·뷰티·영화·운동·문화 등 청년 체감시설을 별도로 세분화했습니다.</p><div class="source">Kakao Local API + 세부 검색</div></div>
+      <div class="ppt-data-card"><div class="num">05</div><h4>교통 접근성</h4><p>버스정류소·지하철·최근접 거리를 통해 이동 편의성을 비교했습니다.</p><div class="source">광주 BIS · 공식 정류소 데이터</div></div>
+      <div class="ppt-data-card"><div class="num">06</div><h4>공간 기준</h4><p>서로 다른 출처의 데이터를 프로젝트 선정 25개 행정동 기준으로 통합했습니다.</p><div class="source">동 중심좌표 · 자치구/행정동 매핑</div></div>
+    </div>
+
+    <div class="ppt-insight"><b>데이터 역할</b> · 인구는 “수요”, 실거래는 “부담”, 시설·교통은 “생활 가능성”을 설명했습니다.</div>
+  </div>
+</section>
+
+<section class="ppt-section soft" id="intro-process">
+  <div class="wrap">
+    <div class="ppt-head">
+      <div class="ppt-kicker">03 · DATA → HL SCORE</div>
+      <h2>서로 다른 데이터를 같은 기준으로 비교할 수 있게 만들었습니다</h2>
+      <p>원본 CSV/API 데이터를 25개 동 기준으로 매핑하고, 결측·중복·단위를 정리한 뒤 정규화와 가중합을 통해 HL Score로 변환했습니다.</p>
+    </div>
+
+    <div class="ppt-process">
+      <div class="ppt-process-step"><b>원본 데이터</b>CSV / API</div>
+      <div class="ppt-process-step"><b>행정동 매핑</b>25개 동 기준</div>
+      <div class="ppt-process-step"><b>전처리</b>결측 · 중복 · 단위</div>
+      <div class="ppt-process-step"><b>정규화</b>서로 다른 단위 비교</div>
+      <div class="ppt-process-step"><b>가중합</b>4개 영역 반영</div>
+      <div class="ppt-process-step"><b>HL Score</b>0~100 상대점수</div>
+    </div>
+
+    <div class="ppt-formula">HL = <span>생활 ×0.30</span> + 선호 ×0.25 + 교통 ×0.15 + <span>주거 ×0.30</span></div>
+
+    <div class="ppt-tech-grid">
+      <div class="ppt-tech">
+        <h4>사용 기술</h4>
+        <div class="ppt-badges">
+          <span class="ppt-badge">pandas</span><span class="ppt-badge">requests</span><span class="ppt-badge">numpy</span>
+          <span class="ppt-badge">matplotlib</span><span class="ppt-badge">Flask</span><span class="ppt-badge">os / json</span>
+        </div>
+      </div>
+      <div class="ppt-tech">
+        <h4>전처리에서 겪은 시행착오</h4>
+        <div class="ppt-issues">
+          <div class="ppt-issue"><b>행정동명 불일치</b><span>농성1동·농성제1동 등 명칭을 표준화</span></div>
+          <div class="ppt-issue"><b>첨단2동 행정구역</b><span>최종 북구 기준으로 통일</span></div>
+          <div class="ppt-issue"><b>카테고리 혼재</b><span>은행 등 혼합 시설을 후처리로 재분류</span></div>
+          <div class="ppt-issue"><b>버스 노선 매칭 0.54%</b><span>신뢰도가 낮아 정책판단에는 사용 보류</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ppt-insight">품질관리 원칙: <b>최종 CSV를 단일 기준 데이터로 사용</b>하고, 표본이 부족한 주거 데이터는 억지로 점수화하지 않았으며, 신뢰도가 낮은 데이터는 보류 이유를 함께 기록했습니다.</div>
+  </div>
+</section>
+
+<section class="ppt-section" id="intro-visualization">
+  <div class="wrap">
+    <div class="ppt-head">
+      <div class="ppt-kicker">04 · VISUALIZATION</div>
+      <h2>2030 청년 인구가 지역별로 다르게 분포하고 있었습니다</h2>
+      <p>시각화 단계에서는 먼저 지역별 인구와 인프라 차이를 확인했습니다. 아래는 메인 발표에서 보여주는 간략화된 인구 분포 예시입니다.</p>
+    </div>
+
+    <div class="ppt-chart-grid">
+      <div class="ppt-chart"><h4>2030 인구 상위 5개 동</h4><div class="caption">청년 인구가 상대적으로 많이 분포한 지역</div>
+        <div class="ppt-mini-row">
+          <span class="ppt-mini-name">수완동</span>
+          <div class="ppt-mini-track"><div class="ppt-mini-fill" style="width:100.0%"></div></div>
+          <b>16,643</b>
+        </div>
+
+        <div class="ppt-mini-row">
+          <span class="ppt-mini-name">첨단2동</span>
+          <div class="ppt-mini-track"><div class="ppt-mini-fill" style="width:74.0%"></div></div>
+          <b>12,308</b>
+        </div>
+
+        <div class="ppt-mini-row">
+          <span class="ppt-mini-name">용봉동</span>
+          <div class="ppt-mini-track"><div class="ppt-mini-fill" style="width:63.2%"></div></div>
+          <b>10,520</b>
+        </div>
+
+        <div class="ppt-mini-row">
+          <span class="ppt-mini-name">치평동</span>
+          <div class="ppt-mini-track"><div class="ppt-mini-fill" style="width:52.2%"></div></div>
+          <b>8,681</b>
+        </div>
+
+        <div class="ppt-mini-row">
+          <span class="ppt-mini-name">첨단1동</span>
+          <div class="ppt-mini-track"><div class="ppt-mini-fill" style="width:46.1%"></div></div>
+          <b>7,680</b>
+        </div></div>
+      <div class="ppt-chart"><h4>2030 인구 하위 5개 동</h4><div class="caption">후반부에서는 인구수뿐 아니라 비율도 함께 확인</div>
+        <div class="ppt-mini-row">
+          <span class="ppt-mini-name">지산2동</span>
+          <div class="ppt-mini-track"><div class="ppt-mini-fill low" style="width:6.8%"></div></div>
+          <b>1,132</b>
+        </div>
+
+        <div class="ppt-mini-row">
+          <span class="ppt-mini-name">방림1동</span>
+          <div class="ppt-mini-track"><div class="ppt-mini-fill low" style="width:7.5%"></div></div>
+          <b>1,255</b>
+        </div>
+
+        <div class="ppt-mini-row">
+          <span class="ppt-mini-name">학동</span>
+          <div class="ppt-mini-track"><div class="ppt-mini-fill low" style="width:9.8%"></div></div>
+          <b>1,639</b>
+        </div>
+
+        <div class="ppt-mini-row">
+          <span class="ppt-mini-name">지원1동</span>
+          <div class="ppt-mini-track"><div class="ppt-mini-fill low" style="width:11.2%"></div></div>
+          <b>1,870</b>
+        </div>
+
+        <div class="ppt-mini-row">
+          <span class="ppt-mini-name">송정1동</span>
+          <div class="ppt-mini-track"><div class="ppt-mini-fill low" style="width:13.4%"></div></div>
+          <b>2,234</b>
+        </div></div>
+    </div>
+
+    <div class="ppt-insight">이 단계에서 “청년이 많은 지역 = 좋은 지역”이라고 결론내린 것이 아니라, <b>지역마다 인구·생활·교통·주거 조건이 다르기 때문에 같은 기준으로 비교할 지표가 필요하다</b>는 점을 확인했습니다.</div>
+  </div>
+</section>
+
+<section class="ppt-section white" id="intro-hl">
+  <div class="wrap">
+    <div class="ppt-head">
+      <div class="ppt-kicker">05 · HL SCORE RESULT</div>
+      <h2>“살기 좋은 지역”을 HL Score로 비교했습니다</h2>
+      <p>생활·선호시설·교통·주거 가성비를 합쳐 25개 동을 동일한 기준에서 비교했습니다. HL Score는 공식 정책지표가 아니라 프로젝트 내부 상대지수입니다.</p>
+    </div>
+
+    <div class="ppt-weight-grid">
+      <div class="ppt-weight"><b>30%</b><span>생활 인프라</span></div>
+      <div class="ppt-weight"><b>25%</b><span>2030 선호시설</span></div>
+      <div class="ppt-weight"><b>15%</b><span>교통 접근성</span></div>
+      <div class="ppt-weight"><b>30%</b><span>주거 가성비</span></div>
+    </div>
+
+    <div class="ppt-score-grid">
+        <article class="ppt-score-card">
+          <div class="ppt-score-rank">HL TOP 1</div>
+          <h4>수완동 <small>광산구</small></h4>
+          <div class="ppt-score-value">75.6<span>점</span></div>
+          <div class="ppt-score-parts">
+            <span>생활 <b>65.2</b></span>
+            <span>선호 <b>70.3</b></span>
+            <span>교통 <b>58.0</b></span>
+            <span>주거 <b>99.1</b></span>
+          </div>
+        </article>
+
+        <article class="ppt-score-card">
+          <div class="ppt-score-rank">HL TOP 2</div>
+          <h4>충장동 <small>동구</small></h4>
+          <div class="ppt-score-value">75.0<span>점</span></div>
+          <div class="ppt-score-parts">
+            <span>생활 <b>78.3</b></span>
+            <span>선호 <b>87.4</b></span>
+            <span>교통 <b>87.8</b></span>
+            <span>주거 <b>54.9</b></span>
+          </div>
+        </article>
+
+        <article class="ppt-score-card">
+          <div class="ppt-score-rank">HL TOP 3</div>
+          <h4>치평동 <small>서구</small></h4>
+          <div class="ppt-score-value">69.3<span>점</span></div>
+          <div class="ppt-score-parts">
+            <span>생활 <b>81.9</b></span>
+            <span>선호 <b>68.0</b></span>
+            <span>교통 <b>64.7</b></span>
+            <span>주거 <b>60.1</b></span>
+          </div>
+        </article></div>
+    <div class="ppt-insight"><b>한 문장 해석</b> · 가격이 낮은 곳이 무조건 좋은 곳이 아니라, 생활·교통·선호시설과 주거비의 균형이 높은 지역이 상위권으로 나타났습니다.</div>
+  </div>
+</section>
+
+<section class="ppt-section" id="intro-turning">
+  <div class="wrap">
+    <div class="ppt-head">
+      <div class="ppt-kicker">06 · TURNING POINT</div>
+      <h2>HL Score를 만든 뒤 새로운 질문이 생겼습니다</h2>
+      <p>처음에는 개인 관점에서 청년이 살기 좋은 동네를 찾는 것이 목표였지만, 결과를 보면서 정책·지역 개선 관점으로 질문이 확장됐습니다.</p>
+    </div>
+
+    <div class="ppt-turn">
+      <div class="ppt-turn-left"><small>질문의 변화</small><strong>“이 점수를 청년 주거환경 개선에도 활용할 수 있지 않을까?”</strong></div>
+      <div class="ppt-turn-right"><p><b>개인 관점</b> · 청년이 살기 좋은 동네는 어디인가?<br><br><b>정책·지역 개선 관점</b> · 청년 주거환경 개선이 먼저 필요한 곳은 어디인가?<br><br>이 전환이 PHASE 2의 출발점이었습니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ppt-section white" id="intro-phase2">
+  <div class="wrap">
+    <div class="ppt-head">
+      <div class="ppt-kicker">07 · PHASE 2 DATA</div>
+      <h2>정책·지역 개선 관점으로 보기 위해 데이터를 추가 보완했습니다</h2>
+      <p>HL Score만으로는 공공지원 기반과 교통 공급을 충분히 설명하기 어려워, 청년 분포와 공공데이터를 추가했습니다.</p>
+    </div>
+
+    <div class="ppt-phase2-grid">
+      <div class="ppt-phase2-card"><div class="idx">01</div><h4>2030 선호시설 세분화</h4><p>쇼핑·뷰티·여가·문화·운동·패스트푸드 등 15개 컬럼으로 세분화</p></div>
+      <div class="ppt-phase2-card"><div class="idx">02</div><h4>공식 버스정류소</h4><p>25개 동 내부 570개 정류소를 교통 공급 수준의 보조지표로 활용</p></div>
+      <div class="ppt-phase2-card"><div class="idx">03</div><h4>청년 공공시설</h4><p>25개 동 내부 57개 시설로 청년 지원·공공서비스 접근성을 확인</p></div>
+      <div class="ppt-phase2-card"><div class="idx">04</div><h4>공공임대주택</h4><p>25개 동 내부 22,855세대를 주거 공급 기반의 보조지표로 확인</p></div>
+      <div class="ppt-phase2-card warn"><div class="idx">05 · 보류</div><h4>버스 노선 데이터</h4><p>노선·배차를 검토했지만 안전 매칭률 0.54%로 최종 판단에는 사용하지 않음</p></div>
+    </div>
+
+    <div class="ppt-insight"><b>보완 방향</b> · 단순한 “점수 순위”에서 끝내지 않고, <b>지역 간 균형 개선과 청년 유입·정착 지원 필요성</b>을 검토하는 방향으로 확장했습니다.</div>
+  </div>
+</section>
+
+<section class="ppt-section soft" id="intro-analysis">
+  <div class="wrap">
+    <div class="ppt-head">
+      <div class="ppt-kicker">08 · BALANCE / POLICY FRAME</div>
+      <h2>청년이 적은 지역도 살기 좋은 선택지가 될 수 있는가</h2>
+      <p>청년이 이미 많이 거주하는 지역에 공급을 더하는 방식이 아니라, <b>청년 인구수와 비율이 모두 상대적으로 낮은 지역</b>을 먼저 찾고 해당 지역의 주거·교통·생활환경 취약요인을 함께 보는 구조로 확장했습니다.</p>
+    </div>
+
+    <div class="ppt-ybi-flow">
+      <div class="ppt-ybi-node">2030 인구수 · 비율<br><span style="font-size:10px;color:var(--muted)">집중 / 저분포 확인</span></div>
+      <div class="ppt-ybi-node">HL Score<br><span style="font-size:10px;color:var(--muted)">현재 주거환경 수준</span></div>
+      <div class="ppt-ybi-node or">추가 공공데이터<br><span style="font-size:10px">시설 · 임대 · 정류소</span></div>
+      <div class="ppt-ybi-node">취약요인 분석<br><span style="font-size:10px;color:var(--muted)">생활 · 교통 · 주거</span></div>
+      <div class="ppt-ybi-node em">청년 유입·정착 지원<br><span style="font-size:10px;color:#dcf7f5">필요성 검토</span></div>
+    </div>
+
+    <div class="ppt-policy-grid">
+      <div class="ppt-policy-card"><div class="ico">🏪</div><h4>생활 인프라 보완</h4><p>의료·편의·문화 등 일상생활 조건이 상대적으로 약한 영역 확인</p></div>
+      <div class="ppt-policy-card"><div class="ico">🚌</div><h4>교통 접근성 점검</h4><p>정류소 수와 접근거리 외에 향후 배차·노선 다양성 추가 검증 필요</p></div>
+      <div class="ppt-policy-card"><div class="ico">🏘️</div><h4>공공임대·청년시설 연계</h4><p>지역의 공공 주거·청년 지원 기반을 보조적으로 확인</p></div>
+      <div class="ppt-policy-card"><div class="ico">🎯</div><h4>청년 분포 균형 모니터링</h4><p>특정 지역 쏠림 완화와 지역 간 주거환경 상향 평준화 방향 검토</p></div>
+    </div>
+
+    <div class="ppt-insight">이 결과는 특정 지역을 지원 대상으로 확정하는 자료가 아니라, <b>추가 행정자료와 현장검증이 필요한 1차 검토 기준</b>입니다.</div>
+  </div>
+</section>
+
+<section class="ppt-section white" id="intro-output">
+  <div class="wrap">
+    <div class="ppt-head">
+      <div class="ppt-kicker">09 · FINAL OUTPUT</div>
+      <h2>최종 결과물은 3개의 상세 웹페이지로 연결됩니다</h2>
+      <p>메인 페이지는 발표 스토리를 보여주고, 상단 메뉴를 통해 각 분석 결과를 상세하게 확인할 수 있도록 구성했습니다.</p>
+    </div>
+
+    <div class="ppt-output-grid">
+      <div class="ppt-output"><div class="n">01</div><h4>시각화 대시보드</h4><p>25개 동 지표 선택 · 정렬 · 차트/카드 비교를 통해 원자료 차이를 직접 확인</p></div>
+      <div class="ppt-output"><div class="n">02</div><h4>HL Score</h4><p>25개 동 세부점수 · 자치구 비교 · 가중치 기반 조건별 추천 기능 제공</p></div>
+      <div class="ppt-output"><div class="n">03</div><h4>종합 분석</h4><p>청년 분포 · 정책 보조지표 · 취약요인 · 해석 한계와 근거를 함께 제공</p></div>
+    </div>
+
+    <div class="ppt-insight"><b>품질관리</b> · 검증 완료된 최종 CSV를 단일 기준 데이터로 사용해 화면 간 결과 일관성을 유지합니다.</div>
+  </div>
+</section>
+
+<section class="ppt-section" id="intro-limit">
+  <div class="wrap">
+    <div class="ppt-head">
+      <div class="ppt-kicker">10 · LIMITATIONS & NEXT</div>
+      <h2>정책 제안으로 사용하려면 추가 검증이 필요합니다</h2>
+      <p>분석의 한계를 명확하게 제시하는 것이 결과의 신뢰성을 높인다고 판단했습니다.</p>
+    </div>
+
+    <div class="ppt-limit-grid">
+      <div class="ppt-limit"><b>분석 범위</b><span>광주 전체가 아니라 프로젝트 선정 25개 동의 상대 비교입니다.</span></div>
+      <div class="ppt-limit"><b>시설 데이터</b><span>개수 중심이므로 실제 이용량·품질·운영시간은 별도 확인이 필요합니다.</span></div>
+      <div class="ppt-limit"><b>공공임대</b><span>세대수는 청년 전용 물량이나 현재 입주 가능한 공실을 의미하지 않습니다.</span></div>
+      <div class="ppt-limit"><b>교통 데이터</b><span>정류소 수만으로 배차간격·노선 다양성·운행시간까지 설명할 수 없습니다.</span></div>
+    </div>
+
+    <div class="ppt-final">
+      <small>FINAL MESSAGE</small>
+      <h3>우리 프로젝트의 핵심은 데이터 수집량이 아니라, 데이터로 질문을 확장한 과정입니다.</h3>
+      <p>HL Score는 “이미 살기 좋은 지역을 찾는 출발점”이었고, 이후에는 청년 인구가 적은 지역도 살기 좋은 선택지가 될 수 있도록 지역 간 균형 개선과 청년 유입·정착 지원 필요성을 검토하는 방향으로 확장했습니다.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="winter-footer">WINTER Analytics · PROJECT INTRO · AI Bootcamp Mini Project · 2026</footer>
+
+</body>
+</html>

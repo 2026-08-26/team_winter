@@ -2250,6 +2250,579 @@ html{
 }
 </style>
 
+
+<style id="project-intro-quality-section-v9">
+/* =========================================================
+   09 · DATA QUALITY CHECK
+   기존 메인 스토리와 동일한 visual language로 연결
+   ========================================================= */
+
+.ppt-quality-rule-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+  margin-top:26px;
+}
+
+.ppt-quality-rule{
+  min-height:220px;
+  padding:22px;
+  border:1px solid #d3e0eb;
+  border-radius:18px;
+  background:rgba(255,255,255,.90);
+  box-shadow:0 8px 22px rgba(39,64,96,.055);
+}
+
+.ppt-quality-rule.good{
+  border-top:4px solid #20a36a;
+}
+
+.ppt-quality-rule.caution{
+  border-top:4px solid #e1a12f;
+}
+
+.ppt-quality-rule.stop{
+  border-top:4px solid #e36767;
+}
+
+.rule-step{
+  width:30px;
+  height:30px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:9px;
+  background:#edf3ff;
+  color:#3f63f3;
+  font-size:10px;
+  font-weight:900;
+}
+
+.rule-count{
+  margin-top:18px;
+  color:#101828;
+  font-size:28px;
+  line-height:1;
+  font-weight:900;
+}
+
+.ppt-quality-rule h4{
+  margin:7px 0 8px;
+  color:#17243a;
+  font-size:15px;
+}
+
+.ppt-quality-rule p{
+  margin:0;
+  color:#66778c;
+  font-size:11px;
+  line-height:1.72;
+}
+
+.rule-status{
+  display:inline-flex;
+  margin-top:16px;
+  padding:6px 9px;
+  border-radius:999px;
+  background:#f3f6f9;
+  color:#5f7187;
+  font-size:9px;
+  font-weight:900;
+}
+
+.ppt-quality-rule.good .rule-status{
+  background:#eaf8f1;
+  color:#18704c;
+}
+
+.ppt-quality-rule.caution .rule-status{
+  background:#fff6df;
+  color:#95620f;
+}
+
+.ppt-quality-rule.stop .rule-status{
+  background:#fff0f0;
+  color:#b14c4c;
+}
+
+
+.ppt-quality-cleaning{
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  gap:24px;
+  align-items:center;
+  margin-top:22px;
+  padding:24px;
+  border:1px solid #cadbea;
+  border-radius:20px;
+  background:
+    radial-gradient(circle at 90% 20%,rgba(30,185,208,.08),transparent 16rem),
+    linear-gradient(135deg,#f8fbff,#eef6fb);
+}
+
+.quality-label{
+  color:#3f63f3;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.05em;
+}
+
+.quality-cleaning-copy h3,
+.ppt-quality-excluded-head h3{
+  margin:6px 0 8px;
+  color:#142239;
+  font-size:18px;
+  line-height:1.45;
+}
+
+.quality-cleaning-copy p{
+  margin:0;
+  color:#68798e;
+  font-size:11px;
+  line-height:1.72;
+}
+
+.quality-cleaning-flow{
+  display:grid;
+  grid-template-columns:1fr 34px 1fr;
+  align-items:center;
+  gap:8px;
+}
+
+.quality-flow-card{
+  min-height:124px;
+  padding:18px;
+  border-radius:16px;
+  border:1px solid #d7e2ec;
+  background:#fff;
+}
+
+.quality-flow-card small{
+  display:block;
+  color:#7b8b9e;
+  font-size:9px;
+  font-weight:800;
+}
+
+.quality-flow-card strong{
+  display:block;
+  margin:8px 0 5px;
+  color:#142137;
+  font-size:27px;
+}
+
+.quality-flow-card span{
+  color:#64758a;
+  font-size:10px;
+  font-weight:800;
+}
+
+.quality-flow-card.excluded{
+  border-top:3px solid #d97a7a;
+}
+
+.quality-flow-card.used{
+  border-top:3px solid #3f63f3;
+}
+
+.quality-flow-arrow{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#8ba0b6;
+  font-size:22px;
+  font-weight:900;
+}
+
+
+.ppt-quality-excluded-head{
+  margin-top:26px;
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.ppt-quality-excluded-head > span{
+  flex:0 0 auto;
+  padding:7px 10px;
+  border-radius:999px;
+  background:#fff1f1;
+  color:#a64f4f;
+  border:1px solid #efd1d1;
+  font-size:9px;
+  font-weight:900;
+}
+
+.ppt-quality-dong-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-top:12px;
+}
+
+.ppt-quality-dong{
+  padding:17px 18px;
+  border-radius:16px;
+  border:1px solid #d5e1eb;
+  background:rgba(255,255,255,.90);
+}
+
+.ppt-quality-dong small{
+  display:block;
+  color:#8492a3;
+  font-size:8px;
+  font-weight:800;
+}
+
+.ppt-quality-dong strong{
+  display:block;
+  margin-top:3px;
+  color:#17243a;
+  font-size:14px;
+}
+
+.ppt-quality-dong b{
+  display:block;
+  margin-top:11px;
+  color:#d05252;
+  font-size:23px;
+}
+
+.ppt-quality-reference{
+  margin-top:16px;
+  padding:16px 18px;
+  display:flex;
+  gap:13px;
+  align-items:flex-start;
+  border:1px solid #cddcea;
+  border-left:4px solid #4f6ef7;
+  border-radius:14px;
+  background:#f4f8fd;
+}
+
+.quality-reference-icon{
+  width:30px;
+  height:30px;
+  flex:0 0 30px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:10px;
+  background:#e7eeff;
+  color:#3f63f3;
+  font-weight:900;
+}
+
+.ppt-quality-reference b{
+  display:block;
+  color:#24354d;
+  font-size:11px;
+}
+
+.ppt-quality-reference p{
+  margin:5px 0 0;
+  color:#63748a;
+  font-size:10px;
+  line-height:1.7;
+}
+
+@media(max-width:1000px){
+  .ppt-quality-rule-grid,
+  .ppt-quality-cleaning{
+    grid-template-columns:1fr;
+  }
+
+  .ppt-quality-dong-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:680px){
+  .ppt-quality-dong-grid{
+    grid-template-columns:1fr;
+  }
+
+  .quality-cleaning-flow{
+    grid-template-columns:1fr;
+  }
+
+  .quality-flow-arrow{
+    transform:rotate(90deg);
+  }
+}
+</style>
+
+
+<style id="project-intro-method-section-v10">
+/* =========================================================
+   10 · METHOD & SOURCES
+   1 > 4 > 3 > 2 순서의 4블록 구성
+   ========================================================= */
+
+.ppt-method-order{
+  margin-top:24px;
+  padding:12px 14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  border:1px solid #d5e1eb;
+  border-radius:14px;
+  background:rgba(255,255,255,.70);
+}
+
+.ppt-method-order span{
+  padding:6px 9px;
+  border-radius:999px;
+  background:#eef4ff;
+  color:#3e5fc7;
+  font-size:9px;
+  font-weight:900;
+}
+
+.ppt-method-order i{
+  color:#8da0b6;
+  font-style:normal;
+  font-size:12px;
+  font-weight:900;
+}
+
+.ppt-method-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin-top:18px;
+}
+
+.ppt-method-card{
+  min-height:330px;
+  padding:22px;
+  border:1px solid #d3e0eb;
+  border-radius:20px;
+  background:rgba(255,255,255,.90);
+  box-shadow:0 8px 24px rgba(44,68,98,.055);
+}
+
+.ppt-method-card.source{border-top:4px solid #4f6ef7;}
+.ppt-method-card.housing{border-top:4px solid #23a7be;}
+.ppt-method-card.hl{border-top:4px solid #7258dc;}
+.ppt-method-card.youth{border-top:4px solid #3990d0;}
+
+.ppt-method-card-head{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  margin-bottom:16px;
+}
+
+.method-no{
+  width:34px;
+  height:34px;
+  flex:0 0 34px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:10px;
+  background:#edf3ff;
+  color:#3f63f3;
+  font-size:10px;
+  font-weight:900;
+}
+
+.ppt-method-card-head small{
+  display:block;
+  color:#8391a2;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.06em;
+}
+
+.ppt-method-card-head h3{
+  margin:2px 0 0;
+  color:#16243a;
+  font-size:15px;
+}
+
+.ppt-source-list{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+
+.ppt-source-list > div{
+  min-height:72px;
+  padding:10px 11px;
+  border:1px solid #e0e7ef;
+  border-radius:11px;
+  background:#f8fafc;
+}
+
+.ppt-source-list b{
+  display:block;
+  color:#25364e;
+  font-size:9px;
+}
+
+.ppt-source-list span{
+  display:block;
+  margin-top:4px;
+  color:#6c7c90;
+  font-size:8px;
+  line-height:1.5;
+}
+
+.method-copy{
+  margin:0;
+  color:#63748a;
+  font-size:10px;
+  line-height:1.7;
+}
+
+.method-formula{
+  margin-top:14px;
+  padding:14px;
+  border:1px solid #cdddea;
+  border-radius:13px;
+  background:#eef7fb;
+  color:#5f7185;
+  font-size:9px;
+  line-height:1.55;
+}
+
+.method-formula strong{
+  color:#18334b;
+  font-size:14px;
+}
+
+.method-pair{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:12px;
+}
+
+.method-pair > div{
+  padding:12px;
+  border-radius:12px;
+  border:1px solid #dce5ed;
+}
+
+.method-pair .minus{background:#fff5f5;}
+.method-pair .plus{background:#eef8f4;}
+
+.method-pair small{
+  display:block;
+  color:#748499;
+  font-size:8px;
+}
+
+.method-pair b{
+  display:block;
+  margin-top:4px;
+  color:#18273e;
+  font-size:20px;
+}
+
+.method-note{
+  margin:12px 0 0;
+  color:#8592a2;
+  font-size:8px;
+  line-height:1.55;
+}
+
+.method-weight-list{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-bottom:14px;
+}
+
+.method-weight-list > div{
+  padding:12px;
+  border:1px solid #dce5ef;
+  border-radius:11px;
+  background:#f7f9fc;
+}
+
+.method-weight-list span{
+  display:block;
+  color:#6f7f93;
+  font-size:8px;
+}
+
+.method-weight-list b{
+  display:block;
+  margin-top:3px;
+  color:#3157e8;
+  font-size:19px;
+}
+
+.method-note-box{
+  margin-top:13px;
+  padding:12px 13px;
+  border-left:3px solid #7258dc;
+  border-radius:10px;
+  background:#f4f1ff;
+  color:#64748a;
+  font-size:9px;
+  line-height:1.65;
+}
+
+.method-median-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:14px;
+}
+
+.method-median-grid > div{
+  padding:13px;
+  border:1px solid #d8e4ee;
+  border-radius:12px;
+  background:#f7fbfe;
+}
+
+.method-median-grid small{
+  display:block;
+  color:#718299;
+  font-size:8px;
+}
+
+.method-median-grid b{
+  display:block;
+  margin-top:3px;
+  color:#1a2b42;
+  font-size:20px;
+}
+
+.method-condition{
+  margin-top:11px;
+  padding:12px 13px;
+  border-radius:11px;
+  background:#eaf3ff;
+  color:#4e627b;
+  font-size:9px;
+  line-height:1.6;
+}
+
+@media(max-width:1000px){
+  .ppt-method-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:680px){
+  .ppt-source-list,
+  .method-pair,
+  .method-weight-list,
+  .method-median-grid{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+
 </head>
 <body class="project-intro-page">
 <header class="winter-topbar">
@@ -2376,17 +2949,25 @@ html{
     <button type="button"
             class="winter-section-dot"
             data-target="intro-output"
-            aria-label="09 · FINAL OUTPUT"
-            title="09 · FINAL OUTPUT"></button>
-    <span class="winter-section-dot-label">09 · FINAL OUTPUT</span>
+            aria-label="09 · DATA QUALITY"
+            title="09 · DATA QUALITY"></button>
+    <span class="winter-section-dot-label">09 · DATA QUALITY</span>
+  </span>
+  <span class="winter-section-dot-wrap">
+    <button type="button"
+            class="winter-section-dot"
+            data-target="intro-method"
+            aria-label="10 · METHOD & SOURCES"
+            title="10 · METHOD & SOURCES"></button>
+    <span class="winter-section-dot-label">10 · METHOD & SOURCES</span>
   </span>
   <span class="winter-section-dot-wrap">
     <button type="button"
             class="winter-section-dot"
             data-target="intro-limit"
-            aria-label="10 · LIMITATIONS"
-            title="10 · LIMITATIONS"></button>
-    <span class="winter-section-dot-label">10 · LIMITATIONS</span>
+            aria-label="11 · LIMITATIONS"
+            title="11 · LIMITATIONS"></button>
+    <span class="winter-section-dot-label">11 · LIMITATIONS</span>
   </span>
 </nav>
 
@@ -2689,22 +3270,301 @@ html{
 <div class="ppt-insight">이 결과는 특정 지역을 지원 대상으로 확정하는 자료가 아니라, <b>추가 행정자료와 현장검증이 필요한 1차 검토 기준</b>입니다.</div>
 </div>
 <a aria-label="종합 분석 페이지 보기" class="story-float-cta" href="/policy-dashboard"><span class="cta-kicker">STEP 03</span><strong>종합 분석 페이지 보기</strong><span class="cta-arrow">↗</span></a></section>
-<section class="ppt-section white story-chapter" data-chapter="09" data-label="FINAL OUTPUT" id="intro-output">
+<section class="ppt-section white story-chapter" data-chapter="09" data-label="DATA QUALITY" id="intro-output">
 <div class="wrap">
+
 <div class="ppt-head">
-<div class="ppt-kicker">09 · FINAL OUTPUT</div>
-<h2>최종 결과물은 3개의 상세 웹페이지로 연결됩니다</h2>
-<p>메인 페이지는 발표 스토리를 보여주고, 상단 메뉴를 통해 각 분석 결과를 상세하게 확인할 수 있도록 구성했습니다.</p>
+<div class="ppt-kicker">09 · DATA QUALITY CHECK</div>
+<h2>점수보다 먼저, 주거 데이터가 믿을 만한지 확인했습니다</h2>
+<p>
+  HL Score를 정책 해석까지 연결하려면 <b>주거비 표본이 충분한 지역과 부족한 지역을 같은 기준으로 비교하면 안 됩니다.</b>
+  그래서 민간임대 거래 건수에 따라 주거가성비 점수를 사용할 수 있는 범위를 먼저 정하고,
+  표본이 부족한 지역은 억지로 순위에 포함하지 않았습니다.
+</p>
 </div>
-<div class="ppt-output-grid">
-<div class="ppt-output"><div class="n">01</div><h4>시각화 대시보드</h4><p>25개 동 지표 선택 · 정렬 · 차트/카드 비교를 통해 원자료 차이를 직접 확인</p></div>
-<div class="ppt-output"><div class="n">02</div><h4>HL Score</h4><p>25개 동 세부점수 · 자치구 비교 · 가중치 기반 조건별 추천 기능 제공</p></div>
-<div class="ppt-output"><div class="n">03</div><h4>종합 분석</h4><p>청년 분포 · 정책 보조지표 · 취약요인 · 해석 한계와 근거를 함께 제공</p></div>
+
+<div class="ppt-quality-rule-grid">
+
+  <article class="ppt-quality-rule good">
+    <div class="rule-step">01</div>
+    <div class="rule-count">20건 이상</div>
+    <h4>정상 표본</h4>
+    <p>민간임대 거래 표본이 충분하다고 보고 <b>주거가성비 점수를 정상적으로 사용</b>합니다.</p>
+    <span class="rule-status">점수 사용</span>
+  </article>
+
+  <article class="ppt-quality-rule caution">
+    <div class="rule-step">02</div>
+    <div class="rule-count">5~19건</div>
+    <h4>주의 표본</h4>
+    <p>값은 사용하되 표본이 적다는 점을 알 수 있도록 <b>“데이터 적음 · 주의”</b>를 함께 표시합니다.</p>
+    <span class="rule-status">주의 표시 후 사용</span>
+  </article>
+
+  <article class="ppt-quality-rule stop">
+    <div class="rule-step">03</div>
+    <div class="rule-count">0~4건</div>
+    <h4>데이터 부족</h4>
+    <p>주거비를 대표하기 어렵다고 판단해 <b>주거가성비 점수에 사용하지 않고 HL 비교에서 제외</b>합니다.</p>
+    <span class="rule-status">HL 비교 제외</span>
+  </article>
+
 </div>
-<div class="ppt-insight"><b>품질관리</b> · 검증 완료된 최종 CSV를 단일 기준 데이터로 사용해 화면 간 결과 일관성을 유지합니다.</div>
+
+<div class="ppt-quality-cleaning">
+
+  <div class="quality-cleaning-copy">
+    <div class="quality-label">주거 데이터 정리</div>
+    <h3>공공임대 거래를 빼고, 민간임대 거래만으로 주거비를 다시 계산했습니다</h3>
+    <p>
+      공공임대는 일반 민간 임대시장과 가격 구조가 다르기 때문에 그대로 섞으면
+      지역의 실제 민간 주거비 부담이 왜곡될 수 있다고 판단했습니다.
+    </p>
+  </div>
+
+  <div class="quality-cleaning-flow">
+    <div class="quality-flow-card excluded">
+      <small>HL 주거비에서 제외</small>
+      <strong>1,819건</strong>
+      <span>공공임대 실거래</span>
+    </div>
+
+    <div class="quality-flow-arrow">→</div>
+
+    <div class="quality-flow-card used">
+      <small>주거가성비 계산에 사용</small>
+      <strong>3,496건</strong>
+      <span>민간임대 실거래</span>
+    </div>
+  </div>
+
+</div>
+
+<div class="ppt-quality-excluded-head">
+  <div>
+    <div class="quality-label">표본 부족으로 HL 비교에서 제외한 지역</div>
+    <h3>민간임대 거래가 5건 미만인 4개 동은 순위 해석에서 제외했습니다</h3>
+  </div>
+  <span>총 4개 동</span>
+</div>
+
+<div class="ppt-quality-dong-grid">
+
+  <div class="ppt-quality-dong">
+    <small>북구</small>
+    <strong>수완동</strong>
+    <b>0건</b>
+  </div>
+
+  <div class="ppt-quality-dong">
+    <small>남구</small>
+    <strong>송암동</strong>
+    <b>0건</b>
+  </div>
+
+  <div class="ppt-quality-dong">
+    <small>남구</small>
+    <strong>방림1동</strong>
+    <b>2건</b>
+  </div>
+
+  <div class="ppt-quality-dong">
+    <small>북구</small>
+    <strong>두암2동</strong>
+    <b>1건</b>
+  </div>
+
+</div>
+
+<div class="ppt-quality-reference">
+  <div class="quality-reference-icon">!</div>
+  <div>
+    <b>그럼 이 4개 동의 HL Score는 어떻게 표시했나?</b>
+    <p>
+      주거비 30%를 제외하고 <strong>생활·2030 선호시설·교통 70%를 다시 100%로 재가중한 참고값</strong>으로만 표시했습니다.
+      최종 HL 순위와 정책 비교에서는 제외합니다.
+    </p>
+  </div>
+</div>
+
+<div class="ppt-insight">
+  <b>품질관리 원칙</b> · 표본이 부족한 값을 억지로 채우거나 같은 조건으로 순위화하지 않았습니다.
+  이렇게 데이터 신뢰도를 먼저 구분한 뒤, 다음 섹션에서 분석 결과를 해석할 때의 추가 한계까지 명확히 제시합니다.
+</div>
+
 </div>
 </section>
-<section class="ppt-section story-chapter" data-chapter="10" data-label="LIMITATIONS" id="intro-limit">
+
+<section class="ppt-section story-chapter" data-chapter="10" data-label="METHOD & SOURCES" id="intro-method">
+<div class="wrap">
+
+<div class="ppt-head">
+<div class="ppt-kicker">10 · METHOD & SOURCES</div>
+<h2>어떤 데이터를 쓰고, 어떤 기준으로 계산했는지 한 번에 정리했습니다</h2>
+<p>
+  앞에서 데이터 품질을 확인했다면, 이제 <b>분석이 어떤 근거와 가정을 거쳐 만들어졌는지</b>를 정리할 차례입니다.
+  흐름은 <strong>데이터 출처 → 주거비 계산 → HL Score → 청년이 상대적으로 적은 지역 기준</strong> 순서입니다.
+</p>
+</div>
+
+<div class="ppt-method-order">
+  <span>01 데이터 출처</span>
+  <i>→</i>
+  <span>04 주거비 계산</span>
+  <i>→</i>
+  <span>03 HL Score</span>
+  <i>→</i>
+  <span>02 청년 상대취약 기준</span>
+</div>
+
+<div class="ppt-method-grid">
+
+  <!-- ① 주요 데이터 출처 -->
+  <article class="ppt-method-card source">
+    <div class="ppt-method-card-head">
+      <span class="method-no">01</span>
+      <div>
+        <small>DATA SOURCES</small>
+        <h3>주요 데이터 출처</h3>
+      </div>
+    </div>
+
+    <div class="ppt-source-list">
+      <div>
+        <b>2030 청년 인구</b>
+        <span>행정안전부 주민등록 인구통계 · 20대·30대 인구</span>
+      </div>
+      <div>
+        <b>생활 인프라·청년 선호시설</b>
+        <span>Kakao Local API + 프로젝트 수집 데이터</span>
+      </div>
+      <div>
+        <b>주거비</b>
+        <span>국토교통부 실거래 API · 2025-07~2026-06 · 전용 59.5㎡ 이하 전·월세</span>
+      </div>
+      <div>
+        <b>청년 공공시설</b>
+        <span>광주청년통합플랫폼 청년 공간 목록 → 좌표·행정동 연결</span>
+      </div>
+      <div>
+        <b>공공임대</b>
+        <span>국토교통부 마이홈포털 공공임대주택 단지정보</span>
+      </div>
+      <div>
+        <b>공식 버스정류소</b>
+        <span>2025-12-31 기준 광주 버스정류소 현황 → 행정동별 집계</span>
+      </div>
+    </div>
+  </article>
+
+  <!-- ④ 주거비 계산 기준 -->
+  <article class="ppt-method-card housing">
+    <div class="ppt-method-card-head">
+      <span class="method-no">04</span>
+      <div>
+        <small>HOUSING COST</small>
+        <h3>주거비 계산 기준</h3>
+      </div>
+    </div>
+
+    <p class="method-copy">
+      전세와 월세를 같은 기준으로 비교하기 위해 보증금을 연 <b>5%</b>로 환산해 월 비용으로 변환했습니다.
+    </p>
+
+    <div class="method-formula">
+      월환산 주거비<br>
+      <strong>= 월세 + 보증금 × 0.05 ÷ 12</strong>
+    </div>
+
+    <div class="method-pair">
+      <div class="minus">
+        <small>공공임대 거래 제외</small>
+        <b>1,819건</b>
+      </div>
+      <div class="plus">
+        <small>민간임대 계산 사용</small>
+        <b>3,496건</b>
+      </div>
+    </div>
+
+    <p class="method-note">
+      ※ 5%는 공식 법정 환산율이 아니라 프로젝트 내부 비교를 위한 가정입니다.
+    </p>
+  </article>
+
+  <!-- ③ HL 점수 계산 기준 -->
+  <article class="ppt-method-card hl">
+    <div class="ppt-method-card-head">
+      <span class="method-no">03</span>
+      <div>
+        <small>HL SCORE</small>
+        <h3>HL Score 계산 기준</h3>
+      </div>
+    </div>
+
+    <div class="method-weight-list">
+      <div><span>생활 인프라</span><b>30%</b></div>
+      <div><span>2030 선호시설</span><b>25%</b></div>
+      <div><span>교통 접근성</span><b>15%</b></div>
+      <div><span>주거 가성비</span><b>30%</b></div>
+    </div>
+
+    <p class="method-copy">
+      가중치는 설문이나 공식 정책 기준이 아닌 <b>프로젝트 분석 가정</b>입니다.
+    </p>
+
+    <div class="method-note-box">
+      2030 인구비율 · 청년 공공시설 · 공공임대 · 공식 정류소는
+      <strong>HL Score에 합산하지 않고 정책 보조지표로 분리</strong>했습니다.
+    </div>
+  </article>
+
+  <!-- ② 청년이 상대적으로 적은 지역 기준 -->
+  <article class="ppt-method-card youth">
+    <div class="ppt-method-card-head">
+      <span class="method-no">02</span>
+      <div>
+        <small>YOUTH BALANCE</small>
+        <h3>청년이 상대적으로 적은 지역을 찾은 기준</h3>
+      </div>
+    </div>
+
+    <p class="method-copy">
+      청년이 이미 많은 곳에 더 공급하는 방식보다,
+      <b>청년이 상대적으로 적은 지역의 유입·정착 여건을 먼저 점검</b>하는 방향으로 분석했습니다.
+    </p>
+
+    <div class="method-median-grid">
+      <div>
+        <small>2030 인구수 중앙값</small>
+        <b>3,709명</b>
+      </div>
+      <div>
+        <small>2030 인구비율 중앙값</small>
+        <b>23.48%</b>
+      </div>
+    </div>
+
+    <div class="method-condition">
+      두 값이 <strong>모두 중앙값보다 낮은 지역</strong>을 1차 탐색 대상으로 정의
+    </div>
+
+    <p class="method-note">
+      기존 2030 인구 TOP10과 청년 1,000명당 시설 수는 새 정책후보 선정 기준으로 사용하지 않고 참고값으로만 유지했습니다.
+    </p>
+  </article>
+
+</div>
+
+<div class="ppt-insight">
+  <b>분석 흐름</b> · 출처가 명확한 데이터를 같은 공간 기준으로 정리하고 → 주거비를 환산하고 →
+  HL Score로 생활환경을 비교한 뒤 → 청년 인구수와 비율을 함께 확인해 정책 탐색 범위를 좁혔습니다.
+</div>
+
+</div>
+</section>
+
+<section class="ppt-section story-chapter" data-chapter="11" data-label="LIMITATIONS" id="intro-limit">
 <div class="wrap">
 <div class="ppt-head">
 <div class="ppt-kicker">10 · LIMITATIONS &amp; NEXT</div>

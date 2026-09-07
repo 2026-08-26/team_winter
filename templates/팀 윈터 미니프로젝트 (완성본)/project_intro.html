@@ -4316,6 +4316,25 @@ html{
 }
 </style>
 
+
+<style id="section7-title-size-fix">
+/* 07 · PHASE 2 DATA 제목만 축소 */
+#intro-phase2 .ppt-head h2{
+    font-size:clamp(34px,3vw,50px) !important;
+    line-height:1.12 !important;
+    letter-spacing:-.04em !important;
+    max-width:1120px !important;
+}
+
+/* 작은 화면에서도 과하게 커지지 않도록 */
+@media(max-width:680px){
+    #intro-phase2 .ppt-head h2{
+        font-size:31px !important;
+        line-height:1.18 !important;
+    }
+}
+</style>
+
 </head>
 <body class="project-intro-page">
 <header class="winter-topbar">

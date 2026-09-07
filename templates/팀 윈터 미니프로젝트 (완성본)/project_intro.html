@@ -6932,6 +6932,778 @@ body.project-intro-page .story-float-cta{
 }
 </style>
 
+
+<style id="project-start-refine-v2">
+/* =========================================================
+   00 · PROJECT START 미세조정
+   1) 전체 내용을 조금 위로
+   2) 본문 글씨 확대
+   3) 01~05 카드 높이/글씨 확대
+   ========================================================= */
+
+@media (min-width:1181px){
+
+  /* 1. 첫 페이지 내용을 조금 더 위쪽부터 시작 */
+  body.project-intro-page #project-intro{
+    padding-top:8px !important;
+    padding-bottom:14px !important;
+  }
+
+  body.project-intro-page #project-intro > .wrap{
+    justify-content:space-between !important;
+  }
+
+  /* 제목은 기존 크기 유지, 시작 위치만 위로 */
+  body.project-intro-page #project-intro .project-start-question{
+    margin-top:0 !important;
+  }
+
+  /* 2. 본문 3문단 글씨 조금 더 크게 */
+  body.project-intro-page #project-intro .project-start-copy p{
+    font-size:22px !important;
+    line-height:1.48 !important;
+  }
+
+  body.project-intro-page #project-intro .project-start-copy{
+    gap:9px !important;
+  }
+
+  /* 3. 하단 5개 카드 자체 크기 확대 */
+  body.project-intro-page #project-intro .story-strip{
+    flex:0 0 178px !important;
+    min-height:178px !important;
+    max-height:178px !important;
+    padding-top:12px !important;
+    gap:10px !important;
+  }
+
+  body.project-intro-page #project-intro .story-step{
+    height:100% !important;
+    padding:16px 16px !important;
+    justify-content:center !important;
+  }
+
+  /* 카드 안 글씨도 조금 더 크게 */
+  body.project-intro-page #project-intro .story-step .n{
+    font-size:21px !important;
+    margin-bottom:8px !important;
+    line-height:1.2 !important;
+  }
+
+  body.project-intro-page #project-intro .story-step b{
+    font-size:22px !important;
+    margin-bottom:7px !important;
+    line-height:1.28 !important;
+  }
+
+  body.project-intro-page #project-intro .story-step span{
+    font-size:20px !important;
+    line-height:1.4 !important;
+  }
+}
+
+/* 높이가 낮은 노트북 화면에서도 1페이지 유지 */
+@media (min-width:1181px) and (max-height:800px){
+  body.project-intro-page #project-intro{
+    padding-top:6px !important;
+    padding-bottom:10px !important;
+  }
+
+  body.project-intro-page #project-intro .project-start-copy p{
+    font-size:20px !important;
+    line-height:1.42 !important;
+  }
+
+  body.project-intro-page #project-intro .story-strip{
+    flex-basis:158px !important;
+    min-height:158px !important;
+    max-height:158px !important;
+  }
+
+  body.project-intro-page #project-intro .story-step .n{
+    font-size:18px !important;
+  }
+
+  body.project-intro-page #project-intro .story-step b{
+    font-size:19px !important;
+  }
+
+  body.project-intro-page #project-intro .story-step span{
+    font-size:16px !important;
+  }
+}
+</style>
+
+
+<style id="intro-topic-tight-large-v1">
+/* =========================================================
+   01 · WHY THIS TOPIC? 미세조정
+   1) 상단 설명 영역 확대 + 아래로 더 확장
+   2) 주제 선택칩과 하단 2개 카드 밀착
+   3) 1·2·3 블록 전체 간격 최소화 + 발표용 글씨 확대
+   ========================================================= */
+
+@media (min-width:1181px){
+
+  /* 1,2,3 전체를 거의 붙여 보이게 */
+  body.project-intro-page #intro-topic > .wrap{
+    gap:5px !important;
+  }
+
+  /* ---------- 1. 제목 + 설명 영역 ---------- */
+  body.project-intro-page #intro-topic .ppt-head{
+    flex:0 0 286px !important;
+    min-height:286px !important;
+    max-height:286px !important;
+    margin:0 !important;
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:flex-start !important;
+  }
+body.project-intro-page #intro-topic .topic-question{
+    margin:0 0 12px !important;
+    font-size:52px !important;
+    line-height:1.12 !important;
+    max-width:1100px !important;
+  }
+
+  body.project-intro-page #intro-topic .topic-answer{
+    gap:7px !important;
+    width:min(1220px,100%) !important;
+    max-width:1220px !important;
+  }
+
+  body.project-intro-page #intro-topic .topic-answer p{
+    font-size:18px !important;
+    line-height:1.55 !important;
+  }
+
+  /* ---------- 2. 주제 선택칩 ---------- */
+  body.project-intro-page #intro-topic .ppt-choice-grid{
+    flex:0 0 54px !important;
+    min-height:54px !important;
+    max-height:54px !important;
+    margin:0 !important;
+    gap:8px !important;
+    align-items:stretch !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-choice{
+    height:100% !important;
+    padding:0 10px !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    font-size:17px !important;
+    line-height:1.2 !important;
+  }
+
+  /* ---------- 3. 하단 2개 설명 카드 ---------- */
+  body.project-intro-page #intro-topic .ppt-two{
+    flex:1 1 0 !important;
+    min-height:0 !important;
+    max-height:none !important;
+    margin:0 !important;
+    gap:10px !important;
+    align-items:stretch !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-callout{
+    height:100% !important;
+    min-height:0 !important;
+    padding:22px 24px !important;
+    justify-content:center !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-callout .label{
+    margin-bottom:8px !important;
+    font-size:14px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-callout h3{
+    margin:0 0 10px !important;
+    font-size:23px !important;
+    line-height:1.35 !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-callout p{
+    font-size:17px !important;
+    line-height:1.55 !important;
+  }
+}
+
+/* 세로 해상도가 낮은 노트북에서도 한 페이지 유지 */
+@media (min-width:1181px) and (max-height:820px){
+  body.project-intro-page #intro-topic > .wrap{
+    gap:4px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-head{
+    flex-basis:248px !important;
+    min-height:248px !important;
+    max-height:248px !important;
+  }
+
+  body.project-intro-page #intro-topic .topic-question{
+    font-size:46px !important;
+    margin-bottom:8px !important;
+  }
+
+  body.project-intro-page #intro-topic .topic-answer{
+    gap:4px !important;
+  }
+
+  body.project-intro-page #intro-topic .topic-answer p{
+    font-size:15px !important;
+    line-height:1.42 !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-choice-grid{
+    flex-basis:46px !important;
+    min-height:46px !important;
+    max-height:46px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-choice{
+    font-size:15px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-callout{
+    padding:16px 19px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-callout .label{
+    font-size:12px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-callout h3{
+    font-size:20px !important;
+    margin-bottom:7px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-callout p{
+    font-size:14px !important;
+    line-height:1.45 !important;
+  }
+}
+</style>
+
+
+<style id="intro-topic-bottom-grouped-v2">
+/* =========================================================
+   01 · WHY THIS TOPIC? 재조정
+   - 상단 제목/설명 전체 확대
+   - 선택 주제 6개 + 하단 2개 카드 하나의 묶음처럼 하단 배치
+   - 선택칩과 카드 사이 큰 빈공간 제거
+   ========================================================= */
+
+@media (min-width:1181px){
+
+  body.project-intro-page #intro-topic > .wrap{
+    height:100% !important;
+    min-height:0 !important;
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:flex-start !important;
+    gap:0 !important;
+  }
+
+  /* ---------- 상단 제목/설명 전체 확대 ---------- */
+  body.project-intro-page #intro-topic .ppt-head{
+    flex:0 0 auto !important;
+    min-height:0 !important;
+    max-height:none !important;
+    margin:0 !important;
+  }
+body.project-intro-page #intro-topic .topic-question{
+    max-width:1220px !important;
+    margin:0 0 16px !important;
+    font-size:60px !important;
+    line-height:1.08 !important;
+    letter-spacing:-.048em !important;
+  }
+
+  body.project-intro-page #intro-topic .topic-answer{
+    width:min(1280px,100%) !important;
+    max-width:1280px !important;
+    gap:8px !important;
+  }
+
+  body.project-intro-page #intro-topic .topic-answer p{
+    font-size:20px !important;
+    line-height:1.52 !important;
+  }
+
+  /* ---------- 하단 묶음 시작 ----------
+     선택칩을 margin-top:auto로 밀고,
+     바로 아래 카드가 붙도록 구성 */
+  body.project-intro-page #intro-topic .ppt-choice-grid{
+    flex:0 0 56px !important;
+    min-height:56px !important;
+    max-height:56px !important;
+    margin-top:auto !important;
+    margin-bottom:6px !important;
+    gap:8px !important;
+    align-items:stretch !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-choice{
+    height:100% !important;
+    padding:0 12px !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    font-size:18px !important;
+    line-height:1.2 !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-two{
+    flex:0 0 220px !important;
+    min-height:220px !important;
+    max-height:220px !important;
+    margin:0 !important;
+    gap:10px !important;
+    align-items:stretch !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-callout{
+    height:100% !important;
+    min-height:0 !important;
+    padding:24px 26px !important;
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:center !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-callout .label{
+    margin-bottom:10px !important;
+    font-size:15px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-callout h3{
+    margin:0 0 11px !important;
+    font-size:25px !important;
+    line-height:1.32 !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-callout p{
+    font-size:18px !important;
+    line-height:1.55 !important;
+  }
+}
+
+/* 세로 높이가 낮은 화면에서는 한 페이지 유지 */
+@media (min-width:1181px) and (max-height:820px){
+body.project-intro-page #intro-topic .topic-question{
+    font-size:51px !important;
+    margin-bottom:10px !important;
+  }
+
+  body.project-intro-page #intro-topic .topic-answer{
+    gap:4px !important;
+  }
+
+  body.project-intro-page #intro-topic .topic-answer p{
+    font-size:16px !important;
+    line-height:1.4 !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-choice-grid{
+    flex-basis:48px !important;
+    min-height:48px !important;
+    max-height:48px !important;
+    margin-bottom:5px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-choice{
+    font-size:16px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-two{
+    flex-basis:188px !important;
+    min-height:188px !important;
+    max-height:188px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-callout{
+    padding:18px 20px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-callout .label{
+    font-size:13px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-callout h3{
+    font-size:21px !important;
+    margin-bottom:7px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-callout p{
+    font-size:15px !important;
+    line-height:1.42 !important;
+  }
+}
+</style>
+
+
+<style id="intro-topic-kicker-small-restore">
+/* 01 · WHY THIS TOPIC? 배지만 원래처럼 작은 크기로 복구 */
+@media (min-width:1181px){
+  body.project-intro-page #intro-topic .ppt-kicker{
+    width:max-content !important;
+    max-width:max-content !important;
+    align-self:flex-start !important;
+    flex:0 0 auto !important;
+
+    min-height:30px !important;
+    padding:7px 12px !important;
+
+    font-size:12px !important;
+    line-height:1.2 !important;
+
+    margin:0 0 18px 0 !important;
+    border-radius:999px !important;
+  }
+}
+</style>
+
+
+<style id="intro-topic-title-bigger-body-down-v1">
+/* =========================================================
+   01 · WHY THIS TOPIC?
+   - 섹션 배지는 절대 수정하지 않음
+   - 1) 메인 제목만 더 크게
+   - 2) 제목이 커진 만큼 본문을 아래로 이동
+   ========================================================= */
+
+@media (min-width:1181px){
+
+  /* 1. 메인 제목 확대 */
+  body.project-intro-page #intro-topic .topic-question{
+    font-size:68px !important;
+    line-height:1.08 !important;
+    margin-bottom:22px !important;
+    max-width:1320px !important;
+  }
+
+  /* 2. 본문을 아래로 이동 */
+  body.project-intro-page #intro-topic .topic-answer{
+    margin-top:10px !important;
+  }
+
+  /* 본문 크기는 유지 */
+  body.project-intro-page #intro-topic .topic-answer p{
+    font-size:20px !important;
+    line-height:1.52 !important;
+  }
+}
+
+/* 낮은 화면에서는 한 페이지 유지 */
+@media (min-width:1181px) and (max-height:820px){
+  body.project-intro-page #intro-topic .topic-question{
+    font-size:58px !important;
+    margin-bottom:16px !important;
+  }
+
+  body.project-intro-page #intro-topic .topic-answer{
+    margin-top:7px !important;
+  }
+
+  body.project-intro-page #intro-topic .topic-answer p{
+    font-size:16px !important;
+    line-height:1.4 !important;
+  }
+}
+</style>
+
+
+<style id="intro-topic-fullscreen-fill-v3">
+/* =========================================================
+   01 · WHY THIS TOPIC? 화면 꽉 채우기
+   중요: 상단 '01 · WHY THIS TOPIC?' 섹션 배지는 수정하지 않음
+   - 중앙의 큰 빈 여백 제거
+   - 제목/본문/선택칩/하단 카드 텍스트 확대
+   - 하단 카드가 남는 세로 공간을 채우도록 확장
+   ========================================================= */
+
+@media (min-width:1181px){
+
+  /* 페이지 내부를 3개 영역으로 정확히 배치 */
+  body.project-intro-page #intro-topic > .wrap{
+    height:100% !important;
+    min-height:0 !important;
+    display:grid !important;
+    grid-template-rows:auto 62px minmax(0,1fr) !important;
+    gap:10px !important;
+    align-content:stretch !important;
+  }
+
+  /* ---------- 상단 제목/설명 ----------
+     .ppt-kicker(섹션 배지)는 절대 건드리지 않음 */
+  body.project-intro-page #intro-topic .ppt-head{
+    min-height:0 !important;
+    max-height:none !important;
+    height:auto !important;
+    margin:0 !important;
+    padding:0 !important;
+  }
+
+  body.project-intro-page #intro-topic .topic-question{
+    max-width:1360px !important;
+    margin:8px 0 18px !important;
+    font-size:72px !important;
+    line-height:1.06 !important;
+    letter-spacing:-.05em !important;
+  }
+
+  body.project-intro-page #intro-topic .topic-answer{
+    width:100% !important;
+    max-width:1320px !important;
+    display:grid !important;
+    gap:7px !important;
+    margin:0 !important;
+  }
+
+  body.project-intro-page #intro-topic .topic-answer p{
+    font-size:22px !important;
+    line-height:1.48 !important;
+    letter-spacing:-.022em !important;
+  }
+
+  /* ---------- 주제 선택칩 ---------- */
+  body.project-intro-page #intro-topic .ppt-choice-grid{
+    height:62px !important;
+    min-height:62px !important;
+    max-height:62px !important;
+    margin:0 !important;
+    gap:10px !important;
+    align-self:stretch !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-choice{
+    height:100% !important;
+    padding:0 14px !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    font-size:20px !important;
+    line-height:1.2 !important;
+    font-weight:850 !important;
+  }
+
+  /* ---------- 하단 두 카드 ----------
+     남는 영역을 전부 사용 */
+  body.project-intro-page #intro-topic .ppt-two{
+    min-height:0 !important;
+    height:100% !important;
+    margin:0 !important;
+    gap:12px !important;
+    align-items:stretch !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-callout{
+    height:100% !important;
+    min-height:0 !important;
+    padding:30px 32px !important;
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:center !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-callout .label{
+    margin-bottom:12px !important;
+    font-size:17px !important;
+    line-height:1.25 !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-callout h3{
+    margin:0 0 14px !important;
+    font-size:29px !important;
+    line-height:1.3 !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-callout p{
+    margin:0 !important;
+    font-size:20px !important;
+    line-height:1.58 !important;
+  }
+}
+
+/* 900px 이하 높이에서도 한 화면 안에 들어오도록만 압축
+   배지 크기는 여전히 건드리지 않음 */
+@media (min-width:1181px) and (max-height:900px){
+
+  body.project-intro-page #intro-topic > .wrap{
+    grid-template-rows:auto 54px minmax(0,1fr) !important;
+    gap:8px !important;
+  }
+
+  body.project-intro-page #intro-topic .topic-question{
+    font-size:60px !important;
+    margin:4px 0 12px !important;
+  }
+
+  body.project-intro-page #intro-topic .topic-answer{
+    gap:4px !important;
+  }
+
+  body.project-intro-page #intro-topic .topic-answer p{
+    font-size:18px !important;
+    line-height:1.4 !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-choice-grid{
+    height:54px !important;
+    min-height:54px !important;
+    max-height:54px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-choice{
+    font-size:17px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-callout{
+    padding:22px 24px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-callout .label{
+    font-size:14px !important;
+    margin-bottom:8px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-callout h3{
+    font-size:24px !important;
+    margin-bottom:9px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-callout p{
+    font-size:17px !important;
+    line-height:1.48 !important;
+  }
+}
+</style>
+
+
+<style id="intro-topic-spacing-balanced-v4">
+/* =========================================================
+   01 · WHY THIS TOPIC? 여백 균형 재조정
+   - 섹션 배지는 절대 수정하지 않음
+   - 텍스트 사이사이 숨 쉴 여백 추가
+   - 하단 빈 여백은 카드가 채우도록 유지
+   ========================================================= */
+
+@media (min-width:1181px){
+
+  /* 페이지 전체: 위/아래 여백을 줄이고 내부 요소 사이 간격으로 배분 */
+  body.project-intro-page #intro-topic{
+    padding-top:14px !important;
+    padding-bottom:14px !important;
+    align-items:stretch !important;
+  }
+
+  body.project-intro-page #intro-topic > .wrap{
+    height:100% !important;
+    min-height:0 !important;
+    display:grid !important;
+    grid-template-rows:auto 62px minmax(0,1fr) !important;
+    gap:18px !important;
+    align-content:stretch !important;
+  }
+
+  /* 섹션 배지(.ppt-kicker)는 손대지 않음 */
+
+  /* 제목 아래 여백 */
+  body.project-intro-page #intro-topic .topic-question{
+    margin:10px 0 26px !important;
+  }
+
+  /* 본문 3문단 사이 여백 */
+  body.project-intro-page #intro-topic .topic-answer{
+    gap:12px !important;
+    margin-bottom:0 !important;
+  }
+
+  body.project-intro-page #intro-topic .topic-answer p{
+    line-height:1.55 !important;
+  }
+
+  /* 선택칩: 위/아래 카드와 너무 붙지 않게 */
+  body.project-intro-page #intro-topic .ppt-choice-grid{
+    margin:0 !important;
+    height:62px !important;
+    min-height:62px !important;
+    max-height:62px !important;
+  }
+
+  /* 하단 카드: 남는 공간을 모두 사용 */
+  body.project-intro-page #intro-topic .ppt-two{
+    height:100% !important;
+    min-height:0 !important;
+    margin:0 !important;
+    align-items:stretch !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-callout{
+    height:100% !important;
+    min-height:0 !important;
+    justify-content:center !important;
+    padding:34px 34px !important;
+  }
+
+  /* 카드 내부도 라벨/제목/설명 사이 간격 추가 */
+  body.project-intro-page #intro-topic .ppt-callout .label{
+    margin-bottom:14px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-callout h3{
+    margin:0 0 16px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-callout p{
+    line-height:1.62 !important;
+  }
+}
+
+/* 화면 높이가 낮아도 한 페이지 유지 */
+@media (min-width:1181px) and (max-height:900px){
+  body.project-intro-page #intro-topic{
+    padding-top:10px !important;
+    padding-bottom:10px !important;
+  }
+
+  body.project-intro-page #intro-topic > .wrap{
+    grid-template-rows:auto 54px minmax(0,1fr) !important;
+    gap:12px !important;
+  }
+
+  body.project-intro-page #intro-topic .topic-question{
+    margin:6px 0 18px !important;
+  }
+
+  body.project-intro-page #intro-topic .topic-answer{
+    gap:7px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-choice-grid{
+    height:54px !important;
+    min-height:54px !important;
+    max-height:54px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-callout{
+    padding:24px 26px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-callout .label{
+    margin-bottom:10px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-callout h3{
+    margin-bottom:11px !important;
+  }
+}
+</style>
+
 </head>
 <body class="project-intro-page">
 <header class="winter-topbar">
@@ -7195,7 +7967,7 @@ body.project-intro-page .story-float-cta{
 <p>청년이 실제로 살기 좋은지를 보려면 주거비뿐 아니라 생활 인프라, 교통 접근성, 2030 선호시설까지<br>함께 비교해야 한다고 정의했습니다.</p>
 </div>
 </div>
-<div class="ppt-conclusion"><b>초기 목표</b> · “싼 동네”가 아니라 <strong>“청년이 실제로 살기 좋은 동네”를 데이터로 찾자.</strong></div>
+
 </div>
 </section>
 <section class="ppt-section white story-chapter" data-chapter="02" data-label="PHASE 1 DATA" id="intro-data">
@@ -7213,7 +7985,7 @@ body.project-intro-page .story-float-cta{
 <div class="ppt-data-card"><div class="num">05</div><h4>교통 접근성</h4><p>버스정류소·지하철·최근접 거리를 통해 이동 편의성을 비교했습니다.</p><div class="source">광주 BIS · 공식 정류소 데이터</div></div>
 <div class="ppt-data-card"><div class="num">06</div><h4>공간 기준</h4><p>서로 다른 출처의 데이터를 프로젝트 선정 25개 행정동 기준으로 통합했습니다.</p><div class="source">동 중심좌표 · 자치구/행정동 매핑</div></div>
 </div>
-<div class="ppt-insight"><b>데이터 역할</b> · 인구는 “수요”, 실거래는 “부담”, 시설·교통은 “생활 가능성”을 설명했습니다.</div>
+
 </div>
 </section>
 <section class="ppt-section soft story-chapter" data-chapter="03" data-label="DATA → HL SCORE" id="intro-process">
@@ -7250,7 +8022,7 @@ body.project-intro-page .story-float-cta{
 </div>
 </div>
 </div>
-<div class="ppt-insight">품질관리 원칙: <b>최종 CSV를 단일 기준 데이터로 사용</b>하고, 표본이 부족한 주거 데이터는 억지로 점수화하지 않았으며, 신뢰도가 낮은 데이터는 보류 이유를 함께 기록했습니다.</div>
+
 </div>
 </section>
 <section class="ppt-section story-chapter" data-chapter="04" data-label="VISUALIZATION" id="intro-visualization">
@@ -7314,7 +8086,7 @@ body.project-intro-page .story-float-cta{
 <b>2,234</b>
 </div></div>
 </div>
-<div class="ppt-insight">이 단계에서 “청년이 많은 지역 = 좋은 지역”이라고 결론내린 것이 아니라, <b>지역마다 인구·생활·교통·주거 조건이 다르기 때문에 같은 기준으로 비교할 지표가 필요하다</b>는 점을 확인했습니다.</div>
+
 </div>
 <a aria-label="시각화 대시보드 열기" class="story-float-cta" href="/dashboard"><span class="cta-kicker">STEP 01</span><strong>시각화 대시보드 열기</strong><span class="cta-arrow">↗</span></a></section>
 <section class="ppt-section white story-chapter" data-chapter="05" data-label="HL SCORE RESULT" id="intro-hl">
@@ -7365,7 +8137,7 @@ body.project-intro-page .story-float-cta{
 </div>
 </article>
 </div>
-<div class="ppt-insight"><b>한 문장 해석</b> · 가격이 낮은 곳이 무조건 좋은 곳이 아니라, 생활·교통·선호시설과 주거비의 균형이 높은 지역이 상위권으로 나타났습니다.</div>
+
 </div>
 <a aria-label="HL Score 전체 결과 보기" class="story-float-cta" href="/hl-dashboard"><span class="cta-kicker">STEP 02</span><strong>HL Score 전체 결과 보기</strong><span class="cta-arrow">↗</span></a></section>
 <section class="ppt-section story-chapter turning-point-keyfocus" data-chapter="06" data-label="TURNING POINT" id="intro-turning">
@@ -7479,7 +8251,7 @@ body.project-intro-page .story-float-cta{
 <div class="ppt-phase2-card"><div class="idx">04</div><h4>공공임대주택</h4><p>25개 동 내부 22,855세대를 주거 공급 기반의 보조지표로 확인</p></div>
 <div class="ppt-phase2-card warn"><div class="idx">05 · 보류</div><h4>버스 노선 데이터</h4><p>노선·배차를 검토했지만 안전 매칭률 0.54%로 최종 판단에는 사용하지 않음</p></div>
 </div>
-<div class="ppt-insight"><b>보완 방향</b> · 단순한 “점수 순위”에서 끝내지 않고, <b>지역 간 균형 개선과 청년 유입·정착 지원 필요성</b>을 검토하는 방향으로 확장했습니다.</div>
+
 </div>
 </section>
 <section class="ppt-section soft story-chapter" data-chapter="08" data-label="BALANCE / POLICY" id="intro-analysis">
@@ -7502,7 +8274,7 @@ body.project-intro-page .story-float-cta{
 <div class="ppt-policy-card"><div class="ico">🏘️</div><h4>공공임대·청년시설 연계</h4><p>지역의 공공 주거·청년 지원 기반을 보조적으로 확인</p></div>
 <div class="ppt-policy-card"><div class="ico">🎯</div><h4>청년 분포 균형 모니터링</h4><p>특정 지역 쏠림 완화와 지역 간 주거환경 상향 평준화 방향 검토</p></div>
 </div>
-<div class="ppt-insight">이 결과는 특정 지역을 지원 대상으로 확정하는 자료가 아니라, <b>추가 행정자료와 현장검증이 필요한 1차 검토 기준</b>입니다.</div>
+
 </div>
 <a aria-label="종합 분석 페이지 보기" class="story-float-cta" href="/policy-dashboard"><span class="cta-kicker">STEP 03</span><strong>종합 분석 페이지 보기</strong><span class="cta-arrow">↗</span></a></section>
 <section class="ppt-section white story-chapter" data-chapter="09" data-label="DATA QUALITY" id="intro-output">
@@ -7886,10 +8658,7 @@ body.project-intro-page .story-float-cta{
 
   </div>
 
-  <div class="team-role-summary">
-    <b>TEAM WINTER</b>
-    <span>백엔드 · 데이터 · 프론트엔드 · 시각화 · 기획/문서화를 역할별로 분담해 하나의 분석 시스템으로 통합했습니다.</span>
-  </div>
+  
 
 </div>
 </section>

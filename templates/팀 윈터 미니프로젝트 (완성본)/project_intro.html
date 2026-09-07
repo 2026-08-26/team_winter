@@ -2823,6 +2823,145 @@ html{
 }
 </style>
 
+
+<style id="project-intro-sector-1-2-copy-fix">
+/* =========================================================
+   1~2 섹터 가독성 보정 V2
+   - 1섹터 메인 질문 크기 축소 + 자연스러운 줄바꿈
+   - 본문 폭/행간 정리
+   - 2섹터 답변을 짧은 문단으로 분리
+   ========================================================= */
+
+/* 1섹터 메인 질문: 너무 큰 느낌을 줄이고 3줄 안팎으로 자연스럽게 */
+#project-intro .project-start-question{
+  width:min(1080px,100%) !important;
+  max-width:1080px !important;
+  margin:18px 0 34px !important;
+  color:#0c1728 !important;
+  font-size:clamp(34px,3.25vw,52px) !important;
+  line-height:1.18 !important;
+  letter-spacing:-.048em !important;
+  font-weight:900 !important;
+  text-align:left !important;
+  text-wrap:balance;
+  word-break:keep-all;
+}
+
+#project-intro .project-start-question .question-accent{
+  color:#3f63f3 !important;
+}
+
+/* 1섹터 본문: 한 줄이 너무 길어지지 않게 하고 문단 간격 통일 */
+#project-intro .project-start-copy{
+  width:min(980px,100%) !important;
+  max-width:980px !important;
+  display:grid !important;
+  gap:15px !important;
+  margin-top:0 !important;
+  text-align:left !important;
+}
+
+#project-intro .project-start-copy p{
+  width:100% !important;
+  max-width:none !important;
+  margin:0 !important;
+  color:#526176 !important;
+  font-size:clamp(16px,1.05vw,18px) !important;
+  line-height:1.9 !important;
+  letter-spacing:-.018em !important;
+  word-break:keep-all !important;
+  text-wrap:pretty;
+}
+
+#project-intro .project-start-copy b{
+  color:#1d2b40 !important;
+  font-weight:850 !important;
+}
+
+#project-intro .story-strip{
+  margin-top:38px !important;
+}
+
+/* 2섹터 질문 제목: 현재 크기는 유지하되 질문처럼 단정하게 */
+#intro-topic .ppt-head .topic-question{
+  width:min(1000px,100%) !important;
+  max-width:1000px !important;
+  margin:0 0 24px !important;
+  color:#0c1728 !important;
+  font-size:clamp(30px,3.1vw,48px) !important;
+  line-height:1.2 !important;
+  letter-spacing:-.045em !important;
+  text-align:left !important;
+  word-break:keep-all !important;
+}
+
+/* 2섹터 답변: 긴 한 문단 대신 3개의 짧은 문단으로 */
+#intro-topic .ppt-head .topic-answer{
+  width:min(1020px,100%) !important;
+  max-width:1020px !important;
+  display:grid !important;
+  gap:12px !important;
+  margin:0 !important;
+  text-align:left !important;
+}
+
+#intro-topic .ppt-head .topic-answer p{
+  width:100% !important;
+  max-width:none !important;
+  margin:0 !important;
+  color:#4e5f75 !important;
+  font-size:clamp(17px,1.16vw,20px) !important;
+  line-height:1.82 !important;
+  letter-spacing:-.02em !important;
+  word-break:keep-all !important;
+  text-wrap:pretty;
+}
+
+#intro-topic .ppt-head .topic-answer b{
+  color:#17243a !important;
+  font-weight:850 !important;
+}
+
+/* 답변과 아래 데이터 선택 카드 사이 숨 쉴 공간 */
+#intro-topic .ppt-choice-grid{
+  margin-top:34px !important;
+}
+
+@media(max-width:1000px){
+  #project-intro .project-start-question{
+    font-size:clamp(32px,4.4vw,46px) !important;
+  }
+
+  #project-intro .project-start-copy,
+  #intro-topic .ppt-head .topic-answer{
+    width:100% !important;
+  }
+}
+
+@media(max-width:680px){
+  #project-intro .project-start-question{
+    font-size:32px !important;
+    line-height:1.23 !important;
+    margin-bottom:26px !important;
+  }
+
+  #project-intro .project-start-copy p{
+    font-size:15.5px !important;
+    line-height:1.8 !important;
+  }
+
+  #intro-topic .ppt-head .topic-question{
+    font-size:28px !important;
+    margin-bottom:20px !important;
+  }
+
+  #intro-topic .ppt-head .topic-answer p{
+    font-size:16px !important;
+    line-height:1.78 !important;
+  }
+}
+</style>
+
 </head>
 <body class="project-intro-page">
 <header class="winter-topbar">
@@ -2975,19 +3114,29 @@ html{
 <section class="hero story-chapter" data-chapter="00" data-label="PROJECT START" id="project-intro">
 <div class="wrap">
 <div class="eyebrow">💡 PROJECT START · 처음 우리가 세운 목표</div>
-<h1>집값만이 아니라<br/><span style="color:#3f63f3">실제로 살기 좋은 동네</span>를 데이터로 찾자</h1>
-<p>
-      기존 부동산 서비스는 매물의 <b>가격·면적·위치</b>는 잘 보여주지만,
-      청년이 실제로 생활할 때 중요한 <b>교통·생활시설·2030 선호시설 접근성</b>까지
-      한눈에 비교하기는 어렵다고 보았습니다.
-      그래서 6개 미니프로젝트 주제 중 <b>인구통계 + 아파트 실거래가</b>를 선택하고,
-      여기에 생활 인프라와 교통, 청년 선호시설 데이터를 더해
-      <b>“2030 청년이 실제로 살기 좋은 지역을 같은 기준으로 비교해보자”</b>는 목표로 프로젝트를 시작했습니다.
-    </p>
-<div style="margin-top:38px;font-size:14px;font-weight:900;color:var(--navy)">초기 구상에서 중요하게 본 3가지</div>
-<div style="margin-top:6px;font-size:13px;color:var(--muted)">
-      첫 단계에서는 정책 결론이 아니라, 청년의 실제 주거환경을 설명할 수 있는 비교 기준을 만드는 데 집중했습니다.
-    </div>
+<h1 class="project-start-question">
+  주거를 고민하는 2030 청년에게 여러 플랫폼에 흩어진
+  <span class="question-accent">실제 생활 인프라 정보</span>까지 보여준다면,
+  주거지를 정할 때 더 도움이 되지 않을까?
+</h1>
+<div class="project-start-copy">
+  <p>
+    주거지를 정할 때는 가격과 면적만 보는 것이 아니라,
+    <b>교통, 병원·마트 같은 생활시설, 청년이 자주 이용하는 시설</b>까지 함께 확인하게 됩니다.
+    하지만 이런 정보는 여러 플랫폼에 흩어져 있어 한눈에 비교하기 어렵습니다.
+  </p>
+  <p>
+    기존 부동산 서비스는 매물의 <b>가격·면적·위치</b>는 잘 보여주지만,
+    실제 생활에 중요한 <b>교통·생활 인프라·2030 선호시설 접근성</b>까지
+    한 화면에서 비교하기는 어렵다고 보았습니다.
+  </p>
+  <p>
+    그래서 6개 미니프로젝트 주제 중 <b>인구통계 + 아파트 실거래가</b>를 선택하고,
+    생활 인프라·교통·청년 선호시설 데이터를 더해
+    <b>“2030 청년의 실제 주거 선택에 도움이 되는 정보를 만들어보자”</b>는 목표로 프로젝트를 시작했습니다.
+  </p>
+</div>
+
 <div aria-label="프로젝트 초기 구상" class="story-strip">
 <div class="story-step">
 <div class="n">01 · 문제 인식</div>
@@ -3021,8 +3170,21 @@ html{
 <div class="wrap">
 <div class="ppt-head">
 <div class="ppt-kicker">01 · WHY THIS TOPIC?</div>
-<h2>왜 인구통계 + 아파트 실거래가였나</h2>
-<p>6가지 미니프로젝트 주제 중 단순한 데이터 분석이 아니라, 실제 2030 청년 주거문제에 연결할 수 있는 주제를 선택했습니다.</p>
+<h2 class="topic-question">왜 인구통계 + 아파트 실거래가였나?</h2>
+<div class="topic-answer">
+  <p>
+    6가지 미니프로젝트 주제 가운데 저희가 가장 중요하게 본 기준은
+    <b>“이 분석이 실제 우리와 같은 2030 청년의 주거 고민에 도움이 될 수 있는가?”</b>였습니다.
+  </p>
+  <p>
+    단순히 흥미로운 데이터를 분석하는 것보다,
+    <b>우리가 직접 겪을 수 있는 문제에서 의미 있는 인사이트를 만들고 싶었습니다.</b>
+  </p>
+  <p>
+    그래서 <b>청년이 어디에 살고 있는지를 보여주는 인구통계</b>와
+    <b>실제 주거비 부담을 보여주는 아파트 실거래가</b>를 선택했습니다.
+  </p>
+</div>
 </div>
 <div class="ppt-choice-grid">
 <div class="ppt-choice selected">인구통계</div>

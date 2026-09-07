@@ -1595,42 +1595,43 @@ p,span,a,button,select,input,textarea,th,td{
       <div class="ppt-weight"><b>30%</b><span>주거 가성비</span></div>
     </div>
 
-    <div class="ppt-score-grid">
+    <div class="ppt-score-grid" id="intro-hl-top3">
         <article class="ppt-score-card">
           <div class="ppt-score-rank">HL TOP 1</div>
-          <h4>수완동 <small>광산구</small></h4>
-          <div class="ppt-score-value">75.6<span>점</span></div>
+          <h4>충장동 <small>동구</small></h4>
+          <div class="ppt-score-value">76.8<span>점</span></div>
           <div class="ppt-score-parts">
-            <span>생활 <b>65.2</b></span>
-            <span>선호 <b>70.3</b></span>
-            <span>교통 <b>58.0</b></span>
-            <span>주거 <b>99.1</b></span>
+            <span>생활 <b>78.3</b></span>
+            <span>선호 <b>87.4</b></span>
+            <span>교통 <b>87.8</b></span>
+            <span>주거 <b>60.9</b></span>
           </div>
         </article>
 
         <article class="ppt-score-card">
           <div class="ppt-score-rank">HL TOP 2</div>
-          <h4>충장동 <small>동구</small></h4>
-          <div class="ppt-score-value">75.0<span>점</span></div>
+          <h4>치평동 <small>서구</small></h4>
+          <div class="ppt-score-value">70.9<span>점</span></div>
           <div class="ppt-score-parts">
-            <span>생활 <b>78.3</b></span>
-            <span>선호 <b>87.4</b></span>
-            <span>교통 <b>87.8</b></span>
-            <span>주거 <b>54.9</b></span>
+            <span>생활 <b>81.9</b></span>
+            <span>선호 <b>68.0</b></span>
+            <span>교통 <b>64.7</b></span>
+            <span>주거 <b>65.4</b></span>
           </div>
         </article>
 
         <article class="ppt-score-card">
           <div class="ppt-score-rank">HL TOP 3</div>
-          <h4>치평동 <small>서구</small></h4>
-          <div class="ppt-score-value">69.3<span>점</span></div>
+          <h4>화정2동 <small>서구</small></h4>
+          <div class="ppt-score-value">67.0<span>점</span></div>
           <div class="ppt-score-parts">
-            <span>생활 <b>81.9</b></span>
-            <span>선호 <b>68.0</b></span>
-            <span>교통 <b>64.7</b></span>
-            <span>주거 <b>60.1</b></span>
+            <span>생활 <b>57.1</b></span>
+            <span>선호 <b>57.1</b></span>
+            <span>교통 <b>70.0</b></span>
+            <span>주거 <b>83.6</b></span>
           </div>
-        </article></div>
+        </article>
+    </div>
     <div class="ppt-insight"><b>한 문장 해석</b> · 가격이 낮은 곳이 무조건 좋은 곳이 아니라, 생활·교통·선호시설과 주거비의 균형이 높은 지역이 상위권으로 나타났습니다.</div>
   </div>
 </section>
@@ -1740,6 +1741,51 @@ p,span,a,button,select,input,textarea,th,td{
 </main>
 
 <footer class="winter-footer">WINTER Analytics · PROJECT INTRO · AI Bootcamp Mini Project · 2026</footer>
+
+
+<script>
+// 프로젝트 소개의 HL TOP3를 /hl-dashboard와 동일한 최종 CSV 기준으로 자동 동기화합니다.
+(function syncIntroHLTop3(){
+  const grid = document.getElementById('intro-hl-top3');
+  if (!grid) return;
+
+  const fmt = (v) => {
+    const n = Number(v);
+    return Number.isFinite(n) ? n.toFixed(1) : '-';
+  };
+
+  fetch('/api/hl-scores', { cache: 'no-store' })
+    .then((res) => {
+      if (!res.ok) throw new Error('HL API 응답 오류');
+      return res.json();
+    })
+    .then((rows) => {
+      const top3 = (Array.isArray(rows) ? rows : [])
+        .filter((d) => !d.excludedFromPolicyRanking && Number.isFinite(Number(d.hlScore)))
+        .sort((a, b) => Number(b.hlScore) - Number(a.hlScore))
+        .slice(0, 3);
+
+      if (top3.length < 3) return;
+
+      grid.innerHTML = top3.map((d, idx) => `
+        <article class="ppt-score-card">
+          <div class="ppt-score-rank">HL TOP ${idx + 1}</div>
+          <h4>${d.name || '-'} <small>${d.district || ''}</small></h4>
+          <div class="ppt-score-value">${fmt(d.hlScore)}<span>점</span></div>
+          <div class="ppt-score-parts">
+            <span>생활 <b>${fmt(d.infra)}</b></span>
+            <span>선호 <b>${fmt(d.preference)}</b></span>
+            <span>교통 <b>${fmt(d.transport)}</b></span>
+            <span>주거 <b>${fmt(d.costEfficiency)}</b></span>
+          </div>
+        </article>`).join('');
+    })
+    .catch((err) => {
+      console.warn('프로젝트 소개 HL TOP3 자동 동기화 실패:', err);
+      // 실패 시 위에 넣어둔 최신 검증값을 그대로 표시합니다.
+    });
+})();
+</script>
 
 </body>
 </html>

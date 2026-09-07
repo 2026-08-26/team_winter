@@ -1,8 +1,9 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ko">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Team Winter | 광주 2030 청년 주거환경</title>
 <style>
 :root{
@@ -758,7 +759,6 @@ body{
 }
 
 </style>
-
 <style id="project-intro-latest-frame">
 /* =========================================================
    PROJECT INTRO · 최신 dashboard UI FRAME 동기화
@@ -924,12 +924,7 @@ body{
     .project-intro-main .hero h1{font-size:29px !important;}
 }
 </style>
-
-
-<link rel="stylesheet" crossorigin
-      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
-
-
+<link crossorigin="" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet"/>
 <style id="winter-global-ui-font-v2">
 /* =========================================================
    WINTER Analytics · Global UI / Font Consistency
@@ -1303,66 +1298,1104 @@ p,span,a,button,select,input,textarea,th,td{
 }
 </style>
 
+<style id="winter-cinematic-scroll-v2">
+/* =========================================================
+   STATIC SECTION MODE V3
+   - 전체 페이지를 '카드 묶음'이 아니라 한 편의 스크롤 프레젠테이션처럼
+   - 섹션 테두리/박스감 제거
+   - 현재 장면만 자연스럽게 떠오르는 모션
+   ========================================================= */
+:root{
+  --cin-ink:#0c1728;
+  --cin-muted:#6a7890;
+  --cin-line:rgba(79,110,247,.16);
+  --cin-blue:#3157e8;
+  --cin-cyan:#18b8d0;
+  --cin-shadow:0 22px 60px rgba(56,83,130,.10);
+}
+html{scroll-behavior:smooth;scroll-snap-type:y proximity;}
+body{
+  background:
+    radial-gradient(circle at 10% 8%,rgba(60,99,243,.13),transparent 28rem),
+    radial-gradient(circle at 88% 26%,rgba(30,185,208,.10),transparent 30rem),
+    linear-gradient(180deg,#f6faff 0%,#edf5fb 46%,#f7fbff 100%) !important;
+  overflow-x:hidden;
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:-2;
+  background-image:linear-gradient(rgba(49,87,232,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(49,87,232,.025) 1px,transparent 1px);
+  background-size:54px 54px;
+  mask-image:linear-gradient(to bottom,rgba(0,0,0,.35),transparent 86%);
+}
+.winter-topbar{
+  background:rgba(246,250,255,.70)!important;
+  backdrop-filter:blur(18px) saturate(150%);
+  -webkit-backdrop-filter:blur(18px) saturate(150%);
+  border-bottom:1px solid rgba(148,163,184,.20)!important;
+  box-shadow:none!important;
+}
+.project-intro-main{
+  max-width:none!important;width:100%!important;padding:0!important;margin:0!important;
+  position:relative;
+}
+.project-intro-main .story-chapter{
+  position:relative!important;
+  width:100%!important;
+  min-height:100svh!important;
+  margin:0!important;
+  padding:150px clamp(34px,7vw,140px) 100px!important;
+  border:0!important;border-radius:0!important;box-shadow:none!important;
+  background:transparent!important;
+  display:flex;align-items:center;overflow:hidden;
+  scroll-snap-align:start;
+  isolation:isolate;
+}
+.project-intro-main .story-chapter:before{
+  content:attr(data-chapter);
+  position:absolute;right:clamp(24px,7vw,130px);top:50%;transform:translateY(-50%);
+  font-size:clamp(150px,22vw,390px);line-height:.78;font-weight:900;letter-spacing:-.09em;
+  color:rgba(48,87,232,.035);z-index:-2;user-select:none;pointer-events:none;
+  transition:transform 1.1s cubic-bezier(.2,.8,.2,1),opacity .8s ease;
+}
+.project-intro-main .story-chapter:after{
+  content:"";position:absolute;width:46vw;height:46vw;max-width:760px;max-height:760px;
+  border-radius:50%;filter:blur(10px);opacity:.44;z-index:-3;pointer-events:none;
+  background:radial-gradient(circle,rgba(79,110,247,.10),rgba(30,185,208,.045) 38%,transparent 70%);
+  left:-15vw;bottom:-24vw;transition:transform 1.4s cubic-bezier(.2,.8,.2,1);
+}
+.project-intro-main .story-chapter:nth-of-type(even):after{left:auto;right:-17vw;top:-17vw;bottom:auto;}
+.project-intro-main .story-chapter.is-active:before{transform:translateY(-50%) translateX(-12px) scale(1.03);}
+.project-intro-main .story-chapter.is-active:after{transform:scale(1.12) translate3d(18px,-10px,0);}
+
+.project-intro-main .wrap{width:min(1360px,100%)!important;margin:0 auto!important;position:relative;z-index:2;}
+
+/* 바깥 프레임 완전 제거 */
+.project-intro-main .ppt-section,
+.project-intro-main .ppt-section.white,
+.project-intro-main .ppt-section.soft,
+.project-intro-main .hero{
+  border:0!important;box-shadow:none!important;background:transparent!important;border-radius:0!important;
+}
+
+/* 장면 헤드라인: 크고 담백하게 */
+.project-intro-main .eyebrow,
+.project-intro-main .ppt-kicker{
+  display:inline-flex!important;align-items:center;gap:10px;
+  font-size:12px!important;font-weight:850!important;letter-spacing:.08em!important;text-transform:uppercase;
+  color:var(--cin-blue)!important;margin-bottom:18px!important;
+}
+.project-intro-main .ppt-kicker:before,.project-intro-main .eyebrow:before{
+  content:"";width:34px;height:2px;border-radius:99px;background:linear-gradient(90deg,var(--cin-blue),var(--cin-cyan));
+}
+.project-intro-main .hero h1{
+  font-size:clamp(48px,5.6vw,88px)!important;line-height:1.02!important;letter-spacing:-.055em!important;
+  max-width:1120px!important;margin:12px 0 24px!important;font-weight:900!important;color:var(--cin-ink)!important;
+}
+.project-intro-main .hero p{
+  max-width:900px!important;font-size:clamp(16px,1.3vw,21px)!important;line-height:1.75!important;color:#53627a!important;
+}
+.project-intro-main .ppt-head{margin-bottom:42px!important;max-width:1100px;}
+.project-intro-main .ppt-head h2{
+  font-size:clamp(38px,4.1vw,66px)!important;line-height:1.08!important;letter-spacing:-.045em!important;
+  margin:0 0 18px!important;font-weight:900!important;color:var(--cin-ink)!important;
+}
+.project-intro-main .ppt-head p{font-size:clamp(15px,1.12vw,18px)!important;line-height:1.8!important;color:#607089!important;max-width:960px!important;}
+
+/* 기존 내부 콘텐츠는 '떠 있는 조각'처럼: 과한 테두리 제거 */
+.project-intro-main .story-step,
+.project-intro-main .ppt-choice,
+.project-intro-main .ppt-callout,
+.project-intro-main .ppt-data-card,
+.project-intro-main .ppt-process-step,
+.project-intro-main .ppt-tech,
+.project-intro-main .ppt-issue,
+.project-intro-main .ppt-chart,
+.project-intro-main .ppt-weight,
+.project-intro-main .ppt-score-card,
+.project-intro-main .ppt-phase2-card,
+.project-intro-main .ppt-turn-left,
+.project-intro-main .ppt-turn-right,
+.project-intro-main .ppt-ybi-node,
+.project-intro-main .ppt-policy-card,
+.project-intro-main .ppt-output,
+.project-intro-main .ppt-limit{
+  border:1px solid rgba(255,255,255,.74)!important;
+  background:rgba(255,255,255,.54)!important;
+  box-shadow:0 14px 40px rgba(62,88,132,.075)!important;
+  backdrop-filter:blur(16px) saturate(120%);
+  -webkit-backdrop-filter:blur(16px) saturate(120%);
+}
+.project-intro-main .ppt-insight,.project-intro-main .ppt-conclusion,.project-intro-main .ppt-final{
+  border-left:2px solid var(--cin-blue)!important;border-radius:0!important;
+  background:transparent!important;box-shadow:none!important;
+  padding:7px 0 7px 22px!important;margin-top:34px!important;color:#465872!important;
+}
+
+/* 카드 라운드도 조금 더 절제 */
+.project-intro-main .story-step,
+.project-intro-main .ppt-data-card,
+.project-intro-main .ppt-tech,
+.project-intro-main .ppt-score-card,
+.project-intro-main .ppt-phase2-card,
+.project-intro-main .ppt-policy-card,
+.project-intro-main .ppt-output,
+.project-intro-main .ppt-limit{border-radius:22px!important;}
+
+/* Hero의 5단계는 설명용 '띠'처럼 보여주기 */
+.project-intro-main .story-strip{
+  margin-top:54px!important;padding-top:24px;border-top:1px solid rgba(49,87,232,.13);
+  gap:10px!important;
+}
+.project-intro-main .story-step{
+  min-height:104px!important;background:transparent!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important;
+  padding:14px 18px!important;border-radius:0!important;
+}
+.project-intro-main .story-step .n{font-size:11px!important;color:var(--cin-blue)!important;}
+
+/* 시각화 섹션은 차트가 무대처럼 크게 */
+#intro-visualization .ppt-chart-grid{gap:28px!important;align-items:stretch;}
+#intro-visualization .ppt-chart{padding:30px!important;background:rgba(255,255,255,.62)!important;}
+#intro-hl .ppt-score-grid{gap:22px!important;}
+#intro-hl .ppt-score-card{padding:28px!important;transform-origin:center bottom;}
+#intro-turning .ppt-turn{gap:24px!important;align-items:stretch;}
+#intro-turning .ppt-turn-left,#intro-turning .ppt-turn-right{min-height:300px;display:flex;flex-direction:column;justify-content:center;}
+
+/* 섹션 진입 애니메이션: 현재 장면만 또렷하게 */
+.project-intro-main .story-chapter .wrap{
+  opacity:.34;transform:translate3d(0,56px,0) scale(.985);filter:blur(1.8px);
+  transition:opacity .75s ease,transform .9s cubic-bezier(.16,.84,.24,1),filter .75s ease;
+}
+.project-intro-main .story-chapter.is-active .wrap{opacity:1;transform:none;filter:none;}
+.project-intro-main .story-chapter .ppt-head,
+.project-intro-main .story-chapter .story-strip,
+.project-intro-main .story-chapter .ppt-choice-grid,
+.project-intro-main .story-chapter .ppt-two,
+.project-intro-main .story-chapter .ppt-data-grid,
+.project-intro-main .story-chapter .ppt-process,
+.project-intro-main .story-chapter .ppt-tech-grid,
+.project-intro-main .story-chapter .ppt-issues,
+.project-intro-main .story-chapter .ppt-chart-grid,
+.project-intro-main .story-chapter .ppt-weight-grid,
+.project-intro-main .story-chapter .ppt-score-grid,
+.project-intro-main .story-chapter .ppt-turn,
+.project-intro-main .story-chapter .ppt-phase2-grid,
+.project-intro-main .story-chapter .ppt-ybi-flow,
+.project-intro-main .story-chapter .ppt-policy-grid,
+.project-intro-main .story-chapter .ppt-output-grid,
+.project-intro-main .story-chapter .ppt-limit-grid,
+.project-intro-main .story-chapter .ppt-insight,
+.project-intro-main .story-chapter .ppt-final{
+  opacity:0;transform:translateY(26px);transition:opacity .72s ease,transform .78s cubic-bezier(.2,.78,.2,1);
+}
+.project-intro-main .story-chapter.is-active .ppt-head,
+.project-intro-main .story-chapter.is-active .story-strip,
+.project-intro-main .story-chapter.is-active .ppt-choice-grid,
+.project-intro-main .story-chapter.is-active .ppt-two,
+.project-intro-main .story-chapter.is-active .ppt-data-grid,
+.project-intro-main .story-chapter.is-active .ppt-process,
+.project-intro-main .story-chapter.is-active .ppt-tech-grid,
+.project-intro-main .story-chapter.is-active .ppt-issues,
+.project-intro-main .story-chapter.is-active .ppt-chart-grid,
+.project-intro-main .story-chapter.is-active .ppt-weight-grid,
+.project-intro-main .story-chapter.is-active .ppt-score-grid,
+.project-intro-main .story-chapter.is-active .ppt-turn,
+.project-intro-main .story-chapter.is-active .ppt-phase2-grid,
+.project-intro-main .story-chapter.is-active .ppt-ybi-flow,
+.project-intro-main .story-chapter.is-active .ppt-policy-grid,
+.project-intro-main .story-chapter.is-active .ppt-output-grid,
+.project-intro-main .story-chapter.is-active .ppt-limit-grid,
+.project-intro-main .story-chapter.is-active .ppt-insight,
+.project-intro-main .story-chapter.is-active .ppt-final{opacity:1;transform:none;}
+.project-intro-main .story-chapter.is-active .ppt-head{transition-delay:.05s;}
+.project-intro-main .story-chapter.is-active .story-strip,
+.project-intro-main .story-chapter.is-active .ppt-choice-grid,
+.project-intro-main .story-chapter.is-active .ppt-data-grid,
+.project-intro-main .story-chapter.is-active .ppt-process,
+.project-intro-main .story-chapter.is-active .ppt-chart-grid,
+.project-intro-main .story-chapter.is-active .ppt-weight-grid,
+.project-intro-main .story-chapter.is-active .ppt-turn,
+.project-intro-main .story-chapter.is-active .ppt-phase2-grid,
+.project-intro-main .story-chapter.is-active .ppt-ybi-flow,
+.project-intro-main .story-chapter.is-active .ppt-output-grid,
+.project-intro-main .story-chapter.is-active .ppt-limit-grid{transition-delay:.16s;}
+.project-intro-main .story-chapter.is-active .ppt-two,
+.project-intro-main .story-chapter.is-active .ppt-tech-grid,
+.project-intro-main .story-chapter.is-active .ppt-score-grid,
+.project-intro-main .story-chapter.is-active .ppt-policy-grid{transition-delay:.24s;}
+.project-intro-main .story-chapter.is-active .ppt-insight,
+.project-intro-main .story-chapter.is-active .ppt-final{transition-delay:.34s;}
+
+/* 오른쪽 '진행상태'는 도트 대신 아주 얇은 선 하나 */
+.story-progress{position:fixed;right:28px;top:50%;transform:translateY(-50%);width:2px;height:34vh;z-index:60;background:rgba(49,87,232,.10);border-radius:99px;overflow:hidden;pointer-events:none;}
+.story-progress>i{display:block;width:100%;height:0;background:linear-gradient(180deg,var(--cin-blue),var(--cin-cyan));border-radius:inherit;transition:height .18s linear;}
+
+/* 화면 하단 스크롤 힌트 */
+.story-scroll-hint{position:absolute;left:50%;bottom:34px;transform:translateX(-50%);display:flex;align-items:center;gap:12px;color:#7b8aa1;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;}
+.story-scroll-hint:before{content:"";width:1px;height:38px;background:linear-gradient(180deg,var(--cin-blue),transparent);animation:cinScroll 1.8s ease-in-out infinite;}
+@keyframes cinScroll{0%,100%{transform:scaleY(.35);transform-origin:top;opacity:.35}50%{transform:scaleY(1);opacity:1}}
+
+/* 해당 장면에 도달했을 때만 나타나는 CTA */
+.story-float-cta{
+  position:absolute;right:clamp(28px,6vw,110px);bottom:48px;z-index:12;
+  display:grid;grid-template-columns:1fr auto;column-gap:18px;row-gap:2px;align-items:center;
+  min-width:min(340px,calc(100vw - 40px));padding:17px 20px 17px 22px;border-radius:18px;
+  text-decoration:none;color:#fff!important;background:linear-gradient(135deg,#4167f4,#2f54df 70%,#1aaec7);
+  box-shadow:0 16px 46px rgba(49,87,232,.28);
+  opacity:0;transform:translateY(22px) scale(.97);pointer-events:none;
+  transition:opacity .45s ease,transform .55s cubic-bezier(.2,.85,.2,1),box-shadow .25s ease;
+}
+.story-chapter.is-active .story-float-cta{opacity:1;transform:none;pointer-events:auto;transition-delay:.48s;}
+.story-float-cta:hover{transform:translateY(-4px)!important;box-shadow:0 22px 56px rgba(49,87,232,.34);}
+.story-float-cta .cta-kicker{grid-column:1;font-size:10px;letter-spacing:.09em;opacity:.72;font-weight:800;}
+.story-float-cta strong{grid-column:1;font-size:15px;letter-spacing:-.02em;}
+.story-float-cta .cta-arrow{grid-column:2;grid-row:1/3;font-size:22px;}
+
+/* 미니 막대는 장면 진입시에만 펼쳐지는 효과 */
+.ppt-mini-fill{transform-origin:left center;transform:scaleX(.06);transition:transform 1.05s cubic-bezier(.2,.85,.2,1)!important;}
+.story-chapter.is-active .ppt-mini-fill{transform:scaleX(1);transition-delay:.38s!important;}
+
+.winter-footer{background:transparent!important;border-top:0!important;padding:38px 20px!important;}
+
+@media (max-width:1000px){
+  .project-intro-main .story-chapter{padding:130px 28px 110px!important;min-height:auto!important;}
+  .project-intro-main .story-chapter:before{right:4vw;font-size:clamp(110px,28vw,220px);top:22%;}
+  .story-progress{display:none;}
+  .story-float-cta{position:relative;right:auto;bottom:auto;margin:30px 28px 0 auto;width:max-content;}
+}
+@media (max-width:680px){
+  html{scroll-snap-type:none;}
+  .project-intro-main .story-chapter{padding:112px 18px 80px!important;}
+  .project-intro-main .hero h1{font-size:43px!important;}
+  .project-intro-main .ppt-head h2{font-size:35px!important;}
+  .project-intro-main .story-chapter .wrap{opacity:1;transform:none;filter:none;}
+  .project-intro-main .story-chapter .ppt-head,
+  .project-intro-main .story-chapter .story-strip,
+  .project-intro-main .story-chapter [class*="ppt-"]{opacity:1;transform:none;}
+  .story-float-cta{width:100%;min-width:0;margin-top:28px;}
+  .story-scroll-hint{display:none;}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important;}
+  .project-intro-main .story-chapter .wrap,.project-intro-main .story-chapter [class*="ppt-"]{opacity:1!important;transform:none!important;filter:none!important;}
+}
+</style>
+
+<style id="winter-static-sections-v3">
+/* =========================================================
+   STATIC SECTION MODE V3
+   - 섹션 구분/100vh 구조 유지
+   - 섹션 진입 fade/slide/blur/scale 효과 제거
+   - IntersectionObserver / 진행 애니메이션 제거
+   ========================================================= */
+
+/* 섹션 자체는 그대로 한 화면 단위로 구분 */
+html{
+  scroll-behavior:auto !important;
+  scroll-snap-type:y proximity;
+}
+
+.project-intro-main .story-chapter{
+  scroll-snap-align:start;
+  border-top:1px solid rgba(79,110,247,.10) !important;
+}
+
+.project-intro-main .story-chapter:first-child{
+  border-top:0 !important;
+}
+
+/* 섹션 배경을 아주 미세하게 교차시켜 구분만 남김 */
+.project-intro-main .story-chapter:nth-child(odd){
+  background:rgba(255,255,255,.10) !important;
+}
+.project-intro-main .story-chapter:nth-child(even){
+  background:rgba(240,247,255,.16) !important;
+}
+
+/* 장면 번호/배경 오브젝트는 정적인 상태 */
+.project-intro-main .story-chapter:before,
+.project-intro-main .story-chapter:after{
+  transition:none !important;
+  animation:none !important;
+  transform:none;
+}
+.project-intro-main .story-chapter:before{
+  transform:translateY(-50%) !important;
+}
+
+/* 모든 섹션 콘텐츠 항상 바로 표시 */
+.project-intro-main .story-chapter .wrap,
+.project-intro-main .story-chapter .ppt-head,
+.project-intro-main .story-chapter .story-strip,
+.project-intro-main .story-chapter .ppt-choice-grid,
+.project-intro-main .story-chapter .ppt-two,
+.project-intro-main .story-chapter .ppt-data-grid,
+.project-intro-main .story-chapter .ppt-process,
+.project-intro-main .story-chapter .ppt-tech-grid,
+.project-intro-main .story-chapter .ppt-issues,
+.project-intro-main .story-chapter .ppt-chart-grid,
+.project-intro-main .story-chapter .ppt-weight-grid,
+.project-intro-main .story-chapter .ppt-score-grid,
+.project-intro-main .story-chapter .ppt-turn,
+.project-intro-main .story-chapter .ppt-phase2-grid,
+.project-intro-main .story-chapter .ppt-ybi-flow,
+.project-intro-main .story-chapter .ppt-policy-grid,
+.project-intro-main .story-chapter .ppt-output-grid,
+.project-intro-main .story-chapter .ppt-limit-grid,
+.project-intro-main .story-chapter .ppt-insight,
+.project-intro-main .story-chapter .ppt-final{
+  opacity:1 !important;
+  transform:none !important;
+  filter:none !important;
+  transition:none !important;
+  animation:none !important;
+}
+
+/* CTA는 해당 섹션에 항상 고정 표시 */
+.story-float-cta{
+  opacity:1 !important;
+  transform:none !important;
+  pointer-events:auto !important;
+  transition:none !important;
+}
+.story-float-cta:hover{
+  transform:none !important;
+}
+
+/* 미니 그래프도 진입 애니메이션 없이 즉시 표시 */
+.ppt-mini-fill{
+  transform:scaleX(1) !important;
+  transition:none !important;
+  animation:none !important;
+}
+
+/* 첫 화면 스크롤 안내도 정적 표시 */
+.story-scroll-hint:before{
+  animation:none !important;
+  transform:none !important;
+  opacity:.72 !important;
+}
+
+/* 섹션 진입용 active 상태가 있어도 아무 변화 없음 */
+.project-intro-main .story-chapter.is-active:before,
+.project-intro-main .story-chapter.is-active:after,
+.project-intro-main .story-chapter.is-active .wrap,
+.project-intro-main .story-chapter.is-active .story-float-cta,
+.project-intro-main .story-chapter.is-active .ppt-mini-fill{
+  transform:none !important;
+  opacity:1 !important;
+  filter:none !important;
+  transition:none !important;
+}
+
+/* 번호는 원래 위치 유지 */
+.project-intro-main .story-chapter.is-active:before{
+  transform:translateY(-50%) !important;
+}
+
+@media (max-width:680px){
+  html{scroll-snap-type:none;}
+}
+</style>
+
+
+<style id="winter-section-nav-v5">
+/* =========================================================
+   SECTION NAV V5
+   - 오른쪽 세로 페이지 인디케이터
+   - 클릭 시 해당 섹션으로 이동
+   - 콘텐츠 등장/전환 애니메이션은 없음
+   - 섹션 간 배경/경계 대비 강화
+   ========================================================= */
+
+/* ---------- 섹션 구분감 강화 ---------- */
+.project-intro-main{
+  overflow:visible !important;
+}
+
+/*
+  기존 본문 폭은 유지하면서,
+  각 story-chapter의 배경만 브라우저 양끝까지 이어지는 밴드로 확장
+*/
+.project-intro-main .story-chapter{
+  position:relative;
+  isolation:isolate;
+  border-top:1px solid rgba(95,125,165,.16) !important;
+  border-bottom:1px solid rgba(95,125,165,.10) !important;
+}
+
+/* 기존의 약한 홀짝 배경보다 구분이 느껴지도록 단계별 톤 조정 */
+.project-intro-main .story-chapter:nth-of-type(4n + 1){
+  background:
+    radial-gradient(circle at 84% 30%, rgba(63,99,243,.055), transparent 28rem),
+    linear-gradient(180deg, rgba(249,252,255,.98), rgba(244,249,254,.96)) !important;
+}
+.project-intro-main .story-chapter:nth-of-type(4n + 2){
+  background:
+    radial-gradient(circle at 15% 75%, rgba(30,185,208,.045), transparent 26rem),
+    linear-gradient(180deg, rgba(238,246,253,.98), rgba(246,250,254,.98)) !important;
+}
+.project-intro-main .story-chapter:nth-of-type(4n + 3){
+  background:
+    radial-gradient(circle at 88% 20%, rgba(74,109,244,.05), transparent 27rem),
+    linear-gradient(180deg, rgba(252,253,255,.99), rgba(245,248,252,.98)) !important;
+}
+.project-intro-main .story-chapter:nth-of-type(4n){
+  background:
+    radial-gradient(circle at 14% 22%, rgba(30,185,208,.05), transparent 25rem),
+    linear-gradient(180deg, rgba(235,244,252,.98), rgba(248,251,254,.98)) !important;
+}
+
+/* 섹션 전체 폭 배경을 좌우 끝까지 확장 */
+.project-intro-main .story-chapter::before{
+  z-index:-1 !important;
+}
+.project-intro-main .story-chapter{
+  box-shadow:
+    0 0 0 100vmax rgba(246,250,254,.01),
+    inset 0 1px 0 rgba(255,255,255,.7),
+    inset 0 -1px 0 rgba(148,163,184,.06) !important;
+  clip-path:inset(0 -100vmax);
+}
+
+/* 번호는 배경에 묻히게 두되 조금 더 또렷하게 */
+.project-intro-main .story-chapter::before{
+  opacity:.78 !important;
+}
+
+/* 첫/마지막 구간의 선 정리 */
+.project-intro-main .story-chapter:first-child{
+  border-top:0 !important;
+}
+.project-intro-main .story-chapter:last-child{
+  border-bottom:0 !important;
+}
+
+/* ---------- 오른쪽 세로 인디케이터 ---------- */
+.winter-section-dots{
+  position:fixed;
+  right:34px;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:120;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+  padding:12px 8px;
+  border-radius:999px;
+  background:rgba(255,255,255,.36);
+  border:1px solid rgba(205,220,235,.28);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+}
+
+.winter-section-dot{
+  appearance:none;
+  -webkit-appearance:none;
+  width:8px;
+  height:8px;
+  min-width:8px;
+  padding:0;
+  margin:0;
+  border:0;
+  border-radius:999px;
+  background:#d6dee8;
+  cursor:pointer;
+  outline:none;
+  box-shadow:none;
+  transition:none !important;
+}
+
+.winter-section-dot:hover{
+  background:#aebdce;
+}
+
+.winter-section-dot.active{
+  width:8px;
+  height:25px;
+  background:linear-gradient(180deg,#4d69f5 0%,#29b9d2 100%);
+  box-shadow:0 3px 10px rgba(63,99,243,.20);
+}
+
+.winter-section-dot:focus-visible{
+  outline:3px solid rgba(63,99,243,.18);
+  outline-offset:3px;
+}
+
+.winter-section-dot-wrap{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.winter-section-dot-label{
+  position:absolute;
+  right:22px;
+  top:50%;
+  transform:translateY(-50%);
+  white-space:nowrap;
+  padding:7px 10px;
+  border-radius:10px;
+  background:rgba(17,24,39,.90);
+  color:#fff;
+  font-size:10px;
+  line-height:1;
+  font-weight:800;
+  letter-spacing:.02em;
+  pointer-events:none;
+  opacity:0;
+  visibility:hidden;
+  transition:none !important;
+}
+
+.winter-section-dot-wrap:hover .winter-section-dot-label{
+  opacity:1;
+  visibility:visible;
+}
+
+/* 화면이 좁으면 콘텐츠와 겹치지 않게 우측 간격 축소 */
+@media (max-width:1400px){
+  .winter-section-dots{right:16px;}
+}
+
+@media (max-width:900px){
+  .winter-section-dots{
+    right:8px;
+    gap:8px;
+    padding:10px 6px;
+  }
+  .winter-section-dot-label{display:none;}
+}
+
+@media (max-width:680px){
+  .winter-section-dots{display:none;}
+}
+
+/* 접근성: 모션 최소화 환경에서는 이동도 즉시 */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto !important;}
+}
+</style>
+
+
+<style id="winter-section-nav-v6-fix">
+/* 오른쪽 점 네비게이션 텍스트 노출 버그 수정 */
+.winter-section-dot::before,
+.winter-section-dot::after{
+  content:none !important;
+  display:none !important;
+}
+
+.winter-section-dot{
+  font-size:0 !important;
+  line-height:0 !important;
+  overflow:hidden !important;
+  text-indent:-9999px !important;
+}
+
+/* 실제 툴팁은 별도 label 요소만 사용 */
+.winter-section-dot-label{
+  font-size:10px !important;
+  line-height:1 !important;
+}
+</style>
+
+
+<style id="winter-section-separation-v7">
+/* =========================================================
+   SECTION SEPARATION V7
+   - 카드처럼 쪼개지지 않게
+   - 페이지 전체 배경 밴드로 섹션 구분감 강화
+   - 애니메이션 없음
+   ========================================================= */
+
+/* 섹션 사이 간격과 전체 밴드 대비 강화 */
+.project-intro-main .story-chapter{
+  position:relative !important;
+  padding-top:86px !important;
+  padding-bottom:86px !important;
+  border-top:1px solid rgba(120,145,175,.24) !important;
+  border-bottom:1px solid rgba(120,145,175,.16) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.85),
+    inset 0 -1px 0 rgba(93,116,150,.06) !important;
+}
+
+/* 섹션 시작점에 짧은 그라데이션 라인 */
+.project-intro-main .story-chapter::after{
+  content:"" !important;
+  position:absolute !important;
+  top:0 !important;
+  left:0 !important;
+  width:170px !important;
+  height:3px !important;
+  border-radius:999px !important;
+  background:linear-gradient(90deg,#4f6ef7 0%,#24b7cf 100%) !important;
+  opacity:.62 !important;
+  transform:none !important;
+  transition:none !important;
+  animation:none !important;
+}
+
+/* 4톤 순환: 기존보다 명확하게 */
+.project-intro-main .story-chapter:nth-of-type(4n + 1){
+  background:
+    radial-gradient(circle at 88% 22%, rgba(68,102,244,.10), transparent 27rem),
+    linear-gradient(180deg,#f9fcff 0%,#f1f7fd 100%) !important;
+}
+
+.project-intro-main .story-chapter:nth-of-type(4n + 2){
+  background:
+    radial-gradient(circle at 12% 78%, rgba(32,183,207,.09), transparent 25rem),
+    linear-gradient(180deg,#eaf4fb 0%,#f4f9fd 100%) !important;
+}
+
+.project-intro-main .story-chapter:nth-of-type(4n + 3){
+  background:
+    radial-gradient(circle at 86% 18%, rgba(99,120,244,.08), transparent 25rem),
+    linear-gradient(180deg,#ffffff 0%,#f6f8fc 100%) !important;
+}
+
+.project-intro-main .story-chapter:nth-of-type(4n){
+  background:
+    radial-gradient(circle at 14% 20%, rgba(35,184,208,.09), transparent 25rem),
+    linear-gradient(180deg,#e7f1f8 0%,#f2f7fb 100%) !important;
+}
+
+/* 좌우로 밴드가 화면 끝까지 이어지게 */
+.project-intro-main .story-chapter{
+  box-shadow:
+    0 0 0 100vmax rgba(255,255,255,0),
+    inset 0 1px 0 rgba(255,255,255,.82),
+    inset 0 -1px 0 rgba(101,126,158,.08) !important;
+  clip-path:inset(0 -100vmax);
+}
+
+/* 섹션 번호를 조금 더 존재감 있게 */
+.project-intro-main .story-chapter::before{
+  opacity:.11 !important;
+  font-weight:900 !important;
+  letter-spacing:-.06em !important;
+}
+
+/* 제목 영역도 위아래 숨 쉴 공간 추가 */
+.project-intro-main .story-chapter .ppt-head{
+  margin-bottom:30px !important;
+}
+
+/* 섹션 본문 카드류가 배경에 묻히지 않도록 아주 미세한 대비 */
+.project-intro-main .story-chapter .ppt-data-card,
+.project-intro-main .story-chapter .ppt-tech,
+.project-intro-main .story-chapter .ppt-chart,
+.project-intro-main .story-chapter .ppt-weight,
+.project-intro-main .story-chapter .ppt-score-card,
+.project-intro-main .story-chapter .ppt-phase2-card,
+.project-intro-main .story-chapter .ppt-policy-card,
+.project-intro-main .story-chapter .ppt-output,
+.project-intro-main .story-chapter .ppt-limit,
+.project-intro-main .story-chapter .story-step{
+  background:rgba(255,255,255,.82) !important;
+  border-color:rgba(194,211,228,.88) !important;
+}
+
+/* 첫/마지막 정리 */
+.project-intro-main .story-chapter:first-child{
+  border-top:0 !important;
+}
+.project-intro-main .story-chapter:first-child::after{
+  display:none !important;
+}
+.project-intro-main .story-chapter:last-child{
+  border-bottom:0 !important;
+}
+
+/* 큰 화면에서는 섹션 차이를 조금 더 확실히 */
+@media (min-width:1200px){
+  .project-intro-main .story-chapter{
+    padding-top:96px !important;
+    padding-bottom:96px !important;
+  }
+}
+
+/* 태블릿/모바일은 과한 여백 방지 */
+@media (max-width:900px){
+  .project-intro-main .story-chapter{
+    padding-top:64px !important;
+    padding-bottom:64px !important;
+  }
+}
+
+@media (max-width:680px){
+  .project-intro-main .story-chapter{
+    padding-top:48px !important;
+    padding-bottom:48px !important;
+  }
+  .project-intro-main .story-chapter::after{
+    width:110px !important;
+  }
+}
+</style>
+
+
+<style id="winter-section-separation-v8">
+/* =========================================================
+   SECTION SEPARATION V8
+   목적:
+   - 섹션 경계가 한눈에 보이게
+   - 카드 묶음처럼 보이지 않게
+   - 전체 폭 배경 밴드 + 굵은 구분선
+   - 애니메이션 없음
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   1. 섹션 자체를 더 큰 '장면'처럼 분리
+--------------------------------------------------------- */
+.project-intro-main .story-chapter{
+  position:relative !important;
+  isolation:isolate !important;
+
+  padding-top:112px !important;
+  padding-bottom:112px !important;
+
+  border-top:0 !important;
+  border-bottom:0 !important;
+
+  clip-path:inset(0 -100vmax) !important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.88),
+    inset 0 -1px 0 rgba(78,105,142,.12) !important;
+}
+
+/* ---------------------------------------------------------
+   2. 섹션마다 배경 차이를 확실하게
+   밝음 ↔ 블루 ↔ 밝음 ↔ 블루그레이 순환
+--------------------------------------------------------- */
+.project-intro-main .story-chapter:nth-of-type(4n + 1){
+  background:
+    radial-gradient(circle at 88% 22%, rgba(63,99,243,.12), transparent 30rem),
+    linear-gradient(180deg,#fbfdff 0%,#f4f8fc 100%) !important;
+}
+
+.project-intro-main .story-chapter:nth-of-type(4n + 2){
+  background:
+    radial-gradient(circle at 14% 76%, rgba(30,185,208,.12), transparent 28rem),
+    linear-gradient(180deg,#dfeef9 0%,#eaf4fb 100%) !important;
+}
+
+.project-intro-main .story-chapter:nth-of-type(4n + 3){
+  background:
+    radial-gradient(circle at 87% 18%, rgba(83,108,245,.10), transparent 29rem),
+    linear-gradient(180deg,#ffffff 0%,#f3f6fa 100%) !important;
+}
+
+.project-intro-main .story-chapter:nth-of-type(4n){
+  background:
+    radial-gradient(circle at 12% 20%, rgba(30,185,208,.11), transparent 27rem),
+    linear-gradient(180deg,#d8e8f4 0%,#e7f1f8 100%) !important;
+}
+
+/* ---------------------------------------------------------
+   3. 섹션 시작점 전체 폭 구분 바
+   짧은 포인트 라인이 아니라 '페이지 전체' 경계
+--------------------------------------------------------- */
+.project-intro-main .story-chapter::after{
+  content:"" !important;
+  position:absolute !important;
+  top:0 !important;
+  left:50% !important;
+
+  width:100vw !important;
+  height:7px !important;
+
+  transform:translateX(-50%) !important;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(63,99,243,.10) 0%,
+      rgba(63,99,243,.78) 24%,
+      rgba(30,185,208,.82) 50%,
+      rgba(63,99,243,.78) 76%,
+      rgba(63,99,243,.10) 100%
+    ) !important;
+
+  border-radius:0 !important;
+  opacity:1 !important;
+
+  transition:none !important;
+  animation:none !important;
+}
+
+/* 첫 섹션에는 상단 구분 바 제거 */
+.project-intro-main .story-chapter:first-child::after{
+  display:none !important;
+}
+
+/* ---------------------------------------------------------
+   4. 섹션 사이에 아주 얇은 '공백 띠'를 추가해
+      배경색이 붙어 보이지 않도록 분리
+--------------------------------------------------------- */
+.project-intro-main .story-chapter:not(:first-child){
+  margin-top:18px !important;
+}
+
+.project-intro-main .story-chapter:not(:first-child)::marker{
+  display:none;
+}
+
+/* 실제 흰색 간격을 section 위쪽 shadow로 표현 */
+.project-intro-main .story-chapter:not(:first-child){
+  box-shadow:
+    0 -18px 0 #f8fbfe,
+    inset 0 1px 0 rgba(255,255,255,.88),
+    inset 0 -1px 0 rgba(78,105,142,.12) !important;
+}
+
+/* ---------------------------------------------------------
+   5. 큰 챕터 숫자도 섹션 구분의 일부로 더 또렷하게
+--------------------------------------------------------- */
+.project-intro-main .story-chapter::before{
+  opacity:.14 !important;
+  font-weight:900 !important;
+  letter-spacing:-.07em !important;
+}
+
+/* ---------------------------------------------------------
+   6. 섹션 제목 앞에 있는 kicker를 배경과 분리
+--------------------------------------------------------- */
+.project-intro-main .story-chapter .ppt-kicker{
+  display:inline-flex !important;
+  align-items:center !important;
+  min-height:30px !important;
+  padding:7px 12px !important;
+  border-radius:999px !important;
+
+  background:rgba(255,255,255,.72) !important;
+  border:1px solid rgba(92,122,164,.22) !important;
+
+  box-shadow:0 4px 12px rgba(49,87,120,.05) !important;
+}
+
+/* 제목과 본문 사이도 조금 더 확실하게 */
+.project-intro-main .story-chapter .ppt-head{
+  margin-bottom:34px !important;
+}
+
+/* ---------------------------------------------------------
+   7. 내부 카드 대비 강화
+--------------------------------------------------------- */
+.project-intro-main .story-chapter .ppt-data-card,
+.project-intro-main .story-chapter .ppt-tech,
+.project-intro-main .story-chapter .ppt-chart,
+.project-intro-main .story-chapter .ppt-weight,
+.project-intro-main .story-chapter .ppt-score-card,
+.project-intro-main .story-chapter .ppt-phase2-card,
+.project-intro-main .story-chapter .ppt-policy-card,
+.project-intro-main .story-chapter .ppt-output,
+.project-intro-main .story-chapter .ppt-limit,
+.project-intro-main .story-chapter .story-step{
+  background:rgba(255,255,255,.90) !important;
+  border-color:rgba(176,198,220,.95) !important;
+  box-shadow:
+    0 8px 24px rgba(45,72,104,.065) !important;
+}
+
+/* ---------------------------------------------------------
+   8. 첫 화면과 마지막 화면 정리
+--------------------------------------------------------- */
+.project-intro-main .story-chapter:first-child{
+  margin-top:0 !important;
+}
+
+.project-intro-main .story-chapter:last-child{
+  margin-bottom:0 !important;
+}
+
+/* ---------------------------------------------------------
+   9. 반응형
+--------------------------------------------------------- */
+@media (max-width:1200px){
+  .project-intro-main .story-chapter{
+    padding-top:92px !important;
+    padding-bottom:92px !important;
+  }
+}
+
+@media (max-width:900px){
+  .project-intro-main .story-chapter{
+    padding-top:72px !important;
+    padding-bottom:72px !important;
+  }
+
+  .project-intro-main .story-chapter:not(:first-child){
+    margin-top:12px !important;
+    box-shadow:
+      0 -12px 0 #f8fbfe,
+      inset 0 1px 0 rgba(255,255,255,.88),
+      inset 0 -1px 0 rgba(78,105,142,.12) !important;
+  }
+}
+
+@media (max-width:680px){
+  .project-intro-main .story-chapter{
+    padding-top:52px !important;
+    padding-bottom:52px !important;
+  }
+
+  .project-intro-main .story-chapter::after{
+    height:5px !important;
+  }
+}
+</style>
+
 </head>
 <body class="project-intro-page">
-
-
 <header class="winter-topbar">
-    <div class="winter-topbar-inner">
-        <a href="/project-intro" class="winter-brand" aria-label="WINTER Analytics 프로젝트 소개">
-            <span class="winter-brand-mark">❄️</span>
-            <span class="winter-brand-copy">
-                <span class="winter-brand-eyebrow">WINTER</span>
-                <span class="winter-brand-name">WINTER Analytics</span>
-                <span class="winter-brand-sub">AI Bootcamp Mini Project · Gwangju 2030</span>
-            </span>
-        </a>
-
-        <nav class="winter-stage-nav" aria-label="주요 페이지 이동">
-            
-        <a href="/project-intro" class="winter-stage-link active">
-            <span class="winter-stage-no">00</span>
-            <span class="winter-stage-copy">
-                <strong>프로젝트 소개</strong>
-                <small>시작과 분석 흐름</small>
-            </span>
-        </a>
-        <a href="/dashboard" class="winter-stage-link">
-            <span class="winter-stage-no">01</span>
-            <span class="winter-stage-copy">
-                <strong>시각화 대시보드</strong>
-                <small>25개 동 데이터 비교</small>
-            </span>
-        </a>
-        <a href="/hl-dashboard" class="winter-stage-link">
-            <span class="winter-stage-no">02</span>
-            <span class="winter-stage-copy">
-                <strong>HL Score</strong>
-                <small>4가지 환경 통합 점수</small>
-            </span>
-        </a>
-        <a href="/policy-dashboard" class="winter-stage-link">
-            <span class="winter-stage-no">03</span>
-            <span class="winter-stage-copy">
-                <strong>종합 분석</strong>
-                <small>청년 유입·정착 지원 검토</small>
-            </span>
-        </a>
-        </nav>
-
-        <div class="winter-context-chip">
+<div class="winter-topbar-inner">
+<a aria-label="WINTER Analytics 프로젝트 소개" class="winter-brand" href="/project-intro">
+<span class="winter-brand-mark">❄️</span>
+<span class="winter-brand-copy">
+<span class="winter-brand-eyebrow">WINTER</span>
+<span class="winter-brand-name">WINTER Analytics</span>
+<span class="winter-brand-sub">AI Bootcamp Mini Project · Gwangju 2030</span>
+</span>
+</a>
+<nav aria-label="주요 페이지 이동" class="winter-stage-nav">
+<a class="winter-stage-link active" href="/project-intro">
+<span class="winter-stage-no">00</span>
+<span class="winter-stage-copy">
+<strong>프로젝트 소개</strong>
+<small>시작과 분석 흐름</small>
+</span>
+</a>
+<a class="winter-stage-link" href="/dashboard">
+<span class="winter-stage-no">01</span>
+<span class="winter-stage-copy">
+<strong>시각화 대시보드</strong>
+<small>25개 동 데이터 비교</small>
+</span>
+</a>
+<a class="winter-stage-link" href="/hl-dashboard">
+<span class="winter-stage-no">02</span>
+<span class="winter-stage-copy">
+<strong>HL Score</strong>
+<small>4가지 환경 통합 점수</small>
+</span>
+</a>
+<a class="winter-stage-link" href="/policy-dashboard">
+<span class="winter-stage-no">03</span>
+<span class="winter-stage-copy">
+<strong>종합 분석</strong>
+<small>청년 유입·정착 지원 검토</small>
+</span>
+</a>
+</nav>
+<div class="winter-context-chip">
             AI 부트캠프 미니프로젝트
             <strong>광주 25개 동 · 2030 주거환경</strong>
-        </div>
-    </div>
+</div>
+</div>
 </header>
 
+<nav class="winter-section-dots" aria-label="프로젝트 소개 섹션 빠른 이동">
+  <span class="winter-section-dot-wrap">
+    <button type="button"
+            class="winter-section-dot"
+            data-target="project-intro"
+            aria-label="00 · PROJECT START"
+            title="00 · PROJECT START"></button>
+    <span class="winter-section-dot-label">00 · PROJECT START</span>
+  </span>
+  <span class="winter-section-dot-wrap">
+    <button type="button"
+            class="winter-section-dot"
+            data-target="intro-topic"
+            aria-label="01 · WHY THIS TOPIC"
+            title="01 · WHY THIS TOPIC"></button>
+    <span class="winter-section-dot-label">01 · WHY THIS TOPIC</span>
+  </span>
+  <span class="winter-section-dot-wrap">
+    <button type="button"
+            class="winter-section-dot"
+            data-target="intro-data"
+            aria-label="02 · PHASE 1 DATA"
+            title="02 · PHASE 1 DATA"></button>
+    <span class="winter-section-dot-label">02 · PHASE 1 DATA</span>
+  </span>
+  <span class="winter-section-dot-wrap">
+    <button type="button"
+            class="winter-section-dot"
+            data-target="intro-process"
+            aria-label="03 · DATA → HL SCORE"
+            title="03 · DATA → HL SCORE"></button>
+    <span class="winter-section-dot-label">03 · DATA → HL SCORE</span>
+  </span>
+  <span class="winter-section-dot-wrap">
+    <button type="button"
+            class="winter-section-dot"
+            data-target="intro-visualization"
+            aria-label="04 · VISUALIZATION"
+            title="04 · VISUALIZATION"></button>
+    <span class="winter-section-dot-label">04 · VISUALIZATION</span>
+  </span>
+  <span class="winter-section-dot-wrap">
+    <button type="button"
+            class="winter-section-dot"
+            data-target="intro-hl"
+            aria-label="05 · HL SCORE RESULT"
+            title="05 · HL SCORE RESULT"></button>
+    <span class="winter-section-dot-label">05 · HL SCORE RESULT</span>
+  </span>
+  <span class="winter-section-dot-wrap">
+    <button type="button"
+            class="winter-section-dot"
+            data-target="intro-turning"
+            aria-label="06 · TURNING POINT"
+            title="06 · TURNING POINT"></button>
+    <span class="winter-section-dot-label">06 · TURNING POINT</span>
+  </span>
+  <span class="winter-section-dot-wrap">
+    <button type="button"
+            class="winter-section-dot"
+            data-target="intro-phase2"
+            aria-label="07 · PHASE 2 DATA"
+            title="07 · PHASE 2 DATA"></button>
+    <span class="winter-section-dot-label">07 · PHASE 2 DATA</span>
+  </span>
+  <span class="winter-section-dot-wrap">
+    <button type="button"
+            class="winter-section-dot"
+            data-target="intro-analysis"
+            aria-label="08 · BALANCE / POLICY"
+            title="08 · BALANCE / POLICY"></button>
+    <span class="winter-section-dot-label">08 · BALANCE / POLICY</span>
+  </span>
+  <span class="winter-section-dot-wrap">
+    <button type="button"
+            class="winter-section-dot"
+            data-target="intro-output"
+            aria-label="09 · FINAL OUTPUT"
+            title="09 · FINAL OUTPUT"></button>
+    <span class="winter-section-dot-label">09 · FINAL OUTPUT</span>
+  </span>
+  <span class="winter-section-dot-wrap">
+    <button type="button"
+            class="winter-section-dot"
+            data-target="intro-limit"
+            aria-label="10 · LIMITATIONS"
+            title="10 · LIMITATIONS"></button>
+    <span class="winter-section-dot-label">10 · LIMITATIONS</span>
+  </span>
+</nav>
+
 <main class="project-intro-main">
-<section id="project-intro" class="hero">
-  <div class="wrap">
+<section class="hero story-chapter" data-chapter="00" data-label="PROJECT START" id="project-intro">
+<div class="wrap">
 <div class="eyebrow">💡 PROJECT START · 처음 우리가 세운 목표</div>
-    <h1>집값만이 아니라<br><span style="color:#3f63f3">실제로 살기 좋은 동네</span>를 데이터로 찾자</h1>
-    <p>
+<h1>집값만이 아니라<br/><span style="color:#3f63f3">실제로 살기 좋은 동네</span>를 데이터로 찾자</h1>
+<p>
       기존 부동산 서비스는 매물의 <b>가격·면적·위치</b>는 잘 보여주지만,
       청년이 실제로 생활할 때 중요한 <b>교통·생활시설·2030 선호시설 접근성</b>까지
       한눈에 비교하기는 어렵다고 보았습니다.
@@ -1370,379 +2403,329 @@ p,span,a,button,select,input,textarea,th,td{
       여기에 생활 인프라와 교통, 청년 선호시설 데이터를 더해
       <b>“2030 청년이 실제로 살기 좋은 지역을 같은 기준으로 비교해보자”</b>는 목표로 프로젝트를 시작했습니다.
     </p>
-
-    <div style="margin-top:38px;font-size:14px;font-weight:900;color:var(--navy)">초기 구상에서 중요하게 본 3가지</div>
-    <div style="margin-top:6px;font-size:13px;color:var(--muted)">
+<div style="margin-top:38px;font-size:14px;font-weight:900;color:var(--navy)">초기 구상에서 중요하게 본 3가지</div>
+<div style="margin-top:6px;font-size:13px;color:var(--muted)">
       첫 단계에서는 정책 결론이 아니라, 청년의 실제 주거환경을 설명할 수 있는 비교 기준을 만드는 데 집중했습니다.
     </div>
-
-    <div class="story-strip" aria-label="프로젝트 초기 구상">
-      <div class="story-step">
-        <div class="n">01 · 문제 인식</div>
-        <b>가격만으로는 부족하다</b>
-        <span>임대료뿐 아니라 생활·교통·편의까지 함께 봐야 함</span>
-      </div>
-      <div class="story-step">
-        <div class="n">02 · 주제 선택</div>
-        <b>인구통계 + 아파트 실거래가</b>
-        <span>청년 수요와 실제 주거 부담을 함께 설명할 수 있는 데이터</span>
-      </div>
-      <div class="story-step">
-        <div class="n">03 · 초기 목표</div>
-        <b>청년이 살기 좋은 동네 비교</b>
-        <span>25개 동을 동일한 기준으로 비교할 수 있는 지표 만들기</span>
-      </div>
-      <div class="story-step">
-        <div class="n">04 · 함께 볼 요소</div>
-        <b>생활 · 선호 · 교통 · 주거</b>
-        <span>청년이 체감하는 주거환경을 4개 영역으로 구성</span>
-      </div>
-      <div class="story-step">
-        <div class="n">05 · 첫 결과물</div>
-        <b>HL Score</b>
-        <span>서로 다른 데이터를 하나의 상대 비교지표로 통합</span>
-      </div>
-    </div>
-  </div>
+<div aria-label="프로젝트 초기 구상" class="story-strip">
+<div class="story-step">
+<div class="n">01 · 문제 인식</div>
+<b>가격만으로는 부족하다</b>
+<span>임대료뿐 아니라 생활·교통·편의까지 함께 봐야 함</span>
+</div>
+<div class="story-step">
+<div class="n">02 · 주제 선택</div>
+<b>인구통계 + 아파트 실거래가</b>
+<span>청년 수요와 실제 주거 부담을 함께 설명할 수 있는 데이터</span>
+</div>
+<div class="story-step">
+<div class="n">03 · 초기 목표</div>
+<b>청년이 살기 좋은 동네 비교</b>
+<span>25개 동을 동일한 기준으로 비교할 수 있는 지표 만들기</span>
+</div>
+<div class="story-step">
+<div class="n">04 · 함께 볼 요소</div>
+<b>생활 · 선호 · 교통 · 주거</b>
+<span>청년이 체감하는 주거환경을 4개 영역으로 구성</span>
+</div>
+<div class="story-step">
+<div class="n">05 · 첫 결과물</div>
+<b>HL Score</b>
+<span>서로 다른 데이터를 하나의 상대 비교지표로 통합</span>
+</div>
+</div>
+</div>
+<div class="story-scroll-hint">SCROLL TO EXPLORE</div></section>
+<section class="ppt-section story-chapter" data-chapter="01" data-label="WHY THIS TOPIC" id="intro-topic">
+<div class="wrap">
+<div class="ppt-head">
+<div class="ppt-kicker">01 · WHY THIS TOPIC?</div>
+<h2>왜 인구통계 + 아파트 실거래가였나</h2>
+<p>6가지 미니프로젝트 주제 중 단순한 데이터 분석이 아니라, 실제 2030 청년 주거문제에 연결할 수 있는 주제를 선택했습니다.</p>
+</div>
+<div class="ppt-choice-grid">
+<div class="ppt-choice selected">인구통계</div>
+<div class="ppt-choice selected">아파트 실거래가</div>
+<div class="ppt-choice">네이버 웹툰</div>
+<div class="ppt-choice">K-POP</div>
+<div class="ppt-choice">K-드라마</div>
+<div class="ppt-choice">야구 &amp; 날씨</div>
+</div>
+<div class="ppt-two">
+<div class="ppt-callout">
+<div class="label">기존 플랫폼의 한계</div>
+<h3>매물 정보만으로는 “실제 생활”을 알기 어렵다</h3>
+<p>직방·다방·네이버부동산은 매물의 가격·면적·위치는 잘 보여주지만, 청년이 일상에서 체감하는 교통·생활시설·선호시설 접근성까지 한눈에 비교하기는 어렵다고 보았습니다.</p>
+</div>
+<div class="ppt-callout">
+<div class="label">우리의 문제 정의</div>
+<h3>주거 만족은 임대료만으로 설명되지 않는다</h3>
+<p>청년이 실제로 살기 좋은지를 보려면 주거비뿐 아니라 생활 인프라, 교통 접근성, 2030 선호시설까지 함께 비교해야 한다고 정의했습니다.</p>
+</div>
+</div>
+<div class="ppt-conclusion"><b>초기 목표</b> · “싼 동네”가 아니라 <strong>“청년이 실제로 살기 좋은 동네”를 데이터로 찾자.</strong></div>
+</div>
 </section>
-
-
-
-<section class="ppt-section" id="intro-topic">
-  <div class="wrap">
-    <div class="ppt-head">
-      <div class="ppt-kicker">01 · WHY THIS TOPIC?</div>
-      <h2>왜 인구통계 + 아파트 실거래가였나</h2>
-      <p>6가지 미니프로젝트 주제 중 단순한 데이터 분석이 아니라, 실제 2030 청년 주거문제에 연결할 수 있는 주제를 선택했습니다.</p>
-    </div>
-
-    <div class="ppt-choice-grid">
-      <div class="ppt-choice selected">인구통계</div>
-      <div class="ppt-choice selected">아파트 실거래가</div>
-      <div class="ppt-choice">네이버 웹툰</div>
-      <div class="ppt-choice">K-POP</div>
-      <div class="ppt-choice">K-드라마</div>
-      <div class="ppt-choice">야구 & 날씨</div>
-    </div>
-
-    <div class="ppt-two">
-      <div class="ppt-callout">
-        <div class="label">기존 플랫폼의 한계</div>
-        <h3>매물 정보만으로는 “실제 생활”을 알기 어렵다</h3>
-        <p>직방·다방·네이버부동산은 매물의 가격·면적·위치는 잘 보여주지만, 청년이 일상에서 체감하는 교통·생활시설·선호시설 접근성까지 한눈에 비교하기는 어렵다고 보았습니다.</p>
-      </div>
-      <div class="ppt-callout">
-        <div class="label">우리의 문제 정의</div>
-        <h3>주거 만족은 임대료만으로 설명되지 않는다</h3>
-        <p>청년이 실제로 살기 좋은지를 보려면 주거비뿐 아니라 생활 인프라, 교통 접근성, 2030 선호시설까지 함께 비교해야 한다고 정의했습니다.</p>
-      </div>
-    </div>
-
-    <div class="ppt-conclusion"><b>초기 목표</b> · “싼 동네”가 아니라 <strong>“청년이 실제로 살기 좋은 동네”를 데이터로 찾자.</strong></div>
-  </div>
+<section class="ppt-section white story-chapter" data-chapter="02" data-label="PHASE 1 DATA" id="intro-data">
+<div class="wrap">
+<div class="ppt-head">
+<div class="ppt-kicker">02 · PHASE 1 DATA</div>
+<h2>처음 수집한 데이터와 각각의 역할</h2>
+<p>데이터를 많이 모으는 것이 목적이 아니라, 서로 다른 데이터가 청년 주거환경의 어떤 부분을 설명하는지 역할을 나눠 설계했습니다.</p>
+</div>
+<div class="ppt-data-grid">
+<div class="ppt-data-card"><div class="num">01</div><h4>2030 청년 수요</h4><p>20대·30대 인구수와 비율을 통해 지역별 청년 분포를 확인했습니다.</p><div class="source">행정안전부 주민등록 인구통계</div></div>
+<div class="ppt-data-card"><div class="num">02</div><h4>주거비</h4><p>전·월세 실거래와 보증금·월세를 이용해 실제 주거 부담을 비교했습니다.</p><div class="source">국토교통부 실거래 API</div></div>
+<div class="ppt-data-card"><div class="num">03</div><h4>생활 인프라</h4><p>편의점·카페·병원·마트 등 일상생활에 필요한 시설 분포를 수집했습니다.</p><div class="source">Kakao Local API</div></div>
+<div class="ppt-data-card"><div class="num">04</div><h4>2030 선호시설</h4><p>쇼핑·뷰티·영화·운동·문화 등 청년 체감시설을 별도로 세분화했습니다.</p><div class="source">Kakao Local API + 세부 검색</div></div>
+<div class="ppt-data-card"><div class="num">05</div><h4>교통 접근성</h4><p>버스정류소·지하철·최근접 거리를 통해 이동 편의성을 비교했습니다.</p><div class="source">광주 BIS · 공식 정류소 데이터</div></div>
+<div class="ppt-data-card"><div class="num">06</div><h4>공간 기준</h4><p>서로 다른 출처의 데이터를 프로젝트 선정 25개 행정동 기준으로 통합했습니다.</p><div class="source">동 중심좌표 · 자치구/행정동 매핑</div></div>
+</div>
+<div class="ppt-insight"><b>데이터 역할</b> · 인구는 “수요”, 실거래는 “부담”, 시설·교통은 “생활 가능성”을 설명했습니다.</div>
+</div>
 </section>
-
-<section class="ppt-section white" id="intro-data">
-  <div class="wrap">
-    <div class="ppt-head">
-      <div class="ppt-kicker">02 · PHASE 1 DATA</div>
-      <h2>처음 수집한 데이터와 각각의 역할</h2>
-      <p>데이터를 많이 모으는 것이 목적이 아니라, 서로 다른 데이터가 청년 주거환경의 어떤 부분을 설명하는지 역할을 나눠 설계했습니다.</p>
-    </div>
-
-    <div class="ppt-data-grid">
-      <div class="ppt-data-card"><div class="num">01</div><h4>2030 청년 수요</h4><p>20대·30대 인구수와 비율을 통해 지역별 청년 분포를 확인했습니다.</p><div class="source">행정안전부 주민등록 인구통계</div></div>
-      <div class="ppt-data-card"><div class="num">02</div><h4>주거비</h4><p>전·월세 실거래와 보증금·월세를 이용해 실제 주거 부담을 비교했습니다.</p><div class="source">국토교통부 실거래 API</div></div>
-      <div class="ppt-data-card"><div class="num">03</div><h4>생활 인프라</h4><p>편의점·카페·병원·마트 등 일상생활에 필요한 시설 분포를 수집했습니다.</p><div class="source">Kakao Local API</div></div>
-      <div class="ppt-data-card"><div class="num">04</div><h4>2030 선호시설</h4><p>쇼핑·뷰티·영화·운동·문화 등 청년 체감시설을 별도로 세분화했습니다.</p><div class="source">Kakao Local API + 세부 검색</div></div>
-      <div class="ppt-data-card"><div class="num">05</div><h4>교통 접근성</h4><p>버스정류소·지하철·최근접 거리를 통해 이동 편의성을 비교했습니다.</p><div class="source">광주 BIS · 공식 정류소 데이터</div></div>
-      <div class="ppt-data-card"><div class="num">06</div><h4>공간 기준</h4><p>서로 다른 출처의 데이터를 프로젝트 선정 25개 행정동 기준으로 통합했습니다.</p><div class="source">동 중심좌표 · 자치구/행정동 매핑</div></div>
-    </div>
-
-    <div class="ppt-insight"><b>데이터 역할</b> · 인구는 “수요”, 실거래는 “부담”, 시설·교통은 “생활 가능성”을 설명했습니다.</div>
-  </div>
+<section class="ppt-section soft story-chapter" data-chapter="03" data-label="DATA → HL SCORE" id="intro-process">
+<div class="wrap">
+<div class="ppt-head">
+<div class="ppt-kicker">03 · DATA → HL SCORE</div>
+<h2>서로 다른 데이터를 같은 기준으로 비교할 수 있게 만들었습니다</h2>
+<p>원본 CSV/API 데이터를 25개 동 기준으로 매핑하고, 결측·중복·단위를 정리한 뒤 정규화와 가중합을 통해 HL Score로 변환했습니다.</p>
+</div>
+<div class="ppt-process">
+<div class="ppt-process-step"><b>원본 데이터</b>CSV / API</div>
+<div class="ppt-process-step"><b>행정동 매핑</b>25개 동 기준</div>
+<div class="ppt-process-step"><b>전처리</b>결측 · 중복 · 단위</div>
+<div class="ppt-process-step"><b>정규화</b>서로 다른 단위 비교</div>
+<div class="ppt-process-step"><b>가중합</b>4개 영역 반영</div>
+<div class="ppt-process-step"><b>HL Score</b>0~100 상대점수</div>
+</div>
+<div class="ppt-formula">HL = <span>생활 ×0.30</span> + 선호 ×0.25 + 교통 ×0.15 + <span>주거 ×0.30</span></div>
+<div class="ppt-tech-grid">
+<div class="ppt-tech">
+<h4>사용 기술</h4>
+<div class="ppt-badges">
+<span class="ppt-badge">pandas</span><span class="ppt-badge">requests</span><span class="ppt-badge">numpy</span>
+<span class="ppt-badge">matplotlib</span><span class="ppt-badge">Flask</span><span class="ppt-badge">os / json</span>
+</div>
+</div>
+<div class="ppt-tech">
+<h4>전처리에서 겪은 시행착오</h4>
+<div class="ppt-issues">
+<div class="ppt-issue"><b>행정동명 불일치</b><span>농성1동·농성제1동 등 명칭을 표준화</span></div>
+<div class="ppt-issue"><b>첨단2동 행정구역</b><span>최종 북구 기준으로 통일</span></div>
+<div class="ppt-issue"><b>카테고리 혼재</b><span>은행 등 혼합 시설을 후처리로 재분류</span></div>
+<div class="ppt-issue"><b>버스 노선 매칭 0.54%</b><span>신뢰도가 낮아 정책판단에는 사용 보류</span></div>
+</div>
+</div>
+</div>
+<div class="ppt-insight">품질관리 원칙: <b>최종 CSV를 단일 기준 데이터로 사용</b>하고, 표본이 부족한 주거 데이터는 억지로 점수화하지 않았으며, 신뢰도가 낮은 데이터는 보류 이유를 함께 기록했습니다.</div>
+</div>
 </section>
-
-<section class="ppt-section soft" id="intro-process">
-  <div class="wrap">
-    <div class="ppt-head">
-      <div class="ppt-kicker">03 · DATA → HL SCORE</div>
-      <h2>서로 다른 데이터를 같은 기준으로 비교할 수 있게 만들었습니다</h2>
-      <p>원본 CSV/API 데이터를 25개 동 기준으로 매핑하고, 결측·중복·단위를 정리한 뒤 정규화와 가중합을 통해 HL Score로 변환했습니다.</p>
-    </div>
-
-    <div class="ppt-process">
-      <div class="ppt-process-step"><b>원본 데이터</b>CSV / API</div>
-      <div class="ppt-process-step"><b>행정동 매핑</b>25개 동 기준</div>
-      <div class="ppt-process-step"><b>전처리</b>결측 · 중복 · 단위</div>
-      <div class="ppt-process-step"><b>정규화</b>서로 다른 단위 비교</div>
-      <div class="ppt-process-step"><b>가중합</b>4개 영역 반영</div>
-      <div class="ppt-process-step"><b>HL Score</b>0~100 상대점수</div>
-    </div>
-
-    <div class="ppt-formula">HL = <span>생활 ×0.30</span> + 선호 ×0.25 + 교통 ×0.15 + <span>주거 ×0.30</span></div>
-
-    <div class="ppt-tech-grid">
-      <div class="ppt-tech">
-        <h4>사용 기술</h4>
-        <div class="ppt-badges">
-          <span class="ppt-badge">pandas</span><span class="ppt-badge">requests</span><span class="ppt-badge">numpy</span>
-          <span class="ppt-badge">matplotlib</span><span class="ppt-badge">Flask</span><span class="ppt-badge">os / json</span>
-        </div>
-      </div>
-      <div class="ppt-tech">
-        <h4>전처리에서 겪은 시행착오</h4>
-        <div class="ppt-issues">
-          <div class="ppt-issue"><b>행정동명 불일치</b><span>농성1동·농성제1동 등 명칭을 표준화</span></div>
-          <div class="ppt-issue"><b>첨단2동 행정구역</b><span>최종 북구 기준으로 통일</span></div>
-          <div class="ppt-issue"><b>카테고리 혼재</b><span>은행 등 혼합 시설을 후처리로 재분류</span></div>
-          <div class="ppt-issue"><b>버스 노선 매칭 0.54%</b><span>신뢰도가 낮아 정책판단에는 사용 보류</span></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="ppt-insight">품질관리 원칙: <b>최종 CSV를 단일 기준 데이터로 사용</b>하고, 표본이 부족한 주거 데이터는 억지로 점수화하지 않았으며, 신뢰도가 낮은 데이터는 보류 이유를 함께 기록했습니다.</div>
-  </div>
+<section class="ppt-section story-chapter" data-chapter="04" data-label="VISUALIZATION" id="intro-visualization">
+<div class="wrap">
+<div class="ppt-head">
+<div class="ppt-kicker">04 · VISUALIZATION</div>
+<h2>2030 청년 인구가 지역별로 다르게 분포하고 있었습니다</h2>
+<p>시각화 단계에서는 먼저 지역별 인구와 인프라 차이를 확인했습니다. 아래는 메인 발표에서 보여주는 간략화된 인구 분포 예시입니다.</p>
+</div>
+<div class="ppt-chart-grid">
+<div class="ppt-chart"><h4>2030 인구 상위 5개 동</h4><div class="caption">청년 인구가 상대적으로 많이 분포한 지역</div>
+<div class="ppt-mini-row">
+<span class="ppt-mini-name">수완동</span>
+<div class="ppt-mini-track"><div class="ppt-mini-fill" style="width:100.0%"></div></div>
+<b>16,643</b>
+</div>
+<div class="ppt-mini-row">
+<span class="ppt-mini-name">첨단2동</span>
+<div class="ppt-mini-track"><div class="ppt-mini-fill" style="width:74.0%"></div></div>
+<b>12,308</b>
+</div>
+<div class="ppt-mini-row">
+<span class="ppt-mini-name">용봉동</span>
+<div class="ppt-mini-track"><div class="ppt-mini-fill" style="width:63.2%"></div></div>
+<b>10,520</b>
+</div>
+<div class="ppt-mini-row">
+<span class="ppt-mini-name">치평동</span>
+<div class="ppt-mini-track"><div class="ppt-mini-fill" style="width:52.2%"></div></div>
+<b>8,681</b>
+</div>
+<div class="ppt-mini-row">
+<span class="ppt-mini-name">첨단1동</span>
+<div class="ppt-mini-track"><div class="ppt-mini-fill" style="width:46.1%"></div></div>
+<b>7,680</b>
+</div></div>
+<div class="ppt-chart"><h4>2030 인구 하위 5개 동</h4><div class="caption">후반부에서는 인구수뿐 아니라 비율도 함께 확인</div>
+<div class="ppt-mini-row">
+<span class="ppt-mini-name">지산2동</span>
+<div class="ppt-mini-track"><div class="ppt-mini-fill low" style="width:6.8%"></div></div>
+<b>1,132</b>
+</div>
+<div class="ppt-mini-row">
+<span class="ppt-mini-name">방림1동</span>
+<div class="ppt-mini-track"><div class="ppt-mini-fill low" style="width:7.5%"></div></div>
+<b>1,255</b>
+</div>
+<div class="ppt-mini-row">
+<span class="ppt-mini-name">학동</span>
+<div class="ppt-mini-track"><div class="ppt-mini-fill low" style="width:9.8%"></div></div>
+<b>1,639</b>
+</div>
+<div class="ppt-mini-row">
+<span class="ppt-mini-name">지원1동</span>
+<div class="ppt-mini-track"><div class="ppt-mini-fill low" style="width:11.2%"></div></div>
+<b>1,870</b>
+</div>
+<div class="ppt-mini-row">
+<span class="ppt-mini-name">송정1동</span>
+<div class="ppt-mini-track"><div class="ppt-mini-fill low" style="width:13.4%"></div></div>
+<b>2,234</b>
+</div></div>
+</div>
+<div class="ppt-insight">이 단계에서 “청년이 많은 지역 = 좋은 지역”이라고 결론내린 것이 아니라, <b>지역마다 인구·생활·교통·주거 조건이 다르기 때문에 같은 기준으로 비교할 지표가 필요하다</b>는 점을 확인했습니다.</div>
+</div>
+<a aria-label="시각화 대시보드 열기" class="story-float-cta" href="/dashboard"><span class="cta-kicker">STEP 01</span><strong>시각화 대시보드 열기</strong><span class="cta-arrow">↗</span></a></section>
+<section class="ppt-section white story-chapter" data-chapter="05" data-label="HL SCORE RESULT" id="intro-hl">
+<div class="wrap">
+<div class="ppt-head">
+<div class="ppt-kicker">05 · HL SCORE RESULT</div>
+<h2>“살기 좋은 지역”을 HL Score로 비교했습니다</h2>
+<p>생활·선호시설·교통·주거 가성비를 합쳐 25개 동을 동일한 기준에서 비교했습니다. HL Score는 공식 정책지표가 아니라 프로젝트 내부 상대지수입니다.</p>
+</div>
+<div class="ppt-weight-grid">
+<div class="ppt-weight"><b>30%</b><span>생활 인프라</span></div>
+<div class="ppt-weight"><b>25%</b><span>2030 선호시설</span></div>
+<div class="ppt-weight"><b>15%</b><span>교통 접근성</span></div>
+<div class="ppt-weight"><b>30%</b><span>주거 가성비</span></div>
+</div>
+<div class="ppt-score-grid" id="intro-hl-top3">
+<article class="ppt-score-card">
+<div class="ppt-score-rank">HL TOP 1</div>
+<h4>충장동 <small>동구</small></h4>
+<div class="ppt-score-value">76.8<span>점</span></div>
+<div class="ppt-score-parts">
+<span>생활 <b>78.3</b></span>
+<span>선호 <b>87.4</b></span>
+<span>교통 <b>87.8</b></span>
+<span>주거 <b>60.9</b></span>
+</div>
+</article>
+<article class="ppt-score-card">
+<div class="ppt-score-rank">HL TOP 2</div>
+<h4>치평동 <small>서구</small></h4>
+<div class="ppt-score-value">70.9<span>점</span></div>
+<div class="ppt-score-parts">
+<span>생활 <b>81.9</b></span>
+<span>선호 <b>68.0</b></span>
+<span>교통 <b>64.7</b></span>
+<span>주거 <b>65.4</b></span>
+</div>
+</article>
+<article class="ppt-score-card">
+<div class="ppt-score-rank">HL TOP 3</div>
+<h4>화정2동 <small>서구</small></h4>
+<div class="ppt-score-value">67.0<span>점</span></div>
+<div class="ppt-score-parts">
+<span>생활 <b>57.1</b></span>
+<span>선호 <b>57.1</b></span>
+<span>교통 <b>70.0</b></span>
+<span>주거 <b>83.6</b></span>
+</div>
+</article>
+</div>
+<div class="ppt-insight"><b>한 문장 해석</b> · 가격이 낮은 곳이 무조건 좋은 곳이 아니라, 생활·교통·선호시설과 주거비의 균형이 높은 지역이 상위권으로 나타났습니다.</div>
+</div>
+<a aria-label="HL Score 전체 결과 보기" class="story-float-cta" href="/hl-dashboard"><span class="cta-kicker">STEP 02</span><strong>HL Score 전체 결과 보기</strong><span class="cta-arrow">↗</span></a></section>
+<section class="ppt-section story-chapter" data-chapter="06" data-label="TURNING POINT" id="intro-turning">
+<div class="wrap">
+<div class="ppt-head">
+<div class="ppt-kicker">06 · TURNING POINT</div>
+<h2>HL Score를 만든 뒤 새로운 질문이 생겼습니다</h2>
+<p>처음에는 개인 관점에서 청년이 살기 좋은 동네를 찾는 것이 목표였지만, 결과를 보면서 정책·지역 개선 관점으로 질문이 확장됐습니다.</p>
+</div>
+<div class="ppt-turn">
+<div class="ppt-turn-left"><small>질문의 변화</small><strong>“이 점수를 청년 주거환경 개선에도 활용할 수 있지 않을까?”</strong></div>
+<div class="ppt-turn-right"><p><b>개인 관점</b> · 청년이 살기 좋은 동네는 어디인가?<br/><br/><b>정책·지역 개선 관점</b> · 청년 주거환경 개선이 먼저 필요한 곳은 어디인가?<br/><br/>이 전환이 PHASE 2의 출발점이었습니다.</p></div>
+</div>
+</div>
 </section>
-
-<section class="ppt-section" id="intro-visualization">
-  <div class="wrap">
-    <div class="ppt-head">
-      <div class="ppt-kicker">04 · VISUALIZATION</div>
-      <h2>2030 청년 인구가 지역별로 다르게 분포하고 있었습니다</h2>
-      <p>시각화 단계에서는 먼저 지역별 인구와 인프라 차이를 확인했습니다. 아래는 메인 발표에서 보여주는 간략화된 인구 분포 예시입니다.</p>
-    </div>
-
-    <div class="ppt-chart-grid">
-      <div class="ppt-chart"><h4>2030 인구 상위 5개 동</h4><div class="caption">청년 인구가 상대적으로 많이 분포한 지역</div>
-        <div class="ppt-mini-row">
-          <span class="ppt-mini-name">수완동</span>
-          <div class="ppt-mini-track"><div class="ppt-mini-fill" style="width:100.0%"></div></div>
-          <b>16,643</b>
-        </div>
-
-        <div class="ppt-mini-row">
-          <span class="ppt-mini-name">첨단2동</span>
-          <div class="ppt-mini-track"><div class="ppt-mini-fill" style="width:74.0%"></div></div>
-          <b>12,308</b>
-        </div>
-
-        <div class="ppt-mini-row">
-          <span class="ppt-mini-name">용봉동</span>
-          <div class="ppt-mini-track"><div class="ppt-mini-fill" style="width:63.2%"></div></div>
-          <b>10,520</b>
-        </div>
-
-        <div class="ppt-mini-row">
-          <span class="ppt-mini-name">치평동</span>
-          <div class="ppt-mini-track"><div class="ppt-mini-fill" style="width:52.2%"></div></div>
-          <b>8,681</b>
-        </div>
-
-        <div class="ppt-mini-row">
-          <span class="ppt-mini-name">첨단1동</span>
-          <div class="ppt-mini-track"><div class="ppt-mini-fill" style="width:46.1%"></div></div>
-          <b>7,680</b>
-        </div></div>
-      <div class="ppt-chart"><h4>2030 인구 하위 5개 동</h4><div class="caption">후반부에서는 인구수뿐 아니라 비율도 함께 확인</div>
-        <div class="ppt-mini-row">
-          <span class="ppt-mini-name">지산2동</span>
-          <div class="ppt-mini-track"><div class="ppt-mini-fill low" style="width:6.8%"></div></div>
-          <b>1,132</b>
-        </div>
-
-        <div class="ppt-mini-row">
-          <span class="ppt-mini-name">방림1동</span>
-          <div class="ppt-mini-track"><div class="ppt-mini-fill low" style="width:7.5%"></div></div>
-          <b>1,255</b>
-        </div>
-
-        <div class="ppt-mini-row">
-          <span class="ppt-mini-name">학동</span>
-          <div class="ppt-mini-track"><div class="ppt-mini-fill low" style="width:9.8%"></div></div>
-          <b>1,639</b>
-        </div>
-
-        <div class="ppt-mini-row">
-          <span class="ppt-mini-name">지원1동</span>
-          <div class="ppt-mini-track"><div class="ppt-mini-fill low" style="width:11.2%"></div></div>
-          <b>1,870</b>
-        </div>
-
-        <div class="ppt-mini-row">
-          <span class="ppt-mini-name">송정1동</span>
-          <div class="ppt-mini-track"><div class="ppt-mini-fill low" style="width:13.4%"></div></div>
-          <b>2,234</b>
-        </div></div>
-    </div>
-
-    <div class="ppt-insight">이 단계에서 “청년이 많은 지역 = 좋은 지역”이라고 결론내린 것이 아니라, <b>지역마다 인구·생활·교통·주거 조건이 다르기 때문에 같은 기준으로 비교할 지표가 필요하다</b>는 점을 확인했습니다.</div>
-  </div>
+<section class="ppt-section white story-chapter" data-chapter="07" data-label="PHASE 2 DATA" id="intro-phase2">
+<div class="wrap">
+<div class="ppt-head">
+<div class="ppt-kicker">07 · PHASE 2 DATA</div>
+<h2>정책·지역 개선 관점으로 보기 위해 데이터를 추가 보완했습니다</h2>
+<p>HL Score만으로는 공공지원 기반과 교통 공급을 충분히 설명하기 어려워, 청년 분포와 공공데이터를 추가했습니다.</p>
+</div>
+<div class="ppt-phase2-grid">
+<div class="ppt-phase2-card"><div class="idx">01</div><h4>2030 선호시설 세분화</h4><p>쇼핑·뷰티·여가·문화·운동·패스트푸드 등 15개 컬럼으로 세분화</p></div>
+<div class="ppt-phase2-card"><div class="idx">02</div><h4>공식 버스정류소</h4><p>25개 동 내부 570개 정류소를 교통 공급 수준의 보조지표로 활용</p></div>
+<div class="ppt-phase2-card"><div class="idx">03</div><h4>청년 공공시설</h4><p>25개 동 내부 57개 시설로 청년 지원·공공서비스 접근성을 확인</p></div>
+<div class="ppt-phase2-card"><div class="idx">04</div><h4>공공임대주택</h4><p>25개 동 내부 22,855세대를 주거 공급 기반의 보조지표로 확인</p></div>
+<div class="ppt-phase2-card warn"><div class="idx">05 · 보류</div><h4>버스 노선 데이터</h4><p>노선·배차를 검토했지만 안전 매칭률 0.54%로 최종 판단에는 사용하지 않음</p></div>
+</div>
+<div class="ppt-insight"><b>보완 방향</b> · 단순한 “점수 순위”에서 끝내지 않고, <b>지역 간 균형 개선과 청년 유입·정착 지원 필요성</b>을 검토하는 방향으로 확장했습니다.</div>
+</div>
 </section>
-
-<section class="ppt-section white" id="intro-hl">
-  <div class="wrap">
-    <div class="ppt-head">
-      <div class="ppt-kicker">05 · HL SCORE RESULT</div>
-      <h2>“살기 좋은 지역”을 HL Score로 비교했습니다</h2>
-      <p>생활·선호시설·교통·주거 가성비를 합쳐 25개 동을 동일한 기준에서 비교했습니다. HL Score는 공식 정책지표가 아니라 프로젝트 내부 상대지수입니다.</p>
-    </div>
-
-    <div class="ppt-weight-grid">
-      <div class="ppt-weight"><b>30%</b><span>생활 인프라</span></div>
-      <div class="ppt-weight"><b>25%</b><span>2030 선호시설</span></div>
-      <div class="ppt-weight"><b>15%</b><span>교통 접근성</span></div>
-      <div class="ppt-weight"><b>30%</b><span>주거 가성비</span></div>
-    </div>
-
-    <div class="ppt-score-grid" id="intro-hl-top3">
-        <article class="ppt-score-card">
-          <div class="ppt-score-rank">HL TOP 1</div>
-          <h4>충장동 <small>동구</small></h4>
-          <div class="ppt-score-value">76.8<span>점</span></div>
-          <div class="ppt-score-parts">
-            <span>생활 <b>78.3</b></span>
-            <span>선호 <b>87.4</b></span>
-            <span>교통 <b>87.8</b></span>
-            <span>주거 <b>60.9</b></span>
-          </div>
-        </article>
-
-        <article class="ppt-score-card">
-          <div class="ppt-score-rank">HL TOP 2</div>
-          <h4>치평동 <small>서구</small></h4>
-          <div class="ppt-score-value">70.9<span>점</span></div>
-          <div class="ppt-score-parts">
-            <span>생활 <b>81.9</b></span>
-            <span>선호 <b>68.0</b></span>
-            <span>교통 <b>64.7</b></span>
-            <span>주거 <b>65.4</b></span>
-          </div>
-        </article>
-
-        <article class="ppt-score-card">
-          <div class="ppt-score-rank">HL TOP 3</div>
-          <h4>화정2동 <small>서구</small></h4>
-          <div class="ppt-score-value">67.0<span>점</span></div>
-          <div class="ppt-score-parts">
-            <span>생활 <b>57.1</b></span>
-            <span>선호 <b>57.1</b></span>
-            <span>교통 <b>70.0</b></span>
-            <span>주거 <b>83.6</b></span>
-          </div>
-        </article>
-    </div>
-    <div class="ppt-insight"><b>한 문장 해석</b> · 가격이 낮은 곳이 무조건 좋은 곳이 아니라, 생활·교통·선호시설과 주거비의 균형이 높은 지역이 상위권으로 나타났습니다.</div>
-  </div>
+<section class="ppt-section soft story-chapter" data-chapter="08" data-label="BALANCE / POLICY" id="intro-analysis">
+<div class="wrap">
+<div class="ppt-head">
+<div class="ppt-kicker">08 · BALANCE / POLICY FRAME</div>
+<h2>청년이 적은 지역도 살기 좋은 선택지가 될 수 있는가</h2>
+<p>청년이 이미 많이 거주하는 지역에 공급을 더하는 방식이 아니라, <b>청년 인구수와 비율이 모두 상대적으로 낮은 지역</b>을 먼저 찾고 해당 지역의 주거·교통·생활환경 취약요인을 함께 보는 구조로 확장했습니다.</p>
+</div>
+<div class="ppt-ybi-flow">
+<div class="ppt-ybi-node">2030 인구수 · 비율<br/><span style="font-size:10px;color:var(--muted)">집중 / 저분포 확인</span></div>
+<div class="ppt-ybi-node">HL Score<br/><span style="font-size:10px;color:var(--muted)">현재 주거환경 수준</span></div>
+<div class="ppt-ybi-node or">추가 공공데이터<br/><span style="font-size:10px">시설 · 임대 · 정류소</span></div>
+<div class="ppt-ybi-node">취약요인 분석<br/><span style="font-size:10px;color:var(--muted)">생활 · 교통 · 주거</span></div>
+<div class="ppt-ybi-node em">청년 유입·정착 지원<br/><span style="font-size:10px;color:#dcf7f5">필요성 검토</span></div>
+</div>
+<div class="ppt-policy-grid">
+<div class="ppt-policy-card"><div class="ico">🏪</div><h4>생활 인프라 보완</h4><p>의료·편의·문화 등 일상생활 조건이 상대적으로 약한 영역 확인</p></div>
+<div class="ppt-policy-card"><div class="ico">🚌</div><h4>교통 접근성 점검</h4><p>정류소 수와 접근거리 외에 향후 배차·노선 다양성 추가 검증 필요</p></div>
+<div class="ppt-policy-card"><div class="ico">🏘️</div><h4>공공임대·청년시설 연계</h4><p>지역의 공공 주거·청년 지원 기반을 보조적으로 확인</p></div>
+<div class="ppt-policy-card"><div class="ico">🎯</div><h4>청년 분포 균형 모니터링</h4><p>특정 지역 쏠림 완화와 지역 간 주거환경 상향 평준화 방향 검토</p></div>
+</div>
+<div class="ppt-insight">이 결과는 특정 지역을 지원 대상으로 확정하는 자료가 아니라, <b>추가 행정자료와 현장검증이 필요한 1차 검토 기준</b>입니다.</div>
+</div>
+<a aria-label="종합 분석 페이지 보기" class="story-float-cta" href="/policy-dashboard"><span class="cta-kicker">STEP 03</span><strong>종합 분석 페이지 보기</strong><span class="cta-arrow">↗</span></a></section>
+<section class="ppt-section white story-chapter" data-chapter="09" data-label="FINAL OUTPUT" id="intro-output">
+<div class="wrap">
+<div class="ppt-head">
+<div class="ppt-kicker">09 · FINAL OUTPUT</div>
+<h2>최종 결과물은 3개의 상세 웹페이지로 연결됩니다</h2>
+<p>메인 페이지는 발표 스토리를 보여주고, 상단 메뉴를 통해 각 분석 결과를 상세하게 확인할 수 있도록 구성했습니다.</p>
+</div>
+<div class="ppt-output-grid">
+<div class="ppt-output"><div class="n">01</div><h4>시각화 대시보드</h4><p>25개 동 지표 선택 · 정렬 · 차트/카드 비교를 통해 원자료 차이를 직접 확인</p></div>
+<div class="ppt-output"><div class="n">02</div><h4>HL Score</h4><p>25개 동 세부점수 · 자치구 비교 · 가중치 기반 조건별 추천 기능 제공</p></div>
+<div class="ppt-output"><div class="n">03</div><h4>종합 분석</h4><p>청년 분포 · 정책 보조지표 · 취약요인 · 해석 한계와 근거를 함께 제공</p></div>
+</div>
+<div class="ppt-insight"><b>품질관리</b> · 검증 완료된 최종 CSV를 단일 기준 데이터로 사용해 화면 간 결과 일관성을 유지합니다.</div>
+</div>
 </section>
-
-<section class="ppt-section" id="intro-turning">
-  <div class="wrap">
-    <div class="ppt-head">
-      <div class="ppt-kicker">06 · TURNING POINT</div>
-      <h2>HL Score를 만든 뒤 새로운 질문이 생겼습니다</h2>
-      <p>처음에는 개인 관점에서 청년이 살기 좋은 동네를 찾는 것이 목표였지만, 결과를 보면서 정책·지역 개선 관점으로 질문이 확장됐습니다.</p>
-    </div>
-
-    <div class="ppt-turn">
-      <div class="ppt-turn-left"><small>질문의 변화</small><strong>“이 점수를 청년 주거환경 개선에도 활용할 수 있지 않을까?”</strong></div>
-      <div class="ppt-turn-right"><p><b>개인 관점</b> · 청년이 살기 좋은 동네는 어디인가?<br><br><b>정책·지역 개선 관점</b> · 청년 주거환경 개선이 먼저 필요한 곳은 어디인가?<br><br>이 전환이 PHASE 2의 출발점이었습니다.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="ppt-section white" id="intro-phase2">
-  <div class="wrap">
-    <div class="ppt-head">
-      <div class="ppt-kicker">07 · PHASE 2 DATA</div>
-      <h2>정책·지역 개선 관점으로 보기 위해 데이터를 추가 보완했습니다</h2>
-      <p>HL Score만으로는 공공지원 기반과 교통 공급을 충분히 설명하기 어려워, 청년 분포와 공공데이터를 추가했습니다.</p>
-    </div>
-
-    <div class="ppt-phase2-grid">
-      <div class="ppt-phase2-card"><div class="idx">01</div><h4>2030 선호시설 세분화</h4><p>쇼핑·뷰티·여가·문화·운동·패스트푸드 등 15개 컬럼으로 세분화</p></div>
-      <div class="ppt-phase2-card"><div class="idx">02</div><h4>공식 버스정류소</h4><p>25개 동 내부 570개 정류소를 교통 공급 수준의 보조지표로 활용</p></div>
-      <div class="ppt-phase2-card"><div class="idx">03</div><h4>청년 공공시설</h4><p>25개 동 내부 57개 시설로 청년 지원·공공서비스 접근성을 확인</p></div>
-      <div class="ppt-phase2-card"><div class="idx">04</div><h4>공공임대주택</h4><p>25개 동 내부 22,855세대를 주거 공급 기반의 보조지표로 확인</p></div>
-      <div class="ppt-phase2-card warn"><div class="idx">05 · 보류</div><h4>버스 노선 데이터</h4><p>노선·배차를 검토했지만 안전 매칭률 0.54%로 최종 판단에는 사용하지 않음</p></div>
-    </div>
-
-    <div class="ppt-insight"><b>보완 방향</b> · 단순한 “점수 순위”에서 끝내지 않고, <b>지역 간 균형 개선과 청년 유입·정착 지원 필요성</b>을 검토하는 방향으로 확장했습니다.</div>
-  </div>
-</section>
-
-<section class="ppt-section soft" id="intro-analysis">
-  <div class="wrap">
-    <div class="ppt-head">
-      <div class="ppt-kicker">08 · BALANCE / POLICY FRAME</div>
-      <h2>청년이 적은 지역도 살기 좋은 선택지가 될 수 있는가</h2>
-      <p>청년이 이미 많이 거주하는 지역에 공급을 더하는 방식이 아니라, <b>청년 인구수와 비율이 모두 상대적으로 낮은 지역</b>을 먼저 찾고 해당 지역의 주거·교통·생활환경 취약요인을 함께 보는 구조로 확장했습니다.</p>
-    </div>
-
-    <div class="ppt-ybi-flow">
-      <div class="ppt-ybi-node">2030 인구수 · 비율<br><span style="font-size:10px;color:var(--muted)">집중 / 저분포 확인</span></div>
-      <div class="ppt-ybi-node">HL Score<br><span style="font-size:10px;color:var(--muted)">현재 주거환경 수준</span></div>
-      <div class="ppt-ybi-node or">추가 공공데이터<br><span style="font-size:10px">시설 · 임대 · 정류소</span></div>
-      <div class="ppt-ybi-node">취약요인 분석<br><span style="font-size:10px;color:var(--muted)">생활 · 교통 · 주거</span></div>
-      <div class="ppt-ybi-node em">청년 유입·정착 지원<br><span style="font-size:10px;color:#dcf7f5">필요성 검토</span></div>
-    </div>
-
-    <div class="ppt-policy-grid">
-      <div class="ppt-policy-card"><div class="ico">🏪</div><h4>생활 인프라 보완</h4><p>의료·편의·문화 등 일상생활 조건이 상대적으로 약한 영역 확인</p></div>
-      <div class="ppt-policy-card"><div class="ico">🚌</div><h4>교통 접근성 점검</h4><p>정류소 수와 접근거리 외에 향후 배차·노선 다양성 추가 검증 필요</p></div>
-      <div class="ppt-policy-card"><div class="ico">🏘️</div><h4>공공임대·청년시설 연계</h4><p>지역의 공공 주거·청년 지원 기반을 보조적으로 확인</p></div>
-      <div class="ppt-policy-card"><div class="ico">🎯</div><h4>청년 분포 균형 모니터링</h4><p>특정 지역 쏠림 완화와 지역 간 주거환경 상향 평준화 방향 검토</p></div>
-    </div>
-
-    <div class="ppt-insight">이 결과는 특정 지역을 지원 대상으로 확정하는 자료가 아니라, <b>추가 행정자료와 현장검증이 필요한 1차 검토 기준</b>입니다.</div>
-  </div>
-</section>
-
-<section class="ppt-section white" id="intro-output">
-  <div class="wrap">
-    <div class="ppt-head">
-      <div class="ppt-kicker">09 · FINAL OUTPUT</div>
-      <h2>최종 결과물은 3개의 상세 웹페이지로 연결됩니다</h2>
-      <p>메인 페이지는 발표 스토리를 보여주고, 상단 메뉴를 통해 각 분석 결과를 상세하게 확인할 수 있도록 구성했습니다.</p>
-    </div>
-
-    <div class="ppt-output-grid">
-      <div class="ppt-output"><div class="n">01</div><h4>시각화 대시보드</h4><p>25개 동 지표 선택 · 정렬 · 차트/카드 비교를 통해 원자료 차이를 직접 확인</p></div>
-      <div class="ppt-output"><div class="n">02</div><h4>HL Score</h4><p>25개 동 세부점수 · 자치구 비교 · 가중치 기반 조건별 추천 기능 제공</p></div>
-      <div class="ppt-output"><div class="n">03</div><h4>종합 분석</h4><p>청년 분포 · 정책 보조지표 · 취약요인 · 해석 한계와 근거를 함께 제공</p></div>
-    </div>
-
-    <div class="ppt-insight"><b>품질관리</b> · 검증 완료된 최종 CSV를 단일 기준 데이터로 사용해 화면 간 결과 일관성을 유지합니다.</div>
-  </div>
-</section>
-
-<section class="ppt-section" id="intro-limit">
-  <div class="wrap">
-    <div class="ppt-head">
-      <div class="ppt-kicker">10 · LIMITATIONS & NEXT</div>
-      <h2>정책 제안으로 사용하려면 추가 검증이 필요합니다</h2>
-      <p>분석의 한계를 명확하게 제시하는 것이 결과의 신뢰성을 높인다고 판단했습니다.</p>
-    </div>
-
-    <div class="ppt-limit-grid">
-      <div class="ppt-limit"><b>분석 범위</b><span>광주 전체가 아니라 프로젝트 선정 25개 동의 상대 비교입니다.</span></div>
-      <div class="ppt-limit"><b>시설 데이터</b><span>개수 중심이므로 실제 이용량·품질·운영시간은 별도 확인이 필요합니다.</span></div>
-      <div class="ppt-limit"><b>공공임대</b><span>세대수는 청년 전용 물량이나 현재 입주 가능한 공실을 의미하지 않습니다.</span></div>
-      <div class="ppt-limit"><b>교통 데이터</b><span>정류소 수만으로 배차간격·노선 다양성·운행시간까지 설명할 수 없습니다.</span></div>
-    </div>
-
-    <div class="ppt-final">
-      <small>FINAL MESSAGE</small>
-      <h3>우리 프로젝트의 핵심은 데이터 수집량이 아니라, 데이터로 질문을 확장한 과정입니다.</h3>
-      <p>HL Score는 “이미 살기 좋은 지역을 찾는 출발점”이었고, 이후에는 청년 인구가 적은 지역도 살기 좋은 선택지가 될 수 있도록 지역 간 균형 개선과 청년 유입·정착 지원 필요성을 검토하는 방향으로 확장했습니다.</p>
-    </div>
-  </div>
+<section class="ppt-section story-chapter" data-chapter="10" data-label="LIMITATIONS" id="intro-limit">
+<div class="wrap">
+<div class="ppt-head">
+<div class="ppt-kicker">10 · LIMITATIONS &amp; NEXT</div>
+<h2>정책 제안으로 사용하려면 추가 검증이 필요합니다</h2>
+<p>분석의 한계를 명확하게 제시하는 것이 결과의 신뢰성을 높인다고 판단했습니다.</p>
+</div>
+<div class="ppt-limit-grid">
+<div class="ppt-limit"><b>분석 범위</b><span>광주 전체가 아니라 프로젝트 선정 25개 동의 상대 비교입니다.</span></div>
+<div class="ppt-limit"><b>시설 데이터</b><span>개수 중심이므로 실제 이용량·품질·운영시간은 별도 확인이 필요합니다.</span></div>
+<div class="ppt-limit"><b>공공임대</b><span>세대수는 청년 전용 물량이나 현재 입주 가능한 공실을 의미하지 않습니다.</span></div>
+<div class="ppt-limit"><b>교통 데이터</b><span>정류소 수만으로 배차간격·노선 다양성·운행시간까지 설명할 수 없습니다.</span></div>
+</div>
+<div class="ppt-final">
+<small>FINAL MESSAGE</small>
+<h3>우리 프로젝트의 핵심은 데이터 수집량이 아니라, 데이터로 질문을 확장한 과정입니다.</h3>
+<p>HL Score는 “이미 살기 좋은 지역을 찾는 출발점”이었고, 이후에는 청년 인구가 적은 지역도 살기 좋은 선택지가 될 수 있도록 지역 간 균형 개선과 청년 유입·정착 지원 필요성을 검토하는 방향으로 확장했습니다.</p>
+</div>
+</div>
 </section>
 </main>
-
 <footer class="winter-footer">WINTER Analytics · PROJECT INTRO · AI Bootcamp Mini Project · 2026</footer>
-
-
 <script>
 // 프로젝트 소개의 HL TOP3를 /hl-dashboard와 동일한 최종 CSV 기준으로 자동 동기화합니다.
 (function syncIntroHLTop3(){
@@ -1784,6 +2767,258 @@ p,span,a,button,select,input,textarea,th,td{
       console.warn('프로젝트 소개 HL TOP3 자동 동기화 실패:', err);
       // 실패 시 위에 넣어둔 최신 검증값을 그대로 표시합니다.
     });
+})();
+</script>
+
+<script id="winter-return-position-v4">
+/* =========================================================
+   메인페이지 복귀 위치 기억
+   - 대시보드 / HL Score / 종합분석 페이지로 이동하기 직전
+     현재 project_intro 스크롤 위치와 현재 섹션을 저장
+   - 상세 페이지에서 project_intro로 돌아오면
+     마지막 위치로 복원
+   ========================================================= */
+(() => {
+  const STORAGE_KEY = "winter_project_intro_return_state";
+
+  const DETAIL_PATHS = [
+    "/dashboard",
+    "/visual-dashboard",
+    "/hl-dashboard",
+    "/policy-dashboard",
+    "/policy-analysis",
+    "/hl-analysis"
+  ];
+
+  function normalizePath(href) {
+    try {
+      return new URL(href, window.location.origin).pathname;
+    } catch (e) {
+      return href || "";
+    }
+  }
+
+  function getCurrentSection() {
+    const sections = [...document.querySelectorAll(".story-chapter, section[id]")];
+
+    if (!sections.length) return null;
+
+    const viewportMiddle = window.innerHeight * 0.45;
+
+    let best = null;
+    let bestDistance = Infinity;
+
+    sections.forEach(section => {
+      const rect = section.getBoundingClientRect();
+
+      // 현재 화면 중심에 가장 가까운 섹션을 기억
+      const sectionMiddle = rect.top + (rect.height / 2);
+      const distance = Math.abs(sectionMiddle - viewportMiddle);
+
+      if (distance < bestDistance) {
+        bestDistance = distance;
+        best = section;
+      }
+    });
+
+    return best;
+  }
+
+  function saveReturnPosition() {
+    const currentSection = getCurrentSection();
+
+    const state = {
+      scrollY: window.scrollY,
+      sectionId: currentSection?.id || "",
+      savedAt: Date.now(),
+      shouldRestore: true
+    };
+
+    sessionStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify(state)
+    );
+  }
+
+  function shouldSaveForLink(link) {
+    const href = link.getAttribute("href");
+    if (!href) return false;
+
+    const path = normalizePath(href);
+
+    return DETAIL_PATHS.some(detailPath =>
+      path === detailPath ||
+      path.startsWith(detailPath + "/")
+    );
+  }
+
+  function restoreReturnPosition() {
+    const raw = sessionStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+
+    let state;
+
+    try {
+      state = JSON.parse(raw);
+    } catch (e) {
+      sessionStorage.removeItem(STORAGE_KEY);
+      return;
+    }
+
+    if (!state?.shouldRestore) return;
+
+    // 페이지 레이아웃/폰트/데이터가 자리잡은 뒤 복원
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        const savedY = Number(state.scrollY);
+
+        if (Number.isFinite(savedY)) {
+          window.scrollTo({
+            top: savedY,
+            left: 0,
+            behavior: "auto"
+          });
+        } else if (state.sectionId) {
+          document.getElementById(state.sectionId)?.scrollIntoView({
+            block: "start",
+            behavior: "auto"
+          });
+        }
+
+        // 한 번 복원한 뒤에는 일반 새로고침 시 중간으로 강제 이동하지 않도록 해제
+        state.shouldRestore = false;
+        sessionStorage.setItem(
+          STORAGE_KEY,
+          JSON.stringify(state)
+        );
+      });
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // 상세 페이지 이동 버튼/링크 클릭 직전 저장
+    document.querySelectorAll("a[href]").forEach(link => {
+      if (!shouldSaveForLink(link)) return;
+
+      link.addEventListener("click", saveReturnPosition, {
+        capture: true
+      });
+    });
+  });
+
+  // 브라우저 뒤로가기 및 상세페이지의 '프로젝트 소개' 링크 모두 대응
+  window.addEventListener("pageshow", restoreReturnPosition);
+})();
+</script>
+
+
+<script id="winter-section-nav-v5-js">
+(() => {
+  const nav = document.querySelector(".winter-section-dots");
+  if (!nav) return;
+
+  const dotButtons = [...nav.querySelectorAll(".winter-section-dot")];
+
+  const entries = dotButtons
+    .map(button => {
+      const id = button.dataset.target;
+      const section = document.getElementById(id);
+      return section ? { button, section } : null;
+    })
+    .filter(Boolean);
+
+  if (!entries.length) return;
+
+  let currentId = "";
+
+  function setActive(id) {
+    if (!id || currentId === id) return;
+    currentId = id;
+
+    entries.forEach(({ button, section }) => {
+      const active = section.id === id;
+      button.classList.toggle("active", active);
+
+      if (active) {
+        button.setAttribute("aria-current", "true");
+      } else {
+        button.removeAttribute("aria-current");
+      }
+    });
+  }
+
+  function findCurrentSection() {
+    /*
+      상단 고정 메뉴 아래의 화면 중심선을 기준으로
+      현재 보고 있는 섹션을 판단
+    */
+    const probeY = Math.min(
+      window.innerHeight * 0.48,
+      window.innerHeight - 120
+    );
+
+    let best = entries[0];
+    let bestDistance = Infinity;
+
+    entries.forEach(entry => {
+      const rect = entry.section.getBoundingClientRect();
+
+      if (rect.top <= probeY && rect.bottom >= probeY) {
+        best = entry;
+        bestDistance = 0;
+        return;
+      }
+
+      if (bestDistance !== 0) {
+        const distance = Math.min(
+          Math.abs(rect.top - probeY),
+          Math.abs(rect.bottom - probeY)
+        );
+
+        if (distance < bestDistance) {
+          bestDistance = distance;
+          best = entry;
+        }
+      }
+    });
+
+    setActive(best.section.id);
+  }
+
+  dotButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const target = document.getElementById(button.dataset.target);
+      if (!target) return;
+
+      /*
+        콘텐츠 등장 애니메이션은 없고,
+        점 클릭 시 위치 이동만 부드럽게 수행
+      */
+      target.scrollIntoView({
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? "auto"
+          : "smooth",
+        block: "start"
+      });
+    });
+  });
+
+  let raf = null;
+
+  function requestUpdate() {
+    if (raf) return;
+
+    raf = requestAnimationFrame(() => {
+      raf = null;
+      findCurrentSection();
+    });
+  }
+
+  window.addEventListener("scroll", requestUpdate, { passive:true });
+  window.addEventListener("resize", requestUpdate);
+  window.addEventListener("pageshow", requestUpdate);
+
+  findCurrentSection();
 })();
 </script>
 

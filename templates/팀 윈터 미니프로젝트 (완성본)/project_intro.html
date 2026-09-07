@@ -7704,6 +7704,923 @@ body.project-intro-page #intro-topic .topic-question{
 }
 </style>
 
+
+<style id="project-intro-presentation-text-ratio-v1">
+/* =========================================================
+   PROJECT INTRO · 발표용 텍스트 비율 통일
+   기준: 00 PROJECT START의 시각적 비율
+   - 00 / 01 페이지는 현재 조정 상태 유지
+   - 02~13 페이지를 각각 콘텐츠 밀도에 맞게 개별 조정
+   - 섹션 번호 배지(.ppt-kicker)는 절대 수정하지 않음
+   - 작은 글씨를 키우고, 대신 카드 패딩/간격을 조정해 1페이지 유지
+   ========================================================= */
+
+@media (min-width:1181px){
+
+  /* ---------------------------------------------------------
+     공통: 02~13의 제목/설명 비율
+     배지(.ppt-kicker)는 선택자에 포함하지 않음
+  --------------------------------------------------------- */
+  body.project-intro-page #intro-data .ppt-head h2,
+  body.project-intro-page #intro-process .ppt-head h2,
+  body.project-intro-page #intro-visualization .ppt-head h2,
+  body.project-intro-page #intro-hl .ppt-head h2,
+  body.project-intro-page #intro-phase2 .ppt-head h2,
+  body.project-intro-page #intro-analysis .ppt-head h2,
+  body.project-intro-page #intro-limit .ppt-head h2,
+  body.project-intro-page #intro-team .ppt-head h2{
+    font-size:52px !important;
+    line-height:1.10 !important;
+    letter-spacing:-.045em !important;
+    margin-bottom:12px !important;
+  }
+
+  body.project-intro-page #intro-data .ppt-head p,
+  body.project-intro-page #intro-process .ppt-head p,
+  body.project-intro-page #intro-visualization .ppt-head p,
+  body.project-intro-page #intro-hl .ppt-head p,
+  body.project-intro-page #intro-phase2 .ppt-head p,
+  body.project-intro-page #intro-analysis .ppt-head p,
+  body.project-intro-page #intro-limit .ppt-head p,
+  body.project-intro-page #intro-team .ppt-head p{
+    font-size:17px !important;
+    line-height:1.55 !important;
+    letter-spacing:-.018em !important;
+  }
+
+  /* =========================================================
+     02 · PHASE 1 DATA
+  ========================================================= */
+  body.project-intro-page #intro-data > .wrap{
+    gap:14px !important;
+  }
+
+  body.project-intro-page #intro-data .ppt-data-grid{
+    flex:1 1 auto !important;
+    margin-top:4px !important;
+    gap:12px !important;
+    align-items:stretch !important;
+  }
+
+  body.project-intro-page #intro-data .ppt-data-card{
+    min-height:0 !important;
+    height:100% !important;
+    padding:16px 18px !important;
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:center !important;
+  }
+
+  body.project-intro-page #intro-data .ppt-data-card .num{
+    font-size:13px !important;
+  }
+
+  body.project-intro-page #intro-data .ppt-data-card h4{
+    margin:7px 0 7px !important;
+    font-size:21px !important;
+    line-height:1.3 !important;
+  }
+
+  body.project-intro-page #intro-data .ppt-data-card p{
+    font-size:15px !important;
+    line-height:1.48 !important;
+  }
+
+  body.project-intro-page #intro-data .ppt-data-card .source{
+    margin-top:auto !important;
+    padding-top:9px !important;
+    font-size:11px !important;
+    line-height:1.35 !important;
+  }
+
+  /* =========================================================
+     03 · DATA → HL SCORE
+  ========================================================= */
+  body.project-intro-page #intro-process > .wrap{
+    gap:11px !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-process{
+    margin-top:0 !important;
+    gap:8px !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-process-step{
+    min-height:62px !important;
+    padding:10px 8px !important;
+    font-size:13px !important;
+    line-height:1.32 !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-process-step b{
+    margin-bottom:4px !important;
+    font-size:15px !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-formula{
+    margin-top:0 !important;
+    padding:12px 14px !important;
+    font-size:20px !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-tech-grid{
+    flex:1 1 auto !important;
+    margin-top:0 !important;
+    gap:12px !important;
+    align-items:stretch !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-tech{
+    min-height:0 !important;
+    height:100% !important;
+    padding:16px 18px !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-tech h4{
+    margin-bottom:10px !important;
+    font-size:19px !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-badge{
+    padding:6px 9px !important;
+    font-size:13px !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-issues{
+    gap:7px !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-issue{
+    padding:9px 11px !important;
+    font-size:11px !important;
+    line-height:1.38 !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-issue b{
+    margin-bottom:3px !important;
+    font-size:12px !important;
+  }
+
+  /* =========================================================
+     04 · VISUALIZATION
+  ========================================================= */
+  body.project-intro-page #intro-visualization > .wrap{
+    gap:14px !important;
+  }
+
+  body.project-intro-page #intro-visualization .ppt-chart-grid{
+    flex:1 1 auto !important;
+    min-height:0 !important;
+    margin-top:0 !important;
+    gap:18px !important;
+    align-items:stretch !important;
+  }
+
+  body.project-intro-page #intro-visualization .ppt-chart{
+    height:100% !important;
+    min-height:0 !important;
+    padding:20px 22px !important;
+  }
+
+  body.project-intro-page #intro-visualization .ppt-chart h4{
+    font-size:22px !important;
+    margin-bottom:5px !important;
+  }
+
+  body.project-intro-page #intro-visualization .ppt-chart .caption{
+    font-size:13px !important;
+    margin-bottom:13px !important;
+  }
+
+  body.project-intro-page #intro-visualization .ppt-mini-row{
+    grid-template-columns:76px 1fr 72px !important;
+    gap:10px !important;
+    margin:10px 0 !important;
+  }
+
+  body.project-intro-page #intro-visualization .ppt-mini-name{
+    font-size:14px !important;
+  }
+
+  body.project-intro-page #intro-visualization .ppt-mini-row b{
+    font-size:13px !important;
+  }
+
+  body.project-intro-page #intro-visualization .ppt-mini-track{
+    height:10px !important;
+  }
+
+  /* =========================================================
+     05 · HL SCORE RESULT
+  ========================================================= */
+  body.project-intro-page #intro-hl > .wrap{
+    gap:12px !important;
+  }
+
+  body.project-intro-page #intro-hl .ppt-weight-grid{
+    margin-top:0 !important;
+    gap:10px !important;
+  }
+
+  body.project-intro-page #intro-hl .ppt-weight{
+    padding:12px !important;
+  }
+
+  body.project-intro-page #intro-hl .ppt-weight b{
+    font-size:27px !important;
+  }
+
+  body.project-intro-page #intro-hl .ppt-weight span{
+    font-size:13px !important;
+    margin-top:3px !important;
+  }
+
+  body.project-intro-page #intro-hl .ppt-score-grid{
+    flex:1 1 auto !important;
+    min-height:0 !important;
+    margin-top:0 !important;
+    gap:14px !important;
+    align-items:stretch !important;
+  }
+
+  body.project-intro-page #intro-hl .ppt-score-card{
+    height:100% !important;
+    min-height:0 !important;
+    padding:18px 20px !important;
+  }
+
+  body.project-intro-page #intro-hl .ppt-score-rank{
+    font-size:12px !important;
+  }
+
+  body.project-intro-page #intro-hl .ppt-score-card h4{
+    margin:7px 0 10px !important;
+    font-size:23px !important;
+  }
+
+  body.project-intro-page #intro-hl .ppt-score-card small{
+    font-size:11px !important;
+  }
+
+  body.project-intro-page #intro-hl .ppt-score-value{
+    font-size:42px !important;
+  }
+
+  body.project-intro-page #intro-hl .ppt-score-value span{
+    font-size:12px !important;
+  }
+
+  body.project-intro-page #intro-hl .ppt-score-parts{
+    gap:7px !important;
+    margin-top:12px !important;
+  }
+
+  body.project-intro-page #intro-hl .ppt-score-parts span{
+    padding:8px 9px !important;
+    font-size:11px !important;
+  }
+
+  body.project-intro-page #intro-hl .ppt-score-parts b{
+    margin-top:3px !important;
+    font-size:14px !important;
+  }
+
+  /* =========================================================
+     06 · TURNING POINT
+     정보량이 많으므로 제목은 약간 작게, 핵심 질문은 크게
+  ========================================================= */
+  body.project-intro-page #intro-turning .turning-key-head h2{
+    font-size:46px !important;
+    line-height:1.12 !important;
+    margin-bottom:10px !important;
+  }
+
+  body.project-intro-page #intro-turning .turning-key-head p{
+    font-size:15px !important;
+    line-height:1.55 !important;
+  }
+
+  body.project-intro-page #intro-turning .turning-key-question{
+    min-height:118px !important;
+    padding:22px 28px !important;
+  }
+
+  body.project-intro-page #intro-turning .turning-key-question small{
+    font-size:12px !important;
+    margin-bottom:8px !important;
+  }
+
+  body.project-intro-page #intro-turning .turning-key-question strong{
+    font-size:27px !important;
+    line-height:1.38 !important;
+  }
+
+  body.project-intro-page #intro-turning .turning-three-blocks{
+    flex:1 1 auto !important;
+    min-height:0 !important;
+    margin-top:0 !important;
+    gap:9px !important;
+    align-items:stretch !important;
+  }
+
+  body.project-intro-page #intro-turning .turning-three-card{
+    min-height:0 !important;
+    height:100% !important;
+    padding:15px 16px !important;
+  }
+
+  body.project-intro-page #intro-turning .turning-three-card h3{
+    margin:10px 0 9px !important;
+    font-size:18px !important;
+  }
+
+  body.project-intro-page #intro-turning .turning-score-center b{
+    font-size:32px !important;
+  }
+
+  body.project-intro-page #intro-turning .turning-added-list b,
+  body.project-intro-page #intro-turning .turning-policy-list b{
+    font-size:11px !important;
+  }
+
+  body.project-intro-page #intro-turning .turning-added-list span,
+  body.project-intro-page #intro-turning .turning-policy-list span{
+    font-size:9px !important;
+    line-height:1.35 !important;
+  }
+
+  /* =========================================================
+     07 · PHASE 2 DATA
+  ========================================================= */
+  body.project-intro-page #intro-phase2 > .wrap{
+    gap:15px !important;
+  }
+
+  body.project-intro-page #intro-phase2 .ppt-head h2{
+    font-size:49px !important;
+  }
+
+  body.project-intro-page #intro-phase2 .ppt-phase2-grid{
+    flex:1 1 auto !important;
+    min-height:0 !important;
+    margin-top:0 !important;
+    gap:12px !important;
+    align-items:stretch !important;
+  }
+
+  body.project-intro-page #intro-phase2 .ppt-phase2-card{
+    height:100% !important;
+    min-height:0 !important;
+    padding:18px !important;
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:center !important;
+  }
+
+  body.project-intro-page #intro-phase2 .ppt-phase2-card .idx{
+    font-size:13px !important;
+  }
+
+  body.project-intro-page #intro-phase2 .ppt-phase2-card h4{
+    margin:8px 0 8px !important;
+    font-size:19px !important;
+    line-height:1.3 !important;
+  }
+
+  body.project-intro-page #intro-phase2 .ppt-phase2-card p{
+    font-size:14px !important;
+    line-height:1.48 !important;
+  }
+
+  /* =========================================================
+     08 · BALANCE / POLICY FRAME
+  ========================================================= */
+  body.project-intro-page #intro-analysis > .wrap{
+    gap:13px !important;
+  }
+
+  body.project-intro-page #intro-analysis .ppt-ybi-flow{
+    margin-top:0 !important;
+    gap:9px !important;
+  }
+
+  body.project-intro-page #intro-analysis .ppt-ybi-node{
+    min-height:96px !important;
+    padding:14px !important;
+    font-size:14px !important;
+    line-height:1.42 !important;
+  }
+
+  body.project-intro-page #intro-analysis .ppt-policy-grid{
+    flex:1 1 auto !important;
+    min-height:0 !important;
+    margin-top:0 !important;
+    gap:12px !important;
+    align-items:stretch !important;
+  }
+
+  body.project-intro-page #intro-analysis .ppt-policy-card{
+    height:100% !important;
+    min-height:0 !important;
+    padding:17px 18px !important;
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:center !important;
+  }
+
+  body.project-intro-page #intro-analysis .ppt-policy-card .ico{
+    font-size:26px !important;
+  }
+
+  body.project-intro-page #intro-analysis .ppt-policy-card h4{
+    margin:8px 0 7px !important;
+    font-size:18px !important;
+  }
+
+  body.project-intro-page #intro-analysis .ppt-policy-card p{
+    font-size:13px !important;
+    line-height:1.5 !important;
+  }
+
+  /* =========================================================
+     09 · DATA QUALITY CHECK
+     카드가 많아 제목/본문은 00과 비슷한 비율을 유지하되
+     내부 수치/설명은 발표 가독성 확보 수준으로 확대
+  ========================================================= */
+  body.project-intro-page #intro-output .ppt-head h2{
+    font-size:47px !important;
+    line-height:1.1 !important;
+    margin-bottom:10px !important;
+  }
+
+  body.project-intro-page #intro-output .ppt-head p{
+    font-size:15px !important;
+    line-height:1.48 !important;
+  }
+
+  body.project-intro-page #intro-output > .wrap{
+    gap:9px !important;
+    justify-content:flex-start !important;
+  }
+
+  body.project-intro-page #intro-output .ppt-quality-rule-grid{
+    margin-top:2px !important;
+    gap:10px !important;
+  }
+
+  body.project-intro-page #intro-output .ppt-quality-rule{
+    min-height:0 !important;
+    padding:14px 17px !important;
+  }
+
+  body.project-intro-page #intro-output .rule-step{
+    width:28px !important;
+    height:28px !important;
+    font-size:10px !important;
+  }
+
+  body.project-intro-page #intro-output .rule-count{
+    margin-top:9px !important;
+    font-size:30px !important;
+  }
+
+  body.project-intro-page #intro-output .ppt-quality-rule h4{
+    margin:5px 0 5px !important;
+    font-size:17px !important;
+  }
+
+  body.project-intro-page #intro-output .ppt-quality-rule p{
+    font-size:11px !important;
+    line-height:1.42 !important;
+  }
+
+  body.project-intro-page #intro-output .rule-status{
+    margin-top:8px !important;
+    font-size:9px !important;
+  }
+
+  body.project-intro-page #intro-output .ppt-quality-cleaning{
+    margin-top:0 !important;
+    min-height:104px !important;
+    padding:14px 17px !important;
+    gap:16px !important;
+  }
+
+  body.project-intro-page #intro-output .quality-cleaning-copy h3{
+    margin:4px 0 5px !important;
+    font-size:18px !important;
+  }
+
+  body.project-intro-page #intro-output .quality-cleaning-copy p{
+    font-size:10.5px !important;
+    line-height:1.42 !important;
+  }
+
+  body.project-intro-page #intro-output .quality-flow-card{
+    min-height:78px !important;
+    padding:10px 12px !important;
+  }
+
+  body.project-intro-page #intro-output .quality-flow-card strong{
+    font-size:24px !important;
+  }
+
+  body.project-intro-page #intro-output .quality-flow-card span{
+    font-size:9px !important;
+  }
+
+  body.project-intro-page #intro-output .ppt-quality-excluded-head{
+    margin-top:0 !important;
+  }
+
+  body.project-intro-page #intro-output .ppt-quality-excluded-head h3{
+    font-size:17px !important;
+  }
+
+  body.project-intro-page #intro-output .ppt-quality-dong-grid{
+    margin-top:0 !important;
+    gap:9px !important;
+  }
+
+  body.project-intro-page #intro-output .ppt-quality-dong{
+    min-height:68px !important;
+    padding:10px 13px !important;
+  }
+
+  body.project-intro-page #intro-output .ppt-quality-dong strong{
+    font-size:13px !important;
+  }
+
+  body.project-intro-page #intro-output .ppt-quality-dong b{
+    margin-top:5px !important;
+    font-size:22px !important;
+  }
+
+  /* =========================================================
+     10 · METHOD & SOURCES
+  ========================================================= */
+  body.project-intro-page #intro-method .ppt-head h2,
+  body.project-intro-page #intro-method-2 .ppt-head h2{
+    font-size:46px !important;
+    line-height:1.11 !important;
+    margin-bottom:10px !important;
+  }
+
+  body.project-intro-page #intro-method .ppt-head p,
+  body.project-intro-page #intro-method-2 .ppt-head p{
+    font-size:15px !important;
+    line-height:1.5 !important;
+  }
+
+  body.project-intro-page #intro-method > .wrap,
+  body.project-intro-page #intro-method-2 > .wrap{
+    gap:10px !important;
+  }
+
+  body.project-intro-page #intro-method .ppt-method-order,
+  body.project-intro-page #intro-method-2 .ppt-method-order{
+    margin-top:0 !important;
+    padding:8px 11px !important;
+  }
+
+  body.project-intro-page #intro-method .ppt-method-order span,
+  body.project-intro-page #intro-method-2 .ppt-method-order span{
+    font-size:11px !important;
+  }
+
+  body.project-intro-page #intro-method .ppt-method-grid,
+  body.project-intro-page #intro-method-2 .ppt-method-grid{
+    flex:1 1 auto !important;
+    min-height:0 !important;
+    margin-top:0 !important;
+    gap:14px !important;
+    align-items:stretch !important;
+  }
+
+  body.project-intro-page #intro-method .ppt-method-card,
+  body.project-intro-page #intro-method-2 .ppt-method-card{
+    min-height:0 !important;
+    height:100% !important;
+    padding:18px 20px !important;
+  }
+
+  body.project-intro-page #intro-method .ppt-method-card-head,
+  body.project-intro-page #intro-method-2 .ppt-method-card-head{
+    margin-bottom:11px !important;
+  }
+
+  body.project-intro-page #intro-method .ppt-method-card-head h3,
+  body.project-intro-page #intro-method-2 .ppt-method-card-head h3{
+    font-size:18px !important;
+  }
+
+  body.project-intro-page #intro-method .ppt-method-card-head small,
+  body.project-intro-page #intro-method-2 .ppt-method-card-head small{
+    font-size:9px !important;
+  }
+
+  body.project-intro-page #intro-method .ppt-source-list{
+    gap:7px !important;
+  }
+
+  body.project-intro-page #intro-method .ppt-source-list > div{
+    min-height:58px !important;
+    padding:8px 10px !important;
+  }
+
+  body.project-intro-page #intro-method .ppt-source-list b{
+    font-size:10px !important;
+  }
+
+  body.project-intro-page #intro-method .ppt-source-list span{
+    font-size:9px !important;
+    line-height:1.35 !important;
+  }
+
+  body.project-intro-page #intro-method .method-copy,
+  body.project-intro-page #intro-method-2 .method-copy{
+    font-size:11px !important;
+    line-height:1.5 !important;
+  }
+
+  body.project-intro-page #intro-method .method-formula{
+    margin-top:10px !important;
+    padding:11px !important;
+    font-size:10px !important;
+  }
+
+  body.project-intro-page #intro-method .method-formula strong{
+    font-size:15px !important;
+  }
+
+  body.project-intro-page #intro-method .method-pair,
+  body.project-intro-page #intro-method-2 .method-weight-list,
+  body.project-intro-page #intro-method-2 .method-median-grid{
+    margin-top:9px !important;
+    gap:7px !important;
+  }
+
+  body.project-intro-page #intro-method .method-pair > div,
+  body.project-intro-page #intro-method-2 .method-weight-list > div,
+  body.project-intro-page #intro-method-2 .method-median-grid > div{
+    padding:10px 11px !important;
+  }
+
+  body.project-intro-page #intro-method .method-pair b,
+  body.project-intro-page #intro-method-2 .method-weight-list b,
+  body.project-intro-page #intro-method-2 .method-median-grid b{
+    font-size:18px !important;
+  }
+
+  body.project-intro-page #intro-method-2 .method-note-box,
+  body.project-intro-page #intro-method-2 .method-condition{
+    margin-top:8px !important;
+    padding:9px 10px !important;
+    font-size:10px !important;
+    line-height:1.4 !important;
+  }
+
+  /* =========================================================
+     12 · LIMITATIONS & NEXT
+  ========================================================= */
+  body.project-intro-page #intro-limit > .wrap{
+    gap:14px !important;
+  }
+
+  body.project-intro-page #intro-limit .ppt-limit-grid{
+    flex:1 1 auto !important;
+    min-height:0 !important;
+    margin-top:0 !important;
+    gap:12px !important;
+    align-items:stretch !important;
+  }
+
+  body.project-intro-page #intro-limit .ppt-limit{
+    height:100% !important;
+    min-height:0 !important;
+    padding:17px 18px !important;
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:center !important;
+  }
+
+  body.project-intro-page #intro-limit .ppt-limit b{
+    margin-bottom:7px !important;
+    font-size:17px !important;
+  }
+
+  body.project-intro-page #intro-limit .ppt-limit span{
+    font-size:13px !important;
+    line-height:1.5 !important;
+  }
+
+  body.project-intro-page #intro-limit .ppt-final{
+    margin-top:0 !important;
+    padding:18px 22px !important;
+  }
+
+  body.project-intro-page #intro-limit .ppt-final small{
+    font-size:11px !important;
+  }
+
+  body.project-intro-page #intro-limit .ppt-final h3{
+    margin:7px 0 7px !important;
+    font-size:23px !important;
+  }
+
+  body.project-intro-page #intro-limit .ppt-final p{
+    font-size:14px !important;
+    line-height:1.5 !important;
+  }
+
+  /* =========================================================
+     13 · TEAM & ROLES
+  ========================================================= */
+  body.project-intro-page #intro-team > .wrap{
+    gap:14px !important;
+  }
+
+  body.project-intro-page #intro-team .team-role-grid{
+    flex:1 1 auto !important;
+    min-height:0 !important;
+    margin-top:0 !important;
+    gap:13px !important;
+    align-items:stretch !important;
+  }
+
+  body.project-intro-page #intro-team .team-role-card{
+    min-height:0 !important;
+    height:100% !important;
+    padding:18px 21px !important;
+  }
+
+  body.project-intro-page #intro-team .team-role-label{
+    font-size:10px !important;
+  }
+
+  body.project-intro-page #intro-team .team-role-card h3{
+    font-size:24px !important;
+  }
+
+  body.project-intro-page #intro-team .team-role-main{
+    margin-top:14px !important;
+    font-size:17px !important;
+    line-height:1.4 !important;
+  }
+
+  body.project-intro-page #intro-team .team-role-detail{
+    margin-top:12px !important;
+    gap:7px !important;
+  }
+
+  body.project-intro-page #intro-team .team-role-detail span{
+    padding:7px 9px !important;
+    font-size:11px !important;
+  }
+}
+
+/* =========================================================
+   실제 노트북 발표 화면(약 800px 높이)
+   텍스트 크기는 유지하고 간격/패딩을 먼저 줄여 한 화면에 맞춤
+   ========================================================= */
+@media (min-width:1181px) and (max-height:820px){
+
+  body.project-intro-page #intro-data > .wrap,
+  body.project-intro-page #intro-process > .wrap,
+  body.project-intro-page #intro-visualization > .wrap,
+  body.project-intro-page #intro-hl > .wrap,
+  body.project-intro-page #intro-phase2 > .wrap,
+  body.project-intro-page #intro-analysis > .wrap,
+  body.project-intro-page #intro-limit > .wrap,
+  body.project-intro-page #intro-team > .wrap{
+    gap:8px !important;
+  }
+
+  body.project-intro-page #intro-data .ppt-head h2,
+  body.project-intro-page #intro-process .ppt-head h2,
+  body.project-intro-page #intro-visualization .ppt-head h2,
+  body.project-intro-page #intro-hl .ppt-head h2,
+  body.project-intro-page #intro-phase2 .ppt-head h2,
+  body.project-intro-page #intro-analysis .ppt-head h2,
+  body.project-intro-page #intro-limit .ppt-head h2,
+  body.project-intro-page #intro-team .ppt-head h2{
+    font-size:47px !important;
+  }
+
+  body.project-intro-page #intro-data .ppt-head p,
+  body.project-intro-page #intro-process .ppt-head p,
+  body.project-intro-page #intro-visualization .ppt-head p,
+  body.project-intro-page #intro-hl .ppt-head p,
+  body.project-intro-page #intro-phase2 .ppt-head p,
+  body.project-intro-page #intro-analysis .ppt-head p,
+  body.project-intro-page #intro-limit .ppt-head p,
+  body.project-intro-page #intro-team .ppt-head p{
+    font-size:15px !important;
+  }
+
+  /* 02 */
+  body.project-intro-page #intro-data .ppt-data-card{
+    padding:12px 15px !important;
+  }
+  body.project-intro-page #intro-data .ppt-data-card h4{font-size:18px !important;}
+  body.project-intro-page #intro-data .ppt-data-card p{font-size:13px !important;}
+  body.project-intro-page #intro-data .ppt-data-card .source{font-size:9px !important;}
+
+  /* 03 */
+  body.project-intro-page #intro-process .ppt-process-step{
+    min-height:54px !important;
+    padding:7px 6px !important;
+    font-size:11px !important;
+  }
+  body.project-intro-page #intro-process .ppt-process-step b{font-size:13px !important;}
+  body.project-intro-page #intro-process .ppt-formula{padding:9px 11px !important;font-size:17px !important;}
+  body.project-intro-page #intro-process .ppt-tech{padding:12px 14px !important;}
+  body.project-intro-page #intro-process .ppt-tech h4{font-size:16px !important;}
+  body.project-intro-page #intro-process .ppt-badge{font-size:10px !important;padding:5px 7px !important;}
+
+  /* 04 */
+  body.project-intro-page #intro-visualization .ppt-chart{padding:15px 17px !important;}
+  body.project-intro-page #intro-visualization .ppt-chart h4{font-size:19px !important;}
+  body.project-intro-page #intro-visualization .ppt-chart .caption{font-size:11px !important;}
+  body.project-intro-page #intro-visualization .ppt-mini-row{margin:7px 0 !important;}
+  body.project-intro-page #intro-visualization .ppt-mini-name{font-size:12px !important;}
+  body.project-intro-page #intro-visualization .ppt-mini-row b{font-size:11px !important;}
+
+  /* 05 */
+  body.project-intro-page #intro-hl .ppt-weight{padding:8px !important;}
+  body.project-intro-page #intro-hl .ppt-weight b{font-size:23px !important;}
+  body.project-intro-page #intro-hl .ppt-weight span{font-size:11px !important;}
+  body.project-intro-page #intro-hl .ppt-score-card{padding:13px 15px !important;}
+  body.project-intro-page #intro-hl .ppt-score-card h4{font-size:20px !important;}
+  body.project-intro-page #intro-hl .ppt-score-value{font-size:35px !important;}
+  body.project-intro-page #intro-hl .ppt-score-parts span{padding:6px !important;font-size:9px !important;}
+  body.project-intro-page #intro-hl .ppt-score-parts b{font-size:12px !important;}
+
+  /* 06 */
+  body.project-intro-page #intro-turning .turning-key-head h2{font-size:39px !important;}
+  body.project-intro-page #intro-turning .turning-key-head p{font-size:12px !important;}
+  body.project-intro-page #intro-turning .turning-key-question{min-height:100px !important;padding:17px 22px !important;}
+  body.project-intro-page #intro-turning .turning-key-question strong{font-size:23px !important;}
+  body.project-intro-page #intro-turning .turning-three-card{padding:11px 12px !important;}
+  body.project-intro-page #intro-turning .turning-three-card h3{font-size:15px !important;}
+  body.project-intro-page #intro-turning .turning-added-list b,
+  body.project-intro-page #intro-turning .turning-policy-list b{font-size:9px !important;}
+  body.project-intro-page #intro-turning .turning-added-list span,
+  body.project-intro-page #intro-turning .turning-policy-list span{font-size:7.5px !important;}
+
+  /* 07 */
+  body.project-intro-page #intro-phase2 .ppt-phase2-card{padding:13px !important;}
+  body.project-intro-page #intro-phase2 .ppt-phase2-card h4{font-size:16px !important;}
+  body.project-intro-page #intro-phase2 .ppt-phase2-card p{font-size:11px !important;}
+
+  /* 08 */
+  body.project-intro-page #intro-analysis .ppt-ybi-node{min-height:78px !important;padding:10px !important;font-size:12px !important;}
+  body.project-intro-page #intro-analysis .ppt-policy-card{padding:12px 14px !important;}
+  body.project-intro-page #intro-analysis .ppt-policy-card h4{font-size:15px !important;}
+  body.project-intro-page #intro-analysis .ppt-policy-card p{font-size:11px !important;}
+
+  /* 09 */
+  body.project-intro-page #intro-output .ppt-head h2{font-size:42px !important;}
+  body.project-intro-page #intro-output .ppt-head p{font-size:12px !important;}
+  body.project-intro-page #intro-output .ppt-quality-rule{padding:10px 13px !important;}
+  body.project-intro-page #intro-output .rule-count{font-size:25px !important;}
+  body.project-intro-page #intro-output .ppt-quality-rule h4{font-size:14px !important;}
+  body.project-intro-page #intro-output .ppt-quality-rule p{font-size:9px !important;}
+  body.project-intro-page #intro-output .ppt-quality-cleaning{min-height:88px !important;padding:10px 13px !important;}
+  body.project-intro-page #intro-output .quality-cleaning-copy h3{font-size:15px !important;}
+  body.project-intro-page #intro-output .quality-cleaning-copy p{font-size:8.5px !important;}
+  body.project-intro-page #intro-output .quality-flow-card{min-height:68px !important;padding:8px 10px !important;}
+  body.project-intro-page #intro-output .ppt-quality-dong{min-height:58px !important;padding:8px 10px !important;}
+
+  /* 10 / 11 */
+  body.project-intro-page #intro-method .ppt-head h2,
+  body.project-intro-page #intro-method-2 .ppt-head h2{font-size:40px !important;}
+  body.project-intro-page #intro-method .ppt-head p,
+  body.project-intro-page #intro-method-2 .ppt-head p{font-size:12px !important;}
+  body.project-intro-page #intro-method .ppt-method-card,
+  body.project-intro-page #intro-method-2 .ppt-method-card{padding:13px 15px !important;}
+  body.project-intro-page #intro-method .ppt-method-card-head h3,
+  body.project-intro-page #intro-method-2 .ppt-method-card-head h3{font-size:15px !important;}
+  body.project-intro-page #intro-method .method-copy,
+  body.project-intro-page #intro-method-2 .method-copy{font-size:9px !important;}
+
+  /* 12 */
+  body.project-intro-page #intro-limit .ppt-limit{padding:12px 14px !important;}
+  body.project-intro-page #intro-limit .ppt-limit b{font-size:15px !important;}
+  body.project-intro-page #intro-limit .ppt-limit span{font-size:11px !important;}
+  body.project-intro-page #intro-limit .ppt-final{padding:13px 17px !important;}
+  body.project-intro-page #intro-limit .ppt-final h3{font-size:20px !important;}
+  body.project-intro-page #intro-limit .ppt-final p{font-size:11px !important;}
+
+  /* 13 */
+  body.project-intro-page #intro-team .team-role-card{padding:13px 16px !important;}
+  body.project-intro-page #intro-team .team-role-card h3{font-size:21px !important;}
+  body.project-intro-page #intro-team .team-role-main{margin-top:10px !important;font-size:15px !important;}
+  body.project-intro-page #intro-team .team-role-detail{margin-top:9px !important;}
+  body.project-intro-page #intro-team .team-role-detail span{font-size:9px !important;padding:5px 7px !important;}
+}
+</style>
+
 </head>
 <body class="project-intro-page">
 <header class="winter-topbar">

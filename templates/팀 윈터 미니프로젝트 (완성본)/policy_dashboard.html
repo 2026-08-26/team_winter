@@ -1894,6 +1894,1091 @@ p,span,a,button,select,input,textarea,th,td{
 }
 </style>
 
+
+<style id="policy-readable-redesign-v1">
+/* =========================================================
+   POLICY DASHBOARD · READABILITY REDESIGN
+   데이터/Flask/Jinja 로직은 유지하고 설명 구조와 시각 계층만 재구성
+   ========================================================= */
+
+.policy-hero-v2{
+    background:
+        radial-gradient(circle at 88% 20%,rgba(30,185,208,.12),transparent 19rem),
+        radial-gradient(circle at 72% 100%,rgba(63,99,243,.09),transparent 22rem),
+        linear-gradient(135deg,#fbfdff,#edf6ff) !important;
+}
+.policy-hero-v2 h1{
+    max-width:980px;
+    font-size:34px !important;
+    line-height:1.25 !important;
+    margin-bottom:16px !important;
+}
+.policy-lead{
+    max-width:1100px;
+    font-size:15px !important;
+    line-height:1.9 !important;
+}
+.policy-question{
+    margin-top:22px;
+    padding:18px 20px;
+    display:flex;
+    align-items:center;
+    gap:18px;
+    border:1px solid #c8d9eb;
+    border-left:4px solid #4f6ef7;
+    border-radius:14px;
+    background:rgba(255,255,255,.72);
+}
+.policy-question span{
+    color:#667085;
+    font-size:12px;
+    font-weight:800;
+}
+.policy-question strong{
+    color:#13213a;
+    font-size:17px;
+}
+
+.policy-story-board,
+.policy-data-scale,
+.policy-caution,
+.policy-read-guide,
+.policy-legend,
+.policy-signal-title{
+    margin-top:20px;
+}
+
+.policy-story-board{
+    padding:26px;
+    border:1px solid #cbdbea;
+    border-radius:22px;
+    background:#fbfdff;
+}
+.policy-story-label{
+    margin-bottom:18px;
+    color:#53657c;
+    font-size:12px;
+    font-weight:900;
+    letter-spacing:.04em;
+}
+.policy-funnel{
+    display:grid;
+    grid-template-columns:1fr 42px 1fr 42px 1fr;
+    align-items:stretch;
+    gap:10px;
+}
+.policy-funnel-step{
+    min-height:138px;
+    padding:22px;
+    border:1px solid #d3dfeb;
+    border-radius:18px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    background:#fff;
+}
+.policy-funnel-step small{
+    color:#7a8ca5;
+    font-size:10px;
+    font-weight:900;
+}
+.policy-funnel-step strong{
+    display:block;
+    margin:6px 0 8px;
+    color:#101828;
+    font-size:34px;
+}
+.policy-funnel-step span{
+    color:#617187;
+    font-size:12px;
+    line-height:1.55;
+}
+.policy-funnel-step.youth{
+    background:#eef5ff;
+    border-color:#bfd1f2;
+}
+.policy-funnel-step.priority{
+    background:linear-gradient(135deg,#4568f4,#3157e8);
+    border-color:#3157e8;
+}
+.policy-funnel-step.priority small,
+.policy-funnel-step.priority span{color:#dce6ff;}
+.policy-funnel-step.priority strong{color:#fff;}
+.policy-funnel-arrow{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#7d91ad;
+    font-size:24px;
+    font-weight:900;
+}
+.policy-main-message{
+    margin-top:18px;
+    padding:16px 18px;
+    border-radius:14px;
+    background:#eef9fb;
+    color:#33465c;
+    font-size:13px;
+    line-height:1.75;
+}
+.policy-main-message b{
+    display:block;
+    color:#16778a;
+    font-size:11px;
+    margin-bottom:3px;
+}
+
+.policy-data-scale{
+    display:grid;
+    grid-template-columns:1.5fr repeat(3,1fr);
+    gap:12px;
+    padding:18px;
+    border:1px solid #d0deeb;
+    border-radius:18px;
+    background:rgba(255,255,255,.66);
+}
+.policy-data-scale-title{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+.policy-data-scale-title small{
+    color:#58708d;
+    font-weight:900;
+}
+.policy-data-scale-title strong{
+    margin-top:5px;
+    color:#1d2d43;
+    font-size:13px;
+    line-height:1.55;
+}
+.policy-data-scale-item{
+    padding:14px 16px;
+    border-radius:14px;
+    background:#f6f9fc;
+    border:1px solid #dbe5ee;
+}
+.policy-data-scale-item span{
+    display:block;
+    color:#6c7c91;
+    font-size:11px;
+}
+.policy-data-scale-item b{
+    display:block;
+    margin-top:5px;
+    color:#162238;
+    font-size:22px;
+}
+.policy-caution{
+    padding:13px 16px;
+    border-radius:12px;
+    border:1px solid #dce5ef;
+    background:#f8fafc;
+    color:#6b7789;
+    font-size:11px;
+    line-height:1.7;
+}
+.policy-caution.compact{margin-top:18px;}
+
+.policy-section-eyebrow{
+    color:#3f63f3;
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:.08em;
+    margin-bottom:8px;
+}
+.policy-readable-desc{
+    max-width:1100px;
+    font-size:13px !important;
+    line-height:1.75 !important;
+}
+
+.policy-result-funnel{
+    margin-top:24px;
+    display:grid;
+    grid-template-columns:1fr 44px 1fr 44px 1fr;
+    gap:8px;
+    align-items:stretch;
+}
+.policy-result-card{
+    min-height:190px;
+    padding:24px;
+    border:1px solid #d2dfeb;
+    border-radius:20px;
+    background:#fbfdff;
+}
+.policy-result-card.focus{background:#eef5ff;border-color:#bdd0ef;}
+.policy-result-card.priority{background:#eef9fb;border-color:#b8dfe6;}
+.policy-result-card small{
+    color:#66788f;
+    font-size:11px;
+    font-weight:900;
+}
+.policy-result-card strong{
+    display:block;
+    margin:8px 0;
+    color:#101828;
+    font-size:38px;
+}
+.policy-result-card p{
+    color:#64748b;
+    font-size:12px;
+    line-height:1.7;
+    margin:0;
+}
+.policy-result-divider{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#8ca0b8;
+    font-size:24px;
+    font-weight:900;
+}
+.policy-signal-title{
+    display:flex;
+    align-items:end;
+    justify-content:space-between;
+    gap:20px;
+    padding-top:8px;
+}
+.policy-signal-title small{
+    display:block;
+    color:#687990;
+    font-size:11px;
+    font-weight:800;
+}
+.policy-signal-title strong{
+    display:block;
+    margin-top:3px;
+    color:#142034;
+    font-size:18px;
+}
+.policy-signal-title > span{
+    color:#8593a5;
+    font-size:10px;
+}
+.policy-signal-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin-top:12px;
+}
+.policy-signal-card{
+    display:flex;
+    gap:14px;
+    padding:20px;
+    border:1px solid #d5e1ec;
+    border-radius:18px;
+    background:#fff;
+}
+.policy-signal-icon{
+    width:34px;height:34px;flex:0 0 34px;
+    border-radius:10px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:16px;font-weight:900;
+}
+.policy-signal-card.purple .policy-signal-icon{background:#f2eaff;color:#7c3aed;}
+.policy-signal-card.green .policy-signal-icon{background:#e9f8ef;color:#15803d;}
+.policy-signal-card.blue .policy-signal-icon{background:#e9f3ff;color:#2563eb;}
+.policy-signal-card small{color:#75859b;font-size:10px;font-weight:900;}
+.policy-signal-card strong{display:block;margin:2px 0 7px;font-size:25px;color:#101828;}
+.policy-signal-card p{margin:0;color:#67778c;font-size:11px;line-height:1.6;}
+
+.policy-question-flow{
+    display:grid;
+    grid-template-columns:1fr 28px 1fr 28px 1fr 28px 1fr;
+    gap:8px;
+    margin-top:26px;
+    align-items:stretch;
+}
+.policy-question-step{
+    min-height:210px;
+    padding:22px;
+    border:1px solid #d1dfeb;
+    border-radius:18px;
+    background:#fbfdff;
+}
+.policy-question-step.final{
+    background:linear-gradient(135deg,#eff4ff,#edf9fb);
+    border-color:#bed3ea;
+}
+.policy-step-no{
+    display:inline-flex;width:30px;height:30px;
+    border-radius:9px;
+    align-items:center;justify-content:center;
+    background:#e9efff;color:#3f63f3;
+    font-size:10px;font-weight:900;
+}
+.policy-question-step small{
+    display:block;margin-top:18px;color:#718198;font-size:10px;font-weight:900;
+}
+.policy-question-step strong{
+    display:block;margin-top:5px;color:#132139;font-size:15px;line-height:1.45;
+}
+.policy-question-step p{
+    margin:10px 0 0;color:#697a90;font-size:11px;line-height:1.65;
+}
+.policy-flow-arrow{
+    display:flex;align-items:center;justify-content:center;
+    color:#91a3b8;font-size:18px;font-weight:900;
+}
+.policy-read-guide{
+    display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+    padding:14px 16px;border-radius:14px;background:#f5f8fb;border:1px solid #dbe5ee;
+}
+.policy-read-guide b{font-size:11px;color:#31435a;margin-right:5px;}
+.policy-read-guide span{
+    padding:6px 9px;border-radius:999px;background:#fff;border:1px solid #d9e3ec;
+    color:#63748a;font-size:10px;font-weight:700;
+}
+
+.policy-legend{
+    display:flex;gap:10px;flex-wrap:wrap;
+    padding:13px 15px;border-radius:14px;background:#f7f9fc;border:1px solid #dbe4ed;
+}
+.policy-legend span{
+    display:flex;align-items:center;gap:6px;
+    color:#627389;font-size:10px;
+}
+.legend-dot{width:8px;height:8px;border-radius:50%;display:inline-block;}
+.legend-dot.red{background:#ef6a61;}
+.legend-dot.blue{background:#4f6ef7;}
+.legend-dot.purple{background:#9b63e9;}
+.policy-district-grid{margin-top:16px !important;}
+.policy-district-grid .district-card{
+    position:relative;
+    overflow:hidden;
+}
+.policy-district-grid .district-card::before{
+    content:"";
+    position:absolute;left:0;top:0;bottom:0;width:4px;
+    background:#dbe4ee;
+}
+.policy-district-grid .district-card.priority::before{
+    background:linear-gradient(180deg,#4f6ef7,#20b7ce);
+}
+.policy-district-grid .info-box{
+    background:#f8fafc !important;
+    border:1px solid #e1e8ef !important;
+    border-radius:12px !important;
+    padding:13px !important;
+}
+
+.policy-support-columns{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    margin-top:24px;
+}
+.policy-support-column{
+    border:1px solid #d3e0eb;
+    border-radius:20px;
+    background:#fff;
+    overflow:hidden;
+}
+.policy-support-column.purple{border-top:4px solid #9b63e9;}
+.policy-support-column.green{border-top:4px solid #29a361;}
+.policy-support-column.blue{border-top:4px solid #3b82f6;}
+.policy-support-head{
+    display:flex;justify-content:space-between;align-items:start;gap:16px;
+    padding:20px 20px 12px;
+}
+.policy-support-head small{color:#78879b;font-size:10px;font-weight:900;}
+.policy-support-head h3{margin:3px 0 0;font-size:16px;color:#132036;}
+.policy-support-head > strong{font-size:26px;color:#101828;}
+.policy-support-explain{
+    margin:0 20px 16px;
+    color:#687a90;font-size:11px;line-height:1.65;
+}
+.policy-support-list{
+    border-top:1px solid #e5ebf1;
+}
+.policy-support-row{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:4px 12px;
+    padding:13px 20px;
+    border-bottom:1px solid #edf1f5;
+}
+.policy-support-row:last-child{border-bottom:0;}
+.policy-support-row b{grid-row:1 / span 2;color:#1d2b40;font-size:12px;}
+.policy-support-row span{color:#16233a;font-size:12px;font-weight:900;text-align:right;}
+.policy-support-row small{color:#8a97a7;font-size:9px;text-align:right;}
+
+.policy-type-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin-top:22px;
+}
+.policy-type-card{
+    min-height:145px;
+    padding:20px;
+    border:1px solid #d4e0eb;
+    border-radius:18px;
+    background:#fbfdff;
+}
+.policy-type-top{
+    display:flex;align-items:start;justify-content:space-between;gap:12px;
+}
+.policy-type-top strong{color:#18263b;font-size:14px;}
+.policy-type-top b{
+    flex:0 0 auto;padding:6px 9px;border-radius:10px;
+    background:#edf3ff;color:#3f63f3;font-size:13px;
+}
+.policy-type-card p{
+    margin:13px 0 0;color:#6b7b90;font-size:11px;line-height:1.65;
+}
+
+@media(max-width:1100px){
+    .policy-funnel,
+    .policy-result-funnel,
+    .policy-question-flow{
+        grid-template-columns:1fr;
+    }
+    .policy-funnel-arrow,
+    .policy-result-divider,
+    .policy-flow-arrow{transform:rotate(90deg);min-height:18px;}
+    .policy-data-scale{grid-template-columns:1fr 1fr;}
+    .policy-signal-grid,
+    .policy-support-columns,
+    .policy-type-grid{grid-template-columns:1fr;}
+}
+@media(max-width:700px){
+    .policy-data-scale{grid-template-columns:1fr;}
+    .policy-question{align-items:flex-start;flex-direction:column;}
+}
+</style>
+
+
+<style id="policy-extra-data-clarity-v2">
+/* =========================================================
+   정책 분석 추가 데이터 영역 · 의미를 바로 이해하도록 재구성
+   ========================================================= */
+.policy-extra-data-explainer{
+    margin-top:22px;
+    padding:24px;
+    border:1px solid #cddbea;
+    border-radius:22px;
+    background:
+        radial-gradient(circle at 92% 10%,rgba(63,99,243,.06),transparent 18rem),
+        linear-gradient(135deg,#fbfdff,#f3f8fc);
+}
+
+.policy-extra-data-head{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:24px;
+    margin-bottom:18px;
+}
+
+.policy-extra-data-head small{
+    color:#3f63f3;
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:.05em;
+}
+
+.policy-extra-data-head h3{
+    margin:5px 0 7px;
+    color:#13213a;
+    font-size:18px;
+    line-height:1.45;
+}
+
+.policy-extra-data-head p{
+    margin:0;
+    max-width:920px;
+    color:#68798e;
+    font-size:12px;
+    line-height:1.7;
+}
+
+.policy-extra-data-badge{
+    flex:0 0 auto;
+    padding:8px 11px;
+    border-radius:999px;
+    border:1px solid #c8d8ea;
+    background:#eef4ff;
+    color:#4764d9;
+    font-size:10px;
+    font-weight:900;
+}
+
+.policy-extra-data-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+}
+
+.policy-extra-data-card{
+    display:flex;
+    gap:14px;
+    min-height:170px;
+    padding:20px;
+    border-radius:18px;
+    border:1px solid #d6e1ec;
+    background:#fff;
+}
+
+.policy-extra-data-icon{
+    width:38px;
+    height:38px;
+    flex:0 0 38px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:12px;
+    font-size:16px;
+    font-weight:900;
+}
+
+.policy-extra-data-card.purple .policy-extra-data-icon{
+    background:#f2eaff;
+    color:#7c3aed;
+}
+.policy-extra-data-card.green .policy-extra-data-icon{
+    background:#e9f8ef;
+    color:#168044;
+}
+.policy-extra-data-card.blue .policy-extra-data-icon{
+    background:#e9f3ff;
+    color:#2563eb;
+}
+
+.policy-extra-data-content small{
+    color:#78889b;
+    font-size:10px;
+    font-weight:900;
+}
+
+.policy-extra-data-content strong{
+    display:block;
+    margin:4px 0 8px;
+    color:#101828;
+    font-size:28px;
+    line-height:1;
+}
+
+.policy-extra-data-content p{
+    margin:0;
+    color:#66778b;
+    font-size:11px;
+    line-height:1.65;
+}
+
+.policy-extra-data-content p b{
+    color:#33465f;
+}
+
+.policy-extra-data-note{
+    margin-top:14px;
+    padding:14px 16px;
+    border:1px solid #cfe0ec;
+    border-left:4px solid #4f6ef7;
+    border-radius:12px;
+    background:#eef6fb;
+    color:#53667d;
+    font-size:11px;
+    line-height:1.7;
+}
+
+.policy-extra-data-note b{
+    display:inline-block;
+    margin-right:7px;
+    color:#3157e8;
+}
+
+@media(max-width:1000px){
+    .policy-extra-data-grid{
+        grid-template-columns:1fr;
+    }
+    .policy-extra-data-head{
+        flex-direction:column;
+    }
+}
+</style>
+
+<style id="evidence-table-redesign-v4">
+/* =========================================================
+   근거표 V4
+   - 상세보기 버튼을 지역명 밑으로 이동
+   - 상세 내용은 해당 행 아래 전체 폭을 사용
+   - 빈 공간을 넓은 3단 카드로 활용
+   ========================================================= */
+
+.evidence-guide{
+    margin-top:18px;
+    padding:14px 16px;
+    border:1px solid #d7e2ed;
+    border-radius:14px;
+    background:#f8fbfe;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+}
+.evidence-guide > div{
+    display:flex;
+    gap:8px;
+    align-items:center;
+    flex-wrap:wrap;
+}
+.evidence-guide b{
+    color:#24364d;
+    font-size:11px;
+    margin-right:4px;
+}
+.evidence-guide span{
+    padding:5px 8px;
+    border:1px solid #dbe5ee;
+    border-radius:999px;
+    background:#fff;
+    color:#62748a;
+    font-size:9px;
+    font-weight:800;
+}
+.evidence-guide small{
+    color:#8794a5;
+    font-size:9px;
+}
+
+.evidence-toolbar{
+    margin-top:14px;
+    display:flex;
+    justify-content:space-between;
+    gap:14px;
+    align-items:center;
+}
+.evidence-search{
+    flex:1;
+    max-width:420px;
+    height:40px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:0 13px;
+    border:1px solid #d0ddea;
+    border-radius:12px;
+    background:#fff;
+}
+.evidence-search span{
+    color:#718198;
+    font-size:16px;
+}
+.evidence-search input{
+    width:100%;
+    border:0;
+    outline:0;
+    background:transparent;
+    color:#1f2f45;
+    font-size:11px;
+    font-family:inherit;
+}
+.evidence-search input::placeholder{
+    color:#9aa6b5;
+}
+.evidence-filter-group{
+    display:flex;
+    gap:7px;
+}
+.evidence-filter{
+    height:36px;
+    padding:0 12px;
+    border-radius:10px;
+    border:1px solid #d4e0eb;
+    background:#fff;
+    color:#63748a;
+    font-size:10px;
+    font-weight:900;
+    cursor:pointer;
+}
+.evidence-filter.active{
+    border-color:#4f6ef7;
+    background:#4f6ef7;
+    color:#fff;
+}
+
+.evidence-table-wrap{
+    position:relative;
+    margin-top:14px;
+    max-height:650px;
+    overflow:auto;
+    border:1px solid #cbd9e7;
+    border-radius:16px;
+    background:#fff;
+}
+
+.evidence-table{
+    width:100%;
+    min-width:1120px;
+    border-collapse:separate;
+    border-spacing:0;
+    table-layout:fixed;
+    font-size:10px;
+}
+
+.evidence-table .col-region{width:170px;}
+.evidence-table .col-hl{width:105px;}
+.evidence-table .col-youth{width:140px;}
+.evidence-table .col-cost{width:135px;}
+.evidence-table .col-support{width:250px;}
+.evidence-table .col-type{width:200px;}
+
+.evidence-table thead th{
+    position:sticky;
+    top:0;
+    z-index:12;
+    padding:13px 12px;
+    background:#15243d;
+    color:#fff;
+    border-bottom:1px solid #0d1b30;
+    text-align:left;
+    font-size:10px;
+    font-weight:900;
+    white-space:nowrap;
+}
+
+.evidence-table thead th:first-child{
+    left:0;
+    z-index:14;
+}
+
+.evidence-table tbody td{
+    padding:14px 12px;
+    vertical-align:top;
+    border-bottom:1px solid #e6edf3;
+    background:#fff;
+    color:#33445b;
+    line-height:1.5;
+}
+
+.evidence-table tbody tr.evidence-row:nth-of-type(4n + 1) td{
+    background:#fff;
+}
+.evidence-table tbody tr.evidence-row:nth-of-type(4n + 3) td{
+    background:#f8fbfd;
+}
+
+.evidence-table tbody tr.evidence-row:hover td{
+    background:#f1f6fb;
+}
+
+.evidence-table tbody tr.evidence-row td:first-child{
+    position:sticky;
+    left:0;
+    z-index:5;
+    box-shadow:5px 0 12px rgba(34,57,88,.04);
+}
+
+.evidence-region strong{
+    display:block;
+    color:#142238;
+    font-size:11px;
+    line-height:1.35;
+}
+.evidence-row-tags{
+    display:flex;
+    gap:5px;
+    flex-wrap:wrap;
+    margin-top:7px;
+}
+
+.evidence-chip{
+    display:inline-flex;
+    align-items:center;
+    min-height:22px;
+    padding:4px 7px;
+    border-radius:999px;
+    font-size:8px;
+    font-weight:900;
+    line-height:1.1;
+}
+.evidence-chip.blue{
+    background:#eaf2ff;
+    color:#2e65ba;
+}
+.evidence-chip.gray{
+    background:#eef2f5;
+    color:#667788;
+}
+
+.evidence-detail-toggle{
+    margin-top:9px;
+    min-width:88px;
+    height:30px;
+    padding:0 10px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    border:1px solid #ccd9e7;
+    border-radius:9px;
+    background:#fff;
+    color:#4a607a;
+    font-size:9px;
+    font-weight:900;
+    cursor:pointer;
+}
+.evidence-detail-toggle i{
+    font-style:normal;
+    color:#4f6ef7;
+    font-size:13px;
+}
+.evidence-detail-toggle.is-open{
+    border-color:#9fb7eb;
+    background:#eef4ff;
+    color:#3157e8;
+}
+.evidence-detail-toggle.is-open i{
+    transform:rotate(45deg);
+}
+
+.evidence-score{
+    color:#214eb9;
+    font-size:18px;
+    font-weight:900;
+    line-height:1.15;
+    margin-bottom:5px;
+}
+.evidence-main-number{
+    color:#18273e;
+    font-size:11px;
+    font-weight:900;
+}
+.evidence-sub-number{
+    margin-top:3px;
+    color:#6d7f94;
+    font-size:9px;
+    font-weight:700;
+}
+
+.evidence-support-stack{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:5px;
+}
+.evidence-support-stack > div{
+    min-height:52px;
+    padding:8px 7px;
+    border-radius:9px;
+    border:1px solid #dfe7ef;
+    background:#f6f9fc;
+}
+.evidence-support-stack span{
+    display:block;
+    color:#7b8a9e;
+    font-size:8px;
+    white-space:nowrap;
+}
+.evidence-support-stack b{
+    display:block;
+    margin-top:3px;
+    color:#1d2d43;
+    font-size:10px;
+    line-height:1.2;
+}
+
+.evidence-diagnosis{
+    display:inline-flex;
+    padding:7px 9px;
+    border-radius:10px;
+    border:1px solid #d3def0;
+    background:#eef4ff;
+    color:#3f5fb3;
+    font-size:9px;
+    font-weight:900;
+    line-height:1.35;
+}
+
+/* 확장 행 */
+.evidence-expanded-row td{
+    position:static !important;
+    padding:0 !important;
+    background:#edf4fa !important;
+    border-bottom:1px solid #cedce9 !important;
+}
+.evidence-expanded-row[hidden]{
+    display:none !important;
+}
+
+.evidence-expanded-panel{
+    padding:18px 20px 20px;
+    background:
+        radial-gradient(circle at 92% 20%,rgba(63,99,243,.06),transparent 18rem),
+        linear-gradient(135deg,#f7fbff,#eef5fb);
+}
+
+.evidence-expanded-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    margin-bottom:14px;
+}
+.evidence-expanded-head small{
+    display:block;
+    color:#4f6ef7;
+    font-size:9px;
+    font-weight:900;
+    letter-spacing:.06em;
+}
+.evidence-expanded-head strong{
+    display:block;
+    margin-top:4px;
+    color:#16243a;
+    font-size:15px;
+}
+.evidence-expanded-score{
+    flex:0 0 auto;
+    min-width:88px;
+    padding:9px 12px;
+    border-radius:12px;
+    border:1px solid #cbd9e8;
+    background:#fff;
+}
+.evidence-expanded-score span{
+    display:block;
+    color:#77879a;
+    font-size:8px;
+}
+.evidence-expanded-score b{
+    display:block;
+    margin-top:2px;
+    color:#3157e8;
+    font-size:18px;
+}
+
+.evidence-expanded-grid{
+    display:grid;
+    grid-template-columns:1.25fr .9fr 1.25fr;
+    gap:12px;
+}
+
+.evidence-expanded-card{
+    min-height:180px;
+    padding:17px;
+    border:1px solid #d3e0eb;
+    border-radius:15px;
+    background:rgba(255,255,255,.92);
+}
+.evidence-expanded-card.why{
+    border-top:3px solid #4f6ef7;
+}
+.evidence-expanded-card.weak{
+    border-top:3px solid #8a69db;
+}
+.evidence-expanded-card.next{
+    border-top:3px solid #20a8bd;
+}
+
+.evidence-expanded-card-title{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    margin-bottom:12px;
+}
+.evidence-expanded-card-title > span{
+    width:28px;
+    height:28px;
+    flex:0 0 28px;
+    border-radius:9px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#edf3ff;
+    color:#3f63f3;
+    font-size:9px;
+    font-weight:900;
+}
+.evidence-expanded-card-title small{
+    display:block;
+    color:#8391a2;
+    font-size:7px;
+    font-weight:900;
+    letter-spacing:.05em;
+}
+.evidence-expanded-card-title strong{
+    display:block;
+    margin-top:2px;
+    color:#1b2b41;
+    font-size:12px;
+}
+.evidence-expanded-card p{
+    margin:0;
+    color:#5c6e83;
+    font-size:10px;
+    line-height:1.75;
+}
+
+.evidence-expanded-metrics{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:7px;
+}
+.evidence-expanded-metrics > div{
+    padding:10px 8px;
+    border:1px solid #e0e7ef;
+    border-radius:10px;
+    background:#f8fafc;
+}
+.evidence-expanded-metrics span{
+    display:block;
+    color:#7c8b9d;
+    font-size:7px;
+}
+.evidence-expanded-metrics b{
+    display:block;
+    margin-top:3px;
+    color:#1d2c42;
+    font-size:11px;
+}
+
+.evidence-expanded-tags{
+    display:flex;
+    gap:5px;
+    flex-wrap:wrap;
+    margin-top:11px;
+}
+.evidence-expanded-tags span{
+    padding:5px 7px;
+    border-radius:999px;
+    background:#eef3f8;
+    color:#63758b;
+    font-size:7px;
+    font-weight:800;
+}
+
+.evidence-empty{
+    padding:34px;
+    text-align:center;
+    color:#8190a2;
+    font-size:11px;
+    font-weight:800;
+}
+
+@media(max-width:1000px){
+    .evidence-expanded-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:900px){
+    .evidence-toolbar{
+        align-items:stretch;
+        flex-direction:column;
+    }
+    .evidence-search{
+        max-width:none;
+    }
+    .evidence-guide{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+}
+</style>
+
 </head>
 
 
@@ -2015,14 +3100,12 @@ p,span,a,button,select,input,textarea,th,td{
         <div class="category-banner-left">
             <span class="category-banner-title">페이지 보기</span>
             <button class="category-btn active-tab" onclick="switchTab('sec-main')">메인</button>
-            <button class="category-btn" onclick="switchTab('sec-summary')">1. 핵심 결과</button>
-            <button class="category-btn" onclick="switchTab('sec-flow')">2. 분석 흐름</button>
-            <button class="category-btn" onclick="switchTab('sec-target')">3. 주목할 지역</button>
-            <button class="category-btn" onclick="switchTab('sec-support')">4. 추가 확인</button>
-            <button class="category-btn" onclick="switchTab('sec-dist')">5. 지역별 진단</button>
-            <button class="category-btn" onclick="switchTab('sec-table')">6. 전체 표</button>
-            <button class="category-btn" onclick="switchTab('sec-qa')">7. 데이터 주의</button>
-            <button class="category-btn" onclick="switchTab('method')">8. 계산 기준</button>
+            <button class="category-btn" onclick="switchTab('sec-summary')">1. 결론부터</button>
+            <button class="category-btn" onclick="switchTab('sec-flow')">2. 선정 과정</button>
+            <button class="category-btn" onclick="switchTab('sec-target')">3. 우선 검토지역</button>
+            <button class="category-btn" onclick="switchTab('sec-support')">4. 무엇이 부족?</button>
+            <button class="category-btn" onclick="switchTab('sec-dist')">5. 유형 해석</button>
+            <button class="category-btn" onclick="switchTab('sec-table')">6. 근거표</button>
         </div>
         <div class="category-badge-right">
             ✨ 청년이 상대적으로 적은 지역: <strong>{{ ns.youth_vulnerable }}곳</strong> · 유입·정착 우선 검토 {{ ns.settlement_priority }}곳
@@ -2039,312 +3122,282 @@ p,span,a,button,select,input,textarea,th,td{
     ========================================== -->
 
     <div class="tab-content active-content" id="sec-main">
-        <div class="header">
 
-            <div class="header-badge">
-                STEP 03 · 정책 인사이트
-            </div>
+        <div class="header policy-hero-v2">
+            <div class="header-badge">STEP 03 · 종합 분석</div>
 
-            <h1>
-                청년이 머물고 싶은 동네, 어디를 먼저 바꿔야 할까?
-            </h1>
+            <h1>청년이 적은 지역에서, 무엇을 먼저 확인해야 할까?</h1>
 
-            <p>
-                광주 25개 동을 놓고 “청년이 살기 편한가?”를 데이터로 살펴봤습니다.
-                먼저 HL 점수로 생활환경을 비교하고, 그다음 청년 인구가 상대적으로 적은 지역에서
-                청년 공간·공공임대·버스정류소가 충분한지 한 번 더 확인했습니다.
+            <p class="policy-lead">
+                이 페이지는 <strong>“어느 동이 1등인가”를 다시 보여주는 페이지가 아닙니다.</strong>
+                25개 동 가운데 청년 인구가 상대적으로 적은 지역을 먼저 찾고,
+                그 지역에서 <strong>생활환경과 추가 공급 여건 중 무엇이 부족한지</strong> 확인하는 페이지입니다.
             </p>
 
-            <p>
-                이 화면의 목적은 단순 순위가 아닙니다.
-                <strong>
-                    “청년이 상대적으로 적은 지역에서 무엇을 더 확인하고, 어떤 환경을 개선하면 좋을까?”
-                </strong>
-                를 찾는 것이 핵심입니다.
-            </p>
-
-            <div class="header-note">
-                ※ 본 결과는 광주 전체 행정동을 대상으로 한 공식 정책 선정 결과가 아닙니다.
-                프로젝트에서 선정한 <strong>25개 동의 상대 비교</strong>를 통해
-                <strong>1차 정책 검토 후보지역을 탐색하는 프로토타입</strong>입니다.
+            <div class="policy-question">
+                <span>이 페이지가 답하려는 질문</span>
+                <strong>청년이 적은 지역에, 청년이 머물 수 있는 조건이 충분한가?</strong>
             </div>
-
         </div>
 
+        <div class="policy-story-board">
+            <div class="policy-story-label">분석 결과를 3단계로 읽으면 됩니다</div>
 
-    <!-- =========================================
-         Executive Brief
-         ※ 메인(sec-main)에서만 표시
-    ========================================== -->
+            <div class="policy-funnel">
+                <div class="policy-funnel-step base">
+                    <small>STEP 1</small>
+                    <strong>25개 동</strong>
+                    <span>프로젝트 분석 대상</span>
+                </div>
+                <div class="policy-funnel-arrow">→</div>
+                <div class="policy-funnel-step youth">
+                    <small>STEP 2</small>
+                    <strong>{{ ns.youth_vulnerable }}곳</strong>
+                    <span>2030 인구수와 비율이<br>모두 중앙값 미만</span>
+                </div>
+                <div class="policy-funnel-arrow">→</div>
+                <div class="policy-funnel-step priority">
+                    <small>STEP 3</small>
+                    <strong>{{ ns.settlement_priority }}곳</strong>
+                    <span>환경·공급 신호를 함께<br>우선 확인할 지역</span>
+                </div>
+            </div>
 
-    <div class="executive">
-
-        <div class="executive-label">
-            EXECUTIVE BRIEF
+            <div class="policy-main-message">
+                <b>핵심 해석</b>
+                “청년이 많은 곳에 더 공급하자”가 아니라,
+                <strong>청년이 상대적으로 적은 곳에 청년이 머물 수 있는 조건이 부족한지 먼저 확인하자</strong>는 분석입니다.
+            </div>
         </div>
-
-        <h2>
-            한눈에 보는 핵심 결론
-        </h2>
-
-
-        <div class="executive-grid">
-
-            <div class="executive-card">
-                <div class="executive-card-title">
-                    청년이 상대적으로 적은 지역
-                </div>
-
-                <div class="executive-card-value">
-                    {{ ns.youth_vulnerable }}곳
-                </div>
-            </div>
-
-
-            <div class="executive-card">
-                <div class="executive-card-title">
-                    유입·정착 우선 검토
-                </div>
-
-                <div class="executive-card-value">
-                    {{ ns.settlement_priority }}곳
-                </div>
-            </div>
-
-
-            <div class="executive-card">
-                <div class="executive-card-title">
-                    공공임대 공급 기반
-                </div>
-
-                <div class="executive-card-value">
-                    {{ "{:,}".format(summary.get("publicRentalCount", 0)) }}세대
-                </div>
-            </div>
-
-
-            <div class="executive-card">
-                <div class="executive-card-title">
-                    공식 버스정류소
-                </div>
-
-                <div class="executive-card-value">
-                    {{ "{:,}".format(summary.get("officialBusStopCount", 0)) }}개
-                </div>
-            </div>
-
-        </div>
-
 
         
-<div class="executive-insight">
-    <strong>핵심 인사이트</strong>
-    <br><br>
-    25개 동 가운데 <strong>청년 인구수와 청년 비율이 모두 평균적인 수준보다 낮은 6개 지역</strong>을 먼저 찾았습니다.
-    <br>
-    그중 생활·교통·청년 선호시설·주거비에서도 아쉬운 점이 함께 보인
-    <strong>5개 지역을 우선 확인 대상</strong>으로 봤습니다.
-    <br><br>
-    즉, “청년이 많은 곳에 더 투자하자”가 아니라
-    <strong>청년이 적은 지역에 청년이 머물 수 있는 조건이 충분한지 확인하자</strong>는 인사이트입니다.
-</div>
+        <div class="policy-extra-data-explainer">
+            <div class="policy-extra-data-head">
+                <div>
+                    <small>정책 분석에 추가로 사용한 데이터</small>
+                    <h3>아래 숫자는 “결과”가 아니라, 25개 동 전체에서 확보한 추가 데이터의 총량입니다.</h3>
+                    <p>
+                        HL Score만으로는 공공지원·주거공급·교통공급까지 알 수 없어서
+                        세 가지 데이터를 따로 추가했습니다.
+                    </p>
+                </div>
 
-        <div class="executive-note">
-            ※ “정책 검토 신호”는 지원 대상 확정을 의미하지 않습니다.
-            현재 데이터에서 상대적으로 추가 점검할 필요가 있는 지역을 선별한 결과입니다.
+                <div class="policy-extra-data-badge">
+                    분석 보조 데이터
+                </div>
+            </div>
+
+            <div class="policy-extra-data-grid">
+
+                <div class="policy-extra-data-card purple">
+                    <div class="policy-extra-data-icon">◆</div>
+                    <div class="policy-extra-data-content">
+                        <small>청년 공공시설</small>
+                        <strong>{{ "{:,}".format(summary.get("publicFacilityCount", 0)) }}개</strong>
+                        <p>
+                            프로젝트 대상 25개 동 안에서 확인된
+                            <b>청년 관련 공공공간·지원시설의 전체 개수</b>입니다.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="policy-extra-data-card green">
+                    <div class="policy-extra-data-icon">⌂</div>
+                    <div class="policy-extra-data-content">
+                        <small>공공임대주택</small>
+                        <strong>{{ "{:,}".format(summary.get("publicRentalCount", 0)) }}세대</strong>
+                        <p>
+                            프로젝트 대상 25개 동 안에서 확인된
+                            <b>전체 공공임대주택 공급 세대수</b>입니다.
+                            청년 전용 주택만을 의미하지 않습니다.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="policy-extra-data-card blue">
+                    <div class="policy-extra-data-icon">●</div>
+                    <div class="policy-extra-data-content">
+                        <small>공식 버스정류소</small>
+                        <strong>{{ "{:,}".format(summary.get("officialBusStopCount", 0)) }}개</strong>
+                        <p>
+                            프로젝트 대상 25개 동 안에 위치한
+                            <b>공식 버스정류소의 전체 개수</b>입니다.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="policy-extra-data-note">
+                <b>중요</b>
+                이 57개·22,855세대·570개 자체로 지역을 평가한 것이 아닙니다.
+                <strong>각 동에 얼마나 분포되어 있는지 비교하기 위한 원자료</strong>로 사용했습니다.
+            </div>
+        </div>
+
+        <div class="policy-caution">
+            ※ 본 결과는 정책 대상 확정이 아니라, 프로젝트에서 선정한 25개 동의 상대 비교를 통해
+            <strong>추가 행정자료·현장조사가 필요한 1차 검토 후보</strong>를 찾은 결과입니다.
         </div>
 
     </div>
 
-    <!-- sec-main 종료: Executive Brief 포함 -->
-    </div>
-
-
-    <!-- =========================================
+<!-- =========================================
          1. 핵심 결과 (탭 컨텐츠)
     ========================================== -->
 
     <div class="section tab-content" id="sec-summary">
 
-        <h2>
-            1. 한눈에 보는 핵심 결과
-        </h2>
+        <div class="policy-section-eyebrow">01 · RESULT</div>
+        <h2>결론부터 보면, 25개 동 → 6곳 → 5곳으로 좁혔습니다</h2>
 
-        <p class="section-description">
-            기존 HL 분석에 최종 수집한 추가 데이터 확인를 추가해
-            지역별 정책 신호를 여러 관점에서 확인합니다.
+        <p class="section-description policy-readable-desc">
+            숫자 자체보다 <strong>왜 6곳이고, 왜 그중 5곳을 더 보는지</strong>가 핵심입니다.
         </p>
 
+        <div class="policy-result-funnel">
+            <div class="policy-result-card">
+                <small>분석 대상</small>
+                <strong>25개 동</strong>
+                <p>광주 전체가 아니라 프로젝트에서 선정한 25개 동을 같은 기준으로 비교했습니다.</p>
+            </div>
 
-        <div class="summary-grid">
+            <div class="policy-result-divider">→</div>
 
-            <div class="summary-card">
-                <div class="summary-title">
-                    청년이 상대적으로 적은 지역
-                </div>
+            <div class="policy-result-card focus">
+                <small>1차 탐색</small>
+                <strong>{{ ns.youth_vulnerable }}곳</strong>
+                <p><b>2030 인구수</b>와 <b>2030 인구비율</b>이 모두 25개 동 중앙값보다 낮은 지역입니다.</p>
+            </div>
 
-                <div class="summary-number">
-                    {{ ns.youth_vulnerable }}곳
-                </div>
+            <div class="policy-result-divider">→</div>
 
-                <div class="summary-small">
-                    2030 인구수와 인구비율이 모두 25개 동 중앙값 미만
+            <div class="policy-result-card priority">
+                <small>우선 확인</small>
+                <strong>{{ ns.settlement_priority }}곳</strong>
+                <p>청년이 적은 지역 가운데 HL 세부환경이나 추가 공급 데이터에서 부족 신호가 함께 보인 지역입니다.</p>
+            </div>
+        </div>
+
+        <div class="policy-signal-title">
+            <div>
+                <small>그럼 무엇이 부족했나?</small>
+                <strong>추가 공급 데이터는 세 가지로 따로 확인했습니다</strong>
+            </div>
+            <span>※ 아래 후보는 서로 중복될 수 있습니다.</span>
+        </div>
+
+        <div class="policy-signal-grid">
+            <div class="policy-signal-card purple">
+                <div class="policy-signal-icon">◆</div>
+                <div>
+                    <small>청년 공간</small>
+                    <strong>{{ ns.facility_candidate }}곳</strong>
+                    <p>청년이 상대적으로 적고, 청년 공공시설 수도 25개 동 중앙값보다 적은 지역</p>
                 </div>
             </div>
 
-
-            <div class="summary-card">
-                <div class="summary-title">
-                    청년 공간 추가 확인
-                </div>
-
-                <div class="summary-number">
-                    {{ ns.facility_candidate }}곳
-                </div>
-
-                <div class="summary-small">
-                    청년이 상대적으로 적은 지역 + 청년 공공시설 절대 공급 중앙값 미만
+            <div class="policy-signal-card green">
+                <div class="policy-signal-icon">⌂</div>
+                <div>
+                    <small>공공주거 공급 기반</small>
+                    <strong>{{ ns.rental_candidate }}곳</strong>
+                    <p>청년이 상대적으로 적고, 공공임대 공급 세대수도 중앙값보다 적은 지역</p>
                 </div>
             </div>
 
-
-            <div class="summary-card">
-                <div class="summary-title">
-                    공공임대 공급 확인
-                </div>
-
-                <div class="summary-number">
-                    {{ ns.rental_candidate }}곳
-                </div>
-
-                <div class="summary-small">
-                    청년이 상대적으로 적은 지역 + 공공임대 절대 공급 중앙값 미만
+            <div class="policy-signal-card blue">
+                <div class="policy-signal-icon">●</div>
+                <div>
+                    <small>교통 공급</small>
+                    <strong>{{ ns.bus_candidate }}곳</strong>
+                    <p>청년이 상대적으로 적고, 행정동 내부 공식 버스정류소 수도 중앙값보다 적은 지역</p>
                 </div>
             </div>
-
-
-            <div class="summary-card">
-                <div class="summary-title">
-                    버스정류소 공급 확인
-                </div>
-
-                <div class="summary-number">
-                    {{ ns.bus_candidate }}곳
-                </div>
-
-                <div class="summary-small">
-                    청년이 상대적으로 적은 지역 + 공식 정류소 절대 공급 중앙값 미만
-                </div>
-            </div>
-
         </div>
 
     </div>
 
-
-    <!-- =========================================
+<!-- =========================================
          2. 분석 흐름 (탭 컨텐츠)
     ========================================== -->
 
     <div class="section tab-content" id="sec-flow">
 
-        <h2>
-            2. 주목할 지역을 찾은 과정
-        </h2>
+        <div class="policy-section-eyebrow">02 · HOW TO READ</div>
+        <h2>후보지역은 이렇게 찾았습니다</h2>
 
-        <p class="section-description">
-            하나의 점수만으로 결론 내리지 않고,
-            청년이 상대적으로 적은 지역지역을 먼저 찾은 뒤 HL 세부지표와 추가 데이터 확인를 단계적으로 함께 확인합니다.
+        <p class="section-description policy-readable-desc">
+            한 점수로 바로 정책 후보를 정하지 않고, <strong>질문을 하나씩 통과시키는 방식</strong>으로 좁혔습니다.
         </p>
 
+        <div class="policy-question-flow">
 
-        <div class="flow">
-
-            <div class="flow-item">
-                <div class="flow-number">
-                    ①
-                </div>
-
-                <strong>
-                    HL 점수로 생활환경 비교
-                </strong>
-
-                <br>
-
-                생활 30% · 선호시설 25% ·
-                교통 15% · 주거 30%
+            <div class="policy-question-step">
+                <span class="policy-step-no">01</span>
+                <small>생활환경은 어떤가?</small>
+                <strong>HL Score와 4개 세부점수 확인</strong>
+                <p>생활 30% · 선호시설 25% · 교통 15% · 주거 30%</p>
             </div>
 
+            <div class="policy-flow-arrow">→</div>
 
-            <div class="flow-item">
-                <div class="flow-number">
-                    ②
-                </div>
-
-                <strong>
-                    청년이 상대적으로 적은 지역 탐색
-                </strong>
-
-                <br>
-
-                2030 인구수·비율이
-                모두 중앙값 미만인지 확인
+            <div class="policy-question-step">
+                <span class="policy-step-no">02</span>
+                <small>청년이 실제로 적은가?</small>
+                <strong>2030 인구수 + 비율 동시 확인</strong>
+                <p>두 값이 모두 25개 동 중앙값보다 낮은 지역만 1차 탐색</p>
             </div>
 
+            <div class="policy-flow-arrow">→</div>
 
-            <div class="flow-item">
-                <div class="flow-number">
-                    ③
-                </div>
-
-                <strong>
-                    추가 데이터 확인
-                </strong>
-
-                <br>
-
-                청년 공공시설 · 공공임대 ·
-                공식 버스정류소 확인
+            <div class="policy-question-step">
+                <span class="policy-step-no">03</span>
+                <small>무엇이 부족한가?</small>
+                <strong>청년시설 · 공공임대 · 정류소 확인</strong>
+                <p>HL Score에는 넣지 않고 별도의 정책 보조 신호로 비교</p>
             </div>
 
+            <div class="policy-flow-arrow">→</div>
 
-            <div class="flow-item">
-                <div class="flow-number">
-                    ④
-                </div>
-
-                <strong>
-                    최종 인사이트 정리
-                </strong>
-
-                <br>
-
-                지역별 진단과
-                추가 점검 방향 제시
+            <div class="policy-question-step final">
+                <span class="policy-step-no">04</span>
+                <small>그래서 무엇을 할까?</small>
+                <strong>지역별 추가 확인 방향 제시</strong>
+                <p>정책 확정이 아니라 현장조사와 추가 행정자료 확인이 필요한 후보 제시</p>
             </div>
 
         </div>
 
+        <div class="policy-read-guide">
+            <b>이 페이지를 볼 때 순서</b>
+            <span>① 왜 이 지역을 봤는지</span>
+            <span>② 어떤 환경이 상대적으로 부족한지</span>
+            <span>③ 다음에 무엇을 확인해야 하는지</span>
+        </div>
+
     </div>
 
-
-    <!-- =========================================
+<!-- =========================================
          3. 먼저 살펴볼 지역 (탭 컨텐츠)
     ========================================== -->
 
     <div class="section tab-content" id="sec-target">
 
-        <h2>
-            3. 먼저 살펴볼 지역
-        </h2>
+        <div class="policy-section-eyebrow">03 · PRIORITY AREAS</div>
+        <h2>먼저 볼 지역은 “왜 주목했는지 → 무엇이 부족한지 → 다음 확인” 순서로 읽습니다</h2>
 
-        <p class="section-description">
-            HL 주거환경 신호와 청년 유입·정착 신호를 함께 확인한 정책 검토지역입니다.
-            카드의 정책 문구는 지원 대상 확정이 아니라 추가 점검 방향입니다.
+        <p class="section-description policy-readable-desc">
+            각 카드는 지원 대상을 확정하는 문서가 아니라, <strong>현재 데이터에서 어떤 신호가 겹쳤는지</strong>를 설명합니다.
         </p>
 
+        <div class="policy-legend">
+            <span><i class="legend-dot red"></i><b>환경 신호</b> HL 세부영역에서 상대적으로 아쉬운 부분</span>
+            <span><i class="legend-dot blue"></i><b>인구 신호</b> 2030 인구수·비율 모두 중앙값 미만</span>
+            <span><i class="legend-dot purple"></i><b>추가 공급 신호</b> 청년시설·공공임대·정류소 확인 필요</span>
+        </div>
 
-        <div class="district-grid">
+        <div class="district-grid policy-district-grid">
 
             {% for d in districts %}
 
@@ -2534,344 +3587,418 @@ p,span,a,button,select,input,textarea,th,td{
 
     <div class="section tab-content" id="sec-support">
 
-        <h2>
-            4. 추가 데이터 확인별 추가 점검 후보
-        </h2>
+        <div class="policy-section-eyebrow">04 · WHAT IS MISSING?</div>
+        <h2>“추가 확인”은 지역별 카드가 아니라, 부족한 공급 종류별로 보면 더 명확합니다</h2>
 
-        <p class="section-description">
-            청년 공공시설·공공임대·공식 버스정류소는 HL Score에 합산하지 않고,
-            정책 검토의 보조 신호로 별도 확인합니다.
+        <p class="section-description policy-readable-desc">
+            아래 세 데이터는 <strong>HL Score에 더하지 않았습니다.</strong>
+            청년이 상대적으로 적은 지역에서 실제 공급 기반을 한 번 더 확인하기 위한 보조지표입니다.
         </p>
 
+        <div class="policy-support-columns">
 
-        <div class="district-grid">
-
-            {% for d in districts %}
-
-                {% set facility_signal = d.get("청년유입정착_공공시설지원후보", False) in [True, 1, "True", "true", "1"] %}
-                {% set rental_signal = d.get("청년유입정착_공공임대지원후보", False) in [True, 1, "True", "true", "1"] %}
-                {% set bus_signal = d.get("청년유입정착_교통지원후보", False) in [True, 1, "True", "true", "1"] %}
-
-                {% if facility_signal or rental_signal or bus_signal %}
-
-                    <div class="district-card support">
-
-                        <div class="district-name">
-                            {{ d.get("지역", "-") }}
-                        </div>
-
-
-                        {% if facility_signal %}
-                            <span class="tag purple">
-                                청년 공공시설
-                            </span>
-                        {% endif %}
-
-
-                        {% if rental_signal %}
-                            <span class="tag green">
-                                공공임대 공급 기반
-                            </span>
-                        {% endif %}
-
-
-                        {% if bus_signal %}
-                            <span class="tag blue">
-                                공식 버스정류소
-                            </span>
-                        {% endif %}
-
-
-                        <div class="metric-row">
-
-                            <div class="metric-mini">
-                                <div class="metric-mini-label">
-                                    청년 공공시설
-                                </div>
-
-                                <div class="metric-mini-value">
-                                    {% if d.get("청년공공시설수") is not none %}
-                                        {{ d.get("청년공공시설수")|int }}개
-                                    {% else %}
-                                        -
-                                    {% endif %}
-                                </div>
-                            </div>
-
-
-                            <div class="metric-mini">
-                                <div class="metric-mini-label">
-                                    공공임대
-                                </div>
-
-                                <div class="metric-mini-value">
-                                    {% if d.get("공공임대_세대수") is not none %}
-                                        {{ "{:,}".format(d.get("공공임대_세대수")|int) }}세대
-                                    {% else %}
-                                        -
-                                    {% endif %}
-                                </div>
-                            </div>
-
-
-                            <div class="metric-mini">
-                                <div class="metric-mini-label">
-                                    공식 정류소
-                                </div>
-
-                                <div class="metric-mini-value">
-                                    {% if d.get("공식정류소수") is not none %}
-                                        {{ d.get("공식정류소수")|int }}개
-                                    {% else %}
-                                        -
-                                    {% endif %}
-                                </div>
-                            </div>
-
-                        </div>
-
-
-                        <div class="info-box">
-
-                            {% if facility_signal %}
-                                <div>
-                                    <span class="label">
-                                        청년 공간
-                                    </span>
-
-                                    <br>
-                                    청년 공공시설
-                                    <strong>{{ d.get("청년공공시설수", 0)|int }}개</strong>
-                                    · 25개 동 중앙값
-                                    <strong>{{ d.get("청년공공시설수_중앙값", 0)|int }}개</strong>보다 적음
-                                </div>
-
-                                <br>
-                            {% endif %}
-
-
-                            {% if rental_signal %}
-                                <div>
-                                    <span class="label">
-                                        공공임대
-                                    </span>
-
-                                    <br>
-                                    공공임대
-                                    <strong>{{ "{:,}".format(d.get("공공임대_세대수", 0)|int) }}세대</strong>
-                                    · 25개 동 중앙값
-                                    <strong>{{ d.get("공공임대_세대수_중앙값", 0)|int }}세대</strong>보다 적음
-                                </div>
-
-                                <br>
-                            {% endif %}
-
-
-                            {% if bus_signal %}
-                                <div>
-                                    <span class="label">
-                                        버스정류소
-                                    </span>
-
-                                    <br>
-                                    공식 버스정류소
-                                    <strong>{{ d.get("공식정류소수", 0)|int }}개</strong>
-                                    · 25개 동 중앙값
-                                    <strong>{{ d.get("공식정류소수_중앙값", 0)|int }}개</strong>보다 적음
-                                </div>
-                            {% endif %}
-
-                        </div>
-
+            <section class="policy-support-column purple">
+                <div class="policy-support-head">
+                    <div>
+                        <small>청년 공간</small>
+                        <h3>청년 공공시설 확인</h3>
                     </div>
+                    <strong>{{ ns.facility_candidate }}곳</strong>
+                </div>
+                <p class="policy-support-explain">
+                    청년이 상대적으로 적으면서, 청년 공공시설 수도 25개 동 중앙값보다 적은 지역
+                </p>
 
-                {% endif %}
+                <div class="policy-support-list">
+                    {% for d in districts %}
+                        {% if d.get("청년유입정착_공공시설지원후보", False) in [True, 1, "True", "true", "1"] %}
+                        <div class="policy-support-row">
+                            <b>{{ d.get("지역", "-") }}</b>
+                            <span>{{ d.get("청년공공시설수", 0)|int }}개</span>
+                            <small>중앙값 {{ d.get("청년공공시설수_중앙값", 0)|int }}개</small>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </section>
 
-            {% endfor %}
+            <section class="policy-support-column green">
+                <div class="policy-support-head">
+                    <div>
+                        <small>공공주거</small>
+                        <h3>공공임대 공급 기반 확인</h3>
+                    </div>
+                    <strong>{{ ns.rental_candidate }}곳</strong>
+                </div>
+                <p class="policy-support-explain">
+                    청년이 상대적으로 적으면서, 공공임대 공급 세대수도 25개 동 중앙값보다 적은 지역
+                </p>
 
+                <div class="policy-support-list">
+                    {% for d in districts %}
+                        {% if d.get("청년유입정착_공공임대지원후보", False) in [True, 1, "True", "true", "1"] %}
+                        <div class="policy-support-row">
+                            <b>{{ d.get("지역", "-") }}</b>
+                            <span>{{ "{:,}".format(d.get("공공임대_세대수", 0)|int) }}세대</span>
+                            <small>중앙값 {{ d.get("공공임대_세대수_중앙값", 0)|int }}세대</small>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </section>
+
+            <section class="policy-support-column blue">
+                <div class="policy-support-head">
+                    <div>
+                        <small>교통 공급</small>
+                        <h3>공식 버스정류소 확인</h3>
+                    </div>
+                    <strong>{{ ns.bus_candidate }}곳</strong>
+                </div>
+                <p class="policy-support-explain">
+                    청년이 상대적으로 적으면서, 행정동 내부 공식 버스정류소 수도 25개 동 중앙값보다 적은 지역
+                </p>
+
+                <div class="policy-support-list">
+                    {% for d in districts %}
+                        {% if d.get("청년유입정착_교통지원후보", False) in [True, 1, "True", "true", "1"] %}
+                        <div class="policy-support-row">
+                            <b>{{ d.get("지역", "-") }}</b>
+                            <span>{{ d.get("공식정류소수", 0)|int }}개</span>
+                            <small>중앙값 {{ d.get("공식정류소수_중앙값", 0)|int }}개</small>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </section>
+
+        </div>
+
+        <div class="policy-caution compact">
+            ※ 같은 지역이 두 개 이상의 공급 신호에 동시에 포함될 수 있습니다. 따라서 4곳·5곳·5곳을 단순 합산하면 안 됩니다.
         </div>
 
     </div>
 
-
-    <!-- =========================================
+<!-- =========================================
          5. 지역별 진단 분포 (탭 컨텐츠)
     ========================================== -->
 
     <div class="section tab-content" id="sec-dist">
 
-        <h2>
-            5. 지역별 진단 결과
-        </h2>
+        <div class="policy-section-eyebrow">05 · TYPE GUIDE</div>
+        <h2>지역별 진단 유형은 “무슨 뜻인지”와 함께 봐야 합니다</h2>
 
-        <p class="section-description">
-            지역별 진단은 HL 주거환경 분석과 청년이 상대적으로 적은 지역·유입정착 분석의 신호 조합을 분류한
-            프로젝트 내부 정책 탐색용 유형입니다.
+        <p class="section-description policy-readable-desc">
+            아래 유형은 공식 정책등급이 아니라, <strong>어떤 신호가 겹쳤는지 빠르게 구분하기 위한 프로젝트 내부 분류</strong>입니다.
         </p>
 
-
-        <div class="type-grid">
-
+        <div class="policy-type-grid">
             {% for policy_type, count in summary.get("policyTypeCounts", {}).items() %}
-
-                <div class="type-card">
-                    <div class="type-name">
-                        {{ policy_type }}
+                <div class="policy-type-card">
+                    <div class="policy-type-top">
+                        <strong>{{ policy_type }}</strong>
+                        <b>{{ count }}곳</b>
                     </div>
 
-                    <div class="type-count">
-                        {{ count }}곳
-                    </div>
+                    <p>
+                        {% if policy_type == "일반 관찰" %}
+                            현재 기준에서 강한 우선 점검 신호가 겹치지 않은 지역
+                        {% elif policy_type == "복합 최우선 검토" %}
+                            청년이 상대적으로 적고, HL 환경 취약 신호와 추가 공급 부족 신호가 함께 나타난 지역
+                        {% elif policy_type == "복합 관심 검토" %}
+                            청년 인구·생활환경·추가 공급 중 둘 이상의 신호가 겹쳐 추가 확인이 필요한 지역
+                        {% elif policy_type == "주거환경 개선 우선" %}
+                            청년 인구와 별개로 HL 세부환경에서 개선 필요 신호가 상대적으로 뚜렷한 지역
+                        {% elif policy_type == "주거환경 관심 검토" %}
+                            HL 세부환경 중 일부에서 상대적 취약 신호가 나타난 지역
+                        {% elif policy_type == "청년수요 대응 우선" %}
+                            청년 인구·정착 관련 신호를 중심으로 추가 공급·서비스 확인이 필요한 지역
+                        {% elif policy_type == "HL순위 제외" or policy_type == "HL비교 제외" %}
+                            주거 표본 부족 등 데이터 품질 조건 때문에 HL 순위 해석에서 제외한 지역
+                        {% else %}
+                            프로젝트 내부 조건 조합에 따라 분류된 1차 검토 유형
+                        {% endif %}
+                    </p>
                 </div>
-
             {% endfor %}
+        </div>
 
+        <div class="policy-caution compact">
+            유형명만으로 정책을 결정하지 않습니다. 실제 판단에는 지역별 카드의 <strong>왜 주목했나 / 어떤 부분이 아쉬운가 / 다음 확인</strong>을 함께 봐야 합니다.
         </div>
 
     </div>
 
-
-    <!-- =========================================
+<!-- =========================================
          6. 전체 25개동 근거표 (탭 컨텐츠)
     ========================================== -->
 
     <div class="section tab-content" id="sec-table">
 
-        <h2>
-            6. 25개 동 전체 비교표
-        </h2>
+        <div class="policy-section-eyebrow">06 · EVIDENCE TABLE</div>
+        <h2>25개 동 전체 근거표</h2>
 
-        <p class="section-description">
-            각 지역의 지역별 진단과 주요 근거를 한 번에 확인할 수 있습니다.
+        <p class="section-description policy-readable-desc">
+            앞선 결론을 다시 확인하는 표입니다.
+            <strong>지역명 아래의 ‘상세보기’를 누르면 해당 행 바로 아래 빈 공간을 활용해 근거와 다음 확인 내용을 넓게 펼쳐서 볼 수 있습니다.</strong>
         </p>
 
+        <div class="evidence-guide">
+            <div>
+                <b>빠르게 보는 순서</b>
+                <span>① 지역</span>
+                <span>② HL Score</span>
+                <span>③ 청년 인구</span>
+                <span>④ 공공지원·교통 공급</span>
+                <span>⑤ 지역 진단</span>
+            </div>
+            <small>※ 상세 내용은 각 지역명 아래 버튼에서 펼쳐볼 수 있습니다.</small>
+        </div>
 
-        <div class="table-wrap">
+        <div class="evidence-toolbar">
+            <div class="evidence-search">
+                <span>⌕</span>
+                <input id="evidenceSearch" type="search" placeholder="지역명 검색 (예: 운암1동)">
+            </div>
 
-            <table>
+            <div class="evidence-filter-group">
+                <button type="button" class="evidence-filter active" data-filter="all">전체</button>
+                <button type="button" class="evidence-filter" data-filter="youth">청년 상대취약</button>
+                <button type="button" class="evidence-filter" data-filter="excluded">HL 비교 제외</button>
+            </div>
+        </div>
+
+        <div class="evidence-table-wrap">
+
+            <table class="evidence-table">
+
+                <colgroup>
+                    <col class="col-region">
+                    <col class="col-hl">
+                    <col class="col-youth">
+                    <col class="col-cost">
+                    <col class="col-support">
+                    <col class="col-type">
+                </colgroup>
 
                 <thead>
                     <tr>
                         <th>지역</th>
                         <th>HL Score</th>
                         <th>2030 인구</th>
-                        <th>평균 월환산 주거비</th>
-                        <th>청년 공공시설</th>
-                        <th>공공임대</th>
-                        <th>공식 정류소</th>
-                        <th>지역별 진단</th>
-                        <th>왜 주목했나</th>
-                        <th>다음 확인</th>
+                        <th>월환산 주거비</th>
+                        <th>추가 공급 데이터</th>
+                        <th>지역 진단</th>
                     </tr>
                 </thead>
-
 
                 <tbody>
 
                     {% for d in districts %}
 
-                        <tr>
+                        <tr class="evidence-row"
+                            data-region="{{ d.get('지역', '') }}"
+                            data-youth="{% if d.get('청년인구_상대취약', False) in [True, 1, 'True', 'true', '1'] %}1{% else %}0{% endif %}"
+                            data-excluded="{% if d.get('HL정책순위포함여부', True) not in [True, 1, 'True', 'true', '1'] %}1{% else %}0{% endif %}"
+                            data-detail-id="evidence-detail-{{ loop.index }}">
 
-                            <td>
-                                <strong>
-                                    {{ d.get("지역", "-") }}
-                                </strong>
+                            <td class="evidence-region">
+                                <strong>{{ d.get("지역", "-") }}</strong>
 
-                                {% if d.get("전체거래건수") is not none and d.get("전체거래건수") < 20 %}
-                                    <br>
-                                    <span class="tag gray" style="margin-top:6px;">
-                                        주거표본 {{ d.get("전체거래건수")|int }}건
-                                    </span>
-                                {% endif %}
+                                <div class="evidence-row-tags">
+                                    {% if d.get("청년인구_상대취약", False) in [True, 1, "True", "true", "1"] %}
+                                        <span class="evidence-chip blue">청년 상대취약</span>
+                                    {% endif %}
+
+                                    {% if d.get("전체거래건수") is not none and d.get("전체거래건수") < 20 %}
+                                        <span class="evidence-chip gray">주거표본 {{ d.get("전체거래건수")|int }}건</span>
+                                    {% endif %}
+                                </div>
+
+                                <button type="button"
+                                        class="evidence-detail-toggle"
+                                        aria-expanded="false"
+                                        aria-controls="evidence-detail-{{ loop.index }}">
+                                    <span>상세보기</span>
+                                    <i>＋</i>
+                                </button>
                             </td>
 
-
-                            <td>
-                                {% if d.get("HL_Score") is not none %}
-                                    {{ "%.1f"|format(d.get("HL_Score")) }}
-                                {% else %}
-                                    -
-                                {% endif %}
+                            <td class="evidence-hl">
+                                <div class="evidence-score">
+                                    {% if d.get("HL_Score") is not none %}
+                                        {{ "%.1f"|format(d.get("HL_Score")) }}
+                                    {% else %}
+                                        -
+                                    {% endif %}
+                                </div>
 
                                 {% if d.get("HL정책순위포함여부", True) not in [True, 1, "True", "true", "1"] %}
-                                    <br>
-                                    <span class="tag gray" style="margin-top:6px;">
-                                        비교 제외
-                                    </span>
+                                    <span class="evidence-chip gray">비교 제외</span>
                                 {% endif %}
                             </td>
-
 
                             <td>
                                 {% if d.get("2030인구수") is not none %}
-                                    {{ "{:,}".format(d.get("2030인구수")|int) }}명
+                                    <div class="evidence-main-number">
+                                        {{ "{:,}".format(d.get("2030인구수")|int) }}명
+                                    </div>
                                     {% if d.get("2030인구비율") is not none %}
-                                        <br>
-                                        {{ "%.2f"|format(d.get("2030인구비율")) }}%
+                                        <div class="evidence-sub-number">
+                                            {{ "%.2f"|format(d.get("2030인구비율")) }}%
+                                        </div>
                                     {% endif %}
                                 {% else %}
                                     -
                                 {% endif %}
-
-                                {% if d.get("청년인구_상대취약", False) in [True, 1, "True", "true", "1"] %}
-                                    <br>
-                                    <span class="tag blue" style="margin-top:6px;">
-                                        상대취약
-                                    </span>
-                                {% endif %}
                             </td>
-
 
                             <td>
                                 {% if d.get("월환산주거비") is not none %}
-                                    {{ "%.1f"|format(d.get("월환산주거비")) }}만원
+                                    <div class="evidence-main-number">
+                                        {{ "%.1f"|format(d.get("월환산주거비")) }}만원
+                                    </div>
                                 {% else %}
                                     -
                                 {% endif %}
                             </td>
 
+                            <td>
+                                <div class="evidence-support-stack">
+                                    <div>
+                                        <span>청년시설</span>
+                                        <b>
+                                            {% if d.get("청년공공시설수") is not none %}
+                                                {{ d.get("청년공공시설수")|int }}개
+                                            {% else %}
+                                                -
+                                            {% endif %}
+                                        </b>
+                                    </div>
+
+                                    <div>
+                                        <span>공공임대</span>
+                                        <b>
+                                            {% if d.get("공공임대_세대수") is not none %}
+                                                {{ "{:,}".format(d.get("공공임대_세대수")|int) }}세대
+                                            {% else %}
+                                                -
+                                            {% endif %}
+                                        </b>
+                                    </div>
+
+                                    <div>
+                                        <span>정류소</span>
+                                        <b>
+                                            {% if d.get("공식정류소수") is not none %}
+                                                {{ d.get("공식정류소수")|int }}개
+                                            {% else %}
+                                                -
+                                            {% endif %}
+                                        </b>
+                                    </div>
+                                </div>
+                            </td>
 
                             <td>
-                                {% if d.get("청년공공시설수") is not none %}
-                                    {{ d.get("청년공공시설수")|int }}개
-                                {% else %}
-                                    -
-                                {% endif %}
+                                <span class="evidence-diagnosis">
+                                    {{ d.get("최종정책유형", "-") }}
+                                </span>
                             </td>
 
+                        </tr>
 
-                            <td>
-                                {% if d.get("공공임대_세대수") is not none %}
-                                    {{ "{:,}".format(d.get("공공임대_세대수")|int) }}세대
-                                {% else %}
-                                    -
-                                {% endif %}
+                        <tr id="evidence-detail-{{ loop.index }}"
+                            class="evidence-expanded-row"
+                            data-parent-region="{{ d.get('지역', '') }}"
+                            hidden>
+                            <td colspan="6">
+                                <div class="evidence-expanded-panel">
+
+                                    <div class="evidence-expanded-head">
+                                        <div>
+                                            <small>DETAIL · {{ d.get("지역", "-") }}</small>
+                                            <strong>왜 이 지역을 주목했고, 다음에는 무엇을 확인해야 할까?</strong>
+                                        </div>
+
+                                        <div class="evidence-expanded-score">
+                                            <span>HL Score</span>
+                                            <b>
+                                                {% if d.get("HL_Score") is not none %}
+                                                    {{ "%.1f"|format(d.get("HL_Score")) }}
+                                                {% else %}
+                                                    -
+                                                {% endif %}
+                                            </b>
+                                        </div>
+                                    </div>
+
+                                    <div class="evidence-expanded-grid">
+
+                                        <section class="evidence-expanded-card why">
+                                            <div class="evidence-expanded-card-title">
+                                                <span>01</span>
+                                                <div>
+                                                    <small>WHY THIS AREA?</small>
+                                                    <strong>왜 주목했나</strong>
+                                                </div>
+                                            </div>
+
+                                            <p>{{ d.get("정책근거요약", "-") }}</p>
+                                        </section>
+
+                                        <section class="evidence-expanded-card weak">
+                                            <div class="evidence-expanded-card-title">
+                                                <span>02</span>
+                                                <div>
+                                                    <small>WEAK SIGNAL</small>
+                                                    <strong>현재 확인된 핵심 신호</strong>
+                                                </div>
+                                            </div>
+
+                                            <div class="evidence-expanded-metrics">
+                                                <div>
+                                                    <span>청년시설</span>
+                                                    <b>{{ d.get("청년공공시설수", 0)|int }}개</b>
+                                                </div>
+                                                <div>
+                                                    <span>공공임대</span>
+                                                    <b>{{ "{:,}".format(d.get("공공임대_세대수", 0)|int) }}세대</b>
+                                                </div>
+                                                <div>
+                                                    <span>정류소</span>
+                                                    <b>{{ d.get("공식정류소수", 0)|int }}개</b>
+                                                </div>
+                                            </div>
+
+                                            <div class="evidence-expanded-tags">
+                                                {% if d.get("청년인구_상대취약", False) in [True, 1, "True", "true", "1"] %}
+                                                    <span>청년 인구 상대취약</span>
+                                                {% endif %}
+                                                <span>{{ d.get("최종정책유형", "-") }}</span>
+                                                {% if d.get("주거표본판정") %}
+                                                    <span>{{ d.get("주거표본판정") }}</span>
+                                                {% endif %}
+                                            </div>
+                                        </section>
+
+                                        <section class="evidence-expanded-card next">
+                                            <div class="evidence-expanded-card-title">
+                                                <span>03</span>
+                                                <div>
+                                                    <small>NEXT CHECK</small>
+                                                    <strong>다음 확인</strong>
+                                                </div>
+                                            </div>
+
+                                            <p>{{ d.get("통합정책제안", d.get("HL정책검토방향", "-")) }}</p>
+                                        </section>
+
+                                    </div>
+
+                                </div>
                             </td>
-
-
-                            <td>
-                                {% if d.get("공식정류소수") is not none %}
-                                    {{ d.get("공식정류소수")|int }}개
-                                {% else %}
-                                    -
-                                {% endif %}
-                            </td>
-
-
-                            <td>
-                                {{ d.get("최종정책유형", "-") }}
-                            </td>
-
-
-                            <td class="text-left">
-                                {{ d.get("정책근거요약", "-") }}
-                            </td>
-
-
-                            <td class="text-left">
-                                {{ d.get("통합정책제안", d.get("HL정책검토방향", "-")) }}
-                            </td>
-
                         </tr>
 
                     {% endfor %}
@@ -2880,293 +4007,16 @@ p,span,a,button,select,input,textarea,th,td{
 
             </table>
 
-        </div>
-
-    </div>
-
-
-    <!-- =========================================
-         7. 예외 / 품질관리 (탭 컨텐츠)
-    ========================================== -->
-
-    <div class="section tab-content" id="sec-qa">
-
-        <h2>
-            7. 데이터 주의와 예외 처리
-        </h2>
-
-        <p class="section-description">
-            정책 분석에서 오해하기 쉬운 예외와 데이터 품질 조건을 함께 표시합니다.
-        </p>
-
-
-        <div class="method-box">
-
-            <strong class="method-title">
-                ① 주거 표본 규칙
-            </strong>
-
-            <br><br>
-
-            • 20건 이상: 정상 표본으로 사용
-
-            <br>
-
-            • 5~19건: <strong>데이터 적음 · 주의</strong> 표시 후 값 사용
-
-            <br>
-
-            • 0~4건: <strong>데이터 부족</strong>으로 주거가성비 점수에 사용하지 않음
-
-            <br><br>
-
-            공공임대 실거래 1,819건을 HL 주거비에서 제외하고
-            민간임대 실거래 3,496건만 주거가성비 계산에 사용했습니다.
-
-            <br><br>
-
-            현재 <strong>수완동 0건 · 송암동 0건 · 방림1동 2건 · 두암2동 1건</strong>은
-            민간임대 주거 표본이 5건 미만이므로
-            주거가성비 점수를 사용하지 않고 HL 비교에서 제외합니다.
-
-            <br><br>
-
-            이 4개 동의 HL-Score는 주거비 30%를 제외하고
-            나머지 생활·선호시설·교통 70%를 100%로 재가중한 참고값입니다.
-
-        </div>
-
-
-        <div class="method-box">
-
-            <strong class="method-title">
-                ② 첨단2동 지리 표기
-            </strong>
-
-            <br><br>
-
-            프로젝트 내부 표기는 <strong>북구 첨단2동</strong>을 유지합니다.
-
-            <br>
-
-            다만 원천 API 및 행정동 매핑 데이터에서는
-            <strong>광산구 첨단2동</strong>으로 확인된 값을 사용했으며,
-            외부 발표 또는 행정 활용 시 이 차이를 명확히 표시해야 합니다.
-
-        </div>
-
-
-        <div class="method-box">
-
-            <strong class="method-title">
-                ③ 버스 노선 자료 사용 보류
-            </strong>
-
-            <br><br>
-
-            공식 정류소 데이터는 행정동 내부 정류소 수를 보조지표로 사용합니다.
-
-            <br>
-
-            별도 노선 엑셀은 공식 정류소와 안전하게 연결된 비율이
-            <strong>0.54%</strong>에 불과해
-            노선 수·노선 다양성 정책 판단에는 사용하지 않았습니다.
+            <div id="evidenceEmpty" class="evidence-empty" hidden>
+                조건에 맞는 지역이 없습니다.
+            </div>
 
         </div>
 
     </div>
 
 
-    <!-- =========================================
-         8. 분석 기준 · 출처 · 유의사항 (탭 컨텐츠)
-    ========================================== -->
-
-    <div class="section tab-content" id="method">
-
-        <h2>
-            8. 어떻게 계산했고, 어떤 데이터를 썼나
-        </h2>
-
-        <p class="section-description">
-            분석의 재현성과 해석 범위를 명확하게 하기 위해
-            데이터 역할과 프로젝트 가정을 함께 제시합니다.
-        </p>
-
-
-        <div class="method-box">
-
-            <strong class="method-title">
-                ① 주요 데이터 출처
-            </strong>
-
-            <br><br>
-
-            <strong>2030 청년 인구</strong>
-            <br>
-            행정안전부 주민등록 인구통계의 20대·30대 인구 데이터를 활용
-
-            <br><br>
-
-            <strong>생활 인프라 및 청년 선호시설</strong>
-            <br>
-            Kakao Local API 및 프로젝트 수집 데이터를 이용한 시설 분포·접근성 분석
-
-            <br><br>
-
-            <strong>주거비</strong>
-            <br>
-            국토교통부 실거래 API의 2025-07 ~ 2026-06 전·월세 자료 중
-            전용면적 59.5㎡ 이하 거래를 활용
-
-            <br><br>
-
-            <strong>청년 공공시설</strong>
-            <br>
-            광주청년통합플랫폼의 청년 공간 목록을 좌표 및 행정동에 연결
-
-            <br><br>
-
-            <strong>공공임대</strong>
-            <br>
-            국토교통부 마이홈포털 공공임대주택 단지정보 조회 서비스 활용
-
-            <br><br>
-
-            <strong>공식 버스정류소</strong>
-            <br>
-            2025-12-31 기준 광주 버스정류소 현황을 행정동별로 집계
-
-        </div>
-
-
-        <div class="method-box">
-
-            <strong class="method-title">
-                ② 청년이 상대적으로 적은 지역을 찾은 기준
-            </strong>
-
-            <br><br>
-
-            본 프로젝트는 <strong>청년이 이미 많이 거주하는 지역에 공급을 더하는 방식</strong>보다,
-            청년이 상대적으로 적은 지역의 유입·정착 여건을 점검하는 방향으로 정책 인사이트를 설정했습니다.
-
-            <br><br>
-
-            25개 동의 <strong>2030 인구수 중앙값 3,709명</strong>과
-            <strong>2030 인구비율 중앙값 23.48%</strong>을 기준으로,
-            두 값이 모두 중앙값보다 낮은 지역을 <strong>청년이 상대적으로 적은 지역지역</strong>으로 정의합니다.
-
-            <br><br>
-
-            이후 생활 인프라·2030 선호시설·교통 접근성·주거 가성비의
-            HL 세부점수를 25개 동 중앙값과 비교해 취약 원인을 탐색합니다.
-
-            <br><br>
-
-            기존의 <strong>2030 인구 TOP10</strong>과
-            <strong>청년 1,000명당 시설 수</strong>는 새 정책후보 선정 기준으로 사용하지 않으며,
-            1,000명당 지표는 설명용 참고값으로만 유지합니다.
-
-        </div>
-
-
-        <div class="method-box">
-
-            <strong class="method-title">
-                ③ HL 점수 계산 기준
-            </strong>
-
-            <br><br>
-
-            생활 인프라 <strong>30%</strong>
-            · 2030 선호시설 <strong>25%</strong>
-            · 교통 접근성 <strong>15%</strong>
-            · 주거 가성비 <strong>30%</strong>
-
-            <br><br>
-
-            이 가중치는 설문이나 공식 정책 기준이 아니라
-            <strong>프로젝트 분석을 위한 가정</strong>입니다.
-
-            <br><br>
-
-            2030 인구비율·청년 공공시설·공공임대·공식 정류소 공급 보조지표는
-            HL Score 자체에는 합산하지 않습니다.
-
-        </div>
-
-
-        <div class="method-box">
-
-            <strong class="method-title">
-                ④ 주거비 계산 기준
-            </strong>
-
-            <br><br>
-
-            전세와 월세를 한 기준으로 비교하기 위해
-            보증금을 연 <strong>5%</strong>로 환산해 월 비용으로 변환했습니다.
-
-            <br>
-
-            즉,
-            <strong>월환산 주거비 = 월세 + 보증금 × 0.05 ÷ 12</strong>입니다.
-
-            <br><br>
-
-            이 5% 역시 공식 법정 환산율을 주장하는 값이 아니라
-            프로젝트 내부 비교를 위한 가정입니다.
-
-            <br><br>
-
-            또한 공공임대의 낮은 임대료가 민간 주거시장 가성비로 중복 반영되지 않도록
-            공공임대 주소와 일치한 실거래 <strong>1,819건</strong>을 제외하고,
-            민간임대 실거래 <strong>3,496건</strong>만 HL 주거비 계산에 사용했습니다.
-
-        </div>
-
-
-        <div class="warning-box">
-
-            <strong>
-                ⑤ 결과를 볼 때 주의할 점
-            </strong>
-
-            <br><br>
-
-            • 시설 개수는 실제 이용량·규모·서비스 품질·수용능력을 의미하지 않습니다.
-
-            <br><br>
-
-            • 공공임대 세대수는 <strong>청년 전용 공급량이나 현재 공실 수</strong>를 의미하지 않습니다.
-            행복주택도 모든 세대가 청년에게 배정되는 것은 아닙니다.
-
-            <br><br>
-
-            • 공식 버스정류소 개수는
-            노선 수·배차간격·운행시간·환승 편의까지 설명하지 않습니다.
-
-            <br><br>
-
-            • 청년 인구가 적다는 사실만으로 주거·교통·시설 부족이 원인이라고 단정하지 않습니다.
-            본 분석은 청년 유입·정착 여건의 추가 점검 필요성을 탐색하는 방식입니다.
-
-            <br><br>
-
-            • 지역별 진단은 25개 동 내부 상대 비교 결과이며,
-            지역에 대한 절대 평가가 아닙니다.
-
-            <br><br>
-
-            • 따라서 실제 정책 검토 단계에서는
-            추가 행정자료·현장조사·청년 이용자 의견·시설 이용량·배차간격·공실/입주가능 물량 등을
-            추가 검증해야 합니다.
-
-        </div>
-
     </div>
-
-</div>
 
 
 <!-- =========================================
@@ -3201,5 +4051,109 @@ p,span,a,button,select,input,textarea,th,td{
 </script>
 
 <footer class="winter-footer">WINTER Analytics · STEP 03 정책 인사이트 · AI Bootcamp Mini Project · 2026</footer>
+
+<script id="evidence-table-ui-v4">
+(() => {
+    const input = document.getElementById("evidenceSearch");
+    const buttons = [...document.querySelectorAll(".evidence-filter")];
+    const rows = [...document.querySelectorAll(".evidence-row")];
+    const empty = document.getElementById("evidenceEmpty");
+
+    if (!input || !rows.length) return;
+
+    let currentFilter = "all";
+
+    function closeAllDetails(exceptId = null){
+        rows.forEach(row => {
+            const detailId = row.dataset.detailId;
+            if (!detailId || detailId === exceptId) return;
+
+            const detailRow = document.getElementById(detailId);
+            const toggle = row.querySelector(".evidence-detail-toggle");
+
+            if (detailRow) detailRow.hidden = true;
+            if (toggle){
+                toggle.classList.remove("is-open");
+                toggle.setAttribute("aria-expanded","false");
+            }
+        });
+    }
+
+    document.querySelectorAll(".evidence-detail-toggle").forEach(toggle => {
+        toggle.addEventListener("click", () => {
+            const row = toggle.closest(".evidence-row");
+            const detailId = row?.dataset.detailId;
+            const detailRow = detailId ? document.getElementById(detailId) : null;
+
+            if (!detailRow) return;
+
+            const willOpen = detailRow.hidden;
+
+            // 발표 화면에서 여러 상세창이 동시에 벌어지지 않게 하나만 오픈
+            closeAllDetails(willOpen ? detailId : null);
+
+            detailRow.hidden = !willOpen;
+            toggle.classList.toggle("is-open", willOpen);
+            toggle.setAttribute("aria-expanded", String(willOpen));
+
+            if (willOpen){
+                requestAnimationFrame(() => {
+                    const wrap = document.querySelector(".evidence-table-wrap");
+                    if (!wrap) return;
+
+                    const rowTop = row.offsetTop;
+                    const target = Math.max(0, rowTop - 46);
+
+                    wrap.scrollTo({
+                        top: target,
+                        behavior:"smooth"
+                    });
+                });
+            }
+        });
+    });
+
+    function applyEvidenceFilter(){
+        const q = (input.value || "").trim().toLowerCase();
+        let visible = 0;
+
+        closeAllDetails();
+
+        rows.forEach(row => {
+            const region = (row.dataset.region || "").toLowerCase();
+            const youth = row.dataset.youth === "1";
+            const excluded = row.dataset.excluded === "1";
+
+            const matchesSearch = !q || region.includes(q);
+
+            let matchesFilter = true;
+            if (currentFilter === "youth") matchesFilter = youth;
+            if (currentFilter === "excluded") matchesFilter = excluded;
+
+            const show = matchesSearch && matchesFilter;
+            row.hidden = !show;
+
+            const detailId = row.dataset.detailId;
+            const detailRow = detailId ? document.getElementById(detailId) : null;
+            if (detailRow) detailRow.hidden = true;
+
+            if (show) visible += 1;
+        });
+
+        if (empty) empty.hidden = visible !== 0;
+    }
+
+    input.addEventListener("input", applyEvidenceFilter);
+
+    buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            currentFilter = btn.dataset.filter || "all";
+            buttons.forEach(b => b.classList.toggle("active", b === btn));
+            applyEvidenceFilter();
+        });
+    });
+})();
+</script>
+
 </body>
 </html>

@@ -4335,6 +4335,775 @@ html{
 }
 </style>
 
+
+<style id="section9-text-size-line-fix">
+/* 09 · DATA QUALITY CHECK 문구 조정 */
+
+/* 큰 제목만 조금 축소 */
+#intro-output .ppt-head h2{
+    font-size:clamp(42px,3.2vw,54px) !important;
+    line-height:1.14 !important;
+    letter-spacing:-.04em !important;
+    max-width:1180px !important;
+}
+
+/* 설명 영역은 폭을 넓혀 두 번째 문장이 한 줄로 보이게 */
+#intro-output .ppt-head p{
+    max-width:none !important;
+    width:100% !important;
+}
+
+/* 요청한 두 번째 문장 한 줄 유지 */
+#intro-output .data-quality-nowrap{
+    display:block !important;
+    white-space:nowrap !important;
+    margin-top:4px !important;
+}
+
+/* 화면이 좁아질 때만 자연스럽게 줄바꿈 허용 */
+@media(max-width:1200px){
+    #intro-output .data-quality-nowrap{
+        white-space:normal !important;
+    }
+}
+
+@media(max-width:680px){
+    #intro-output .ppt-head h2{
+        font-size:32px !important;
+        line-height:1.18 !important;
+    }
+}
+</style>
+
+<style id="section9-fullpage-rebalance-v3">
+/* =========================================================
+   09 · DATA QUALITY CHECK
+   - 하단 참고값/품질관리 원칙 블록 삭제
+   - 남은 내용만으로 발표 화면 한 페이지를 자연스럽게 채움
+   ========================================================= */
+
+@media (min-width:1181px){
+
+  #intro-output.story-chapter{
+    min-height:calc(100svh - 74px) !important;
+    padding-top:48px !important;
+    padding-bottom:44px !important;
+    box-sizing:border-box !important;
+    overflow:hidden !important;
+  }
+
+  #intro-output .wrap{
+    width:min(1360px,100%) !important;
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:center !important;
+  }
+
+  /* ---------- 제목/설명 ---------- */
+  #intro-output .ppt-head{
+    margin-bottom:18px !important;
+  }
+
+  #intro-output .ppt-head h2{
+    font-size:clamp(40px,3vw,50px) !important;
+    line-height:1.12 !important;
+    margin:0 0 12px !important;
+    max-width:1180px !important;
+  }
+
+  #intro-output .ppt-head p{
+    max-width:none !important;
+    width:100% !important;
+    font-size:13px !important;
+    line-height:1.65 !important;
+  }
+
+  #intro-output .data-quality-nowrap{
+    display:block !important;
+    white-space:nowrap !important;
+    margin-top:3px !important;
+  }
+
+  /* ---------- 표본 규칙 3개 카드 ---------- */
+  #intro-output .ppt-quality-rule-grid{
+    margin-top:18px !important;
+    gap:12px !important;
+  }
+
+  #intro-output .ppt-quality-rule{
+    min-height:164px !important;
+    padding:18px 20px !important;
+    border-radius:17px !important;
+  }
+
+  #intro-output .rule-step{
+    width:28px !important;
+    height:28px !important;
+    font-size:9px !important;
+  }
+
+  #intro-output .rule-count{
+    margin-top:12px !important;
+    font-size:28px !important;
+  }
+
+  #intro-output .ppt-quality-rule h4{
+    margin:5px 0 6px !important;
+    font-size:14px !important;
+  }
+
+  #intro-output .ppt-quality-rule p{
+    font-size:10px !important;
+    line-height:1.5 !important;
+  }
+
+  #intro-output .rule-status{
+    margin-top:10px !important;
+    padding:5px 8px !important;
+    font-size:8px !important;
+  }
+
+  /* ---------- 주거 데이터 정리 ---------- */
+  #intro-output .ppt-quality-cleaning{
+    margin-top:16px !important;
+    padding:18px 20px !important;
+    gap:20px !important;
+    border-radius:18px !important;
+    min-height:126px !important;
+  }
+
+  #intro-output .quality-label{
+    font-size:9px !important;
+  }
+
+  #intro-output .quality-cleaning-copy h3{
+    margin:5px 0 7px !important;
+    font-size:16px !important;
+    line-height:1.38 !important;
+  }
+
+  #intro-output .quality-cleaning-copy p{
+    font-size:9.5px !important;
+    line-height:1.5 !important;
+  }
+
+  #intro-output .quality-cleaning-flow{
+    grid-template-columns:1fr 30px 1fr !important;
+    gap:8px !important;
+  }
+
+  #intro-output .quality-flow-card{
+    min-height:90px !important;
+    padding:12px 14px !important;
+    border-radius:13px !important;
+  }
+
+  #intro-output .quality-flow-card small{
+    font-size:7.5px !important;
+  }
+
+  #intro-output .quality-flow-card strong{
+    margin:5px 0 3px !important;
+    font-size:23px !important;
+  }
+
+  #intro-output .quality-flow-card span{
+    font-size:8.5px !important;
+  }
+
+  /* ---------- 비교 제외 4개 동 ---------- */
+  #intro-output .ppt-quality-excluded-head{
+    margin-top:17px !important;
+    align-items:end !important;
+  }
+
+  #intro-output .ppt-quality-excluded-head h3{
+    margin:5px 0 0 !important;
+    font-size:16px !important;
+    line-height:1.4 !important;
+  }
+
+  #intro-output .ppt-quality-excluded-head > span{
+    padding:6px 9px !important;
+    font-size:8px !important;
+  }
+
+  #intro-output .ppt-quality-dong-grid{
+    margin-top:10px !important;
+    gap:10px !important;
+  }
+
+  #intro-output .ppt-quality-dong{
+    min-height:88px !important;
+    padding:13px 15px !important;
+    border-radius:14px !important;
+  }
+
+  #intro-output .ppt-quality-dong small{
+    font-size:7.5px !important;
+  }
+
+  #intro-output .ppt-quality-dong strong{
+    margin-top:2px !important;
+    font-size:12px !important;
+  }
+
+  #intro-output .ppt-quality-dong b{
+    margin-top:7px !important;
+    font-size:21px !important;
+  }
+}
+
+/* 세로 해상도가 낮은 발표 화면에서만 살짝 압축 */
+@media (min-width:1181px) and (max-height:850px){
+  #intro-output.story-chapter{
+    padding-top:34px !important;
+    padding-bottom:30px !important;
+  }
+
+  #intro-output .ppt-head h2{
+    font-size:42px !important;
+  }
+
+  #intro-output .ppt-quality-rule{
+    min-height:148px !important;
+    padding:16px 18px !important;
+  }
+
+  #intro-output .ppt-quality-cleaning{
+    min-height:112px !important;
+    padding:15px 18px !important;
+  }
+
+  #intro-output .ppt-quality-dong{
+    min-height:78px !important;
+    padding:11px 14px !important;
+  }
+}
+
+@media(max-width:1180px){
+  #intro-output.story-chapter{
+    overflow:visible !important;
+  }
+
+  #intro-output .data-quality-nowrap{
+    white-space:normal !important;
+  }
+}
+</style>
+
+
+<style id="section9-true-fullpage-v4">
+/* =========================================================
+   09 · DATA QUALITY CHECK
+   섹션 자체 높이를 다른 story-chapter와 동일하게 1페이지(100svh)로 복구
+   이전 calc(100svh - 74px) 때문에 9번만 한 페이지보다 작아 보이던 문제 수정
+   ========================================================= */
+
+@media (min-width:1181px){
+  #intro-output.story-chapter{
+    min-height:100svh !important;
+    height:auto !important;
+    box-sizing:border-box !important;
+
+    /* 남은 내용이 화면 안에서 위아래 균형 있게 보이도록 */
+    padding-top:58px !important;
+    padding-bottom:58px !important;
+  }
+
+  #intro-output .wrap{
+    width:min(1360px,100%) !important;
+    margin:auto 0 !important;
+  }
+}
+
+/* 세로 해상도가 낮은 화면에서는 높이는 1페이지 유지하고
+   내부 여백만 조금 줄임 */
+@media (min-width:1181px) and (max-height:850px){
+  #intro-output.story-chapter{
+    min-height:100svh !important;
+    padding-top:38px !important;
+    padding-bottom:38px !important;
+  }
+}
+</style>
+
+
+<style id="section9-center-fix-v5">
+/* =========================================================
+   09 · DATA QUALITY CHECK
+   내용이 왼쪽으로 쏠리던 문제 수정
+   원인: .wrap에 margin:auto 0 이 적용되어 가로 중앙정렬이 풀려 있었음
+   ========================================================= */
+
+@media (min-width:1181px){
+
+  /* 09번 섹션 내부 전체 콘텐츠를 정확히 가운데 정렬 */
+  #intro-output .wrap{
+    width:min(1360px, calc(100% - 48px)) !important;
+    max-width:1360px !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    padding-left:0 !important;
+    padding-right:0 !important;
+  }
+
+  /* 헤더도 같은 기준선에 맞춤 */
+  #intro-output .ppt-head{
+    width:100% !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+
+  /* 표본 카드 / 주거비 정리 / 제외 동 카드 모두 동일 폭 */
+  #intro-output .ppt-quality-rule-grid,
+  #intro-output .ppt-quality-cleaning,
+  #intro-output .ppt-quality-excluded-head,
+  #intro-output .ppt-quality-dong-grid{
+    width:100% !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+}
+</style>
+
+
+<style id="section9-header-left-align-v6">
+/* =========================================================
+   09 · DATA QUALITY CHECK
+   헤더만 다른 섹션과 같은 왼쪽 기준선으로 정렬
+   카드 영역은 현재 중앙 정렬/폭 그대로 유지
+   ========================================================= */
+
+@media (min-width:1181px){
+
+  /* 기존 .ppt-head max-width:1100px + margin:auto 때문에
+     09번 제목/설명만 가운데로 밀리던 문제 수정 */
+  #intro-output .ppt-head{
+    width:100% !important;
+    max-width:none !important;
+    margin-left:0 !important;
+    margin-right:0 !important;
+    text-align:left !important;
+  }
+
+  #intro-output .ppt-head h2{
+    margin-left:0 !important;
+    margin-right:0 !important;
+    text-align:left !important;
+  }
+
+  #intro-output .ppt-head p{
+    margin-left:0 !important;
+    margin-right:0 !important;
+    text-align:left !important;
+  }
+}
+</style>
+
+
+<style id="method-split-pages-v11">
+/* =========================================================
+   10 / 11 METHOD 분할
+   - 기존 10번의 필수 4개 카드를 2개씩 분리
+   - 각 섹션을 발표용 한 페이지로 구성
+   ========================================================= */
+
+@media (min-width:1181px){
+
+  #intro-method.method-split-page,
+  #intro-method-2.method-split-page{
+    min-height:100svh !important;
+    box-sizing:border-box !important;
+    padding-top:56px !important;
+    padding-bottom:52px !important;
+  }
+
+  #intro-method .wrap,
+  #intro-method-2 .wrap{
+    width:min(1360px, calc(100% - 48px)) !important;
+    max-width:1360px !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+
+  #intro-method .ppt-head,
+  #intro-method-2 .ppt-head{
+    max-width:none !important;
+    margin-bottom:16px !important;
+  }
+
+  #intro-method .ppt-head h2,
+  #intro-method-2 .ppt-head h2{
+    font-size:clamp(40px,3vw,50px) !important;
+    line-height:1.14 !important;
+    max-width:1120px !important;
+  }
+
+  #intro-method .ppt-head p,
+  #intro-method-2 .ppt-head p{
+    max-width:1120px !important;
+    font-size:13px !important;
+    line-height:1.65 !important;
+  }
+
+  #intro-method .method-order-short,
+  #intro-method-2 .method-order-short{
+    justify-content:flex-start !important;
+    width:max-content !important;
+    max-width:100% !important;
+    margin-top:14px !important;
+    padding:9px 12px !important;
+  }
+
+  #intro-method .method-grid-two,
+  #intro-method-2 .method-grid-two{
+    grid-template-columns:1fr 1fr !important;
+    gap:16px !important;
+    margin-top:18px !important;
+    align-items:stretch !important;
+  }
+
+  #intro-method .method-grid-two .ppt-method-card,
+  #intro-method-2 .method-grid-two .ppt-method-card{
+    min-height:430px !important;
+    height:auto !important;
+    padding:24px !important;
+  }
+
+  /* 각 페이지의 카드가 공간을 좀 더 시원하게 쓰도록 */
+  #intro-method .ppt-source-list{
+    gap:10px !important;
+  }
+
+  #intro-method .ppt-source-list > div{
+    min-height:86px !important;
+    padding:12px 13px !important;
+  }
+
+  #intro-method .method-formula{
+    margin-top:20px !important;
+    padding:20px !important;
+  }
+
+  #intro-method .method-pair{
+    margin-top:16px !important;
+    gap:10px !important;
+  }
+
+  #intro-method .method-pair > div{
+    padding:18px !important;
+  }
+
+  #intro-method-2 .method-weight-list{
+    gap:10px !important;
+    margin-bottom:18px !important;
+  }
+
+  #intro-method-2 .method-weight-list > div{
+    padding:18px !important;
+  }
+
+  #intro-method-2 .method-median-grid{
+    gap:10px !important;
+    margin-top:20px !important;
+  }
+
+  #intro-method-2 .method-median-grid > div{
+    padding:18px !important;
+  }
+
+  #intro-method-2 .method-condition{
+    margin-top:16px !important;
+    padding:16px !important;
+  }
+}
+
+/* 노트북 높이가 낮은 경우 한 화면 유지용 */
+@media (min-width:1181px) and (max-height:850px){
+  #intro-method.method-split-page,
+  #intro-method-2.method-split-page{
+    padding-top:38px !important;
+    padding-bottom:34px !important;
+  }
+
+  #intro-method .ppt-head h2,
+  #intro-method-2 .ppt-head h2{
+    font-size:40px !important;
+  }
+
+  #intro-method .method-grid-two .ppt-method-card,
+  #intro-method-2 .method-grid-two .ppt-method-card{
+    min-height:360px !important;
+    padding:20px !important;
+  }
+
+  #intro-method .ppt-source-list > div{
+    min-height:70px !important;
+  }
+}
+
+@media(max-width:1180px){
+  #intro-method.method-split-page,
+  #intro-method-2.method-split-page{
+    min-height:auto !important;
+  }
+
+  #intro-method .method-grid-two,
+  #intro-method-2 .method-grid-two{
+    grid-template-columns:1fr !important;
+  }
+}
+</style>
+
+
+<style id="team-role-section-v13">
+/* =========================================================
+   13 · TEAM & ROLES
+   기존 프로젝트 소개 페이지 디자인 톤에 맞춘 팀 역할 페이지
+   ========================================================= */
+
+@media (min-width:1181px){
+
+  #intro-team.team-role-section{
+    min-height:100svh !important;
+    box-sizing:border-box !important;
+    padding-top:58px !important;
+    padding-bottom:54px !important;
+  }
+
+  #intro-team .wrap{
+    width:min(1360px, calc(100% - 48px)) !important;
+    max-width:1360px !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+
+  #intro-team .team-role-head{
+    max-width:none !important;
+    margin-bottom:26px !important;
+  }
+
+  #intro-team .team-role-head h2{
+    max-width:1080px !important;
+    font-size:clamp(42px,3.1vw,52px) !important;
+    line-height:1.14 !important;
+    margin-bottom:12px !important;
+  }
+
+  #intro-team .team-role-head p{
+    max-width:980px !important;
+    font-size:13px !important;
+    line-height:1.7 !important;
+  }
+}
+
+.team-role-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+  margin-top:20px;
+}
+
+.team-role-card{
+  min-height:238px;
+  padding:24px 26px;
+  border:1px solid #d4e0ec;
+  border-radius:20px;
+  background:rgba(251,253,255,.94);
+  box-shadow:0 8px 24px rgba(31,54,85,.055);
+  position:relative;
+  overflow:hidden;
+}
+
+.team-role-card::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:0;
+  height:4px;
+}
+
+.team-role-card.leader::after{
+  background:linear-gradient(90deg,#3157e8,#4f6ef7);
+}
+.team-role-card.data::after{
+  background:linear-gradient(90deg,#4f6ef7,#1eb9d0);
+}
+.team-role-card.frontend::after{
+  background:linear-gradient(90deg,#7c5cff,#4f6ef7);
+}
+.team-role-card.support::after{
+  background:linear-gradient(90deg,#1eb9d0,#18a875);
+}
+
+.team-role-top{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:16px;
+}
+
+.team-role-label{
+  display:block;
+  margin-bottom:5px;
+  color:#6d7e92;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+
+.team-role-card h3{
+  margin:0;
+  color:#101828;
+  font-size:26px;
+  line-height:1.2;
+  letter-spacing:-.03em;
+}
+
+.team-role-no{
+  width:34px;
+  height:34px;
+  flex:0 0 34px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:10px;
+  background:#edf3ff;
+  color:#3f63f3;
+  font-size:10px;
+  font-weight:900;
+}
+
+.team-role-main{
+  margin-top:24px;
+  color:#1b2a41;
+  font-size:18px;
+  line-height:1.45;
+  font-weight:900;
+}
+
+.team-role-detail{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:17px;
+}
+
+.team-role-detail span{
+  padding:8px 10px;
+  border:1px solid #dce5ef;
+  border-radius:10px;
+  background:#f5f8fc;
+  color:#66778b;
+  font-size:10px;
+  line-height:1.35;
+  font-weight:800;
+}
+
+.team-role-card.leader .team-role-detail span{
+  background:#eef3ff;
+  color:#3b5cc5;
+  border-color:#cfdbfa;
+}
+
+.team-role-card.data .team-role-detail span{
+  background:#eef8fb;
+  color:#28788c;
+  border-color:#d2e9ef;
+}
+
+.team-role-card.frontend .team-role-detail span{
+  background:#f4f1ff;
+  color:#6854ba;
+  border-color:#ded7f5;
+}
+
+.team-role-card.support .team-role-detail span{
+  background:#edf8f4;
+  color:#2f7c60;
+  border-color:#d4e9df;
+}
+
+.team-role-summary{
+  margin-top:18px;
+  padding:16px 18px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  border:1px solid #cfddea;
+  border-left:4px solid #3f63f3;
+  border-radius:0 14px 14px 0;
+  background:linear-gradient(135deg,#edf5ff,#edf9fb);
+}
+
+.team-role-summary b{
+  flex:0 0 auto;
+  color:#3157e8;
+  font-size:11px;
+  letter-spacing:.05em;
+}
+
+.team-role-summary span{
+  color:#50647c;
+  font-size:11px;
+  line-height:1.6;
+  font-weight:700;
+}
+
+/* 노트북 높이가 낮을 때 한 페이지 유지 */
+@media (min-width:1181px) and (max-height:850px){
+  #intro-team.team-role-section{
+    padding-top:38px !important;
+    padding-bottom:34px !important;
+  }
+
+  #intro-team .team-role-head h2{
+    font-size:40px !important;
+  }
+
+  .team-role-card{
+    min-height:205px;
+    padding:20px 22px;
+  }
+
+  .team-role-main{
+    margin-top:18px;
+    font-size:16px;
+  }
+
+  .team-role-detail{
+    margin-top:13px;
+  }
+}
+
+@media(max-width:900px){
+  .team-role-grid{
+    grid-template-columns:1fr;
+  }
+
+  #intro-team.team-role-section{
+    min-height:auto !important;
+  }
+}
+
+@media(max-width:620px){
+  .team-role-card{
+    padding:20px;
+  }
+
+  .team-role-card h3{
+    font-size:22px;
+  }
+
+  .team-role-summary{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+}
+</style>
+
 </head>
 <body class="project-intro-page">
 <header class="winter-topbar">
@@ -4476,10 +5245,26 @@ html{
   <span class="winter-section-dot-wrap">
     <button type="button"
             class="winter-section-dot"
+            data-target="intro-method-2"
+            aria-label="11 · SCORE & POLICY CRITERIA"
+            title="11 · SCORE & POLICY CRITERIA"></button>
+    <span class="winter-section-dot-label">11 · SCORE & POLICY</span>
+  </span>
+  <span class="winter-section-dot-wrap">
+    <button type="button"
+            class="winter-section-dot"
             data-target="intro-limit"
-            aria-label="11 · LIMITATIONS"
-            title="11 · LIMITATIONS"></button>
-    <span class="winter-section-dot-label">11 · LIMITATIONS</span>
+            aria-label="12 · LIMITATIONS"
+            title="12 · LIMITATIONS"></button>
+    <span class="winter-section-dot-label">12 · LIMITATIONS</span>
+  </span>
+  <span class="winter-section-dot-wrap">
+    <button type="button"
+            class="winter-section-dot"
+            data-target="intro-team"
+            aria-label="13 · TEAM & ROLES"
+            title="13 · TEAM & ROLES"></button>
+    <span class="winter-section-dot-label">13 · TEAM & ROLES</span>
   </span>
 </nav>
 
@@ -4896,9 +5681,8 @@ html{
 <div class="ppt-kicker">09 · DATA QUALITY CHECK</div>
 <h2>점수보다 먼저, 주거 데이터가 믿을 만한지 확인했습니다</h2>
 <p>
-  HL Score를 정책 해석까지 연결하려면 <b>주거비 표본이 충분한 지역과 부족한 지역을 같은 기준으로 비교하면 안 됩니다.</b>
-  그래서 민간임대 거래 건수에 따라 주거가성비 점수를 사용할 수 있는 범위를 먼저 정하고,
-  표본이 부족한 지역은 억지로 순위에 포함하지 않았습니다.
+  HL Score를 정책 해석까지 연결하려면 <b>주거비 표본이 충분한 지역과 부족한 지역을 같은 기준으로 비교하면 안 됩니다.</b><br>
+  <span class="data-quality-nowrap">그래서 민간임대 거래 건수에 따라 주거가성비 점수를 사용할 수 있는 범위를 먼저 정하고, 표본이 부족한 지역은 억지로 순위에 포함하지 않았습니다.</span>
 </p>
 </div>
 
@@ -4995,51 +5779,31 @@ html{
 
 </div>
 
-<div class="ppt-quality-reference">
-  <div class="quality-reference-icon">!</div>
-  <div>
-    <b>그럼 이 4개 동의 HL Score는 어떻게 표시했나?</b>
-    <p>
-      주거비 30%를 제외하고 <strong>생활·2030 선호시설·교통 70%를 다시 100%로 재가중한 참고값</strong>으로만 표시했습니다.
-      최종 HL 순위와 정책 비교에서는 제외합니다.
-    </p>
-  </div>
-</div>
-
-<div class="ppt-insight">
-  <b>품질관리 원칙</b> · 표본이 부족한 값을 억지로 채우거나 같은 조건으로 순위화하지 않았습니다.
-  이렇게 데이터 신뢰도를 먼저 구분한 뒤, 다음 섹션에서 분석 결과를 해석할 때의 추가 한계까지 명확히 제시합니다.
-</div>
 
 </div>
 </section>
 
-<section class="ppt-section story-chapter" data-chapter="10" data-label="METHOD & SOURCES" id="intro-method">
+
+<section class="ppt-section story-chapter method-split-page method-page-10" data-chapter="10" data-label="METHOD & SOURCES" id="intro-method">
 <div class="wrap">
 
 <div class="ppt-head">
-<div class="ppt-kicker">10 · METHOD & SOURCES</div>
-<h2>어떤 데이터를 쓰고, 어떤 기준으로 계산했는지 한 번에 정리했습니다</h2>
+<div class="ppt-kicker">10 · METHOD &amp; SOURCES</div>
+<h2>어떤 데이터를 쓰고, 주거비를 어떤 기준으로 계산했는지 정리했습니다</h2>
 <p>
-  앞에서 데이터 품질을 확인했다면, 이제 <b>분석이 어떤 근거와 가정을 거쳐 만들어졌는지</b>를 정리할 차례입니다.
-  흐름은 <strong>데이터 출처 → 주거비 계산 → HL Score → 청년이 상대적으로 적은 지역 기준</strong> 순서입니다.
+  앞에서 데이터 품질을 확인했다면, 이제 <b>분석이 어떤 근거와 가정을 거쳐 만들어졌는지</b>를 정리할 차례입니다.<br>
+  먼저 <strong>데이터 출처 → 주거비 계산 기준</strong>을 확인합니다.
 </p>
 </div>
 
-<div class="ppt-method-order">
+<div class="ppt-method-order method-order-short">
   <span>01 데이터 출처</span>
   <i>→</i>
   <span>04 주거비 계산</span>
-  <i>→</i>
-  <span>03 HL Score</span>
-  <i>→</i>
-  <span>02 청년 상대취약 기준</span>
 </div>
 
-<div class="ppt-method-grid">
-
-  <!-- ① 주요 데이터 출처 -->
-  <article class="ppt-method-card source">
+<div class="ppt-method-grid method-grid-two">
+<article class="ppt-method-card source">
     <div class="ppt-method-card-head">
       <span class="method-no">01</span>
       <div>
@@ -5075,9 +5839,7 @@ html{
       </div>
     </div>
   </article>
-
-  <!-- ④ 주거비 계산 기준 -->
-  <article class="ppt-method-card housing">
+<article class="ppt-method-card housing">
     <div class="ppt-method-card-head">
       <span class="method-no">04</span>
       <div>
@@ -5110,9 +5872,32 @@ html{
       ※ 5%는 공식 법정 환산율이 아니라 프로젝트 내부 비교를 위한 가정입니다.
     </p>
   </article>
+</div>
 
-  <!-- ③ HL 점수 계산 기준 -->
-  <article class="ppt-method-card hl">
+</div>
+</section>
+
+<section class="ppt-section story-chapter method-split-page method-page-11" data-chapter="11" data-label="SCORE & POLICY CRITERIA" id="intro-method-2">
+<div class="wrap">
+
+<div class="ppt-head">
+<div class="ppt-kicker">11 · SCORE &amp; POLICY CRITERIA</div>
+<h2>HL Score와 정책 탐색 기준을 이어서 정리했습니다</h2>
+<p>
+  데이터 출처와 주거비 계산 기준에 이어,
+  <b>HL Score를 어떤 가중치로 구성했는지</b>와
+  <b>청년이 상대적으로 적은 지역을 어떤 기준으로 찾았는지</b>를 확인합니다.
+</p>
+</div>
+
+<div class="ppt-method-order method-order-short">
+  <span>03 HL Score</span>
+  <i>→</i>
+  <span>02 청년 상대취약 기준</span>
+</div>
+
+<div class="ppt-method-grid method-grid-two">
+<article class="ppt-method-card hl">
     <div class="ppt-method-card-head">
       <span class="method-no">03</span>
       <div>
@@ -5137,9 +5922,7 @@ html{
       <strong>HL Score에 합산하지 않고 정책 보조지표로 분리</strong>했습니다.
     </div>
   </article>
-
-  <!-- ② 청년이 상대적으로 적은 지역 기준 -->
-  <article class="ppt-method-card youth">
+<article class="ppt-method-card youth">
     <div class="ppt-method-card-head">
       <span class="method-no">02</span>
       <div>
@@ -5172,21 +5955,14 @@ html{
       기존 2030 인구 TOP10과 청년 1,000명당 시설 수는 새 정책후보 선정 기준으로 사용하지 않고 참고값으로만 유지했습니다.
     </p>
   </article>
-
-</div>
-
-<div class="ppt-insight">
-  <b>분석 흐름</b> · 출처가 명확한 데이터를 같은 공간 기준으로 정리하고 → 주거비를 환산하고 →
-  HL Score로 생활환경을 비교한 뒤 → 청년 인구수와 비율을 함께 확인해 정책 탐색 범위를 좁혔습니다.
 </div>
 
 </div>
 </section>
-
-<section class="ppt-section story-chapter" data-chapter="11" data-label="LIMITATIONS" id="intro-limit">
+<section class="ppt-section story-chapter" data-chapter="12" data-label="LIMITATIONS" id="intro-limit">
 <div class="wrap">
 <div class="ppt-head">
-<div class="ppt-kicker">10 · LIMITATIONS &amp; NEXT</div>
+<div class="ppt-kicker">12 · LIMITATIONS &amp; NEXT</div>
 <h2>정책 제안으로 사용하려면 추가 검증이 필요합니다</h2>
 <p>분석의 한계를 명확하게 제시하는 것이 결과의 신뢰성을 높인다고 판단했습니다.</p>
 </div>
@@ -5203,6 +5979,90 @@ html{
 </div>
 </div>
 </section>
+
+<section class="ppt-section story-chapter team-role-section" data-chapter="13" data-label="TEAM & ROLES" id="intro-team">
+<div class="wrap">
+
+  <div class="ppt-head team-role-head">
+    <div class="ppt-kicker">13 · TEAM &amp; ROLES</div>
+    <h2>팀원별 역할을 나누어 프로젝트를 완성했습니다</h2>
+    <p>
+      데이터 수집·정제부터 백엔드 연동, 프론트엔드 구현, 시각화와 문서화까지
+      각 팀원이 맡은 영역을 중심으로 협업했습니다.
+    </p>
+  </div>
+
+  <div class="team-role-grid">
+
+    <article class="team-role-card leader">
+      <div class="team-role-top">
+        <div>
+          <span class="team-role-label">TEAM LEADER</span>
+          <h3>이승현</h3>
+        </div>
+        <span class="team-role-no">01</span>
+      </div>
+      <div class="team-role-main">백엔드 · 프론트엔드 총괄</div>
+      <div class="team-role-detail">
+        <span>시스템 연동 관리</span>
+      </div>
+    </article>
+
+    <article class="team-role-card data">
+      <div class="team-role-top">
+        <div>
+          <span class="team-role-label">BACKEND · DATA</span>
+          <h3>김미선</h3>
+        </div>
+        <span class="team-role-no">02</span>
+      </div>
+      <div class="team-role-main">백엔드 데이터 수집 및 정제</div>
+      <div class="team-role-detail">
+        <span>데이터 품질 관리</span>
+        <span>공공 데이터 전처리</span>
+        <span>최종 통합 CSV 데이터셋 빌드</span>
+      </div>
+    </article>
+
+    <article class="team-role-card frontend">
+      <div class="team-role-top">
+        <div>
+          <span class="team-role-label">FRONTEND · UI/UX</span>
+          <h3>최승희</h3>
+        </div>
+        <span class="team-role-no">03</span>
+      </div>
+      <div class="team-role-main">프론트엔드 UI/UX 구현</div>
+      <div class="team-role-detail">
+        <span>대시보드 시각화 고도화</span>
+      </div>
+    </article>
+
+    <article class="team-role-card support">
+      <div class="team-role-top">
+        <div>
+          <span class="team-role-label">DATA · PLANNING</span>
+          <h3>김영근</h3>
+        </div>
+        <span class="team-role-no">04</span>
+      </div>
+      <div class="team-role-main">데이터 수집 및 정제</div>
+      <div class="team-role-detail">
+        <span>데이터 보조 수집·정제</span>
+        <span>프로젝트 기획·문서화 지원</span>
+      </div>
+    </article>
+
+  </div>
+
+  <div class="team-role-summary">
+    <b>TEAM WINTER</b>
+    <span>백엔드 · 데이터 · 프론트엔드 · 시각화 · 기획/문서화를 역할별로 분담해 하나의 분석 시스템으로 통합했습니다.</span>
+  </div>
+
+</div>
+</section>
+
 </main>
 <footer class="winter-footer">WINTER Analytics · PROJECT INTRO · AI Bootcamp Mini Project · 2026</footer>
 <script>

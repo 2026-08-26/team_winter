@@ -639,7 +639,7 @@
 
 
         /* =========================================
-           정책유형 분포
+           지역 유형 분포
         ========================================= */
 
         .type-grid {
@@ -1057,7 +1057,16 @@
 }
 
     </style>
-</head>
+
+<style id="winter-unified-overrides">
+.site-header-unified{background:#fff;border-bottom:1px solid #e2e8f0;position:sticky;top:0;z-index:60;box-shadow:0 1px 5px rgba(15,23,42,.05)}
+.site-header-unified-inner{width:96%;max-width:1600px;margin:0 auto;padding:13px 0;display:flex;align-items:center;justify-content:space-between;gap:22px}
+.site-brand-unified{display:flex;align-items:center;gap:11px;text-decoration:none;min-width:250px}.site-brand-unified small{display:block;color:#94a3b8;font-size:10px;font-weight:800;letter-spacing:.12em}.site-brand-unified strong{display:block;color:#0f172a;font-size:16px;font-weight:900}.site-logo-unified{width:40px;height:40px;border-radius:12px;background:#2563eb;color:#fff;display:grid;place-items:center;box-shadow:0 3px 8px rgba(37,99,235,.18)}
+.site-nav-unified{display:flex;align-items:center;gap:4px;background:#f1f5f9;padding:4px;border-radius:999px}.site-nav-unified a{padding:9px 18px;border-radius:999px;text-decoration:none;font-size:13px;font-weight:800;color:#475569}.site-nav-unified a:hover{background:#e2e8f0}.site-status-unified{font-size:12px;font-weight:700;color:#64748b;white-space:nowrap}
+.max-w-7xl{max-width:1600px!important}
+@media(max-width:900px){.site-header-unified-inner{flex-wrap:wrap}.site-brand-unified{min-width:auto}.site-status-unified{display:none}.site-nav-unified{order:3;width:100%;justify-content:center}.site-nav-unified a{flex:1;text-align:center;padding:9px 8px}}
+</style>
+<style>.container{width:96%;max-width:1600px!important}.category-banner{max-width:1600px!important;width:96%!important;margin-left:auto!important;margin-right:auto!important}</style></head>
 
 
 <body>
@@ -1076,7 +1085,7 @@
 ) %}
 
 {% for d in districts %}
-    {% set policy = d.get("최종정책유형", "") %}
+    {% set policy = d.get("최종지역 유형", "") %}
     {% if policy not in ["", "일반 관찰", "HL순위 제외"] %}
         {% set ns.review = ns.review + 1 %}
     {% endif %}
@@ -1155,13 +1164,13 @@
             <span class="category-banner-title">📌 분석 메뉴</span>
             <button class="category-btn active-tab" onclick="switchTab('sec-main')">메인 홈</button>
             <button class="category-btn" onclick="switchTab('sec-summary')">1. 핵심 요약</button>
-            <button class="category-btn" onclick="switchTab('sec-flow')">2. 분석 구조</button>
+            <button class="category-btn" onclick="switchTab('sec-flow')">2. 분석 방법</button>
             <button class="category-btn" onclick="switchTab('sec-target')">3. 검토지역</button>
             <button class="category-btn" onclick="switchTab('sec-support')">4. 보조지표</button>
-            <button class="category-btn" onclick="switchTab('sec-dist')">5. 정책유형</button>
+            <button class="category-btn" onclick="switchTab('sec-dist')">5. 지역 유형</button>
             <button class="category-btn" onclick="switchTab('sec-table')">6. 전체 근거표</button>
-            <button class="category-btn" onclick="switchTab('sec-qa')">7. 품질관리</button>
-            <button class="category-btn" onclick="switchTab('method')">8. 분석기준</button>
+            <button class="category-btn" onclick="switchTab('sec-qa')">7. 데이터 품질</button>
+            <button class="category-btn" onclick="switchTab('method')">8. 분석 기준</button>
         </div>
         <div class="category-badge-right">
             ✨ 검토 신호 <strong>{{ ns.review }}곳</strong> (복합신호 {{ ns.overlap }}곳)
@@ -1185,20 +1194,20 @@
             </div>
 
             <h1>
-                🏛 광주 2030 청년 주거환경 정책분석
+                🏛 광주 2030 청년 주거환경 종합 분석
             </h1>
 
             <p>
-                광주광역시 프로젝트 선정 25개 동을 대상으로
-                주거비·생활 인프라·교통·청년 선호시설·2030 인구를 결합한 HL 분석에
-                청년 공공시설·공공임대 공급 기반·공식 버스정류소 보조지표를 함께 확인합니다.
+                프로젝트에서 선정한 25개 동을 대상으로
+                주거비·생활환경·대중교통·청년 선호시설·청년 인구를 함께 살펴보고,
+                청년 시설·공공임대·버스버스정류소 자료를 추가로 확인합니다.
             </p>
 
             <p>
-                단순히 “살기 좋은 지역” 순위를 제시하는 것이 아니라,
+                단순히 지역 순위를 매기는 것이 아니라,
                 <strong>
-                    어디에서 어떤 정책 신호가 나타나는지,
-                    왜 추가 점검이 필요한지
+                    어느 지역에서 어떤 특징이 나타나는지,
+                    왜 한 번 더 확인할 필요가 있는지
                 </strong>
                 보여주는 것이 목적입니다.
             </p>
@@ -1206,7 +1215,7 @@
             <div class="header-note">
                 ※ 본 결과는 광주 전체 행정동을 대상으로 한 공식 정책 선정 결과가 아닙니다.
                 프로젝트에서 선정한 <strong>25개 동의 상대 비교</strong>를 통해
-                <strong>1차 정책 검토 후보지역을 탐색하는 프로토타입</strong>입니다.
+                <strong>1차 검토 대상 지역을 찾아보는 분석 도구</strong>입니다.
             </div>
 
             <div class="home-focus-grid">
@@ -1216,14 +1225,14 @@
                     <span>절대평가가 아닌 프로젝트 대상지역 내부 비교</span>
                 </div>
                 <div class="home-focus-card focus-amber">
-                    <span class="focus-kicker">KEY SIGNAL</span>
+                    <span class="focus-kicker">핵심 신호</span>
                     <strong>{{ ns.review }}곳 검토 신호</strong>
                     <span>복합 신호는 우선 확인 대상</span>
                 </div>
                 <div class="home-focus-card focus-green">
-                    <span class="focus-kicker">EVIDENCE</span>
-                    <strong>5개 관점 교차확인</strong>
-                    <span>HL·수요·시설·공공임대·교통</span>
+                    <span class="focus-kicker">확인 근거</span>
+                    <strong>5가지 관점 함께 확인</strong>
+                    <span>종합점수·청년수요·시설·임대·교통</span>
                 </div>
             </div>
 
@@ -1237,7 +1246,7 @@
             </div>
 
             <h2>
-                광주 2030 청년 주거환경 핵심 브리핑
+                광주 2030 청년 주거환경 핵심 요약
             </h2>
 
 
@@ -1245,7 +1254,7 @@
 
                 <div class="executive-card">
                     <div class="executive-card-title">
-                        정책 검토 신호
+                        우선 확인 지역
                     </div>
 
                     <div class="executive-card-value">
@@ -1256,7 +1265,7 @@
 
                 <div class="executive-card">
                     <div class="executive-card-title">
-                        복합 신호 지역
+                        여러 조건이 겹친 지역
                     </div>
 
                     <div class="executive-card-value">
@@ -1267,7 +1276,7 @@
 
                 <div class="executive-card">
                     <div class="executive-card-title">
-                        공공임대 공급 기반
+                        공공임대 공급
                     </div>
 
                     <div class="executive-card-value">
@@ -1278,7 +1287,7 @@
 
                 <div class="executive-card">
                     <div class="executive-card-title">
-                        공식 버스정류소
+                        버스버스정류소
                     </div>
 
                     <div class="executive-card-value">
@@ -1298,9 +1307,9 @@
                 {% endfor %}
 
             <div class="executive-insight">
-                <div class="insight-title">핵심 정책 신호</div>
+                <div class="insight-title">핵심 확인 내용</div>
                 <div class="insight-lead">
-                    복합 신호 지역
+                    여러 조건이 겹친 지역
                     {% if overlap_names %}
                         <strong>{{ overlap_names | join(" · ") }}</strong>
                     {% else %}
@@ -1308,15 +1317,15 @@
                     {% endif %}
                 </div>
                 <div class="insight-body">
-                    하나의 지표만으로 우선순위를 판단하지 않고
-                    <strong>HL 취약요인 + 청년 수요 + 공공시설 + 공공임대 + 공식 정류소</strong>를 함께 확인해
+                    하나의 숫자만 보고 판단하지 않고
+                    <strong>종합점수 + 청년 수요 + 공공시설 + 공공임대 + 버스버스정류소</strong>를 함께 확인해
                     추가 행정자료와 현장 검증이 필요한 지역을 선별합니다.
                 </div>
             </div>
 
 
             <div class="executive-note">
-                ※ “정책 검토 신호”는 지원 대상 확정을 의미하지 않습니다.
+                ※ “우선 확인 지역”는 지원 대상 확정을 의미하지 않습니다.
                 현재 데이터에서 상대적으로 추가 점검할 필요가 있는 지역을 선별한 결과입니다.
             </div>
 
@@ -1331,12 +1340,12 @@
     <div class="section tab-content" id="sec-summary">
 
         <h2>
-            1. 정책 분석 핵심 요약
+            1. 핵심 결과
         </h2>
 
         <p class="section-description">
             HL-Score를 중심으로 청년 수요와 생활·교통·주거 보조지표를 함께 비교해
-            지역별 정책 검토 신호를 확인합니다.
+            지역별 우선 확인 지역를 확인합니다.
         </p>
 
 
@@ -1344,7 +1353,7 @@
 
             <div class="summary-card">
                 <div class="summary-title">
-                    청년 공공시설
+                    청년 시설
                 </div>
 
                 <div class="summary-number">
@@ -1352,14 +1361,14 @@
                 </div>
 
                 <div class="summary-small">
-                    25개 동 내부 청년 공공시설 합계
+                    25개 동 내부 청년 시설 합계
                 </div>
             </div>
 
 
             <div class="summary-card">
                 <div class="summary-title">
-                    공공시설 수요 대비 점검
+                    청년 수요 대비 시설 확인
                 </div>
 
                 <div class="summary-number">
@@ -1367,14 +1376,14 @@
                 </div>
 
                 <div class="summary-small">
-                    2030 인구 TOP10이면서 공공시설 상대부족
+                    청년 인구가 많지만 시설이 적은 지역
                 </div>
             </div>
 
 
             <div class="summary-card">
                 <div class="summary-title">
-                    청년 주거공급 점검
+                    주거 공급 확인
                 </div>
 
                 <div class="summary-number">
@@ -1382,14 +1391,14 @@
                 </div>
 
                 <div class="summary-small">
-                    공공임대 공급 기반 추가 점검 후보
+                    공공임대 공급 추가 점검 후보
                 </div>
             </div>
 
 
             <div class="summary-card">
                 <div class="summary-title">
-                    청년 교통공급 점검
+                    대중교통 공급 확인
                 </div>
 
                 <div class="summary-number">
@@ -1397,7 +1406,7 @@
                 </div>
 
                 <div class="summary-small">
-                    공식 정류소 공급 보조지표 기준
+                    버스정류소 공급을 한 번 더 확인할 지역
                 </div>
             </div>
 
@@ -1407,18 +1416,18 @@
 
 
     <!-- =========================================
-         2. 분석 구조 (탭 컨텐츠)
+         2. 분석 방법 (탭 컨텐츠)
     ========================================== -->
 
     <div class="section tab-content" id="sec-flow">
 
         <h2>
-            2. 정책 후보지역을 찾는 방법
+            2. 지역을 찾는 방법
         </h2>
 
         <p class="section-description">
             하나의 점수만으로 결론 내리지 않고,
-            현재 주거환경과 청년 수요, 그리고 정책 보조지표를 단계적으로 함께 확인합니다.
+            현재 주거환경과 청년 수요, 그리고 ③ 추가 자료 확인를 단계적으로 함께 확인합니다.
         </p>
 
 
@@ -1430,7 +1439,7 @@
                 </div>
 
                 <strong>
-                    HL-Score 분석
+                    ① 종합 주거환경 점수
                 </strong>
 
                 <br>
@@ -1446,12 +1455,12 @@
                 </div>
 
                 <strong>
-                    청년 수요 분석
+                    ② 청년 수요 확인
                 </strong>
 
                 <br>
 
-                2030 인구 규모와
+                청년 인구 규모와
                 1,000명당 인프라 비교
             </div>
 
@@ -1462,13 +1471,13 @@
                 </div>
 
                 <strong>
-                    정책 보조지표
+                    ③ 추가 자료 확인
                 </strong>
 
                 <br>
 
-                청년 공공시설 · 공공임대 ·
-                공식 버스정류소 확인
+                청년 시설 · 공공임대 ·
+                버스버스정류소 확인
             </div>
 
 
@@ -1478,12 +1487,12 @@
                 </div>
 
                 <strong>
-                    통합 정책진단
+                    ④ 종합 판단
                 </strong>
 
                 <br>
 
-                최종 정책유형과
+                최종 지역 유형과
                 추가 점검 방향 제시
             </div>
 
@@ -1493,35 +1502,35 @@
 
 
     <!-- =========================================
-         3. 핵심 정책 검토지역
+         3. 우선 확인 지역
     ========================================== -->
 
     <div class="section tab-content" id="sec-target">
         <div class="evidence-toolbar">
             <div>
-                <h2 style="margin-bottom:4px;">3. 핵심 정책 검토지역</h2>
-                <div class="section-description" style="margin:0;">정책 신호가 상대적으로 뚜렷한 지역을 우선 확인합니다. 상세 근거는 필요한 카드만 펼쳐볼 수 있습니다.</div>
+                <h2 style="margin-bottom:4px;">3. 우선 확인 지역</h2>
+                <div class="section-description" style="margin:0;">여러 지표에서 특징이 나타난 지역을 먼저 보여줍니다. 자세한 이유는 필요한 지역만 열어볼 수 있습니다.</div>
             </div>
             <div class="evidence-legend">
-                <span class="evidence-chip">복합 신호 = 우선 확인</span>
-                <span class="evidence-chip">정책 제안 = 참고용</span>
+                <span class="evidence-chip">여러 조건이 겹침 = 우선 확인</span>
+                <span class="evidence-chip">제안 내용 = 참고용</span>
             </div>
         </div>
 
         <div class="section-kpi-row">
-            <div class="section-kpi"><div class="kpi-label">REVIEW SIGNAL</div><div class="kpi-value">{{ ns.review }}곳</div><div class="kpi-help">최종 정책 검토 신호</div></div>
-            <div class="section-kpi"><div class="kpi-label">OVERLAP SIGNAL</div><div class="kpi-value">{{ ns.overlap }}곳</div><div class="kpi-help">두 분석에서 동시에 신호</div></div>
-            <div class="section-kpi"><div class="kpi-label">VIEWING RULE</div><div class="kpi-value">우선순위 중심</div><div class="kpi-help">복합·추가점검 신호를 함께 확인</div></div>
+            <div class="section-kpi"><div class="kpi-label">우선 확인 지역</div><div class="kpi-value">{{ ns.review }}곳</div><div class="kpi-help">최종 우선 확인 지역</div></div>
+            <div class="section-kpi"><div class="kpi-label">여러 조건이 겹친 지역</div><div class="kpi-value">{{ ns.overlap }}곳</div><div class="kpi-help">두 분석에서 함께 확인</div></div>
+            <div class="section-kpi"><div class="kpi-label">읽는 방법</div><div class="kpi-value">우선 확인 순서 중심</div><div class="kpi-help">여러 신호를 함께 확인</div></div>
         </div>
 
         <div class="presentation-note">
-            <span>💡</span><span><strong>발표 포인트</strong> : 전체 내용을 한 번에 읽기보다 지역명 → 정책유형 → 핵심 지표 순으로 확인하고, 상세 이유는 필요할 때만 펼쳐보세요.</span>
+            <span>💡</span><span><strong>발표할 때</strong> : 지역명 → 종합점수 → 핵심 지표 순으로 설명하고, 자세한 근거는 필요할 때만 펼쳐보세요.</span>
         </div>
 
         <div class="target-list">
             {% set target_rank = namespace(n=0) %}
             {% for d in districts %}
-                {% set policy = d.get("최종정책유형", "") %}
+                {% set policy = d.get("최종지역 유형", "") %}
                 {% if policy not in ["", "일반 관찰", "HL순위 제외"] %}
                     {% set target_rank.n = target_rank.n + 1 %}
                     <article class="target-card {% if d.get('두분석_동시신호', False) %}priority{% endif %}">
@@ -1543,21 +1552,21 @@
                         </div>
 
                         <div class="target-metrics">
-                            <div class="target-metric"><div class="target-metric-label">2030 인구</div><div class="target-metric-value">{{ "{:,}".format(d.get("2030인구수")|int) ~ "명" if d.get("2030인구수") is not none else "-" }}</div></div>
-                            <div class="target-metric"><div class="target-metric-label">월환산 주거비</div><div class="target-metric-value">{{ "%.1f"|format(d.get("월환산주거비")) ~ "만원" if d.get("월환산주거비") is not none else "표본부족" }}</div></div>
-                            <div class="target-metric"><div class="target-metric-label">공식 정류소</div><div class="target-metric-value">{{ d.get("공식정류소수")|int ~ "개" if d.get("공식정류소수") is not none else "-" }}</div></div>
+                            <div class="target-metric"><div class="target-metric-label">청년 인구</div><div class="target-metric-value">{{ "{:,}".format(d.get("2030인구수")|int) ~ "명" if d.get("2030인구수") is not none else "-" }}</div></div>
+                            <div class="target-metric"><div class="target-metric-label">월평균 주거비</div><div class="target-metric-value">{{ "%.1f"|format(d.get("월환산주거비")) ~ "만원" if d.get("월환산주거비") is not none else "표본부족" }}</div></div>
+                            <div class="target-metric"><div class="target-metric-label">공식 버스정류소</div><div class="target-metric-value">{{ d.get("공식버스정류소수")|int ~ "개" if d.get("공식버스정류소수") is not none else "-" }}</div></div>
                         </div>
 
                         <div class="target-summary">
-                            <strong>핵심 근거</strong>{{ d.get("정책근거요약", "-") }}
+                            <strong>핵심 이유</strong>{{ d.get("정책근거요약", "-") }}
                         </div>
 
                         <details class="target-details">
-                            <summary>상세 근거 및 검토 방향</summary>
+                            <summary>자세한 이유와 확인 방향</summary>
                             <div class="target-details-body">
-                                <div><strong>주요 취약요인</strong><br>{{ d.get("HL주요취약요인", "-") }}</div>
-                                <div><strong>검토 방향</strong><br>{{ d.get("통합정책제안", d.get("HL정책검토방향", "-")) }}</div>
-                                {% if d.get("전체거래건수") is not none and d.get("전체거래건수") < 20 %}<div><strong>주의</strong><br>주거 표본 {{ d.get("전체거래건수")|int }}건으로 표본 규모가 작습니다.</div>{% endif %}
+                                <div><strong>주요 특징</strong><br>{{ d.get("HL주요취약요인", "-") }}</div>
+                                <div><strong>추가로 확인할 점</strong><br>{{ d.get("통합정책제안", d.get("HL정책검토방향", "-")) }}</div>
+                                {% if d.get("전체거래건수") is not none and d.get("전체거래건수") < 20 %}<div><strong>주의사항</strong><br>주거 표본 {{ d.get("전체거래건수")|int }}건으로 표본 규모가 작습니다.</div>{% endif %}
                             </div>
                         </details>
                     </article>
@@ -1567,32 +1576,32 @@
     </div>
 
     <!-- =========================================
-         4. 정책 보조지표별 점검 후보
+         4. ③ 추가 자료 확인별 점검 후보
     ========================================== -->
 
     <div class="section tab-content" id="sec-support">
         <div class="evidence-toolbar">
             <div>
-                <h2 style="margin-bottom:4px;">4. 정책 보조지표별 추가 점검 후보</h2>
-                <div class="section-description" style="margin:0;">HL Score와 분리한 보조지표 신호를 분야별로 묶어, 지역별 차이를 빠르게 비교합니다.</div>
+                <h2 style="margin-bottom:4px;">4. ③ 추가 자료 확인별 추가 점검 후보</h2>
+                <div class="section-description" style="margin:0;">종합점수와 별도로 청년 수요·시설·임대·교통 자료에서 특징이 나타난 지역을 분야별로 보여줍니다.</div>
             </div>
-            <div class="evidence-legend"><span class="evidence-chip">HL Score 미합산</span></div>
+            <div class="evidence-legend"><span class="evidence-chip">종합점수에는 포함하지 않음</span></div>
         </div>
 
         <div class="support-kpi-grid">
-            <div class="support-kpi"><div class="support-kpi-label">공공시설</div><div class="support-kpi-value">{{ ns.facility_candidate }}곳</div><div class="support-kpi-sub">2030 인구 TOP10 + 상대부족</div></div>
-            <div class="support-kpi"><div class="support-kpi-label">주거공급</div><div class="support-kpi-value">{{ ns.rental_candidate }}곳</div><div class="support-kpi-sub">공공임대 기반 추가 점검</div></div>
-            <div class="support-kpi"><div class="support-kpi-label">교통공급</div><div class="support-kpi-value">{{ ns.bus_candidate }}곳</div><div class="support-kpi-sub">공식 정류소 공급 추가 점검</div></div>
+            <div class="support-kpi"><div class="support-kpi-label">공공시설</div><div class="support-kpi-value">{{ ns.facility_candidate }}곳</div><div class="support-kpi-sub">청년 인구가 많고 시설이 적음</div></div>
+            <div class="support-kpi"><div class="support-kpi-label">주거공급</div><div class="support-kpi-value">{{ ns.rental_candidate }}곳</div><div class="support-kpi-sub">공공임대 공급 확인</div></div>
+            <div class="support-kpi"><div class="support-kpi-label">교통공급</div><div class="support-kpi-value">{{ ns.bus_candidate }}곳</div><div class="support-kpi-sub">버스버스정류소 공급 확인</div></div>
         </div>
 
         <div class="support-groups">
             {% set facility_ns = namespace(n=0) %}
             {% for d in districts %}{% if d.get("2030인구_TOP10", False) and d.get("공공시설_상대부족", False) %}{% set facility_ns.n=facility_ns.n+1 %}{% endif %}{% endfor %}
             <div class="support-group">
-                <div class="support-group-head"><span class="support-group-title">🏢 청년 공공시설</span><span class="support-group-count">{{ facility_ns.n }}곳</span></div>
+                <div class="support-group-head"><span class="support-group-title">🏢 청년 시설</span><span class="support-group-count">{{ facility_ns.n }}곳</span></div>
                 {% for d in districts %}
                     {% if d.get("2030인구_TOP10", False) and d.get("공공시설_상대부족", False) %}
-                        <div class="support-item"><div class="support-item-top"><span class="support-item-name">{{ d.get("지역", "-") }}</span><span class="support-item-value">{{ d.get("청년공공시설수")|int ~ "개" if d.get("청년공공시설수") is not none else "-" }}</span></div><div class="support-item-note">2030 인구 TOP10이면서 1,000명당 공공시설 공급이 상대적으로 낮음</div></div>
+                        <div class="support-item"><div class="support-item-top"><span class="support-item-name">{{ d.get("지역", "-") }}</span><span class="support-item-value">{{ d.get("청년공공시설수")|int ~ "개" if d.get("청년공공시설수") is not none else "-" }}</span></div><div class="support-item-note">청년 인구 TOP10이면서 1,000명당 공공시설 공급이 상대적으로 낮음</div></div>
                     {% endif %}
                 {% endfor %}
                 {% if facility_ns.n == 0 %}<div class="support-empty">해당 신호 지역 없음</div>{% endif %}
@@ -1604,7 +1613,7 @@
                 <div class="support-group-head"><span class="support-group-title">🏠 공공임대 공급</span><span class="support-group-count">{{ rental_ns.n }}곳</span></div>
                 {% for d in districts %}
                     {% if d.get("청년주거지원_점검후보", False) %}
-                        <div class="support-item"><div class="support-item-top"><span class="support-item-name">{{ d.get("지역", "-") }}</span><span class="support-item-value">{{ "{:,}".format(d.get("공공임대_세대수")|int) ~ "세대" if d.get("공공임대_세대수") is not none else "-" }}</span></div><div class="support-item-note">청년 인구 대비 공공임대 공급 기반과 행복주택 여부를 추가 확인</div></div>
+                        <div class="support-item"><div class="support-item-top"><span class="support-item-name">{{ d.get("지역", "-") }}</span><span class="support-item-value">{{ "{:,}".format(d.get("공공임대_세대수")|int) ~ "세대" if d.get("공공임대_세대수") is not none else "-" }}</span></div><div class="support-item-note">청년 인구 대비 공공임대 공급과 행복주택 여부를 추가 확인</div></div>
                     {% endif %}
                 {% endfor %}
                 {% if rental_ns.n == 0 %}<div class="support-empty">해당 신호 지역 없음</div>{% endif %}
@@ -1616,7 +1625,7 @@
                 <div class="support-group-head"><span class="support-group-title">🚌 교통공급</span><span class="support-group-count">{{ bus_ns.n }}곳</span></div>
                 {% for d in districts %}
                     {% if d.get("청년교통공급_점검후보", False) %}
-                        <div class="support-item"><div class="support-item-top"><span class="support-item-name">{{ d.get("지역", "-") }}</span><span class="support-item-value">{{ d.get("공식정류소수")|int ~ "개" if d.get("공식정류소수") is not none else "-" }}</span></div><div class="support-item-note">청년 수요 대비 공식 버스정류소 공급 수준이 상대적으로 낮음</div></div>
+                        <div class="support-item"><div class="support-item-top"><span class="support-item-name">{{ d.get("지역", "-") }}</span><span class="support-item-value">{{ d.get("공식버스정류소수")|int ~ "개" if d.get("공식버스정류소수") is not none else "-" }}</span></div><div class="support-item-note">청년 수요 대비 버스버스정류소 공급 수준이 상대적으로 낮음</div></div>
                     {% endif %}
                 {% endfor %}
                 {% if bus_ns.n == 0 %}<div class="support-empty">해당 신호 지역 없음</div>{% endif %}
@@ -1625,17 +1634,17 @@
     </div>
 
     <!-- =========================================
-         5. 정책유형 분포 (탭 컨텐츠)
+         5. 지역 유형 분포 (탭 컨텐츠)
     ========================================== -->
 
     <div class="section tab-content" id="sec-dist">
 
         <h2>
-            5. 최종 정책유형 분포
+            5. 지역 유형 분포
         </h2>
 
         <p class="section-description">
-            최종 정책유형은 HL 분석과 청년 수요 분석의 신호 조합을 분류한
+            최종 지역 유형은 HL 분석과 ② 청년 수요 확인의 신호 조합을 분류한
             프로젝트 내부 정책 탐색용 유형입니다.
         </p>
 
@@ -1668,14 +1677,14 @@
     <div class="section tab-content" id="sec-table">
         <div class="evidence-toolbar">
             <div>
-                <h2 style="margin-bottom:4px;">6. 25개 동 종합 근거표</h2>
-                <div class="section-description" style="margin:0;">25개 동의 핵심 지표를 비교하는 기준표입니다. 긴 정책 근거와 검토 방향은 행 안에서 펼쳐볼 수 있습니다.</div>
+                <h2 style="margin-bottom:4px;">6. 25개 동 전체 비교표</h2>
+                <div class="section-description" style="margin:0;">25개 동의 주요 수치를 한 번에 비교합니다. 자세한 설명은 필요한 행에서 확인할 수 있습니다.</div>
             </div>
             <div class="evidence-legend"><span class="evidence-chip">헤더 고정</span><span class="evidence-chip">마우스오버 강조</span><span class="evidence-chip">상세문구 축약</span></div>
         </div>
 
         <div class="presentation-note">
-            <span>📊</span><span><strong>발표용 읽는 순서</strong> : 지역 → HL Score → 2030 인구 → 주거비 → 정책유형 순으로 보고, 정책 근거·검토 방향은 질문이 나올 때 상세 내용을 확인하면 됩니다.</span>
+            <span>📊</span><span><strong>발표할 때 읽는 순서</strong> : 지역 → 종합점수 → 청년 인구 → 주거비 → 주요 특징 순으로 보고, 자세한 근거는 질문이 있을 때 확인하면 됩니다.</span>
         </div>
 
         <div class="evidence-wrap">
@@ -1684,14 +1693,14 @@
                     <tr>
                         <th class="col-region">지역</th>
                         <th class="col-score">HL Score</th>
-                        <th class="col-num">2030 인구</th>
-                        <th class="col-num">월환산 주거비</th>
-                        <th class="col-num">청년시설</th>
+                        <th class="col-num">청년 인구</th>
+                        <th class="col-num">월평균 주거비</th>
+                        <th class="col-num">청년 시설</th>
                         <th class="col-num">공공임대</th>
-                        <th class="col-num">정류소</th>
-                        <th class="col-type">정책유형</th>
+                        <th class="col-num">버스정류소</th>
+                        <th class="col-type">지역 유형</th>
                         <th class="col-note">정책 근거</th>
-                        <th class="col-dir">검토 방향</th>
+                        <th class="col-dir">추가로 확인할 점</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -1708,9 +1717,9 @@
                         <td>{{ "%.1f"|format(d.get("월환산주거비")) ~ "만원" if d.get("월환산주거비") is not none else "-" }}</td>
                         <td>{{ d.get("청년공공시설수")|int ~ "개" if d.get("청년공공시설수") is not none else "-" }}</td>
                         <td>{{ "{:,}".format(d.get("공공임대_세대수")|int) ~ "세대" if d.get("공공임대_세대수") is not none else "-" }}</td>
-                        <td>{{ d.get("공식정류소수")|int ~ "개" if d.get("공식정류소수") is not none else "-" }}</td>
+                        <td>{{ d.get("공식버스정류소수")|int ~ "개" if d.get("공식버스정류소수") is not none else "-" }}</td>
                         <td>
-                            {% if d.get("최종정책유형", "-") == "HL순위 제외" %}<span class="type-pill gray">HL순위 제외</span>{% else %}<span class="type-pill">{{ d.get("최종정책유형", "-") }}</span>{% endif %}
+                            {% if d.get("최종지역 유형", "-") == "HL순위 제외" %}<span class="type-pill gray">HL순위 제외</span>{% else %}<span class="type-pill">{{ d.get("최종지역 유형", "-") }}</span>{% endif %}
                         </td>
                         <td class="text-left">
                             <div class="cell-trim">{{ d.get("정책근거요약", "-") }}</div>
@@ -1730,13 +1739,13 @@
     </div>
 
     <!-- =========================================
-         7. 예외 / 품질관리 (탭 컨텐츠)
+         7. 예외 / 데이터 품질 (탭 컨텐츠)
     ========================================== -->
 
     <div class="section tab-content" id="sec-qa">
 
         <h2>
-            7. 품질관리와 예외 처리
+            7. 데이터 품질와 예외 처리
         </h2>
 
         <p class="section-description">
@@ -1756,7 +1765,7 @@
 
             <br>
 
-            • 5~19건: <strong>저표본 주의</strong> 표시 후 값 사용
+            • 5~19건: <strong>저표본 주의사항</strong> 표시 후 값 사용
 
             <br>
 
@@ -1765,7 +1774,7 @@
             <br><br>
 
             현재 두암2동은 주거 실거래 표본이 1건이므로
-            실제 월환산 주거비 값은 참고로 남기되,
+            실제 월평균 주거비 값은 참고로 남기되,
             주거가성비 점수를 사용하지 않고 HL 정책 순위에서 제외합니다.
 
         </div>
@@ -1798,11 +1807,11 @@
 
             <br><br>
 
-            공식 정류소 데이터는 행정동 내부 정류소 수를 보조지표로 사용합니다.
+            공식 버스정류소 데이터는 행정동 내부 버스정류소 수를 보조지표로 사용합니다.
 
             <br>
 
-            별도 노선 엑셀은 공식 정류소와 안전하게 연결된 비율이
+            별도 노선 엑셀은 공식 버스정류소와 안전하게 연결된 비율이
             <strong>0.54%</strong>에 불과해
             노선 수·노선 다양성 정책 판단에는 사용하지 않았습니다.
 
@@ -1854,7 +1863,7 @@
 
             <br><br>
 
-            <strong>청년 공공시설</strong>
+            <strong>청년 시설</strong>
             <br>
             광주청년통합플랫폼의 청년 공간 목록을 좌표 및 행정동에 연결
 
@@ -1866,9 +1875,9 @@
 
             <br><br>
 
-            <strong>공식 버스정류소</strong>
+            <strong>버스버스정류소</strong>
             <br>
-            2025-12-31 기준 광주 버스정류소 현황을 행정동별로 집계
+            2025-12-31 기준 광주 버스버스정류소 현황을 행정동별로 집계
 
         </div>
 
@@ -1893,7 +1902,7 @@
 
             <br><br>
 
-            2030 인구비율·청년 공공시설·공공임대·공식 정류소 공급 보조지표는
+            청년 인구비율·청년 시설·공공임대·공식 버스정류소 공급 보조지표는
             HL Score 자체에는 합산하지 않습니다.
 
         </div>
@@ -1913,7 +1922,7 @@
             <br>
 
             즉,
-            <strong>월환산 주거비 = 월세 + 보증금 × 0.05 ÷ 12</strong>입니다.
+            <strong>월평균 주거비 = 월세 + 보증금 × 0.05 ÷ 12</strong>입니다.
 
             <br><br>
 
@@ -1940,12 +1949,12 @@
 
             <br><br>
 
-            • 공식 버스정류소 개수는
+            • 버스버스정류소 개수는
             노선 수·배차간격·운행시간·환승 편의까지 설명하지 않습니다.
 
             <br><br>
 
-            • 최종 정책유형은 25개 동 내부 상대 비교 결과이며,
+            • 최종 지역 유형은 25개 동 내부 상대 비교 결과이며,
             지역에 대한 절대 평가가 아닙니다.
 
             <br><br>

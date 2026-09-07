@@ -1,1109 +1,256 @@
+import re
 import shutil
 from pathlib import Path
 
 import pandas as pd
 
 
-# =========================================================
-# 1. 경로 설정
-# =========================================================
-
 BASE_DIR = Path(__file__).resolve().parent.parent
+PROCESSED_DIR = BASE_DIR / "data" / "processed"
 
-PROCESSED_DIR = (
-    BASE_DIR
-    / "data"
-    / "processed"
-)
-
-INPUT_FILE = (
-    PROCESSED_DIR
-    / "청년소형주택_25개동_실거래.csv"
-)
-
-OUTPUT_FILE = (
-    PROCESSED_DIR
-    / "동별_주거비.csv"
-)
-
-BACKUP_FILE = (
-    PROCESSED_DIR
-    / "동별_주거비_법정동매핑_백업.csv"
-)
-
-
-# =========================================================
-# 2. 분석 기준
-# =========================================================
+INPUT_FILE = PROCESSED_DIR / "청년소형주택_25개동_실거래.csv"
+PUBLIC_RENTAL_FILE = PROCESSED_DIR / "공공임대주택_공급단위_행정동매핑.csv"
+OUTPUT_FILE = PROCESSED_DIR / "동별_주거비.csv"
+BACKUP_FILE = PROCESSED_DIR / "동별_주거비_공공임대제외전_백업.csv"
+EXCLUDED_DETAIL_FILE = PROCESSED_DIR / "HL주거비_공공임대제외거래.csv"
 
 MAX_AREA_M2 = 59.5
-
 DEPOSIT_ANNUAL_RATE = 0.05
-
 ANALYSIS_START = "202507"
 ANALYSIS_END = "202606"
 
-
-# =========================================================
-# 3. 프로젝트 25개 동
-# =========================================================
-
 TARGET_DONGS = [
-
-    ("동구", "충장동"),
-    ("동구", "계림1동"),
-    ("동구", "지산2동"),
-    ("동구", "학동"),
-    ("동구", "지원1동"),
-
-    ("서구", "치평동"),
-    ("서구", "풍암동"),
-    ("서구", "화정2동"),
-    ("서구", "농성1동"),
-    ("서구", "금호1동"),
-
-    ("남구", "봉선2동"),
-    ("남구", "진월동"),
-    ("남구", "방림1동"),
-    ("남구", "효덕동"),
-    ("남구", "송암동"),
-
-    ("북구", "용봉동"),
-    ("북구", "두암2동"),
-    ("북구", "운암1동"),
-    ("북구", "첨단2동"),
-    ("북구", "문흥1동"),
-
-    ("광산구", "첨단1동"),
-    ("광산구", "수완동"),
-    ("광산구", "신가동"),
-    ("광산구", "우산동"),
-    ("광산구", "송정1동"),
+    ("동구", "충장동"), ("동구", "계림1동"), ("동구", "지산2동"),
+    ("동구", "학동"), ("동구", "지원1동"),
+    ("서구", "치평동"), ("서구", "풍암동"), ("서구", "화정2동"),
+    ("서구", "농성1동"), ("서구", "금호1동"),
+    ("남구", "봉선2동"), ("남구", "진월동"), ("남구", "방림1동"),
+    ("남구", "효덕동"), ("남구", "송암동"),
+    ("북구", "용봉동"), ("북구", "두암2동"), ("북구", "운암1동"),
+    ("북구", "첨단2동"), ("북구", "문흥1동"),
+    ("광산구", "첨단1동"), ("광산구", "수완동"), ("광산구", "신가동"),
+    ("광산구", "우산동"), ("광산구", "송정1동"),
 ]
 
 
-# =========================================================
-# 4. 숫자형 변환
-# =========================================================
-
-def to_numeric_series(
-    series
-):
-
+def to_numeric_series(series):
     return pd.to_numeric(
-        series.astype(
-            str
-        ).str.replace(
-            ",",
-            "",
-            regex=False
-        ),
-        errors="coerce"
+        series.astype(str).str.replace(",", "", regex=False),
+        errors="coerce",
     )
 
-
-# =========================================================
-# 5. Boolean 안전 변환
-# =========================================================
 
 def to_bool(value):
-
-    if isinstance(
-        value,
-        bool
-    ):
+    if isinstance(value, bool):
         return value
-
-    text = str(
-        value
-    ).strip().lower()
-
-    return text in [
-        "true",
-        "1",
-        "yes",
-        "y"
-    ]
+    return str(value).strip().lower() in {"true", "1", "yes", "y"}
 
 
-# =========================================================
-# 6. 평균
-# =========================================================
-
-def safe_mean(
-    series
-):
-
-    values = pd.to_numeric(
-        series,
-        errors="coerce"
-    ).dropna()
+def safe_mean(series):
+    values = pd.to_numeric(series, errors="coerce").dropna()
+    return "" if values.empty else round(values.mean(), 2)
 
 
-    if len(values) == 0:
-
-        return ""
-
-
-    return round(
-        values.mean(),
-        2
-    )
+def safe_median(series):
+    values = pd.to_numeric(series, errors="coerce").dropna()
+    return "" if values.empty else round(values.median(), 2)
 
 
-# =========================================================
-# 7. 중앙값
-# =========================================================
-
-def safe_median(
-    series
-):
-
-    values = pd.to_numeric(
-        series,
-        errors="coerce"
-    ).dropna()
+def normalize_address(value):
+    """공공임대 주소와 실거래 카카오 매칭주소를 같은 형태로 비교."""
+    text = str(value or "").strip()
+    for prefix in ("전남광주통합특별시 ", "광주광역시 "):
+        if text.startswith(prefix):
+            text = text[len(prefix):]
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
 
 
-    if len(values) == 0:
+def sample_status(count):
+    if count == 0:
+        return "거래없음"
+    if count < 5:
+        return "주의"
+    if count < 20:
+        return "보통"
+    return "충분"
 
-        return ""
-
-
-    return round(
-        values.median(),
-        2
-    )
-
-
-# =========================================================
-# 8. 기존 파일 백업
-# =========================================================
 
 def backup_existing_file():
+    if OUTPUT_FILE.exists() and not BACKUP_FILE.exists():
+        shutil.copy2(OUTPUT_FILE, BACKUP_FILE)
+        print(f"기존 동별_주거비.csv 백업: {BACKUP_FILE.name}")
 
-    if not OUTPUT_FILE.exists():
-
-        return
-
-
-    # 기존 백업이 이미 있으면 덮어쓰지 않음
-    if BACKUP_FILE.exists():
-
-        return
-
-
-    shutil.copy2(
-        OUTPUT_FILE,
-        BACKUP_FILE
-    )
-
-
-    print(
-        "\n기존 동별_주거비.csv 백업 완료"
-    )
-
-    print(
-        BACKUP_FILE
-    )
-
-
-# =========================================================
-# 9. 메인
-# =========================================================
 
 def main():
-
-    print()
-    print(
-        "========================================"
-    )
-
-    print(
-        "실제 행정동 기준 동별 주거비 계산"
-    )
-
-    print(
-        "========================================"
-    )
-
-
-    print(
-        "기간 : 2025-07 ~ 2026-06"
-    )
-
-    print(
-        "면적 : 전용면적 59.5㎡ 이하"
-    )
-
-    print(
-        "거래 : 전세 + 월세"
-    )
-
-    print(
-        "대표값 : 평균값"
-    )
-
-    print(
-        "행정동 : 실거래 주소→좌표→행정동 매핑"
-    )
-
-
-    # =====================================================
-    # 입력 파일 확인
-    # =====================================================
+    print("\n========================================")
+    print("HL 주거비 재계산 - 공공임대 거래 제외")
+    print("========================================")
+    print("기준: 2025-07~2026-06 / 59.5㎡ 이하 / 전세+월세")
+    print("HL 주거비: 민간 임대시장 실거래만 사용")
+    print("공공임대: 별도 정책 보조지표로 유지")
+    print(f"보증금 월환산율: 연 {DEPOSIT_ANNUAL_RATE*100:.1f}% (프로젝트 가정)")
 
     if not INPUT_FILE.exists():
-
-        print(
-            "\n입력 파일이 없습니다."
-        )
-
-        print(
-            INPUT_FILE
-        )
-
-        return
-
-
-    # =====================================================
-    # 기존 파일 백업
-    # =====================================================
+        raise FileNotFoundError(f"입력 파일 없음: {INPUT_FILE}")
+    if not PUBLIC_RENTAL_FILE.exists():
+        raise FileNotFoundError(f"공공임대 매핑 파일 없음: {PUBLIC_RENTAL_FILE}")
 
     backup_existing_file()
-
-
-    # =====================================================
-    # 파일 읽기
-    # =====================================================
 
     df = pd.read_csv(
         INPUT_FILE,
         encoding="utf-8-sig",
         dtype=str,
-        keep_default_na=False
+        keep_default_na=False,
+    )
+    public = pd.read_csv(
+        PUBLIC_RENTAL_FILE,
+        encoding="utf-8-sig",
+        dtype=str,
+        keep_default_na=False,
     )
 
-
-    print(
-        f"\n입력 실거래 : "
-        f"{len(df):,}건"
-    )
-
-
-    # =====================================================
-    # 필수 컬럼 검사
-    # =====================================================
-
-    required_columns = [
-
-        "프로젝트자치구",
-        "프로젝트행정동",
-
-        "deposit",
-        "monthlyRent",
-        "excluUseAr",
-
-        "housing_type"
+    required = [
+        "프로젝트자치구", "프로젝트행정동", "deposit", "monthlyRent",
+        "excluUseAr", "housing_type", "카카오매칭주소",
     ]
+    missing = [c for c in required if c not in df.columns]
+    if missing:
+        raise ValueError(f"실거래 필수 컬럼 누락: {missing}")
+    if "주소" not in public.columns:
+        raise ValueError("공공임대 매핑 파일에 '주소' 컬럼이 없습니다.")
 
+    if "분석대상여부" in df.columns:
+        df["분석대상여부"] = df["분석대상여부"].apply(to_bool)
+        df = df[df["분석대상여부"] == True].copy()
 
-    missing_columns = [
-
-        column
-
-        for column
-        in required_columns
-
-        if column
-        not in df.columns
-    ]
-
-
-    if missing_columns:
-
-        print(
-            "\n필수 컬럼이 없습니다."
-        )
-
-        for column in missing_columns:
-
-            print(
-                "-",
-                column
-            )
-
-        return
-
-
-    # =====================================================
-    # 분석대상 여부 다시 확인
-    # =====================================================
-
-    if (
-        "분석대상여부"
-        in df.columns
-    ):
-
-        df[
-            "분석대상여부"
-        ] = (
-
-            df[
-                "분석대상여부"
-            ]
-
-            .apply(
-                to_bool
-            )
-
-        )
-
-
-        df = df[
-            df[
-                "분석대상여부"
-            ]
-            == True
-        ].copy()
-
-
-    # =====================================================
-    # 숫자형 변환
-    # =====================================================
-
-    df[
-        "보증금_만원"
-    ] = to_numeric_series(
-        df[
-            "deposit"
-        ]
-    )
-
-
-    df[
-        "월세_만원"
-    ] = to_numeric_series(
-        df[
-            "monthlyRent"
-        ]
-    )
-
-
-    df[
-        "전용면적_m2"
-    ] = to_numeric_series(
-        df[
-            "excluUseAr"
-        ]
-    )
-
-
-    # =====================================================
-    # 최종 안전 필터
-    # =====================================================
-
-    before_filter = len(
-        df
-    )
-
+    df["보증금_만원"] = to_numeric_series(df["deposit"])
+    df["월세_만원"] = to_numeric_series(df["monthlyRent"])
+    df["전용면적_m2"] = to_numeric_series(df["excluUseAr"])
 
     df = df[
-        (
-            df[
-                "전용면적_m2"
-            ].notna()
-        )
-        &
-        (
-            df[
-                "전용면적_m2"
-            ]
-            <= MAX_AREA_M2
-        )
-        &
-        (
-            df[
-                "보증금_만원"
-            ].notna()
-        )
-        &
-        (
-            df[
-                "월세_만원"
-            ].notna()
-        )
+        df["전용면적_m2"].notna()
+        & (df["전용면적_m2"] <= MAX_AREA_M2)
+        & df["보증금_만원"].notna()
+        & df["월세_만원"].notna()
     ].copy()
 
+    # 공공임대 단지 주소 세트 구성
+    public_addresses = {
+        normalize_address(addr)
+        for addr in public["주소"]
+        if normalize_address(addr)
+    }
 
-    print(
-        f"최종 유효거래 : "
-        f"{len(df):,}건"
+    df["주소_정규화"] = df["카카오매칭주소"].apply(normalize_address)
+    df["공공임대주소일치"] = df["주소_정규화"].isin(public_addresses)
+
+    original_valid_count = len(df)
+    public_rental_count = int(df["공공임대주소일치"].sum())
+
+    excluded = df[df["공공임대주소일치"]].copy()
+    excluded.to_csv(EXCLUDED_DETAIL_FILE, index=False, encoding="utf-8-sig")
+
+    # 핵심 수정: HL 주거비에서는 공공임대 실거래 제외
+    market_df = df[~df["공공임대주소일치"]].copy()
+
+    market_df["거래구분"] = "월세"
+    market_df.loc[market_df["월세_만원"] == 0, "거래구분"] = "전세"
+    market_df["월환산주거비_만원"] = (
+        market_df["월세_만원"]
+        + market_df["보증금_만원"] * DEPOSIT_ANNUAL_RATE / 12
     )
 
-
-    print(
-        f"안전필터 제외 : "
-        f"{before_filter - len(df):,}건"
-    )
-
-
-    # =====================================================
-    # 전세 / 월세 구분
-    # =====================================================
-
-    df[
-        "거래구분"
-    ] = "월세"
-
-
-    df.loc[
-        df[
-            "월세_만원"
-        ]
-        == 0,
-        "거래구분"
-    ] = "전세"
-
-
-    # =====================================================
-    # 거래별 월환산주거비
-    # =====================================================
-
-    df[
-        "월환산주거비_만원"
-    ] = (
-
-        df[
-            "월세_만원"
-        ]
-
-        +
-
-        (
-            df[
-                "보증금_만원"
-            ]
-            * DEPOSIT_ANNUAL_RATE
-            / 12
-        )
-
-    )
-
-
-    # =====================================================
-    # 결과 저장용
-    # =====================================================
+    print(f"\n원본 유효 실거래: {original_valid_count:,}건")
+    print(f"공공임대 주소 일치 제외: {public_rental_count:,}건")
+    print(f"HL 민간임대 분석 사용: {len(market_df):,}건")
 
     result = []
 
-
-    # =====================================================
-    # 25개 동 반복
-    # =====================================================
-
-    for (
-        project_gu,
-        project_dong
-    ) in TARGET_DONGS:
-
-
-        dong_df = df[
-            (
-                df[
-                    "프로젝트자치구"
-                ]
-                == project_gu
-            )
-            &
-            (
-                df[
-                    "프로젝트행정동"
-                ]
-                == project_dong
-            )
-        ].copy()
-
-
-        # =================================================
-        # 전세
-        # =================================================
-
-        jeonse_df = dong_df[
-            dong_df[
-                "거래구분"
-            ]
-            == "전세"
+    for project_gu, project_dong in TARGET_DONGS:
+        original_dong = df[
+            (df["프로젝트자치구"] == project_gu)
+            & (df["프로젝트행정동"] == project_dong)
+        ]
+        dong_df = market_df[
+            (market_df["프로젝트자치구"] == project_gu)
+            & (market_df["프로젝트행정동"] == project_dong)
         ]
 
+        jeonse_df = dong_df[dong_df["거래구분"] == "전세"]
+        monthly_df = dong_df[dong_df["거래구분"] == "월세"]
 
-        # =================================================
-        # 월세
-        # =================================================
+        transaction_count = len(dong_df)
+        original_count = len(original_dong)
+        excluded_count = int(original_dong["공공임대주소일치"].sum())
 
-        monthly_df = dong_df[
-            dong_df[
-                "거래구분"
-            ]
-            == "월세"
-        ]
-
-
-        # =================================================
-        # 주택유형별 거래건수
-        # =================================================
-
-        apartment_count = (
-
-            dong_df[
-                "housing_type"
-            ]
-            .eq(
-                "아파트"
-            )
-            .sum()
-
-        )
-
-
-        officetel_count = (
-
-            dong_df[
-                "housing_type"
-            ]
-            .eq(
-                "오피스텔"
-            )
-            .sum()
-
-        )
-
-
-        rowhouse_count = (
-
-            dong_df[
-                "housing_type"
-            ]
-            .eq(
-                "연립다세대"
-            )
-            .sum()
-
-        )
-
-
-        single_count = (
-
-            dong_df[
-                "housing_type"
-            ]
-            .eq(
-                "단독/다가구"
-            )
-            .sum()
-
-        )
-
-
-        # =================================================
-        # 표본상태
-        # =================================================
-
-        transaction_count = len(
-            dong_df
-        )
-
-
-        if transaction_count == 0:
-
-            sample_status = (
-                "거래없음"
-            )
-
-        elif transaction_count < 5:
-
-            sample_status = (
-                "주의"
-            )
-
-        elif transaction_count < 20:
-
-            sample_status = (
-                "보통"
-            )
-
-        else:
-
-            sample_status = (
-                "충분"
-            )
-
-
-        # =================================================
-        # 공식 행정구역
-        # =================================================
-
-        if (
-            project_dong
-            == "첨단2동"
-        ):
-
-            source_gu = (
-                "광산구"
-            )
-
-        else:
-
-            source_gu = (
-                project_gu
-            )
-
-
-        # =================================================
-        # 결과 행
-        # =================================================
+        source_gu = "광산구" if project_dong == "첨단2동" else project_gu
 
         output = {
-
-            "자치구":
-                project_gu,
-
-            "행정동":
-                project_dong,
-
-            "공식조회자치구":
-                source_gu,
-
-            "전체거래건수":
-                transaction_count,
-
-            "전세거래건수":
-                len(
-                    jeonse_df
-                ),
-
-            "월세거래건수":
-                len(
-                    monthly_df
-                ),
-
-
-            # =============================================
-            # 평균값 - 앞으로 주거분석에서 사용
-            # =============================================
-
-            "전세보증금_평균값_만원":
-                safe_mean(
-                    jeonse_df[
-                        "보증금_만원"
-                    ]
-                ),
-
-            "월세보증금_평균값_만원":
-                safe_mean(
-                    monthly_df[
-                        "보증금_만원"
-                    ]
-                ),
-
-            "월세_평균값_만원":
-                safe_mean(
-                    monthly_df[
-                        "월세_만원"
-                    ]
-                ),
-
-            "전체임대차보증금_평균값_만원":
-                safe_mean(
-                    dong_df[
-                        "보증금_만원"
-                    ]
-                ),
-
-            "월환산주거비_평균값_만원":
-                safe_mean(
-                    dong_df[
-                        "월환산주거비_만원"
-                    ]
-                ),
-
-            "전용면적_평균값_m2":
-                safe_mean(
-                    dong_df[
-                        "전용면적_m2"
-                    ]
-                ),
-
-
-            # =============================================
-            # 중앙값 - 검증/비교용
-            # =============================================
-
-            "전세보증금_중앙값_만원":
-                safe_median(
-                    jeonse_df[
-                        "보증금_만원"
-                    ]
-                ),
-
-            "월세보증금_중앙값_만원":
-                safe_median(
-                    monthly_df[
-                        "보증금_만원"
-                    ]
-                ),
-
-            "월세_중앙값_만원":
-                safe_median(
-                    monthly_df[
-                        "월세_만원"
-                    ]
-                ),
-
-            "월환산주거비_중앙값_만원":
-                safe_median(
-                    dong_df[
-                        "월환산주거비_만원"
-                    ]
-                ),
-
-
-            # =============================================
-            # 주택유형
-            # =============================================
-
-            "아파트거래건수":
-                int(
-                    apartment_count
-                ),
-
-            "오피스텔거래건수":
-                int(
-                    officetel_count
-                ),
-
-            "연립다세대거래건수":
-                int(
-                    rowhouse_count
-                ),
-
-            "단독다가구거래건수":
-                int(
-                    single_count
-                ),
-
-
-            # =============================================
-            # 분석기준
-            # =============================================
-
-            "표본상태":
-                sample_status,
-
-            "면적기준":
-                "전용면적 59.5㎡ 이하",
-
-            "평수기준":
-                "18평 이하",
-
-            "거래유형기준":
-                "전세+월세",
-
-            "행정동매핑기준":
-                "실거래 지번주소→좌표→공식 행정동",
-
-            "분석시작월":
-                ANALYSIS_START,
-
-            "분석종료월":
-                ANALYSIS_END,
-
-            "보증금환산율":
-                DEPOSIT_ANNUAL_RATE
+            "자치구": project_gu,
+            "행정동": project_dong,
+            "공식조회자치구": source_gu,
+            "원본유효거래건수": original_count,
+            "공공임대제외건수": excluded_count,
+            # 기존 하위 스크립트 호환: 이제 '전체거래건수'는 HL에 실제 사용한 민간임대 표본수
+            "전체거래건수": transaction_count,
+            "전세거래건수": len(jeonse_df),
+            "월세거래건수": len(monthly_df),
+            "전세보증금_평균값_만원": safe_mean(jeonse_df["보증금_만원"]),
+            "월세보증금_평균값_만원": safe_mean(monthly_df["보증금_만원"]),
+            "월세_평균값_만원": safe_mean(monthly_df["월세_만원"]),
+            "전체임대차보증금_평균값_만원": safe_mean(dong_df["보증금_만원"]),
+            "월환산주거비_평균값_만원": safe_mean(dong_df["월환산주거비_만원"]),
+            "전용면적_평균값_m2": safe_mean(dong_df["전용면적_m2"]),
+            "전세보증금_중앙값_만원": safe_median(jeonse_df["보증금_만원"]),
+            "월세보증금_중앙값_만원": safe_median(monthly_df["보증금_만원"]),
+            "월세_중앙값_만원": safe_median(monthly_df["월세_만원"]),
+            "월환산주거비_중앙값_만원": safe_median(dong_df["월환산주거비_만원"]),
+            "아파트거래건수": int((dong_df["housing_type"] == "아파트").sum()),
+            "오피스텔거래건수": int((dong_df["housing_type"] == "오피스텔").sum()),
+            "연립다세대거래건수": int((dong_df["housing_type"] == "연립다세대").sum()),
+            "단독다가구거래건수": int((dong_df["housing_type"] == "단독/다가구").sum()),
+            "표본상태": sample_status(transaction_count),
+            "주거비산정대상": "민간임대 실거래(공공임대 주소 일치 거래 제외)",
+            "면적기준": "전용면적 59.5㎡ 이하",
+            "평수기준": "18평 이하",
+            "거래유형기준": "전세+월세",
+            "행정동매핑기준": "실거래 지번주소→좌표→공식 행정동",
+            "공공임대제외기준": "마이홈 공공임대 공급단위 주소와 카카오 매칭주소 일치",
+            "분석시작월": ANALYSIS_START,
+            "분석종료월": ANALYSIS_END,
+            "보증금환산율": DEPOSIT_ANNUAL_RATE,
         }
-
-
-        result.append(
-            output
-        )
-
+        result.append(output)
 
         print(
-            f"{project_gu} "
-            f"{project_dong}"
-            f" → "
-            f"{transaction_count:,}건"
-            f" / 전세 "
-            f"{len(jeonse_df):,}"
-            f" / 월세 "
-            f"{len(monthly_df):,}"
-            f" / 월환산 평균 "
-            f"{output['월환산주거비_평균값_만원']}"
-            f"만원"
+            f"{project_gu} {project_dong}: "
+            f"원본 {original_count} / 공공임대 제외 {excluded_count} / "
+            f"민간 {transaction_count} / 월환산 평균 {output['월환산주거비_평균값_만원']}"
         )
 
+    result_df = pd.DataFrame(result)
+    if len(result_df) != 25:
+        raise ValueError("결과가 25개 동이 아닙니다.")
 
-    # =====================================================
-    # 결과 DataFrame
-    # =====================================================
+    result_df.to_csv(OUTPUT_FILE, index=False, encoding="utf-8-sig")
 
-    result_df = pd.DataFrame(
-        result
-    )
+    print("\n========================================")
+    print("수정된 동별 주거비 저장 완료")
+    print("========================================")
+    print(OUTPUT_FILE)
+    print(f"민간임대 표본 합계: {int(result_df['전체거래건수'].sum()):,}건")
+    print(f"공공임대 제외 합계: {int(result_df['공공임대제외건수'].sum()):,}건")
 
+    suwan = result_df[result_df["행정동"] == "수완동"].iloc[0]
+    print("\n[수완동 확인]")
+    print(f"원본: {int(suwan['원본유효거래건수'])}건")
+    print(f"공공임대 제외: {int(suwan['공공임대제외건수'])}건")
+    print(f"민간임대 사용: {int(suwan['전체거래건수'])}건")
+    print(f"월환산주거비: {suwan['월환산주거비_평균값_만원']}")
+    print(f"표본상태: {suwan['표본상태']}")
 
-    # =====================================================
-    # 25개 동 검증
-    # =====================================================
-
-    if len(
-        result_df
-    ) != 25:
-
-        print(
-            "\n오류:"
-            " 결과가 25개 동이 아닙니다."
-        )
-
-        return
-
-
-    # =====================================================
-    # 저장
-    # =====================================================
-
-    result_df.to_csv(
-        OUTPUT_FILE,
-        index=False,
-        encoding="utf-8-sig"
-    )
-
-
-    # =====================================================
-    # 결과 요약
-    # =====================================================
-
-    print()
-    print(
-        "========================================"
-    )
-
-    print(
-        "최종 동별 주거비 생성 완료"
-    )
-
-    print(
-        "========================================"
-    )
-
-
-    print(
-        f"\n분석 동 : "
-        f"{len(result_df)}개"
-    )
-
-
-    print(
-        f"총 유효거래 : "
-        f"{result_df['전체거래건수'].sum():,}건"
-    )
-
-
-    zero_df = result_df[
-        result_df[
-            "전체거래건수"
-        ]
-        == 0
-    ]
-
-
-    print(
-        f"거래 없는 동 : "
-        f"{len(zero_df)}곳"
-    )
-
-
-    if not zero_df.empty:
-
-        for _, row in (
-            zero_df.iterrows()
-        ):
-
-            print(
-                "-",
-                row["자치구"],
-                row["행정동"]
-            )
-
-
-    # =====================================================
-    # 농성1동 / 계림1동 확인
-    # =====================================================
-
-    print()
-    print(
-        "----------------------------------------"
-    )
-
-    print(
-        "농성1동 / 계림1동 최종 비교"
-    )
-
-    print(
-        "----------------------------------------"
-    )
-
-
-    check = result_df[
-        result_df[
-            "행정동"
-        ].isin(
-            [
-                "농성1동",
-                "계림1동"
-            ]
-        )
-    ]
-
-
-    for _, row in (
-        check.iterrows()
-    ):
-
-        print()
-        print(
-            f"[{row['자치구']} "
-            f"{row['행정동']}]"
-        )
-
-        print(
-            "전체거래 :",
-            row[
-                "전체거래건수"
-            ],
-            "건"
-        )
-
-        print(
-            "전세 :",
-            row[
-                "전세거래건수"
-            ],
-            "건"
-        )
-
-        print(
-            "월세 :",
-            row[
-                "월세거래건수"
-            ],
-            "건"
-        )
-
-        print(
-            "전세보증금 평균 :",
-            row[
-                "전세보증금_평균값_만원"
-            ],
-            "만원"
-        )
-
-        print(
-            "월세보증금 평균 :",
-            row[
-                "월세보증금_평균값_만원"
-            ],
-            "만원"
-        )
-
-        print(
-            "월세 평균 :",
-            row[
-                "월세_평균값_만원"
-            ],
-            "만원"
-        )
-
-        print(
-            "월환산주거비 평균 :",
-            row[
-                "월환산주거비_평균값_만원"
-            ],
-            "만원"
-        )
-
-
-    # =====================================================
-    # 첨단1동 / 첨단2동 확인
-    # =====================================================
-
-    print()
-    print(
-        "----------------------------------------"
-    )
-
-    print(
-        "첨단1동 / 첨단2동 최종 비교"
-    )
-
-    print(
-        "----------------------------------------"
-    )
-
-
-    check = result_df[
-        result_df[
-            "행정동"
-        ].isin(
-            [
-                "첨단1동",
-                "첨단2동"
-            ]
-        )
-    ]
-
-
-    for _, row in (
-        check.iterrows()
-    ):
-
-        print(
-            f"{row['자치구']} "
-            f"{row['행정동']}"
-            f" → "
-            f"{row['전체거래건수']}건"
-            f" / 월환산 평균 "
-            f"{row['월환산주거비_평균값_만원']}"
-            f"만원"
-        )
-
-
-    # =====================================================
-    # 저장위치
-    # =====================================================
-
-    print()
-    print(
-        "----------------------------------------"
-    )
-
-    print(
-        "최종 파일"
-    )
-
-    print(
-        OUTPUT_FILE
-    )
-
-    print(
-        "----------------------------------------"
-    )
-
-
-# =========================================================
-# 실행
-# =========================================================
 
 if __name__ == "__main__":
-
     main()

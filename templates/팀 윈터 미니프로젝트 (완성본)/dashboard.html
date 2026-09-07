@@ -33,7 +33,7 @@
         }
 
         .seg-btn.active {
-            background-color: #4f46e5;
+            background-color: #4f6ef7;
             color: #fff;
             box-shadow: 0 1px 2px rgba(0,0,0,.1);
         }
@@ -44,7 +44,7 @@
         }
 
         .topn-btn.active {
-            background-color: #4f46e5 !important;
+            background-color: #4f6ef7 !important;
             color: #fff !important;
         }
 
@@ -58,9 +58,663 @@
             border-radius: 9999px;
         }
     </style>
+
+<style id="winter-unified-design">
+:root{
+    --wa-bg:#edf3f8;
+    --wa-bg-2:#e7eef7;
+    --wa-surface:#f8fbff;
+    --wa-surface-2:#f1f6fb;
+    --wa-ink:#0b1324;
+    --wa-muted:#607089;
+    --wa-line:#d5e0ec;
+    --wa-navy:#08111f;
+    --wa-navy-2:#101c31;
+    --wa-blue:#4f6ef7;
+    --wa-blue-2:#3158ee;
+    --wa-cyan:#20c8df;
+    --wa-violet:#7c5cff;
+    --wa-amber:#f5a524;
+    --wa-green:#18a875;
+    --wa-shadow:0 14px 40px rgba(15,23,42,.08);
+    --wa-shadow-sm:0 6px 20px rgba(15,23,42,.06);
+}
+
+html{scroll-behavior:smooth;}
+
+body{
+    background:
+        radial-gradient(circle at 8% 3%, rgba(79,110,247,.10), transparent 24rem),
+        radial-gradient(circle at 92% 18%, rgba(32,200,223,.08), transparent 24rem),
+        linear-gradient(180deg,var(--wa-bg) 0%,var(--wa-bg-2) 100%) !important;
+    color:var(--wa-ink);
+}
+
+/* ---------- 공통 상단바 ---------- */
+.winter-topbar{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(8,17,31,.96);
+    border-bottom:1px solid rgba(148,163,184,.16);
+    box-shadow:0 8px 26px rgba(2,6,23,.18);
+    backdrop-filter:blur(18px);
+}
+.winter-topbar-inner{
+    width:min(1500px,94%);
+    margin:0 auto;
+    min-height:74px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:18px;
+}
+.winter-brand{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    text-decoration:none;
+    color:white;
+    flex:none;
+}
+.winter-brand-mark{
+    width:39px;
+    height:39px;
+    border-radius:13px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,var(--wa-blue),var(--wa-cyan));
+    box-shadow:0 8px 22px rgba(79,110,247,.32);
+    font-size:17px;
+}
+.winter-brand-eyebrow{
+    font-size:10px;
+    letter-spacing:.13em;
+    color:#8fa6c5;
+    font-weight:800;
+}
+.winter-brand-name{
+    font-size:14px;
+    font-weight:900;
+    color:#fff;
+    margin-top:1px;
+}
+.winter-brand-sub{
+    display:block;
+    font-size:10px;
+    color:#7185a3;
+    font-weight:700;
+    margin-top:2px;
+}
+.winter-stage-nav{
+    display:flex;
+    gap:6px;
+    padding:5px;
+    border:1px solid rgba(148,163,184,.13);
+    border-radius:18px;
+    background:rgba(255,255,255,.055);
+}
+.winter-stage-link{
+    min-width:142px;
+    padding:9px 13px;
+    display:flex;
+    align-items:center;
+    gap:9px;
+    text-decoration:none;
+    border-radius:13px;
+    color:#9fb0c9;
+    transition:.18s ease;
+}
+.winter-stage-link:hover{
+    color:white;
+    background:rgba(255,255,255,.07);
+}
+.winter-stage-link.active{
+    color:white;
+    background:linear-gradient(135deg,rgba(79,110,247,.95),rgba(49,88,238,.95));
+    box-shadow:0 8px 20px rgba(49,88,238,.24);
+}
+.winter-stage-no{
+    width:25px;
+    height:25px;
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex:none;
+    background:rgba(255,255,255,.10);
+    font-size:10px;
+    font-weight:900;
+}
+.winter-stage-copy strong{
+    display:block;
+    font-size:12px;
+    line-height:1.2;
+    font-weight:900;
+}
+.winter-stage-copy small{
+    display:block;
+    font-size:9px;
+    margin-top:3px;
+    color:inherit;
+    opacity:.68;
+    white-space:nowrap;
+}
+.winter-context-chip{
+    color:#b8c7dc;
+    border:1px solid rgba(148,163,184,.18);
+    background:rgba(255,255,255,.055);
+    padding:9px 12px;
+    border-radius:12px;
+    font-size:11px;
+    line-height:1.35;
+    font-weight:800;
+    text-align:right;
+    flex:none;
+}
+.winter-context-chip strong{
+    color:white;
+    display:block;
+    font-size:12px;
+}
+
+/* ---------- 페이지 공통 소개 카드 ---------- */
+.winter-page-hero{
+    position:relative;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 85% 15%,rgba(32,200,223,.18),transparent 17rem),
+        linear-gradient(135deg,#0b1527 0%,#142441 58%,#153964 100%);
+    border:1px solid rgba(111,143,190,.28);
+    box-shadow:var(--wa-shadow);
+    border-radius:24px;
+    padding:30px 32px;
+    color:white;
+}
+.winter-page-hero:after{
+    content:"";
+    position:absolute;
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    right:-80px;
+    bottom:-130px;
+    background:rgba(124,92,255,.18);
+    filter:blur(4px);
+}
+.winter-step-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    padding:6px 10px;
+    border-radius:999px;
+    border:1px solid rgba(255,255,255,.16);
+    background:rgba(255,255,255,.08);
+    color:#bfeeff;
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:.03em;
+}
+.winter-page-hero h1{
+    color:white !important;
+    font-size:30px !important;
+    line-height:1.24;
+    font-weight:900 !important;
+    margin:12px 0 8px !important;
+    letter-spacing:-.035em;
+}
+.winter-page-hero p{
+    color:#c9d5e8 !important;
+    font-size:14px !important;
+    line-height:1.75;
+    margin:0 !important;
+}
+.winter-page-hero .hero-meta{
+    margin-top:13px;
+    color:#8fa8c8;
+    font-size:11px;
+    font-weight:700;
+}
+.winter-hero-side{
+    min-width:210px;
+    padding:14px 16px;
+    border:1px solid rgba(255,255,255,.13);
+    border-radius:16px;
+    background:rgba(255,255,255,.07);
+}
+.winter-hero-side .kicker{
+    font-size:10px;
+    color:#8fa8c8;
+    font-weight:800;
+}
+.winter-hero-side .value{
+    color:white;
+    font-size:17px;
+    font-weight:900;
+    margin-top:4px;
+}
+
+/* ---------- 카드 계층 ---------- */
+.wa-panel{
+    background:rgba(248,251,255,.90);
+    border:1px solid var(--wa-line);
+    border-radius:20px;
+    box-shadow:var(--wa-shadow-sm);
+}
+.wa-soft{
+    background:linear-gradient(135deg,#f5f9ff,#edf5fb);
+    border:1px solid #d7e4f1;
+}
+.wa-note{
+    background:linear-gradient(135deg,#eef4ff,#edf9fb) !important;
+    border:1px solid #cfe0ef !important;
+    color:#36506d !important;
+}
+
+/* 기존 흰 카드가 페이지 배경에 묻히지 않도록 */
+.bg-white{
+    box-shadow:0 5px 18px rgba(15,23,42,.045);
+}
+
+/* ---------- 공통 푸터 ---------- */
+.winter-footer{
+    width:min(1500px,94%);
+    margin:28px auto 0;
+    padding:22px 0 30px;
+    color:#788aa2;
+    font-size:11px;
+    text-align:center;
+    border-top:1px solid rgba(148,163,184,.28);
+}
+
+/* ---------- 반응형 ---------- */
+@media (max-width:1100px){
+    .winter-topbar-inner{flex-wrap:wrap;padding:12px 0;}
+    .winter-stage-nav{order:3;width:100%;overflow-x:auto;}
+    .winter-stage-link{flex:1;min-width:132px;}
+}
+@media (max-width:680px){
+    .winter-context-chip{display:none;}
+    .winter-brand-sub{display:none;}
+    .winter-page-hero{padding:24px 20px;}
+    .winter-page-hero h1{font-size:25px !important;}
+    .winter-stage-link{min-width:125px;}
+    .winter-stage-copy small{display:none;}
+}
+</style>
+
+
+<style id="winter-wide-light-overrides">
+/* =========================================================
+   WINTER Analytics · Wide + Light UI
+   - 데스크톱에서 좌우 여백 최소화
+   - 다크 네이비 영역을 밝은 AI/SaaS 톤으로 변경
+   ========================================================= */
+
+:root{
+    --wa-bg:#eef5fb;
+    --wa-bg-2:#e9f1f8;
+    --wa-surface:#fbfdff;
+    --wa-surface-2:#f3f8fc;
+    --wa-ink:#101828;
+    --wa-muted:#667085;
+    --wa-line:#d4e0ec;
+    --wa-blue:#3f63f3;
+    --wa-blue-2:#3157e8;
+    --wa-cyan:#1eb9d0;
+    --wa-shadow:0 10px 30px rgba(31,54,85,.07);
+    --wa-shadow-sm:0 5px 16px rgba(31,54,85,.055);
+}
+
+/* 전체 배경 */
+body{
+    background:
+        radial-gradient(circle at 8% 0%, rgba(63,99,243,.08), transparent 28rem),
+        radial-gradient(circle at 96% 12%, rgba(30,185,208,.07), transparent 26rem),
+        linear-gradient(180deg,#f2f7fb 0%,#eaf2f8 100%) !important;
+    color:var(--wa-ink) !important;
+}
+
+/* ---------------------------------------------------------
+   좌우 폭 확장
+--------------------------------------------------------- */
+.winter-topbar-inner,
+.winter-footer{
+    width:calc(100% - 32px) !important;
+    max-width:none !important;
+}
+
+.winter-page-shell{
+    width:calc(100% - 32px);
+    max-width:none;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+/* Tailwind의 max-w-7xl이 남아 있어도 사실상 전체 폭 사용 */
+.max-w-7xl{
+    max-width:none !important;
+}
+
+/* ---------------------------------------------------------
+   공통 상단바: 밝은 SaaS 스타일
+--------------------------------------------------------- */
+.winter-topbar{
+    background:rgba(250,252,255,.94) !important;
+    border-bottom:1px solid #dbe5ef !important;
+    box-shadow:0 5px 20px rgba(31,54,85,.07) !important;
+    backdrop-filter:blur(18px);
+}
+
+.winter-brand{
+    color:#101828 !important;
+}
+
+.winter-brand-mark{
+    background:linear-gradient(135deg,#4a6cf7,#27c1d7) !important;
+    box-shadow:0 7px 18px rgba(63,99,243,.22) !important;
+}
+
+.winter-brand-eyebrow{
+    color:#5b73b8 !important;
+}
+
+.winter-brand-name{
+    color:#101828 !important;
+}
+
+.winter-brand-sub{
+    color:#7a889b !important;
+}
+
+.winter-stage-nav{
+    background:#edf3f8 !important;
+    border:1px solid #d9e3ed !important;
+    box-shadow:inset 0 1px 2px rgba(31,54,85,.04) !important;
+}
+
+.winter-stage-link{
+    color:#66758a !important;
+}
+
+.winter-stage-link:hover{
+    color:#182230 !important;
+    background:#f8fbff !important;
+}
+
+.winter-stage-link.active{
+    color:#fff !important;
+    background:linear-gradient(135deg,#4b6df4,#3157e8) !important;
+    box-shadow:0 6px 16px rgba(49,87,232,.20) !important;
+}
+
+.winter-stage-no{
+    background:rgba(63,99,243,.09) !important;
+}
+
+.winter-stage-link.active .winter-stage-no{
+    background:rgba(255,255,255,.17) !important;
+}
+
+.winter-context-chip{
+    color:#667085 !important;
+    background:#f6f9fc !important;
+    border:1px solid #d9e3ed !important;
+}
+
+.winter-context-chip strong{
+    color:#182230 !important;
+}
+
+/* ---------------------------------------------------------
+   STEP 소개 영역: 다크 → 밝은 블루/시안
+--------------------------------------------------------- */
+.winter-page-hero{
+    background:
+        radial-gradient(circle at 88% 18%,rgba(30,185,208,.12),transparent 17rem),
+        radial-gradient(circle at 72% 100%,rgba(63,99,243,.10),transparent 20rem),
+        linear-gradient(135deg,#f8fbff 0%,#edf5ff 55%,#e9f8fb 100%) !important;
+    border:1px solid #cbdced !important;
+    box-shadow:0 12px 32px rgba(49,87,120,.08) !important;
+    color:#101828 !important;
+}
+
+.winter-page-hero:after{
+    background:rgba(63,99,243,.07) !important;
+}
+
+.winter-step-badge{
+    background:#e9f1ff !important;
+    border:1px solid #c8daf9 !important;
+    color:#3157e8 !important;
+}
+
+.winter-page-hero h1{
+    color:#101828 !important;
+}
+
+.winter-page-hero p{
+    color:#4f6074 !important;
+}
+
+.winter-page-hero .hero-meta{
+    color:#56709a !important;
+}
+
+.winter-hero-side{
+    background:rgba(255,255,255,.72) !important;
+    border:1px solid #cfddea !important;
+    box-shadow:0 5px 16px rgba(31,54,85,.05);
+}
+
+.winter-hero-side .kicker{
+    color:#73839a !important;
+}
+
+.winter-hero-side .value{
+    color:#172033 !important;
+}
+
+/* ---------------------------------------------------------
+   카드/패널
+--------------------------------------------------------- */
+.wa-panel,
+.bg-white,
+.bg-\[\#f8fbff\]\/95,
+.bg-\[\#f8fbff\]{
+    border-color:#d4e0ec !important;
+}
+
+.wa-note{
+    background:linear-gradient(135deg,#edf5ff,#edf9fb) !important;
+    border-color:#cfddeb !important;
+    color:#40556d !important;
+}
+
+/* ---------------------------------------------------------
+   Policy 페이지의 기존 다크 Executive 영역도 밝게
+--------------------------------------------------------- */
+.executive{
+    background:
+        radial-gradient(circle at 90% 8%,rgba(30,185,208,.10),transparent 16rem),
+        linear-gradient(135deg,#eef5ff,#f7fbff) !important;
+    color:#101828 !important;
+    border:1px solid #cbdced !important;
+    box-shadow:0 12px 32px rgba(31,54,85,.08) !important;
+}
+
+.executive-label{
+    color:#5570a5 !important;
+}
+
+.executive h2{
+    color:#101828 !important;
+}
+
+.executive-card{
+    background:rgba(255,255,255,.78) !important;
+    border:1px solid #d4e0ec !important;
+    box-shadow:0 4px 14px rgba(31,54,85,.045);
+}
+
+.executive-card-title{
+    color:#64748b !important;
+}
+
+.executive-card-value{
+    color:#172033 !important;
+}
+
+.executive-insight{
+    background:#ffffff !important;
+    color:#334155 !important;
+    border:1px solid #d8e4ef !important;
+    border-left:4px solid #3f63f3 !important;
+}
+
+.executive-note{
+    color:#64748b !important;
+}
+
+/* policy 상단 소개도 조금 더 밝게 */
+.header{
+    background:
+        radial-gradient(circle at 92% 20%,rgba(30,185,208,.09),transparent 15rem),
+        linear-gradient(135deg,#f9fbff,#eef6fc) !important;
+}
+
+/* ---------------------------------------------------------
+   넓어진 화면에서 그리드도 자연스럽게 활용
+--------------------------------------------------------- */
+@media (min-width:1450px){
+    #dong-grid{
+        grid-template-columns:repeat(5,minmax(0,1fr)) !important;
+    }
+
+    .district-grid{
+        grid-template-columns:repeat(3,minmax(320px,1fr)) !important;
+    }
+
+    .summary-grid,
+    .executive-grid,
+    .type-grid{
+        gap:18px !important;
+    }
+}
+
+/* 너무 넓은 화면에서도 페이지 끝까지 자연스럽게 사용 */
+@media (min-width:1900px){
+    .winter-topbar-inner,
+    .winter-footer,
+    .container,
+    .category-banner-wrapper{
+        width:calc(100% - 48px) !important;
+        max-width:none !important;
+    }
+}
+
+@media (max-width:760px){
+    .winter-topbar-inner,
+    .winter-footer{
+        width:calc(100% - 20px) !important;
+    }
+}
+</style>
+
+
+<style id="winter-desktop-margin-override">
+/* =========================================================
+   데스크톱 좌우 여백 조정
+   - 일반 데스크톱: 좌우 약 128px
+   - 약 3.4cm 수준(96dpi 기준)
+   - 화면이 좁아질수록 자동으로 여백 축소
+   ========================================================= */
+
+:root{
+    --page-side-gap:128px;
+}
+
+/* 공통 상단바 / 푸터 */
+.winter-topbar-inner,
+.winter-footer{
+    width:calc(100% - (var(--page-side-gap) * 2)) !important;
+    max-width:none !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+}
+
+/* Tailwind 기반 페이지 */
+body > .max-w-none,
+main.max-w-none{
+    width:calc(100% - (var(--page-side-gap) * 2)) !important;
+    max-width:none !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    padding-left:0 !important;
+    padding-right:0 !important;
+}
+
+/* Policy 페이지 */
+.container,
+.category-banner-wrapper{
+    width:calc(100% - (var(--page-side-gap) * 2)) !important;
+    max-width:none !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+}
+
+/* 혹시 남아 있는 공통 shell */
+.winter-page-shell{
+    width:calc(100% - (var(--page-side-gap) * 2)) !important;
+    max-width:none !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+}
+
+/* 넓은 화면도 동일한 약 3~4cm 여백 유지 */
+@media (min-width:1900px){
+    :root{
+        --page-side-gap:140px;
+    }
+
+    .winter-topbar-inner,
+    .winter-footer,
+    .container,
+    .category-banner-wrapper,
+    body > .max-w-none,
+    main.max-w-none,
+    .winter-page-shell{
+        width:calc(100% - (var(--page-side-gap) * 2)) !important;
+        max-width:none !important;
+    }
+}
+
+/* 중간 화면에서는 너무 좁아지지 않게 */
+@media (max-width:1400px){
+    :root{
+        --page-side-gap:72px;
+    }
+}
+
+/* 태블릿 */
+@media (max-width:1000px){
+    :root{
+        --page-side-gap:28px;
+    }
+}
+
+/* 모바일 */
+@media (max-width:680px){
+    :root{
+        --page-side-gap:14px;
+    }
+}
+</style>
+
 </head>
 
-<body class="bg-gray-100 text-gray-800">
+<body class="text-slate-900">
 
     <!-- =====================================================
          공통 상단 메뉴
@@ -69,94 +723,94 @@
          2. HL Score
          3. 종합 분석
     ====================================================== -->
-    <header class="bg-white border-b border-slate-200 py-4 px-6 sticky top-0 z-50 shadow-sm">
-        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-4">
-            <div class="flex items-center gap-3">
-                <div class="bg-blue-600 text-white p-2.5 rounded-xl font-bold text-base shadow-sm">❄️</div>
-                <div>
-                    <span class="text-xs text-slate-400 block font-bold tracking-wider">WINTER</span>
-                    <span class="text-base font-extrabold text-slate-900">
-                        WINTER Analytics
-                        <span class="ml-4">[최신 업데이트 일자 2026/09/05]</span>
-                    </span>
-                </div>
-            </div>
+    
+<header class="winter-topbar">
+    <div class="winter-topbar-inner">
+        <a href="/dashboard" class="winter-brand">
+            <span class="winter-brand-mark">❄️</span>
+            <span>
+                <span class="winter-brand-eyebrow">WINTER</span>
+                <span class="winter-brand-name">WINTER Analytics</span>
+                <span class="winter-brand-sub">AI Bootcamp Mini Project · Gwangju 2030</span>
+            </span>
+        </a>
 
-            <nav class="flex items-center bg-slate-100 p-1.5 rounded-full gap-1.5 shadow-inner">
-                <a href="/dashboard"
-                   class="px-5 py-2 rounded-full text-sm font-bold bg-blue-600 text-white shadow-md transition-all">
-                    시각화 대시보드
-                </a>
-                <a href="/hl-dashboard"
-                   class="px-5 py-2 rounded-full text-sm font-bold text-slate-600 hover:text-slate-900 transition-all">
-                    HL Score
-                </a>
-                <a href="/policy-dashboard"
-                   class="px-5 py-2 rounded-full text-sm font-bold text-slate-600 hover:text-slate-900 transition-all">
-                    종합 분석
-                </a>
-            </nav>
-
-            <div class="flex items-center gap-3">
-                <button type="button"
-                        class="px-4 py-2 border border-slate-200 rounded-xl text-sm font-semibold text-slate-700 bg-white shadow-sm">
-                    데이터 근거 보기
-                </button>
-                <button type="button"
-                        class="p-2.5 border border-slate-200 rounded-xl text-slate-700 bg-white shadow-sm">
-                    🌙
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <div class="max-w-7xl mx-auto px-4 py-8">
-
-        <!-- 원본 시각화 대시보드 상단 디자인/문구 유지 -->
-        <header class="bg-white shadow-sm rounded-2xl p-6 mb-8 border border-gray-100 flex flex-col md:flex-row justify-between items-center">
-            <div>
-                <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    7개 CSV 원본 데이터 기반
+        <nav class="winter-stage-nav">
+            
+            <a href="/dashboard" class="winter-stage-link active">
+                <span class="winter-stage-no">01</span>
+                <span class="winter-stage-copy">
+                    <strong>데이터 보기</strong>
+                    <small>25개 동 차이 확인</small>
                 </span>
+            </a>
+            <a href="/hl-dashboard" class="winter-stage-link">
+                <span class="winter-stage-no">02</span>
+                <span class="winter-stage-copy">
+                    <strong>HL 점수</strong>
+                    <small>4가지 환경을 한 점수로</small>
+                </span>
+            </a>
+            <a href="/policy-dashboard" class="winter-stage-link">
+                <span class="winter-stage-no">03</span>
+                <span class="winter-stage-copy">
+                    <strong>정책 인사이트</strong>
+                    <small>청년 정착 지원 힌트</small>
+                </span>
+            </a>
+        </nav>
 
-                <h1 class="text-3xl font-bold text-gray-900 mt-2">
-                    광주광역시 25개동 통합 시각화 대시보드
-                </h1>
+        <div class="winter-context-chip">
+            AI 부트캠프 미니프로젝트
+            <strong>광주 25개 동 · 2030 주거환경</strong>
+        </div>
+    </div>
+</header>
 
-                <p class="text-gray-500 text-sm mt-1">
-                    모든 탭에서 25개 행정동 전체 데이터를 지표 선택 · 정렬 · 표시개수 조절 ·
-                    차트/카드 전환으로 한눈에 확인할 수 있습니다.
-                </p>
-            </div>
 
-            <div class="mt-4 md:mt-0 text-right">
-                <span class="text-xs text-gray-400 block">분석 대상</span>
-                <span class="text-lg font-bold text-gray-700">총 25개 행정동</span>
-            </div>
-        </header>
+    <div class="max-w-none mx-auto px-4 lg:px-5 py-8">
+
+        
+<!-- STEP 01 소개 -->
+<section class="winter-page-hero mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+    <div>
+        <span class="winter-step-badge">STEP 01 · 데이터 보기</span>
+        <h1>광주 2030 주거 데이터를 한눈에 보기</h1>
+        <p>
+            25개 동의 청년 인구, 생활시설, 교통, 주거비를 먼저 비교합니다.
+            “어느 지역이 어떤 점에서 다른가?”를 쉽고 빠르게 찾는 첫 단계입니다.
+        </p>
+        <div class="hero-meta">데이터를 살펴본 뒤 → HL 점수로 비교 → 정책 인사이트로 확장합니다.</div>
+    </div>
+    <div class="winter-hero-side">
+        <div class="kicker">분석 대상</div>
+        <div class="value">광주 5개 구 · 25개 동</div>
+    </div>
+</section>
+
 
         <!-- =====================================================
              내부 시각화 탭 7개
         ====================================================== -->
-        <div class="flex flex-wrap gap-2 mb-8 bg-white p-3 rounded-xl shadow-sm border border-gray-100">
+        <div class="flex flex-wrap gap-2 mb-8 bg-[#f8fbff]/95 p-3 rounded-2xl shadow-md border border-slate-300">
             <button onclick="switchTab(0)" id="btn-0"
                     class="tab-btn flex-1 min-w-[140px] py-3 px-4 rounded-lg font-semibold text-sm transition bg-blue-600 text-white shadow">
-                1. 2030 인구
+                1. 청년 인구
             </button>
 
             <button onclick="switchTab(1)" id="btn-1"
                     class="tab-btn flex-1 min-w-[140px] py-3 px-4 rounded-lg font-semibold text-sm transition bg-gray-100 text-gray-600 hover:bg-gray-200">
-                2. 2030 추가시설
+                2. 청년 선호시설
             </button>
 
             <button onclick="switchTab(2)" id="btn-2"
                     class="tab-btn flex-1 min-w-[140px] py-3 px-4 rounded-lg font-semibold text-sm transition bg-gray-100 text-gray-600 hover:bg-gray-200">
-                3. 교통접근성
+                3. 교통
             </button>
 
             <button onclick="switchTab(3)" id="btn-3"
                     class="tab-btn flex-1 min-w-[140px] py-3 px-4 rounded-lg font-semibold text-sm transition bg-gray-100 text-gray-600 hover:bg-gray-200">
-                4. 생활인프라 상세
+                4. 생활시설
             </button>
 
             <button onclick="switchTab(4)" id="btn-4"
@@ -166,12 +820,12 @@
 
             <button onclick="switchTab(5)" id="btn-5"
                     class="tab-btn flex-1 min-w-[140px] py-3 px-4 rounded-lg font-semibold text-sm transition bg-gray-100 text-gray-600 hover:bg-gray-200">
-                6. 통합인프라
+                6. 4가지 환경 점수
             </button>
 
             <button onclick="switchTab(6)" id="btn-6"
                     class="tab-btn flex-1 min-w-[140px] py-3 px-4 rounded-lg font-semibold text-sm transition bg-gray-100 text-gray-600 hover:bg-gray-200">
-                7. 25개동 통합분석
+                7. 25개 동 한눈에
             </button>
         </div>
 
@@ -182,8 +836,8 @@
 
         <!-- PAGE 1 -->
         <div id="page-1" class="tab-content">
-            <div class="bg-indigo-50 border border-indigo-100 text-indigo-800 text-xs rounded-xl p-4 mb-6 leading-relaxed">
-                2030 청년이 선호하는 추가시설 데이터를 비교합니다.
+            <div class="wa-note text-xs rounded-xl p-4 mb-6 leading-relaxed">
+                청년이 자주 찾을 만한 생활·문화·쇼핑 시설을 비교합니다.
                 최종 통합 데이터에서는 선호시설 점수와 청년 1,000명당 선호시설 수준을 중심으로 확인합니다.
             </div>
             <div id="explorer-1"></div>
@@ -191,8 +845,8 @@
 
         <!-- PAGE 2 -->
         <div id="page-2" class="tab-content">
-            <div class="bg-indigo-50 border border-indigo-100 text-indigo-800 text-xs rounded-xl p-4 mb-6 leading-relaxed">
-                교통 접근성을 비교합니다.
+            <div class="wa-note text-xs rounded-xl p-4 mb-6 leading-relaxed">
+                버스정류소 거리와 교통 접근 수준을 비교합니다.
                 교통 접근성 점수, 가장 가까운 버스정류소 거리, 청년 1,000명당 정류소 수준과 공식 정류소 수를 함께 확인합니다.
             </div>
             <div id="explorer-2"></div>
@@ -200,8 +854,8 @@
 
         <!-- PAGE 3 -->
         <div id="page-3" class="tab-content">
-            <div class="bg-indigo-50 border border-indigo-100 text-indigo-800 text-xs rounded-xl p-4 mb-6 leading-relaxed">
-                생활 인프라 수준을 비교합니다.
+            <div class="wa-note text-xs rounded-xl p-4 mb-6 leading-relaxed">
+                카페·음식점·병원·편의점 등 일상생활에 필요한 시설을 비교합니다.
                 생활 인프라 점수와 청년 1,000명당 생활시설 수준을 중심으로 행정동별 차이를 확인합니다.
             </div>
             <div id="explorer-3"></div>
@@ -209,7 +863,7 @@
 
         <!-- PAGE 4 -->
         <div id="page-4" class="tab-content">
-            <div class="bg-indigo-50 border border-indigo-100 text-indigo-800 text-xs rounded-xl p-4 mb-6 leading-relaxed">
+            <div class="wa-note text-xs rounded-xl p-4 mb-6 leading-relaxed">
                 주거비는 2025-07 ~ 2026-06 전·월세 실거래 중 전용면적 59.5㎡ 이하를 대상으로 계산한 평균 월환산 주거비입니다.
                 보증금은 프로젝트 가정 연 5%를 적용해 월 비용으로 환산했습니다.
             </div>
@@ -218,8 +872,8 @@
 
         <!-- PAGE 5 -->
         <div id="page-5" class="tab-content">
-            <div class="bg-indigo-50 border border-indigo-100 text-indigo-800 text-xs rounded-xl p-4 mb-6 leading-relaxed">
-                생활 인프라·2030 선호시설·교통 접근성·주거 가성비를 함께 비교하는 통합 인프라 화면입니다.
+            <div class="wa-note text-xs rounded-xl p-4 mb-6 leading-relaxed">
+                HL 점수를 만들 때 사용한 생활·청년 선호시설·교통·주거비 4가지 환경 점수를 함께 비교합니다.
                 각 지표는 25개 동 내부 상대 비교를 위한 프로젝트 분석값입니다.
             </div>
             <div id="explorer-5"></div>
@@ -227,16 +881,14 @@
 
         <!-- PAGE 6 -->
         <div id="page-6" class="tab-content">
-            <div class="bg-indigo-50 border border-indigo-100 text-indigo-800 text-xs rounded-xl p-4 mb-6 leading-relaxed">
-                25개 동의 핵심 지표를 한 화면에서 비교합니다.
+            <div class="wa-note text-xs rounded-xl p-4 mb-6 leading-relaxed">
+                25개 동의 주요 생활환경 지표를 한 화면에서 비교합니다.
                 HL Score, 2030 인구, 청년 공공시설, 공공임대 공급 기반, 공식 버스정류소 등 최종 통합지표를 확인합니다.
             </div>
             <div id="explorer-6"></div>
         </div>
 
-        <footer class="text-center text-xs text-gray-400 py-8">
-            WINTER Analytics · Final integrated dataset · 2026
-        </footer>
+        <footer class="winter-footer">WINTER Analytics · STEP 01 데이터 보기 · AI Bootcamp Mini Project · 2026</footer>
     </div>
 
 
@@ -390,7 +1042,7 @@
         }
 
         const page0Metrics = existingMetrics([
-            { key: '2030인구수', label: '2030 청년인구', unit: '명', color: '#6366f1' },
+            { key: '2030인구수', label: '2030 청년인구', unit: '명', color: '#4f6ef7' },
             { key: '2030인구비율', label: '2030 인구 비율', unit: '%', color: '#8b5cf6', decimals: 2 },
             { key: '생활시설_1000명당', label: '청년 1,000명당 생활시설', unit: '개', color: '#0ea5e9', decimals: 2 },
             { key: '선호시설_1000명당', label: '청년 1,000명당 선호시설', unit: '개', color: '#ec4899', decimals: 2 }
@@ -412,18 +1064,18 @@
         ]);
 
         const page3Metrics = existingMetrics([
-            { key: '생활인프라점수', label: '생활 인프라 점수', unit: '점', color: '#4f46e5', decimals: 1 },
+            { key: '생활인프라점수', label: '생활 인프라 점수', unit: '점', color: '#4f6ef7', decimals: 1 },
             { key: '생활시설_1000명당', label: '청년 1,000명당 생활시설', unit: '개', color: '#0ea5e9', decimals: 2 }
         ]);
 
         const page4Metrics = existingMetrics([
             { key: '월환산주거비', label: '평균 월환산 주거비', unit: '만원', color: '#2563eb', decimals: 2, lowerBetter: true },
-            { key: '전체거래건수', label: '주거 분석 표본수', unit: '건', color: '#6366f1' },
+            { key: '전체거래건수', label: '주거 분석 표본수', unit: '건', color: '#4f6ef7' },
             { key: '주거가성비점수', label: '주거 가성비 점수', unit: '점', color: '#10b981', decimals: 1 }
         ]);
 
         const page5Metrics = existingMetrics([
-            { key: '생활인프라점수', label: '생활 인프라 점수', unit: '점', color: '#4f46e5', decimals: 1 },
+            { key: '생활인프라점수', label: '생활 인프라 점수', unit: '점', color: '#4f6ef7', decimals: 1 },
             { key: '2030선호시설점수', label: '2030 선호시설 점수', unit: '점', color: '#db2777', decimals: 1 },
             { key: '교통접근성점수', label: '교통 접근성 점수', unit: '점', color: '#0891b2', decimals: 1 },
             { key: '주거가성비점수', label: '주거 가성비 점수', unit: '점', color: '#10b981', decimals: 1 },
@@ -431,12 +1083,12 @@
         ]);
 
         const page6Metrics = existingMetrics([
-            { key: 'HL_Score', label: 'HL Score', unit: '점', color: '#2563eb', decimals: 1 },
-            { key: '2030인구수', label: '2030 청년인구', unit: '명', color: '#6366f1' },
-            { key: '청년공공시설수', label: '청년 공공시설 수', unit: '개', color: '#8b5cf6' },
-            { key: '공공임대_세대수', label: '공공임대 공급 기반', unit: '세대', color: '#10b981' },
-            { key: '공식정류소수', label: '행정동 내부 공식 정류소', unit: '개', color: '#7c3aed' },
-            { key: '월환산주거비', label: '평균 월환산 주거비', unit: '만원', color: '#2563eb', decimals: 2, lowerBetter: true }
+            { key: '2030인구수', label: '2030 청년인구', unit: '명', color: '#4f6ef7' },
+            { key: '월환산주거비', label: '평균 월환산 주거비', unit: '만원', color: '#2563eb', decimals: 2, lowerBetter: true },
+            { key: '생활인프라점수', label: '생활 인프라 점수', unit: '점', color: '#4f6ef7', decimals: 1 },
+            { key: '2030선호시설점수', label: '청년 선호시설 점수', unit: '점', color: '#db2777', decimals: 1 },
+            { key: '교통접근성점수', label: '교통 접근성 점수', unit: '점', color: '#0891b2', decimals: 1 },
+            { key: '주거가성비점수', label: '주거 가성비 점수', unit: '점', color: '#10b981', decimals: 1 }
         ]);
 
 
@@ -484,7 +1136,6 @@
                         name: row._name,
                         district: row._district,
                         value: num(row[metric.key]),
-                        policyType: str(row['최종정책유형'])
                     }))
                     .filter(row => row.value !== null);
 
@@ -523,7 +1174,7 @@
                     .join('');
 
                 this.container.innerHTML = `
-                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex flex-col gap-4 mb-6">
+                    <div class="bg-[#f8fbff]/95 p-5 rounded-2xl shadow-md border border-slate-300 flex flex-col gap-4 mb-6">
                         <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
 
                             <div class="flex items-center gap-2 flex-none">
@@ -580,7 +1231,7 @@
                     </div>
 
                     <div data-role="chart-view" class="sub-view active">
-                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                        <div class="bg-[#f8fbff]/95 p-6 rounded-2xl shadow-md border border-slate-300">
                             <h3 data-role="chart-title" class="text-lg font-bold text-gray-800 mb-4"></h3>
                             <div data-role="chart-container" class="relative" style="height:720px;">
                                 <canvas data-role="canvas"></canvas>
@@ -589,7 +1240,7 @@
                     </div>
 
                     <div data-role="card-view" class="sub-view">
-                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                        <div class="bg-[#f8fbff]/95 p-6 rounded-2xl shadow-md border border-slate-300">
                             <h3 data-role="card-title" class="text-lg font-bold text-gray-800 mb-4"></h3>
                             <div data-role="card-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3"></div>
                         </div>
@@ -836,11 +1487,6 @@
                             <div class="text-base font-bold mb-2"
                                  style="color:${textMain}">
                                 ${this.fmt(row.value)}
-                            </div>
-
-                            <div class="text-[10px] mb-2"
-                                 style="color:${textSub}">
-                                ${row.policyType || ''}
                             </div>
 
                             <div class="w-full rounded-full h-1.5"

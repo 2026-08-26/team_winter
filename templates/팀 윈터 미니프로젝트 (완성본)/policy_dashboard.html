@@ -3020,6 +3020,585 @@ p,span,a,button,select,input,textarea,th,td{
 }
 </style>
 
+
+<style id="policy-selection-process-enlarged-v1">
+/* =========================================================
+   종합분석 > 2. 선정 과정
+   전체 구성과 폰트를 한 단계 확대
+   다른 탭/섹션은 변경하지 않음
+   ========================================================= */
+
+@media (min-width:1101px){
+
+    /* 선정 과정 전체 패널 */
+    #sec-flow{
+        padding:31px 30px 26px !important;
+    }
+
+    #sec-flow .policy-section-eyebrow{
+        font-size:12.5px !important;
+        margin-bottom:9px !important;
+    }
+
+    #sec-flow > h2{
+        font-size:27px !important;
+        line-height:1.25 !important;
+        margin-bottom:12px !important;
+        letter-spacing:-.03em !important;
+    }
+
+    #sec-flow .policy-readable-desc{
+        max-width:none !important;
+        margin-bottom:0 !important;
+        font-size:14.5px !important;
+        line-height:1.65 !important;
+    }
+
+    /* 4단계 카드 영역 */
+    #sec-flow .policy-question-flow{
+        grid-template-columns:1fr 34px 1fr 34px 1fr 34px 1fr !important;
+        gap:10px !important;
+        margin-top:28px !important;
+    }
+
+    #sec-flow .policy-question-step{
+        min-height:238px !important;
+        padding:25px 23px !important;
+        border-radius:19px !important;
+    }
+
+    #sec-flow .policy-step-no{
+        width:34px !important;
+        height:34px !important;
+        border-radius:10px !important;
+        font-size:11.5px !important;
+    }
+
+    #sec-flow .policy-question-step small{
+        margin-top:20px !important;
+        font-size:11.5px !important;
+        line-height:1.35 !important;
+    }
+
+    #sec-flow .policy-question-step strong{
+        margin-top:7px !important;
+        font-size:17.5px !important;
+        line-height:1.42 !important;
+        letter-spacing:-.025em !important;
+        word-break:keep-all !important;
+    }
+
+    #sec-flow .policy-question-step p{
+        margin-top:12px !important;
+        font-size:12.5px !important;
+        line-height:1.62 !important;
+        word-break:keep-all !important;
+    }
+
+    #sec-flow .policy-flow-arrow{
+        font-size:25px !important;
+    }
+
+    /* 맨 아래 읽는 순서 */
+    #sec-flow .policy-read-guide{
+        margin-top:22px !important;
+        padding:17px 18px !important;
+        gap:13px !important;
+        border-radius:15px !important;
+    }
+
+    #sec-flow .policy-read-guide b{
+        font-size:12.5px !important;
+        margin-right:6px !important;
+    }
+
+    #sec-flow .policy-read-guide span{
+        padding:7px 11px !important;
+        font-size:11.5px !important;
+        line-height:1.25 !important;
+    }
+}
+
+/* 노트북 높이가 낮을 때는 한 화면에서 과도하게 커지지 않도록 살짝 완화 */
+@media (min-width:1101px) and (max-height:800px){
+
+    #sec-flow{
+        padding:27px 27px 23px !important;
+    }
+
+    #sec-flow > h2{
+        font-size:25px !important;
+    }
+
+    #sec-flow .policy-readable-desc{
+        font-size:13.5px !important;
+    }
+
+    #sec-flow .policy-question-flow{
+        margin-top:23px !important;
+    }
+
+    #sec-flow .policy-question-step{
+        min-height:220px !important;
+        padding:22px 20px !important;
+    }
+
+    #sec-flow .policy-question-step strong{
+        font-size:16.5px !important;
+    }
+
+    #sec-flow .policy-question-step p{
+        font-size:11.8px !important;
+    }
+
+    #sec-flow .policy-read-guide{
+        margin-top:18px !important;
+        padding:14px 16px !important;
+    }
+}
+</style>
+
+
+<style id="policy-type-guide-fonts-enlarged-v1">
+/* =========================================================
+   종합분석 > 5. 유형 해석(TYPE GUIDE)
+   카드 배치/크기는 유지하고 폰트 중심으로 확대
+   ========================================================= */
+
+@media (min-width:1101px){
+
+    /* 섹션 상단 */
+    #sec-dist .policy-section-eyebrow{
+        font-size:13px !important;
+        letter-spacing:.08em !important;
+    }
+
+    #sec-dist > h2{
+        font-size:27px !important;
+        line-height:1.28 !important;
+        margin-bottom:13px !important;
+        letter-spacing:-.03em !important;
+    }
+
+    #sec-dist .policy-readable-desc{
+        font-size:14.5px !important;
+        line-height:1.65 !important;
+        margin-bottom:0 !important;
+    }
+
+    /* 유형 카드 */
+    #sec-dist .policy-type-grid{
+        gap:15px !important;
+        margin-top:24px !important;
+    }
+
+    #sec-dist .policy-type-card{
+        min-height:150px !important;
+        padding:20px 21px !important;
+    }
+
+    #sec-dist .policy-type-top strong{
+        font-size:16px !important;
+        line-height:1.35 !important;
+        font-weight:850 !important;
+        letter-spacing:-.02em !important;
+        word-break:keep-all !important;
+    }
+
+    #sec-dist .policy-type-top b{
+        padding:7px 10px !important;
+        font-size:14px !important;
+        line-height:1.1 !important;
+        font-weight:900 !important;
+    }
+
+    #sec-dist .policy-type-card p{
+        margin-top:15px !important;
+        font-size:12.8px !important;
+        line-height:1.65 !important;
+        letter-spacing:-.01em !important;
+        word-break:keep-all !important;
+    }
+
+    /* 하단 안내문 */
+    #sec-dist .policy-caution.compact{
+        font-size:12.5px !important;
+        line-height:1.6 !important;
+        padding:14px 17px !important;
+    }
+}
+
+/* 세로가 낮은 화면에서는 과도한 확대를 완화 */
+@media (min-width:1101px) and (max-height:800px){
+
+    #sec-dist > h2{
+        font-size:25px !important;
+    }
+
+    #sec-dist .policy-readable-desc{
+        font-size:13.5px !important;
+    }
+
+    #sec-dist .policy-type-card{
+        min-height:144px !important;
+        padding:18px 19px !important;
+    }
+
+    #sec-dist .policy-type-top strong{
+        font-size:15px !important;
+    }
+
+    #sec-dist .policy-type-top b{
+        font-size:13px !important;
+    }
+
+    #sec-dist .policy-type-card p{
+        font-size:12px !important;
+        line-height:1.58 !important;
+    }
+
+    #sec-dist .policy-caution.compact{
+        font-size:11.8px !important;
+    }
+}
+</style>
+
+
+<style id="winter-scroll-top-style">
+/* 공통 최상단 이동 버튼 */
+#winter-scroll-top{
+    position:fixed;
+    right:24px;
+    bottom:24px;
+    z-index:9999;
+    min-width:108px;
+    height:46px;
+    padding:0 16px;
+    border:1px solid rgba(49,87,232,.18);
+    border-radius:15px;
+    background:linear-gradient(135deg,#4b6df4 0%,#3157e8 62%,#1eb9d0 100%);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    font-family:'Pretendard','Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;
+    font-size:13px;
+    font-weight:800;
+    letter-spacing:-.02em;
+    box-shadow:0 10px 28px rgba(49,87,232,.26);
+    cursor:pointer;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(10px);
+    transition:opacity .18s ease, transform .18s ease, visibility .18s ease, box-shadow .18s ease;
+}
+
+#winter-scroll-top.show{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+
+#winter-scroll-top:hover{
+    transform:translateY(-2px);
+    box-shadow:0 14px 32px rgba(49,87,232,.32);
+}
+
+#winter-scroll-top:active{
+    transform:translateY(0);
+}
+
+#winter-scroll-top .winter-scroll-top-icon{
+    font-size:18px;
+    line-height:1;
+    font-weight:900;
+}
+
+@media (max-width:680px){
+    #winter-scroll-top{
+        right:14px;
+        bottom:14px;
+        width:46px;
+        min-width:46px;
+        padding:0;
+        border-radius:14px;
+    }
+
+    #winter-scroll-top .winter-scroll-top-text{
+        display:none;
+    }
+}
+</style>
+
+
+<style id="policy-section04-fonts-enlarged-corrected-v10">
+/* =========================================================
+   종합분석 > 4. 무엇이 부족?
+   현재 올바른 policy_dashboard 파일 기준 가독성 확대
+   ========================================================= */
+
+@media (min-width:1101px){
+
+    /* 섹션 상단 제목/설명 */
+    #sec-support .policy-section-eyebrow{
+        font-size:13px !important;
+        line-height:1.25 !important;
+        letter-spacing:.07em !important;
+    }
+
+    #sec-support > h2{
+        font-size:29px !important;
+        line-height:1.28 !important;
+        letter-spacing:-.035em !important;
+        margin-top:9px !important;
+        margin-bottom:13px !important;
+    }
+
+    #sec-support .policy-readable-desc{
+        font-size:14.5px !important;
+        line-height:1.68 !important;
+        margin-bottom:0 !important;
+    }
+
+    /* 3개 공급 카드 */
+    #sec-support .policy-support-columns{
+        gap:18px !important;
+        margin-top:26px !important;
+    }
+
+    #sec-support .policy-support-column{
+        border-radius:21px !important;
+    }
+
+    #sec-support .policy-support-head{
+        padding:22px 21px 13px !important;
+        gap:16px !important;
+    }
+
+    #sec-support .policy-support-head small{
+        font-size:12px !important;
+        line-height:1.25 !important;
+        font-weight:900 !important;
+    }
+
+    #sec-support .policy-support-head h3{
+        margin-top:5px !important;
+        font-size:19px !important;
+        line-height:1.3 !important;
+        font-weight:850 !important;
+        letter-spacing:-.025em !important;
+    }
+
+    #sec-support .policy-support-head > strong{
+        font-size:31px !important;
+        line-height:1.05 !important;
+        font-weight:900 !important;
+    }
+
+    #sec-support .policy-support-explain{
+        margin:0 21px 17px !important;
+        font-size:13.2px !important;
+        line-height:1.6 !important;
+        word-break:keep-all !important;
+    }
+
+    /* 지역별 행 */
+    #sec-support .policy-support-row{
+        gap:5px 13px !important;
+        padding:15px 21px !important;
+    }
+
+    #sec-support .policy-support-row b{
+        font-size:14.2px !important;
+        line-height:1.35 !important;
+        font-weight:800 !important;
+    }
+
+    #sec-support .policy-support-row span{
+        font-size:14.2px !important;
+        line-height:1.3 !important;
+        font-weight:900 !important;
+    }
+
+    #sec-support .policy-support-row small{
+        font-size:10.5px !important;
+        line-height:1.3 !important;
+    }
+
+    /* 하단 주의문 */
+    #sec-support .policy-caution.compact{
+        margin-top:20px !important;
+        padding:14px 16px !important;
+        font-size:12.5px !important;
+        line-height:1.55 !important;
+    }
+}
+
+/* 발표용 낮은 노트북 화면에서는 과도하게 커지지 않도록 완화 */
+@media (min-width:1101px) and (max-height:850px){
+
+    #sec-support > h2{
+        font-size:26px !important;
+    }
+
+    #sec-support .policy-readable-desc{
+        font-size:13px !important;
+    }
+
+    #sec-support .policy-support-columns{
+        margin-top:21px !important;
+        gap:15px !important;
+    }
+
+    #sec-support .policy-support-head{
+        padding:18px 18px 11px !important;
+    }
+
+    #sec-support .policy-support-head small{
+        font-size:10.8px !important;
+    }
+
+    #sec-support .policy-support-head h3{
+        font-size:17px !important;
+    }
+
+    #sec-support .policy-support-head > strong{
+        font-size:28px !important;
+    }
+
+    #sec-support .policy-support-explain{
+        margin:0 18px 13px !important;
+        font-size:11.8px !important;
+        line-height:1.5 !important;
+    }
+
+    #sec-support .policy-support-row{
+        padding:12px 18px !important;
+    }
+
+    #sec-support .policy-support-row b,
+    #sec-support .policy-support-row span{
+        font-size:12.8px !important;
+    }
+
+    #sec-support .policy-support-row small{
+        font-size:9.5px !important;
+    }
+
+    #sec-support .policy-caution.compact{
+        margin-top:15px !important;
+        padding:11px 14px !important;
+        font-size:11px !important;
+    }
+}
+</style>
+
+
+<style id="policy-type-guide-fonts-larger-v2">
+/* =========================================================
+   종합분석 > 5. 유형 해석
+   현재 파일 기준으로 카드/폰트 한 단계 더 확대
+   ========================================================= */
+
+@media (min-width:1101px){
+
+    #sec-dist .policy-section-eyebrow{
+        font-size:14px !important;
+        line-height:1.25 !important;
+        letter-spacing:.08em !important;
+    }
+
+    #sec-dist > h2{
+        font-size:30px !important;
+        line-height:1.25 !important;
+        margin-bottom:14px !important;
+        letter-spacing:-.035em !important;
+    }
+
+    #sec-dist .policy-readable-desc{
+        font-size:15.5px !important;
+        line-height:1.65 !important;
+    }
+
+    #sec-dist .policy-type-grid{
+        gap:16px !important;
+        margin-top:25px !important;
+    }
+
+    #sec-dist .policy-type-card{
+        min-height:165px !important;
+        padding:22px 22px !important;
+        border-radius:18px !important;
+    }
+
+    #sec-dist .policy-type-top strong{
+        font-size:18px !important;
+        line-height:1.35 !important;
+        font-weight:850 !important;
+        letter-spacing:-.025em !important;
+        word-break:keep-all !important;
+    }
+
+    #sec-dist .policy-type-top b{
+        padding:8px 11px !important;
+        font-size:15.5px !important;
+        line-height:1.1 !important;
+        font-weight:900 !important;
+    }
+
+    #sec-dist .policy-type-card p{
+        margin-top:17px !important;
+        font-size:14.3px !important;
+        line-height:1.62 !important;
+        letter-spacing:-.012em !important;
+        word-break:keep-all !important;
+    }
+
+    #sec-dist .policy-caution.compact{
+        margin-top:18px !important;
+        padding:15px 18px !important;
+        font-size:13.5px !important;
+        line-height:1.6 !important;
+    }
+}
+
+/* 낮은 화면에서만 아주 조금 완화 */
+@media (min-width:1101px) and (max-height:820px){
+
+    #sec-dist > h2{
+        font-size:27px !important;
+    }
+
+    #sec-dist .policy-readable-desc{
+        font-size:14px !important;
+    }
+
+    #sec-dist .policy-type-card{
+        min-height:150px !important;
+        padding:18px 19px !important;
+    }
+
+    #sec-dist .policy-type-top strong{
+        font-size:16px !important;
+    }
+
+    #sec-dist .policy-type-top b{
+        font-size:14px !important;
+    }
+
+    #sec-dist .policy-type-card p{
+        margin-top:14px !important;
+        font-size:12.8px !important;
+        line-height:1.55 !important;
+    }
+
+    #sec-dist .policy-caution.compact{
+        font-size:12px !important;
+    }
+}
+</style>
+
 </head>
 
 
@@ -4193,6 +4772,34 @@ p,span,a,button,select,input,textarea,th,td{
             applyEvidenceFilter();
         });
     });
+})();
+</script>
+
+
+<button id="winter-scroll-top" type="button" aria-label="페이지 최상단으로 이동" title="맨 위로">
+    <span class="winter-scroll-top-icon">↑</span>
+    <span class="winter-scroll-top-text">맨 위로</span>
+</button>
+
+
+<script id="winter-scroll-top-script">
+(function(){
+    const button = document.getElementById('winter-scroll-top');
+    if (!button) return;
+
+    const updateScrollTopButton = () => {
+        button.classList.toggle('show', window.scrollY > 320);
+    };
+
+    button.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    window.addEventListener('scroll', updateScrollTopButton, { passive: true });
+    updateScrollTopButton();
 })();
 </script>
 

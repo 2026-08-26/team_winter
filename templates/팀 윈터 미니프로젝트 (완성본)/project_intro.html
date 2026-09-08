@@ -12405,6 +12405,720 @@ body.project-intro-page #intro-topic .topic-question{
 }
 </style>
 
+
+<style id="project-start-blocks-proportional-v38">
+/* =========================================================
+   00 · PROJECT START
+   첫 페이지 01~05 카드 묶음 위치 비율 보정
+   - 카드 크기/폰트/제목/배지는 그대로
+   - 화면 높이에 따라 카드 묶음만 자연스럽게 아래로 배치
+   ========================================================= */
+
+@media (min-width:1181px){
+  body.project-intro-page #project-intro .story-strip{
+    margin-top:clamp(64px, 8vh, 84px) !important;
+  }
+}
+
+/* 일반 노트북 높이 */
+@media (min-width:1181px) and (max-height:900px){
+  body.project-intro-page #project-intro .story-strip{
+    margin-top:64px !important;
+  }
+}
+
+/* 세로가 더 낮은 화면은 한 페이지 유지 */
+@media (min-width:1181px) and (max-height:800px){
+  body.project-intro-page #project-intro .story-strip{
+    margin-top:50px !important;
+  }
+}
+</style>
+
+
+<style id="intro-topic-balanced-position-v39">
+/* =========================================================
+   01 · WHY THIS TOPIC? 위치 재정렬
+   - 01 배지 자체의 크기/스타일/여백은 수정하지 않음
+   - 기존 중앙 정렬 때문에 아래로 밀린 전체 콘텐츠를 원래 상단 흐름으로 복구
+   - 제목 → 주제칩 → 2개 설명 카드 간격만 균형 조정
+   ========================================================= */
+
+@media (min-width:1181px){
+
+  /* 섹션 전체 묶음: 화면 정중앙 강제 배치 해제 */
+  body.project-intro-page #intro-topic > .wrap{
+    justify-content:flex-start !important;
+    gap:0 !important;
+  }
+
+  /* 배지는 수정하지 않음 */
+
+  /* 제목 영역 */
+  body.project-intro-page #intro-topic .ppt-head{
+    flex:0 0 auto !important;
+    margin:0 !important;
+  }
+
+  /* 선택 주제 블록은 제목 아래 적당한 간격을 두고 배치 */
+  body.project-intro-page #intro-topic .ppt-choice-grid{
+    flex:0 0 60px !important;
+    min-height:60px !important;
+    max-height:60px !important;
+    margin:clamp(30px,4.3vh,42px) 0 12px !important;
+    gap:10px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-choice{
+    height:100% !important;
+    padding:0 13px !important;
+  }
+
+  /* 하단 2개 카드도 너무 위/아래로 치우치지 않도록 */
+  body.project-intro-page #intro-topic .ppt-two{
+    flex:0 0 clamp(232px,29vh,258px) !important;
+    min-height:232px !important;
+    max-height:258px !important;
+    margin:0 !important;
+    gap:14px !important;
+    align-items:stretch !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-callout{
+    height:100% !important;
+    min-height:0 !important;
+    justify-content:center !important;
+  }
+}
+
+/* 일반 노트북 화면 */
+@media (min-width:1181px) and (max-height:920px){
+
+  body.project-intro-page #intro-topic .ppt-choice-grid{
+    flex-basis:56px !important;
+    min-height:56px !important;
+    max-height:56px !important;
+    margin-top:30px !important;
+    margin-bottom:10px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-two{
+    flex-basis:224px !important;
+    min-height:224px !important;
+    max-height:224px !important;
+  }
+}
+
+/* 세로가 낮은 화면에서도 한 페이지 유지 */
+@media (min-width:1181px) and (max-height:800px){
+
+  body.project-intro-page #intro-topic .ppt-choice-grid{
+    flex-basis:48px !important;
+    min-height:48px !important;
+    max-height:48px !important;
+    margin-top:20px !important;
+    margin-bottom:8px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-two{
+    flex-basis:186px !important;
+    min-height:186px !important;
+    max-height:186px !important;
+  }
+}
+</style>
+
+
+<style id="intro-topic-balanced-lower-v40">
+/* =========================================================
+   01 · WHY THIS TOPIC?
+   제목 + 6개 선택칩 + 하단 2개 카드 전체를 살짝 아래로 이동
+   배지 자체는 수정하지 않음
+   ========================================================= */
+
+@media (min-width:1181px){
+
+  /* 배지 아래에서 제목 시작 위치를 조금 낮춤 */
+  body.project-intro-page #intro-topic .ppt-head{
+    margin-top:34px !important;
+  }
+
+  /* 제목 아래 6개 선택칩도 함께 자연스럽게 내려오게 */
+  body.project-intro-page #intro-topic .ppt-choice-grid{
+    margin-top:40px !important;
+    margin-bottom:14px !important;
+  }
+
+  /* 하단 2개 설명 카드도 카드 간격을 유지하며 함께 아래로 */
+  body.project-intro-page #intro-topic .ppt-two{
+    margin-top:0 !important;
+  }
+}
+
+/* 일반 노트북 높이 */
+@media (min-width:1181px) and (max-height:920px){
+
+  body.project-intro-page #intro-topic .ppt-head{
+    margin-top:28px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-choice-grid{
+    margin-top:34px !important;
+    margin-bottom:12px !important;
+  }
+}
+
+/* 더 낮은 화면에서는 한 페이지 유지 */
+@media (min-width:1181px) and (max-height:800px){
+
+  body.project-intro-page #intro-topic .ppt-head{
+    margin-top:18px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-choice-grid{
+    margin-top:24px !important;
+    margin-bottom:9px !important;
+  }
+}
+</style>
+
+
+<style id="intro-topic-centered-balance-v41">
+/* =========================================================
+   01 · WHY THIS TOPIC?
+   사용자가 원한 "가운데 정렬 느낌"으로 전체 묶음 재배치
+   - 배지 자체는 건드리지 않음
+   - 제목 + 6개 주제칩 + 2개 설명카드를 하나의 콘텐츠 묶음처럼
+     화면 세로 중앙에 가깝게 배치
+   ========================================================= */
+
+@media (min-width:1181px){
+
+  /* 섹션 내부를 세로 중앙에 가깝게 정렬 */
+  body.project-intro-page #intro-topic > .wrap{
+    justify-content:center !important;
+    gap:0 !important;
+    padding-top:0 !important;
+    padding-bottom:0 !important;
+  }
+
+  /* 배지는 기존 상태 유지 */
+
+  /* 제목 */
+  body.project-intro-page #intro-topic .ppt-head{
+    margin:0 !important;
+    flex:0 0 auto !important;
+  }
+
+  /* 제목과 주제칩 사이 간격 */
+  body.project-intro-page #intro-topic .ppt-choice-grid{
+    flex:0 0 58px !important;
+    min-height:58px !important;
+    max-height:58px !important;
+    margin:34px 0 12px !important;
+    gap:10px !important;
+  }
+
+  /* 하단 설명 카드 */
+  body.project-intro-page #intro-topic .ppt-two{
+    flex:0 0 232px !important;
+    min-height:232px !important;
+    max-height:232px !important;
+    margin:0 !important;
+    gap:14px !important;
+    align-items:stretch !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-callout{
+    height:100% !important;
+    min-height:0 !important;
+  }
+
+  /* 전체 콘텐츠 묶음을 아주 살짝 위쪽으로 보정해 시각적 중앙 맞춤 */
+  body.project-intro-page #intro-topic .ppt-head,
+  body.project-intro-page #intro-topic .ppt-choice-grid,
+  body.project-intro-page #intro-topic .ppt-two{
+    transform:translateY(-10px) !important;
+  }
+}
+
+/* 일반 노트북 화면 */
+@media (min-width:1181px) and (max-height:920px){
+
+  body.project-intro-page #intro-topic .ppt-choice-grid{
+    flex-basis:54px !important;
+    min-height:54px !important;
+    max-height:54px !important;
+    margin-top:28px !important;
+    margin-bottom:10px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-two{
+    flex-basis:212px !important;
+    min-height:212px !important;
+    max-height:212px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-head,
+  body.project-intro-page #intro-topic .ppt-choice-grid,
+  body.project-intro-page #intro-topic .ppt-two{
+    transform:translateY(-4px) !important;
+  }
+}
+
+/* 더 낮은 화면에서는 한 페이지 유지 */
+@media (min-width:1181px) and (max-height:800px){
+
+  body.project-intro-page #intro-topic .ppt-choice-grid{
+    flex-basis:48px !important;
+    min-height:48px !important;
+    max-height:48px !important;
+    margin-top:20px !important;
+    margin-bottom:8px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-two{
+    flex-basis:180px !important;
+    min-height:180px !important;
+    max-height:180px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-head,
+  body.project-intro-page #intro-topic .ppt-choice-grid,
+  body.project-intro-page #intro-topic .ppt-two{
+    transform:none !important;
+  }
+}
+</style>
+
+
+<style id="intro-topic-badge-fixed-title-up-v42">
+/* =========================================================
+   01 · WHY THIS TOPIC?
+   - 01 배지는 다른 섹션과 같은 상단 위치에 고정
+   - 큰 제목은 현재보다 위로 이동
+   - 제목과 6개 주제 블록 사이 간격은 조금 더 확보
+   - 하단 2개 카드까지 전체 균형 유지
+   ========================================================= */
+
+@media (min-width:1181px){
+
+  /* 다른 섹션처럼 상단 기준으로 시작 */
+  body.project-intro-page #intro-topic > .wrap{
+    justify-content:flex-start !important;
+    gap:0 !important;
+    padding-top:0 !important;
+    padding-bottom:0 !important;
+  }
+
+  /* 배지가 들어있는 head 자체를 아래로 밀지 않음 */
+  body.project-intro-page #intro-topic .ppt-head{
+    margin:0 !important;
+    flex:0 0 auto !important;
+    min-height:0 !important;
+    transform:none !important;
+  }
+
+  /* 배지는 기존 스타일/크기/위치 체계를 그대로 사용 */
+  body.project-intro-page #intro-topic .ppt-kicker{
+    transform:none !important;
+  }
+
+  /* 굵은 제목은 배지에 더 가깝게, 현재보다 위로 */
+  body.project-intro-page #intro-topic .topic-question{
+    margin:20px 0 0 !important;
+    transform:none !important;
+  }
+
+  /* 제목과 선택 블록 사이에는 숨 쉴 공간 확보 */
+  body.project-intro-page #intro-topic .ppt-choice-grid{
+    flex:0 0 58px !important;
+    min-height:58px !important;
+    max-height:58px !important;
+    margin:48px 0 12px !important;
+    gap:10px !important;
+    transform:none !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-choice{
+    height:100% !important;
+  }
+
+  /* 하단 2개 카드 */
+  body.project-intro-page #intro-topic .ppt-two{
+    flex:0 0 232px !important;
+    min-height:232px !important;
+    max-height:232px !important;
+    margin:0 !important;
+    gap:14px !important;
+    align-items:stretch !important;
+    transform:none !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-callout{
+    height:100% !important;
+    min-height:0 !important;
+  }
+}
+
+/* 일반 노트북 화면 */
+@media (min-width:1181px) and (max-height:920px){
+
+  body.project-intro-page #intro-topic .topic-question{
+    margin-top:16px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-choice-grid{
+    flex-basis:54px !important;
+    min-height:54px !important;
+    max-height:54px !important;
+    margin-top:40px !important;
+    margin-bottom:10px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-two{
+    flex-basis:214px !important;
+    min-height:214px !important;
+    max-height:214px !important;
+  }
+}
+
+/* 세로가 낮은 화면에서도 한 페이지 유지 */
+@media (min-width:1181px) and (max-height:800px){
+
+  body.project-intro-page #intro-topic .topic-question{
+    margin-top:12px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-choice-grid{
+    flex-basis:48px !important;
+    min-height:48px !important;
+    max-height:48px !important;
+    margin-top:28px !important;
+    margin-bottom:8px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-two{
+    flex-basis:184px !important;
+    min-height:184px !important;
+    max-height:184px !important;
+  }
+}
+</style>
+
+
+<style id="intro-topic-blocks-lower-v43">
+/* =========================================================
+   01 · WHY THIS TOPIC?
+   - 제목/배지는 그대로
+   - 제목과 첫 번째 블록 사이 간격 확대
+   - 6개 선택 블록 + 아래 2개 설명 카드 전체를 아래로 이동
+   ========================================================= */
+
+@media (min-width:1181px){
+
+  /* 제목은 그대로 두고, 첫 블록 시작점만 더 아래로 */
+  body.project-intro-page #intro-topic .ppt-choice-grid{
+    margin-top:74px !important;
+  }
+}
+
+/* 일반 노트북 화면 */
+@media (min-width:1181px) and (max-height:920px){
+  body.project-intro-page #intro-topic .ppt-choice-grid{
+    margin-top:62px !important;
+  }
+}
+
+/* 세로가 낮은 화면에서는 한 페이지 유지 */
+@media (min-width:1181px) and (max-height:800px){
+  body.project-intro-page #intro-topic .ppt-choice-grid{
+    margin-top:44px !important;
+  }
+}
+</style>
+
+
+<style id="intro-topic-blocks-lower-v44">
+/* =========================================================
+   01 · WHY THIS TOPIC?
+   - 제목/배지는 그대로
+   - 6개 선택 블록 + 아래 2개 설명카드 전체를 더 아래로 이동
+   - 사용자가 표시한 하단 영역 쪽으로 배치
+   ========================================================= */
+
+@media (min-width:1181px){
+
+  body.project-intro-page #intro-topic .ppt-choice-grid{
+    margin-top:150px !important;
+  }
+}
+
+/* 일반 노트북 화면 */
+@media (min-width:1181px) and (max-height:920px){
+  body.project-intro-page #intro-topic .ppt-choice-grid{
+    margin-top:132px !important;
+  }
+}
+
+/* 세로가 낮은 화면에서는 과도한 잘림 방지 */
+@media (min-width:1181px) and (max-height:800px){
+  body.project-intro-page #intro-topic .ppt-choice-grid{
+    margin-top:92px !important;
+  }
+}
+</style>
+
+
+<style id="intro-topic-all-lower-v45">
+/* =========================================================
+   01 · WHY THIS TOPIC?
+   - 현재 균형은 유지
+   - 배지는 그대로 고정
+   - 큰 제목 + 6개 주제 블록 + 하단 2개 카드 전체를
+     아주 조금씩 아래로 이동
+   ========================================================= */
+
+@media (min-width:1181px){
+
+  body.project-intro-page #intro-topic .topic-question,
+  body.project-intro-page #intro-topic .ppt-choice-grid,
+  body.project-intro-page #intro-topic .ppt-two{
+    transform:translateY(16px) !important;
+  }
+}
+
+/* 일반 노트북 화면 */
+@media (min-width:1181px) and (max-height:920px){
+  body.project-intro-page #intro-topic .topic-question,
+  body.project-intro-page #intro-topic .ppt-choice-grid,
+  body.project-intro-page #intro-topic .ppt-two{
+    transform:translateY(12px) !important;
+  }
+}
+
+/* 세로가 낮은 화면은 이동량 완화 */
+@media (min-width:1181px) and (max-height:800px){
+  body.project-intro-page #intro-topic .topic-question,
+  body.project-intro-page #intro-topic .ppt-choice-grid,
+  body.project-intro-page #intro-topic .ppt-two{
+    transform:translateY(7px) !important;
+  }
+}
+</style>
+
+
+<style id="intro-topic-blocks-slightly-larger-v46">
+/* =========================================================
+   01 · WHY THIS TOPIC?
+   - 현재 위치/간격은 유지
+   - 6개 선택 블록 + 아래 2개 설명 카드 크기만 소폭 확대
+   ========================================================= */
+
+@media (min-width:1181px){
+
+  /* 상단 6개 선택 블록 */
+  body.project-intro-page #intro-topic .ppt-choice-grid{
+    flex-basis:64px !important;
+    min-height:64px !important;
+    max-height:64px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-choice{
+    height:64px !important;
+    padding:0 16px !important;
+    border-radius:15px !important;
+  }
+
+  /* 아래 2개 설명 카드 */
+  body.project-intro-page #intro-topic .ppt-two{
+    flex-basis:248px !important;
+    min-height:248px !important;
+    max-height:248px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-callout{
+    min-height:248px !important;
+    padding:28px 30px !important;
+    border-radius:20px !important;
+  }
+}
+
+/* 일반 노트북 화면 */
+@media (min-width:1181px) and (max-height:920px){
+
+  body.project-intro-page #intro-topic .ppt-choice-grid{
+    flex-basis:60px !important;
+    min-height:60px !important;
+    max-height:60px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-choice{
+    height:60px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-two{
+    flex-basis:228px !important;
+    min-height:228px !important;
+    max-height:228px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-callout{
+    min-height:228px !important;
+    padding:24px 26px !important;
+  }
+}
+
+/* 낮은 화면에서는 한 페이지 유지 */
+@media (min-width:1181px) and (max-height:800px){
+
+  body.project-intro-page #intro-topic .ppt-choice-grid{
+    flex-basis:52px !important;
+    min-height:52px !important;
+    max-height:52px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-choice{
+    height:52px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-two{
+    flex-basis:194px !important;
+    min-height:194px !important;
+    max-height:194px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-callout{
+    min-height:194px !important;
+    padding:19px 21px !important;
+  }
+}
+</style>
+
+
+<style id="intro-topic-title-slightly-lower-v47">
+/* 01 · WHY THIS TOPIC? 큰 제목만 살짝 아래로 이동 */
+@media (min-width:1181px){
+  body.project-intro-page #intro-topic .topic-question{
+    transform:translateY(10px) !important;
+  }
+}
+
+@media (min-width:1181px) and (max-height:920px){
+  body.project-intro-page #intro-topic .topic-question{
+    transform:translateY(8px) !important;
+  }
+}
+
+@media (min-width:1181px) and (max-height:800px){
+  body.project-intro-page #intro-topic .topic-question{
+    transform:translateY(5px) !important;
+  }
+}
+</style>
+
+
+<style id="intro-topic-title-lower-blocks-taller-v48">
+/* =========================================================
+   01 · WHY THIS TOPIC?
+   - 큰 제목을 이전보다 조금 더 아래로 이동
+   - 상단 6개 주제 선택 블록의 세로 높이를 소폭 확대
+   - 다른 요소 위치/폰트는 유지
+   ========================================================= */
+
+@media (min-width:1181px){
+
+  /* 큰 제목 추가 하향 */
+  body.project-intro-page #intro-topic .topic-question{
+    transform:translateY(20px) !important;
+  }
+
+  /* 상단 6개 선택 블록 세로 길이 확대 */
+  body.project-intro-page #intro-topic .ppt-choice-grid{
+    flex-basis:72px !important;
+    min-height:72px !important;
+    max-height:72px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-choice{
+    height:72px !important;
+  }
+}
+
+/* 일반 노트북 화면 */
+@media (min-width:1181px) and (max-height:920px){
+
+  body.project-intro-page #intro-topic .topic-question{
+    transform:translateY(16px) !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-choice-grid{
+    flex-basis:68px !important;
+    min-height:68px !important;
+    max-height:68px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-choice{
+    height:68px !important;
+  }
+}
+
+/* 낮은 화면에서는 한 페이지 유지 */
+@media (min-width:1181px) and (max-height:800px){
+
+  body.project-intro-page #intro-topic .topic-question{
+    transform:translateY(10px) !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-choice-grid{
+    flex-basis:58px !important;
+    min-height:58px !important;
+    max-height:58px !important;
+  }
+
+  body.project-intro-page #intro-topic .ppt-choice{
+    height:58px !important;
+  }
+}
+</style>
+
+
+<style id="intro-topic-title-larger-v49">
+/* =========================================================
+   01 · WHY THIS TOPIC?
+   - 큰 제목만 확대해서 상단 빈 공간을 채움
+   - 현재 제목 위치/블록 위치는 유지
+   ========================================================= */
+
+@media (min-width:1181px){
+
+  body.project-intro-page #intro-topic .topic-question{
+    font-size:clamp(58px, 4.35vw, 72px) !important;
+    line-height:1.06 !important;
+    letter-spacing:-.052em !important;
+    max-width:1360px !important;
+  }
+}
+
+/* 일반 노트북 화면 */
+@media (min-width:1181px) and (max-height:920px){
+
+  body.project-intro-page #intro-topic .topic-question{
+    font-size:clamp(54px, 4.05vw, 66px) !important;
+    line-height:1.07 !important;
+  }
+}
+
+/* 세로가 낮은 화면에서는 한 페이지 유지 */
+@media (min-width:1181px) and (max-height:800px){
+
+  body.project-intro-page #intro-topic .topic-question{
+    font-size:clamp(48px, 3.7vw, 58px) !important;
+    line-height:1.08 !important;
+  }
+}
+</style>
+
 </head>
 <body class="project-intro-page">
 <header class="winter-topbar">

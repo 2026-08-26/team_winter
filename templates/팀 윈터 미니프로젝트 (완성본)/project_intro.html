@@ -11406,6 +11406,679 @@ body.project-intro-page #intro-topic .topic-question{
 }
 </style>
 
+
+<style id="section03-layout-rebalanced-v21">
+/* =========================================================
+   03 · DATA → HL SCORE · LAYOUT REBALANCE V21
+   요청 반영
+   1) 상단 6개 프로세스 + 계산식 블록을 살짝 위로 이동
+   2) 아래 좌/우 큰 블록 세로 길이를 조금 확대
+   3) 사용 기술 블록은 가로폭 축소
+   4) 시행착오 블록은 가로폭 확대
+   5) 시행착오 내부 폰트 확대
+   ※ 03 섹션 번호/설명 배지와 큰 제목은 변경하지 않음
+   ========================================================= */
+
+@media (min-width:1181px){
+
+  /* 상단 프로세스 묶음을 아주 조금 위로 */
+  body.project-intro-page #intro-process .ppt-process{
+    transform:translateY(-10px) !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-formula{
+    transform:translateY(-10px) !important;
+    margin-top:12px !important;
+  }
+
+  /* 위에서 확보된 공간을 아래 큰 블록 높이에 사용 */
+  body.project-intro-page #intro-process .ppt-tech-grid{
+    grid-template-columns:0.72fr 1.28fr !important;
+    gap:16px !important;
+    min-height:248px !important;
+    height:248px !important;
+    margin-top:8px !important;
+    margin-bottom:auto !important;
+    align-items:stretch !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-tech-grid > .ppt-tech{
+    height:248px !important;
+    min-height:248px !important;
+    padding:20px 21px !important;
+    overflow:hidden !important;
+  }
+
+  /* 사용 기술: 폭은 줄였지만 내부 2x2 구조는 안정적으로 유지 */
+  body.project-intro-page #intro-process .tech-stack-card{
+    padding-left:18px !important;
+    padding-right:18px !important;
+  }
+
+  body.project-intro-page #intro-process .tech-stack-desc{
+    margin:7px 0 14px !important;
+  }
+
+  body.project-intro-page #intro-process .tech-stack-grid{
+    gap:9px !important;
+  }
+
+  body.project-intro-page #intro-process .tech-stack-item{
+    min-height:64px !important;
+    padding:10px 11px !important;
+  }
+
+  /* 시행착오: 넓어진 공간을 활용해 가독성 확대 */
+  body.project-intro-page #intro-process .ppt-tech-grid > .ppt-tech:last-child{
+    padding:20px 22px !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-issues{
+    margin-top:12px !important;
+    gap:10px !important;
+    height:calc(100% - 42px) !important;
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    grid-template-rows:repeat(2,minmax(0,1fr)) !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-issue{
+    padding:11px 13px !important;
+    min-height:0 !important;
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:flex-start !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-issue b{
+    font-size:12.5px !important;
+    line-height:1.3 !important;
+    margin-bottom:4px !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-issue span{
+    font-size:11.5px !important;
+    line-height:1.48 !important;
+    margin-top:2px !important;
+  }
+}
+
+/* 화면 높이가 낮은 노트북에서는 넘침 방지 */
+@media (min-width:1181px) and (max-height:850px){
+
+  body.project-intro-page #intro-process .ppt-process,
+  body.project-intro-page #intro-process .ppt-formula{
+    transform:translateY(-7px) !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-tech-grid{
+    min-height:226px !important;
+    height:226px !important;
+    gap:14px !important;
+    margin-top:6px !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-tech-grid > .ppt-tech{
+    height:226px !important;
+    min-height:226px !important;
+    padding:16px 18px !important;
+  }
+
+  body.project-intro-page #intro-process .tech-stack-item{
+    min-height:56px !important;
+    padding:8px 9px !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-issues{
+    margin-top:9px !important;
+    gap:8px !important;
+    height:calc(100% - 36px) !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-issue{
+    padding:9px 11px !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-issue b{
+    font-size:11.5px !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-issue span{
+    font-size:10.5px !important;
+    line-height:1.42 !important;
+  }
+}
+</style>
+
+<style id="section03-suwan-case-font-v24">
+@media (min-width:1181px){
+  body.project-intro-page #intro-process .ppt-issue:last-child b{
+    font-size:13px !important;
+    line-height:1.28 !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-issue:last-child span{
+    font-size:12px !important;
+    line-height:1.42 !important;
+    letter-spacing:-.012em !important;
+    word-break:keep-all !important;
+  }
+}
+
+@media (min-width:1181px) and (max-height:850px){
+  body.project-intro-page #intro-process .ppt-issue:last-child b{
+    font-size:12px !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-issue:last-child span{
+    font-size:11px !important;
+    line-height:1.38 !important;
+  }
+}
+</style>
+
+
+<style id="section03-lower-blocks-extended-v25">
+/* =========================================================
+   03 · DATA → HL SCORE
+   하단 '사용 기술 / 전처리 시행착오' 영역만 세로로 살짝 확대
+   - 상단 6개 단계 / 계산식 / 섹션 배지 / 큰 제목은 변경하지 않음
+   - 바깥 큰 블록과 내부 2x2 내용 블록을 함께 늘려 글 넘침 방지
+   ========================================================= */
+
+@media (min-width:1181px){
+
+  /* 하단 좌우 큰 블록 전체 높이 확대 */
+  body.project-intro-page #intro-process .ppt-tech-grid{
+    min-height:276px !important;
+    height:276px !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-tech-grid > .ppt-tech{
+    min-height:276px !important;
+    height:276px !important;
+  }
+
+  /* 왼쪽 사용 기술 내부 블록도 세로 여유 확대 */
+  body.project-intro-page #intro-process .tech-stack-grid{
+    grid-template-rows:repeat(2,minmax(72px,1fr)) !important;
+    gap:10px !important;
+  }
+
+  body.project-intro-page #intro-process .tech-stack-item{
+    min-height:72px !important;
+    padding:11px 12px !important;
+  }
+
+  /* 오른쪽 시행착오 2x2 내용 블록도 함께 확대 */
+  body.project-intro-page #intro-process .ppt-issues{
+    grid-template-rows:repeat(2,minmax(82px,1fr)) !important;
+    gap:10px !important;
+    height:calc(100% - 42px) !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-issue{
+    min-height:82px !important;
+    padding:11px 13px !important;
+    overflow:hidden !important;
+  }
+
+  /* 수완동 사례 카드만 줄바꿈 안정화 */
+  body.project-intro-page #intro-process .ppt-issue:last-child span{
+    font-size:11.5px !important;
+    line-height:1.42 !important;
+    letter-spacing:-.012em !important;
+    word-break:keep-all !important;
+  }
+}
+
+/* 세로가 낮은 노트북 화면에서는 과한 증가 방지 */
+@media (min-width:1181px) and (max-height:850px){
+
+  body.project-intro-page #intro-process .ppt-tech-grid,
+  body.project-intro-page #intro-process .ppt-tech-grid > .ppt-tech{
+    min-height:250px !important;
+    height:250px !important;
+  }
+
+  body.project-intro-page #intro-process .tech-stack-grid{
+    grid-template-rows:repeat(2,minmax(62px,1fr)) !important;
+  }
+
+  body.project-intro-page #intro-process .tech-stack-item{
+    min-height:62px !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-issues{
+    grid-template-rows:repeat(2,minmax(72px,1fr)) !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-issue{
+    min-height:72px !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-issue:last-child span{
+    font-size:10.5px !important;
+    line-height:1.38 !important;
+  }
+}
+</style>
+
+
+<style id="section03-lower-blocks-larger-v26">
+/* =========================================================
+   03 · DATA → HL SCORE
+   하단 '사용 기술 / 전처리에서 겪은 시행착오' 영역 확대 V26
+   - 아래 남는 여백을 활용해 두 큰 블록을 살짝 더 키움
+   - 내부 2x2 카드와 폰트도 같이 확대
+   - 상단 프로세스/계산식/배지/제목은 그대로 유지
+   ========================================================= */
+
+@media (min-width:1181px){
+
+  /* 좌우 큰 블록 자체를 조금 더 크게 */
+  body.project-intro-page #intro-process .ppt-tech-grid{
+    min-height:304px !important;
+    height:304px !important;
+    margin-top:8px !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-tech-grid > .ppt-tech{
+    min-height:304px !important;
+    height:304px !important;
+    padding:22px 24px !important;
+  }
+
+  /* 왼쪽: 사용 기술 */
+  body.project-intro-page #intro-process .tech-stack-card h3{
+    font-size:21px !important;
+    line-height:1.25 !important;
+  }
+
+  body.project-intro-page #intro-process .tech-stack-desc{
+    font-size:12.5px !important;
+    line-height:1.5 !important;
+    margin:8px 0 15px !important;
+  }
+
+  body.project-intro-page #intro-process .tech-stack-grid{
+    grid-template-rows:repeat(2,minmax(78px,1fr)) !important;
+    gap:11px !important;
+  }
+
+  body.project-intro-page #intro-process .tech-stack-item{
+    min-height:78px !important;
+    padding:12px 13px !important;
+  }
+
+  body.project-intro-page #intro-process .tech-stack-item > span:first-child{
+    font-size:11.5px !important;
+    line-height:1.25 !important;
+  }
+
+  body.project-intro-page #intro-process .tech-stack-item .tech-chip{
+    font-size:11.5px !important;
+    padding:5px 9px !important;
+  }
+
+  /* 오른쪽: 시행착오 */
+  body.project-intro-page #intro-process .ppt-tech-grid > .ppt-tech:last-child h3{
+    font-size:21px !important;
+    line-height:1.25 !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-issues{
+    grid-template-rows:repeat(2,minmax(94px,1fr)) !important;
+    gap:11px !important;
+    height:calc(100% - 44px) !important;
+    margin-top:13px !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-issue{
+    min-height:94px !important;
+    padding:13px 15px !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-issue b{
+    font-size:13.5px !important;
+    line-height:1.3 !important;
+    margin-bottom:5px !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-issue span{
+    font-size:12px !important;
+    line-height:1.48 !important;
+    letter-spacing:-.01em !important;
+  }
+
+  /* 수완동 사례 카드도 동일한 크기로 읽기 쉽게 */
+  body.project-intro-page #intro-process .ppt-issue:last-child span{
+    font-size:11.8px !important;
+    line-height:1.45 !important;
+    word-break:keep-all !important;
+  }
+}
+
+/* 낮은 화면에서도 한 페이지 안에 들어오도록 완화 */
+@media (min-width:1181px) and (max-height:850px){
+
+  body.project-intro-page #intro-process .ppt-tech-grid,
+  body.project-intro-page #intro-process .ppt-tech-grid > .ppt-tech{
+    min-height:272px !important;
+    height:272px !important;
+  }
+
+  body.project-intro-page #intro-process .tech-stack-grid{
+    grid-template-rows:repeat(2,minmax(68px,1fr)) !important;
+  }
+
+  body.project-intro-page #intro-process .tech-stack-item{
+    min-height:68px !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-issues{
+    grid-template-rows:repeat(2,minmax(82px,1fr)) !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-issue{
+    min-height:82px !important;
+    padding:10px 12px !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-issue b{
+    font-size:12.3px !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-issue span{
+    font-size:10.8px !important;
+    line-height:1.4 !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-issue:last-child span{
+    font-size:10.6px !important;
+  }
+}
+</style>
+
+
+<style id="section07-card-fonts-enlarged-v27">
+/* =========================================================
+   07 · PHASE 2 DATA
+   카드 크기/배치 그대로, 카드 내부 폰트만 확대
+   ========================================================= */
+
+@media (min-width:1181px){
+
+  body.project-intro-page #intro-phase2 .ppt-phase2-card .idx{
+    font-size:14.5px !important;
+    line-height:1.2 !important;
+  }
+
+  body.project-intro-page #intro-phase2 .ppt-phase2-card h4{
+    margin:9px 0 10px !important;
+    font-size:22px !important;
+    line-height:1.28 !important;
+    letter-spacing:-.025em !important;
+  }
+
+  body.project-intro-page #intro-phase2 .ppt-phase2-card p{
+    font-size:16px !important;
+    line-height:1.52 !important;
+    letter-spacing:-.015em !important;
+    word-break:keep-all !important;
+  }
+}
+
+/* 화면 높이가 낮은 경우 한 페이지 유지 */
+@media (min-width:1181px) and (max-height:850px){
+
+  body.project-intro-page #intro-phase2 .ppt-phase2-card .idx{
+    font-size:13.5px !important;
+  }
+
+  body.project-intro-page #intro-phase2 .ppt-phase2-card h4{
+    font-size:20.5px !important;
+    margin:7px 0 8px !important;
+  }
+
+  body.project-intro-page #intro-phase2 .ppt-phase2-card p{
+    font-size:14.8px !important;
+    line-height:1.46 !important;
+  }
+}
+</style>
+
+
+<style id="section08-fonts-enlarged-v28">
+/* =========================================================
+   08 · BALANCE / POLICY FRAME
+   블록 크기/배치는 유지하고 내부 폰트만 확대
+   ========================================================= */
+
+@media (min-width:1181px){
+
+  /* 상단 5단계 흐름 블록 */
+  body.project-intro-page #intro-analysis .ppt-ybi-node{
+    font-size:15.5px !important;
+    line-height:1.35 !important;
+    font-weight:800 !important;
+  }
+
+  body.project-intro-page #intro-analysis .ppt-ybi-node span{
+    font-size:11.5px !important;
+    line-height:1.35 !important;
+  }
+
+  /* 아래 4개 정책 카드 */
+  body.project-intro-page #intro-analysis .ppt-policy-card .ico{
+    font-size:26px !important;
+    line-height:1 !important;
+  }
+
+  body.project-intro-page #intro-analysis .ppt-policy-card h4{
+    font-size:20px !important;
+    line-height:1.3 !important;
+    margin:9px 0 7px !important;
+    letter-spacing:-.02em !important;
+  }
+
+  body.project-intro-page #intro-analysis .ppt-policy-card p{
+    font-size:14px !important;
+    line-height:1.55 !important;
+    letter-spacing:-.01em !important;
+    word-break:keep-all !important;
+  }
+}
+
+/* 낮은 발표 화면에서는 한 페이지 유지용으로 살짝 완화 */
+@media (min-width:1181px) and (max-height:850px){
+
+  body.project-intro-page #intro-analysis .ppt-ybi-node{
+    font-size:14px !important;
+  }
+
+  body.project-intro-page #intro-analysis .ppt-ybi-node span{
+    font-size:10.5px !important;
+  }
+
+  body.project-intro-page #intro-analysis .ppt-policy-card .ico{
+    font-size:23px !important;
+  }
+
+  body.project-intro-page #intro-analysis .ppt-policy-card h4{
+    font-size:18px !important;
+  }
+
+  body.project-intro-page #intro-analysis .ppt-policy-card p{
+    font-size:12.8px !important;
+    line-height:1.5 !important;
+  }
+}
+</style>
+
+
+<style id="section08-last-node-contrast-fixed-v29">
+/* =========================================================
+   08 · BALANCE / POLICY FRAME
+   마지막 '청년 유입·정착 지원 / 필요성 검토' 블록 대비 개선
+   ========================================================= */
+
+@media (min-width:1181px){
+
+  /* 마지막 단계 제목 */
+  body.project-intro-page #intro-analysis .ppt-ybi-node:last-child{
+    color:#162033 !important;
+    font-weight:800 !important;
+  }
+
+  /* 마지막 단계 보조 문구 */
+  body.project-intro-page #intro-analysis .ppt-ybi-node:last-child span{
+    color:#13879a !important;
+    font-weight:700 !important;
+    opacity:1 !important;
+  }
+}
+</style>
+
+
+<style id="section09-current-rebalance-v31">
+/* =========================================================
+   09 · DATA QUALITY CHECK
+   현재 project_intro(10).html 기준 보정
+   - 상단 3개 표본 기준 카드 높이/내부 여백 소폭 확대
+   - 카드가 커진 만큼 아래 블록들이 자연스럽게 조금 내려오도록 조정
+   - 섹션 번호/설명 배지와 제목은 건드리지 않음
+   ========================================================= */
+
+@media (min-width:1181px){
+
+  /* 제목 아래에서 카드 묶음이 너무 붙어 보이지 않게 아주 조금 아래로 */
+  body.project-intro-page #intro-output .ppt-quality-rule-grid{
+    flex:0 0 178px !important;
+    min-height:138px !important;
+    margin-top:7px !important;
+    gap:11px !important;
+  }
+
+  /* 20건 이상 / 5~19건 / 0~4건 카드 자체를 조금 더 여유 있게 */
+  body.project-intro-page #intro-output .ppt-quality-rule{
+    height:100% !important;
+    min-height:0 !important;
+    padding:16px 17px 15px !important;
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:flex-start !important;
+  }
+
+  body.project-intro-page #intro-output .rule-step{
+    flex:0 0 auto !important;
+  }
+
+  body.project-intro-page #intro-output .rule-count{
+    margin-top:10px !important;
+  }
+
+  body.project-intro-page #intro-output .ppt-quality-rule h4{
+    margin:4px 0 5px !important;
+  }
+
+  body.project-intro-page #intro-output .ppt-quality-rule p{
+    line-height:1.46 !important;
+  }
+
+  /* 상태 배지를 카드 바닥 쪽에 안정적으로 배치 */
+  body.project-intro-page #intro-output .rule-status{
+    margin-top:auto !important;
+    align-self:flex-start !important;
+  }
+
+  /* 위 카드가 커진 만큼 아래 블록도 살짝 더 아래로 이어지게 */
+  body.project-intro-page #intro-output .ppt-quality-cleaning{
+    margin-top:5px !important;
+  }
+
+  body.project-intro-page #intro-output .ppt-quality-excluded-head{
+    margin-top:4px !important;
+  }
+
+  body.project-intro-page #intro-output .ppt-quality-dong-grid{
+    margin-top:3px !important;
+  }
+}
+
+/* 1080p보다 세로가 낮은 노트북 화면에서는 과도한 증가 방지 */
+@media (min-width:1181px) and (max-height:900px){
+
+  body.project-intro-page #intro-output .ppt-quality-rule-grid{
+    flex-basis:166px !important;
+    margin-top:5px !important;
+  }
+
+  body.project-intro-page #intro-output .ppt-quality-rule{
+    padding:14px 16px 13px !important;
+  }
+
+  body.project-intro-page #intro-output .ppt-quality-cleaning{
+    margin-top:3px !important;
+  }
+
+  body.project-intro-page #intro-output .ppt-quality-excluded-head{
+    margin-top:2px !important;
+  }
+
+  body.project-intro-page #intro-output .ppt-quality-dong-grid{
+    margin-top:2px !important;
+  }
+}
+</style>
+
+
+<style id="section09-excluded-heading-enlarged-v32">
+/* =========================================================
+   09 · DATA QUALITY CHECK
+   '표본 부족으로 HL 비교에서 제외한 지역' 제목 영역만 확대
+   ========================================================= */
+
+@media (min-width:1181px){
+
+  body.project-intro-page #intro-output .ppt-quality-excluded-head .quality-label{
+    font-size:11.5px !important;
+    line-height:1.3 !important;
+    letter-spacing:.035em !important;
+  }
+
+  body.project-intro-page #intro-output .ppt-quality-excluded-head h3{
+    margin:5px 0 0 !important;
+    font-size:20px !important;
+    line-height:1.35 !important;
+    letter-spacing:-.025em !important;
+    font-weight:850 !important;
+  }
+
+  body.project-intro-page #intro-output .ppt-quality-excluded-head > span{
+    padding:6px 10px !important;
+    font-size:9.5px !important;
+    line-height:1.1 !important;
+    font-weight:800 !important;
+  }
+}
+
+/* 세로가 낮은 화면에서는 한 페이지 유지용 완화 */
+@media (min-width:1181px) and (max-height:850px){
+
+  body.project-intro-page #intro-output .ppt-quality-excluded-head .quality-label{
+    font-size:10.5px !important;
+  }
+
+  body.project-intro-page #intro-output .ppt-quality-excluded-head h3{
+    font-size:18px !important;
+  }
+
+  body.project-intro-page #intro-output .ppt-quality-excluded-head > span{
+    font-size:8.5px !important;
+  }
+}
+</style>
+
 </head>
 <body class="project-intro-page">
 <header class="winter-topbar">
@@ -11750,7 +12423,7 @@ body.project-intro-page #intro-topic .topic-question{
 <div class="ppt-issue"><b>행정동명 불일치</b><span>농성1동·농성제1동 등 명칭을 표준화</span></div>
 <div class="ppt-issue"><b>첨단2동 행정구역</b><span>최종 북구 기준으로 통일</span></div>
 <div class="ppt-issue"><b>카테고리 혼재</b><span>은행 등 혼합 시설을 후처리로 재분류</span></div>
-<div class="ppt-issue"><b>버스 노선 매칭 0.54%</b><span>신뢰도가 낮아 정책판단에는 사용 보류</span></div>
+<div class="ppt-issue"><b>수완동 주거비 이상치 확인</b><span>월환산 주거비 23만원대의 원인을 확인한 결과, 실거래 표본이 100% 공공임대였습니다. 이후 표본 부족 동은 HL 비교에서 제외했습니다.</span></div>
 </div>
 </div>
 </div>
@@ -12337,7 +13010,7 @@ body.project-intro-page #intro-topic .topic-question{
         </div>
         <span class="team-role-no">01</span>
       </div>
-      <div class="team-role-main">백엔드 · 프론트엔드 총괄</div>
+      <div class="team-role-main">기획 · 백엔드 · 프론트엔드 총괄</div>
       <div class="team-role-detail">
         <span>시스템 연동 관리</span>
       </div>

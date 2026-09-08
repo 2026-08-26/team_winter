@@ -10414,7 +10414,39 @@ body.project-intro-page #intro-topic .topic-question{
   }
 }
 </style>
-
+<style id="intro-scroll-snap-unified-v14">
+@media (min-width:1181px){
+  :root{--intro-header-h:75px;--intro-page-h-final:calc(100dvh - var(--intro-header-h));}
+  html{scroll-snap-type:y mandatory !important;scroll-padding-top:var(--intro-header-h) !important;overscroll-behavior-y:contain;}
+  body.project-intro-page .project-intro-main .story-chapter,
+  body.project-intro-page #project-intro.story-chapter,
+  body.project-intro-page #intro-topic.story-chapter,
+  body.project-intro-page #intro-data.story-chapter,
+  body.project-intro-page #intro-process.story-chapter,
+  body.project-intro-page #intro-visualization.story-chapter,
+  body.project-intro-page #intro-hl.story-chapter,
+  body.project-intro-page #intro-turning.story-chapter,
+  body.project-intro-page #intro-phase2.story-chapter,
+  body.project-intro-page #intro-analysis.story-chapter,
+  body.project-intro-page #intro-output.story-chapter,
+  body.project-intro-page #intro-method.story-chapter,
+  body.project-intro-page #intro-method-2.story-chapter,
+  body.project-intro-page #intro-limit.story-chapter,
+  body.project-intro-page #intro-team.story-chapter{
+    height:var(--intro-page-h-final) !important;
+    min-height:var(--intro-page-h-final) !important;
+    max-height:var(--intro-page-h-final) !important;
+    margin-top:0 !important;margin-bottom:0 !important;
+    scroll-margin-top:0 !important;
+    scroll-margin-block-start:0 !important;
+    scroll-snap-align:start !important;
+    scroll-snap-stop:always !important;
+    box-sizing:border-box !important;
+    overflow:hidden !important;
+  }
+}
+@media (max-width:1180px){html{scroll-snap-type:none !important;scroll-padding-top:0 !important;}}
+</style>
 </head>
 <body class="project-intro-page">
 <header class="winter-topbar">
@@ -11769,5 +11801,18 @@ body.project-intro-page #intro-topic .topic-question{
 })();
 </script>
 
+<script id="intro-scroll-header-sync-v14">
+(function(){
+  function syncIntroHeaderHeight(){
+    const header=document.querySelector('.winter-topbar');
+    if(!header) return;
+    const h=Math.round(header.getBoundingClientRect().height);
+    document.documentElement.style.setProperty('--intro-header-h', h+'px');
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',syncIntroHeaderHeight,{once:true});
+  else syncIntroHeaderHeight();
+  window.addEventListener('resize',syncIntroHeaderHeight,{passive:true});
+})();
+</script>
 </body>
 </html>

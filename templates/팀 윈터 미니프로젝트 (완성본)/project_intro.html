@@ -12079,6 +12079,332 @@ body.project-intro-page #intro-topic .topic-question{
 }
 </style>
 
+
+<style id="project-start-clean-rebalance-v34">
+/* =========================================================
+   00 · PROJECT START
+   - 가운데 설명문 삭제 후 첫 화면 재구성
+   - 섹션 배지는 기존 상태 그대로 유지
+   - 메인 질문 확대
+   - 01~05 블록 확대 + 위쪽으로 재배치
+   ========================================================= */
+
+@media (min-width:1181px){
+
+  /* 한 페이지 안에서 위쪽부터 자연스럽게 쌓이도록 */
+  body.project-intro-page #project-intro > .wrap{
+    justify-content:flex-start !important;
+    gap:0 !important;
+  }
+
+  /* 가장 큰 질문: 기존보다 소폭 확대 */
+  body.project-intro-page #project-intro .project-start-question{
+    font-size:clamp(50px,3.85vw,62px) !important;
+    line-height:1.09 !important;
+    letter-spacing:-.048em !important;
+    max-width:1260px !important;
+    margin:44px 0 0 !important;
+    flex:0 0 auto !important;
+  }
+
+  /* 가운데 설명문이 빠진 자리를 활용해 5개 블록을 바로 끌어올림 */
+  body.project-intro-page #project-intro .story-strip{
+    flex:0 0 196px !important;
+    min-height:196px !important;
+    max-height:196px !important;
+    width:100% !important;
+    margin:42px 0 0 !important;
+    padding-top:0 !important;
+    gap:12px !important;
+    align-items:stretch !important;
+  }
+
+  /* 카드 자체 확대 */
+  body.project-intro-page #project-intro .story-step{
+    height:100% !important;
+    min-height:0 !important;
+    padding:22px 20px !important;
+    border-radius:17px !important;
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:center !important;
+  }
+
+  body.project-intro-page #project-intro .story-step .n{
+    font-size:20px !important;
+    line-height:1.2 !important;
+    margin-bottom:11px !important;
+  }
+
+  body.project-intro-page #project-intro .story-step b{
+    font-size:22px !important;
+    line-height:1.28 !important;
+    margin-bottom:9px !important;
+  }
+
+  body.project-intro-page #project-intro .story-step span{
+    font-size:18px !important;
+    line-height:1.42 !important;
+  }
+}
+
+/* 높이가 낮은 노트북 화면에서도 한 페이지 유지 */
+@media (min-width:1181px) and (max-height:800px){
+
+  body.project-intro-page #project-intro .project-start-question{
+    font-size:clamp(45px,3.55vw,56px) !important;
+    margin-top:30px !important;
+  }
+
+  body.project-intro-page #project-intro .story-strip{
+    flex-basis:174px !important;
+    min-height:174px !important;
+    max-height:174px !important;
+    margin-top:28px !important;
+  }
+
+  body.project-intro-page #project-intro .story-step{
+    padding:17px 16px !important;
+  }
+
+  body.project-intro-page #project-intro .story-step .n{
+    font-size:17px !important;
+    margin-bottom:8px !important;
+  }
+
+  body.project-intro-page #project-intro .story-step b{
+    font-size:19px !important;
+    margin-bottom:6px !important;
+  }
+
+  body.project-intro-page #project-intro .story-step span{
+    font-size:15px !important;
+  }
+}
+</style>
+
+
+<style id="section03-issue-fonts-larger-v35">
+/* =========================================================
+   03 · DATA → HL SCORE
+   '전처리에서 겪은 시행착오' 영역 글씨 확대
+   - 카드 크기/배치는 유지
+   - 제목 + 4개 카드 제목 + 설명문을 한 단계 확대
+   ========================================================= */
+
+@media (min-width:1181px){
+
+  /* 큰 블록 제목 */
+  body.project-intro-page #intro-process
+  .ppt-tech-grid > .ppt-tech:last-child h3{
+    font-size:23px !important;
+    line-height:1.24 !important;
+    letter-spacing:-.025em !important;
+  }
+
+  /* 4개 시행착오 카드 */
+  body.project-intro-page #intro-process .ppt-issue{
+    padding:14px 16px !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-issue b{
+    font-size:15.5px !important;
+    line-height:1.3 !important;
+    margin-bottom:7px !important;
+    letter-spacing:-.018em !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-issue span{
+    font-size:13.5px !important;
+    line-height:1.5 !important;
+    letter-spacing:-.012em !important;
+    word-break:keep-all !important;
+  }
+
+  /* 수완동 사례는 문장이 조금 길어서 같은 크기 안에서 안정화 */
+  body.project-intro-page #intro-process .ppt-issue:last-child b{
+    font-size:15.5px !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-issue:last-child span{
+    font-size:13.1px !important;
+    line-height:1.47 !important;
+    word-break:keep-all !important;
+  }
+}
+
+/* 낮은 노트북 화면에서는 한 페이지 유지 */
+@media (min-width:1181px) and (max-height:850px){
+
+  body.project-intro-page #intro-process
+  .ppt-tech-grid > .ppt-tech:last-child h3{
+    font-size:21px !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-issue{
+    padding:11px 13px !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-issue b{
+    font-size:13.8px !important;
+    margin-bottom:5px !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-issue span{
+    font-size:11.8px !important;
+    line-height:1.43 !important;
+  }
+
+  body.project-intro-page #intro-process .ppt-issue:last-child span{
+    font-size:11.5px !important;
+    line-height:1.42 !important;
+  }
+}
+</style>
+
+
+<style id="section06-added-policy-larger-v36">
+/* =========================================================
+   06 · TURNING POINT
+   캡처 영역(추가된 데이터셋 / 정책지표 확장) 가독성 확대
+   - 섹션 배지/상단 제목/핵심 질문은 변경하지 않음
+   - 가운데/오른쪽 카드와 내부 4개 항목만 확대
+   ========================================================= */
+
+@media (min-width:1181px){
+
+  /* 3단 영역 전체 높이를 조금 늘려 내부 폰트 확대 공간 확보 */
+  body.project-intro-page #intro-turning .turning-three-card{
+    min-height:300px !important;
+  }
+
+  /* 가운데/오른쪽 바깥 카드 */
+  body.project-intro-page #intro-turning .turning-three-card.added,
+  body.project-intro-page #intro-turning .turning-three-card.policy{
+    padding:18px 19px !important;
+  }
+
+  /* 02/03, ADDED DATA / POLICY EXPANSION */
+  body.project-intro-page #intro-turning .turning-three-card.added .turning-three-head > span,
+  body.project-intro-page #intro-turning .turning-three-card.policy .turning-three-head > span{
+    width:31px !important;
+    height:31px !important;
+    font-size:9.5px !important;
+  }
+
+  body.project-intro-page #intro-turning .turning-three-card.added .turning-three-head small,
+  body.project-intro-page #intro-turning .turning-three-card.policy .turning-three-head small{
+    font-size:8px !important;
+  }
+
+  /* 큰 카드 제목 */
+  body.project-intro-page #intro-turning .turning-three-card.added h3,
+  body.project-intro-page #intro-turning .turning-three-card.policy h3{
+    margin:12px 0 10px !important;
+    font-size:20px !important;
+    line-height:1.3 !important;
+    letter-spacing:-.025em !important;
+  }
+
+  /* 내부 4개 항목 간격 */
+  body.project-intro-page #intro-turning .turning-added-list,
+  body.project-intro-page #intro-turning .turning-policy-list{
+    gap:7px !important;
+  }
+
+  /* 내부 항목 블록 자체 확대 */
+  body.project-intro-page #intro-turning .turning-added-list > div,
+  body.project-intro-page #intro-turning .turning-policy-list > div{
+    min-height:47px !important;
+    padding:8px 10px !important;
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:center !important;
+  }
+
+  /* 내부 제목 */
+  body.project-intro-page #intro-turning .turning-added-list b,
+  body.project-intro-page #intro-turning .turning-policy-list b{
+    font-size:12.5px !important;
+    line-height:1.25 !important;
+    letter-spacing:-.015em !important;
+  }
+
+  /* 내부 설명 */
+  body.project-intro-page #intro-turning .turning-added-list span,
+  body.project-intro-page #intro-turning .turning-policy-list span{
+    margin-top:3px !important;
+    font-size:10.5px !important;
+    line-height:1.35 !important;
+    letter-spacing:-.01em !important;
+    word-break:keep-all !important;
+  }
+}
+
+/* 실제 발표용 노트북 높이에서도 너무 작아지지 않도록 별도 확대 */
+@media (min-width:1181px) and (max-height:850px){
+
+  body.project-intro-page #intro-turning .turning-three-card{
+    min-height:250px !important;
+  }
+
+  body.project-intro-page #intro-turning .turning-three-card.added,
+  body.project-intro-page #intro-turning .turning-three-card.policy{
+    padding:13px 14px !important;
+  }
+
+  body.project-intro-page #intro-turning .turning-three-card.added h3,
+  body.project-intro-page #intro-turning .turning-three-card.policy h3{
+    margin:8px 0 7px !important;
+    font-size:17px !important;
+  }
+
+  body.project-intro-page #intro-turning .turning-added-list,
+  body.project-intro-page #intro-turning .turning-policy-list{
+    gap:5px !important;
+  }
+
+  body.project-intro-page #intro-turning .turning-added-list > div,
+  body.project-intro-page #intro-turning .turning-policy-list > div{
+    min-height:39px !important;
+    padding:6px 8px !important;
+  }
+
+  body.project-intro-page #intro-turning .turning-added-list b,
+  body.project-intro-page #intro-turning .turning-policy-list b{
+    font-size:10.5px !important;
+  }
+
+  body.project-intro-page #intro-turning .turning-added-list span,
+  body.project-intro-page #intro-turning .turning-policy-list span{
+    font-size:8.7px !important;
+    line-height:1.3 !important;
+  }
+}
+</style>
+
+
+<style id="project-start-blocks-lowered-v37">
+/* =========================================================
+   00 · PROJECT START
+   01~05 카드 묶음만 살짝 아래로 이동
+   - 제목/배지/카드 크기/폰트는 그대로 유지
+   ========================================================= */
+
+@media (min-width:1181px){
+  body.project-intro-page #project-intro .story-strip{
+    margin-top:56px !important;
+  }
+}
+
+/* 낮은 화면에서도 한 페이지 유지 */
+@media (min-width:1181px) and (max-height:800px){
+  body.project-intro-page #project-intro .story-strip{
+    margin-top:38px !important;
+  }
+}
+</style>
+
 </head>
 <body class="project-intro-page">
 <header class="winter-topbar">
@@ -12251,28 +12577,10 @@ body.project-intro-page #intro-topic .topic-question{
 <div class="wrap">
 <div class="eyebrow">💡 PROJECT START · 처음 우리가 세운 목표</div>
 <h1 class="project-start-question">
-  주거를 고민하는 2030 청년에게 여러 플랫폼에서 찾아볼 수 없는
+  주거를 고민하는 2030 청년에게 여러 플랫폼에서 찾아볼 수 없는<br>
   <span class="question-accent">실제 생활 인프라 정보</span>까지 보여준다면 <br>
   주거지를 정할 때 더 도움이 되지 않을까?
 </h1>
-<div class="project-start-copy">
-  <p>
-    주거지를 정할 때는 가격과 면적만 보는 것이 아니라,
-    <b>교통, 병원·마트 같은 생활시설, 청년이 자주 이용하는 시설</b>까지 함께 확인하게 됩니다.
-    <br>하지만 이런 정보는 여러 플랫폼에 흩어져 있어 한눈에 비교하기 어렵습니다.
-  </p>
-  <p>
-    기존 부동산 서비스는 매물의 <b>가격·면적·위치</b>는 잘 보여주지만<br>
-    실제 생활에 중요한 <b>교통·생활 인프라·2030 선호시설 접근성</b>까지
-    한 화면에서 비교하기는 어렵다고 보았습니다.
-  </p>
-  <p>
-    그래서 6개 미니프로젝트 주제 중 <b>인구통계 + 아파트 실거래가</b>를 선택하고<br>
-    생활 인프라·교통·청년 선호시설 데이터를 더해
-    <b>“2030 청년의 실제 주거 선택에 도움이 되는 정보를 만들어보자”</b>는 <br>목표로 프로젝트를 시작했습니다.
-  </p>
-</div>
-
 <div aria-label="프로젝트 초기 구상" class="story-strip">
 <div class="story-step">
 <div class="n">01 · 문제 인식</div>
